@@ -19,6 +19,6 @@
 - `tools/srprovapply.py`: 705 confirmed, 191 renamed, 51 unsure (still provisional). 0 duplicate names, 0 `FUN_` left.
 
 ## Next
-- Round 2 on the 51 unsure names.
+- Round 2 DONE: the 51 unsure names re-read with callers (Sonnet): 17 confirmed, 34 renamed, 0 provisional left.
 - Other code on the disc (overlays, the 68000 sound driver).
 - Cross-check against the Model 2 arcade program (i960).

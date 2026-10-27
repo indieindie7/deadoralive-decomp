@@ -6,9 +6,9 @@ every function of the main program, then a review of every provisional name with
 
 | Program | Functions | Hand-named | Still `provisional` |
 |---|---|---|---|
-| 00DOA.BIN (main program at 0x06004000) | 1,605 | 1,603 | 51 |
+| 00DOA.BIN (main program at 0x06004000) | 1,605 | 1,603 | 0 |
 
-Review verdicts: 705 confirmed, 191 renamed, 51 left unsure. 0 placeholder (`FUN_`) names left.
+Review verdicts: round 1 705 confirmed, 191 renamed, 51 unsure; round 2 on those 51: 17 confirmed, 34 renamed. 0 placeholder (`FUN_`) names left.
 
 Subsystems named: Sega GFS / CDC file system and streaming (`gfs_`, `cdc_`, `stm_`), VDP2 (`vdp2_`), sound (`snd_`),
 pad input (`pad_`), maths and fixed point (`math_`, `fp_`), the fight loop and fighters (`fight_`, `fighter_`, `hit_`),

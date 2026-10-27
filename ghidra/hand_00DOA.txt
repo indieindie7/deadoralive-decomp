@@ -29,7 +29,7 @@
 0x06036d80 func pad_FindNextPadSlot hand scans from current slot+1 up to 0x1e for pad type, stores index in port 2 field
 0x06036de8 func pad_UpdateModeAndResetHolds hand on mode change issues call with 0xc or 0xb, resets 11 hold counters when start combo held
 0x06036ec8 func pad_UpdateHoldCounters hand per port increments frame counters for each of 16 pressed buttons, zero when released, saturates at -1
-0x06036f64 func sys_UpdateDebugPadMenu hand provisional toggles two-state selector via pad buttons, prints text at fixed positions, XORs flag 0x42, clears 13 port states
+0x06036f64 func sys_UpdateDebugPadMenu hand toggles two-state selector via pad buttons, prints text at fixed positions, XORs flag 0x42, clears 13 port states
 0x06037228 func time_TickClock hand increments frame, second, minute counters with wrap at 60 and hour carry into short
 0x060372d8 func sys_QueueAddRequest hand finds free 16-byte slot in request table, marks used and stores three params
 0x0603730c func sys_QueueClearAll hand clears used flag of every 16-byte request slot
@@ -66,8 +66,8 @@
 0x060385d4 func gfx_Draw2x2Block hand writes four pixel colors from struct into 512-pitch bitmap at struct x,y
 0x060386a0 func gfx_Clear2x2Block hand writes zero to four pixels of 2x2 block at struct x,y in 512-pitch bitmap
 0x0603874c func gfx_Draw2x2BlockArray hand loops 0x14-byte entries drawing 2x2 pixel blocks into bitmap
-0x060390b4 func vdp2_FillSequentialMapTiles_2 hand provisional fills map rows with consecutive tile numbers from table (one entry)
-0x06039538 func ui_PadSelectScrollAnim hand provisional on pad direction picks entry from 16-byte table and runs 8-step animation via helper, plays sound 0x23, returns selection
+0x060390b4 func vdp2_FillSequentialMapTiles_2 hand fills map rows with consecutive tile numbers from table (one entry)
+0x06039538 func ui_PadSelectScrollAnim hand on pad direction picks entry from 16-byte table and runs 8-step animation via helper, plays sound 0x23, returns selection
 0x060395ec func title_LoadBitmapScreen hand init screen, loads data and copies bitmap rect row by row into VRAM, fades to mode 3
 0x060396e8 func gfx_CopyBitmapFromBuffer hand loads buffer then copies rect from buffer+offset into VRAM bitmap row by row
 0x06039774 func pad_CheckConfirmButtons hand returns bit0 if pad1 start-mask pressed, bit1 for pad2, plays sound 0x24 when pressed
@@ -109,9 +109,9 @@
 0x0603c4f4 func game_ClearPendingDamageBoth hand zeroes pending damage shorts at +0x22 and +0x7a for both players
 0x0603c510 func stat_IncrementHitCounters hand if stats enabled increments per-player counter by index and second counter when flag arg nonzero
 0x0603d0cc func snd_StopChannelEntry hand if id differs from sentinel, masks to 7 bits, calls stop helper when active, clears active and aux byte
-0x0603d11c func mem_InitStreamEntry hand provisional fills 0x2c-byte stream entry with position, offset delta, params and index, calls copy helper
+0x0603d11c func mem_InitStreamEntry hand fills 0x2c-byte stream entry with position, offset delta, params and index, calls copy helper
 0x0603d298 func mem_InitAllocatorPool hand sets pool base, end and cursor from base and size, clears 15 twelve-byte allocation records
-0x0603d2f4 func mem_AllocStreamBlock hand provisional bump-allocates aligned block in pool, records ptr, id, size in 12-byte table of 15, returns ptr or zero
+0x0603d2f4 func mem_AllocStreamBlock hand bump-allocates aligned block in pool, records ptr, id, size in 12-byte table of 15, returns ptr or zero
 0x0603d39c func mem_FreeStreamBlock hand finds record by id, compacts pool by copying following data down, resets entry and shifts table
 0x0603d560 func mem_CopyFighterEntry hand copies one 0x2c-byte stream entry to another index including embedded struct via helper (was mem_CopyStreamEntry)
 0x0603d5c4 func snd_LoadAndWaitCommand hand waits for status bit, sets channel byte and args, loops frame helper until channel byte reaches done value
@@ -259,7 +259,7 @@
 0x06094d70 func rand_Next hand LCG update of state at +0x30 via multiply, returns bits 16-30
 0x06094da4 func rand_Seed hand stores seed into state offset 0x30
 0x06094db0 func libc_RandNext hand calls library function with default reent pointer, no other args (was libc_ReentCall0)
-0x06094dd0 func libc_ReentCall1_06094dd0 hand provisional calls library function with default reent pointer and one arg, malloc-style wrapper
+0x06094dd0 func libc_SeedRandReent hand calls library function with default reent pointer and one arg, malloc-style wrapper (was libc_ReentCall1_06094dd0)
 0x06094df0 func memset hand fill bytes with word-aligned fast path, returns dest
 0x06094e44 func strcmp hand compares strings, returns byte difference
 0x06094f74 func memcmp hand compares n bytes, returns first difference
@@ -279,7 +279,7 @@
 0x06095368 func sys_write hand syscall number 4 with three args
 0x06095388 func sys_close hand syscall number 6 with one arg
 0x060953c4 func sbrk hand grows heap pointer, string Heap and stack collision on overflow
-0x06095420 func fstat_stub hand provisional sets st_mode-like field at +4 to constant, returns 0
+0x06095420 func fstat_stub hand sets st_mode-like field at +4 to constant, returns 0
 0x06095450 func sys_creat hand syscall number 8 with two args
 0x06095470 func stub_06095470 hand returns -1 only
 0x06095488 func sys_exit hand syscall number 1 with one arg
@@ -296,7 +296,7 @@
 0x060955f4 func sys_TrapVbr88 hand calls vector table entry +0x88, stores second return as error
 0x06095608 func sys_HaltLoop hand infinite loop calling syscall 6 then 1
 0x0609562c func libc_ReentCall1_0609562c hand calls library function with default reent pointer and one arg
-0x0609564c func libc_CallWithResult hand provisional calls function then passes its result with args to second function
+0x0609564c func libc_Call0ThenCaptureErrno hand calls function then passes its result with args to second function (was libc_CallWithResult)
 0x06095680 func sys_CallCaptureErrno2 hand clears error word, calls syscall with two args, stores error to out param
 0x060956b8 func libc_Call0 hand wrapper tail calling one function without args
 0x060956e0 func pad_BuildPortTables hand gbr-based peripheral port setup, builds per-port bit tables and fills entry arrays via 06095a16/06095a4e/06095a82
@@ -443,7 +443,7 @@
 0x0609eafc func vdp2_SetMapOffsetC hand stores value at 0x208 and derives bitfield in byte 0xfc
 0x0609ebb0 func vdp2_SetScrollPosPairB hand stores two words at 0x2f4/0x2f8 and packs into 0x154
 0x0609ebc0 func vdp2_WriteBgParams hand copies 5-word scroll parameters selected by index 0/1/other into register block
-0x0609ec44 func vdp2_WaitAndLoadScrollRegs hand provisional: spins until status bit clear then copies per-index register block
+0x0609ec44 func vdp2_WaitAndLoadScrollRegs hand spins until status bit clear then copies per-index register block
 0x0609eccc func mem_ClearUncached hand clears range with 16-byte stride at masked uncached address
 0x0609ecec func scu_IsIdle hand tests status byte and bit mask, stores boolean result (was scu_CheckBusyFlag)
 0x0609ed20 func dmac_IsCh0Active hand checks DMAC channel 0 CHCR (ffffff8c) transfer in progress bits
@@ -474,11 +474,11 @@
 0x060a3408 func mem_CopyStrided16 hand copies bytes stepping source by 2 into destination in groups 1,7,4,4
 0x060a3444 func buf_AppendStrided32 hand appends 32 bytes stepping source by 2 to buffer with bounds check
 0x060b6e98 func sgl_PutPolygonLit hand queues polygon with bounds check like PutPolygonMatrix plus extra transform and shading
-0x060b7208 func poly_ProcessVertexBatch hand provisional: loops vertices using shift-scaled Z depth and indexed tables
+0x060b7208 func poly_ProcessVertexBatch hand loops vertices using shift-scaled Z depth and indexed tables
 0x0603fea0 func stub_0603fea0 hand empty stub that only returns
 0x0603feb0 func fighter_ResetMotionState hand clears motion fields at +4/+0xc and state bytes in both fighter structs
-0x06040454 func snd_CallBatchA hand provisional: calls one function with args 5,6,7,8,9,0xb in sequence, sound or VDP2 batch wrapper
-0x06040484 func snd_CallBatchB hand provisional: same batch wrapper calling args 5,6,7,8,9,0xb
+0x06040454 func task_SetFlagBitsGroup5to11 hand calls one function with args 5,6,7,8,9,0xb in sequence, sound or VDP2 batch wrapper (was snd_CallBatchA)
+0x06040484 func task_ClearFlagBitsGroup5to11 hand same batch wrapper calling args 5,6,7,8,9,0xb (was snd_CallBatchB)
 0x060404b4 func snd_StopAllAndKillTasks hand first calls helper with (X,2) then the 5..0xb argument batch (was snd_CallBatchC)
 0x0604058c func scene_LoadCharSelectAssets hand loads FIX1/FIX2/FIX_TR_BIN, KANJI24_FON, TRFIX01/02_BIN, KAO_BIN via file loader for character select
 0x06040d2c func char_SetupPlayerFaceName hand sets up player pair (p, p^1) and builds face file name via fighter file name builder
@@ -629,7 +629,7 @@
 0x0604e7a4 func motion_AdvanceTimedTable hand steps byte table with countdown per player, terminator 0xff clears active flag
 0x0604e820 func fighter_CheckHoldWindow hand counter-hold check by motion class, sets hold flag if callee match fails
 0x0604e8d4 func fighter_HandleCommandResult hand processes command result, calls reaction callee, sets stun flag on terminator ops
-0x0604e984 func fighter_UpdateAttackCollision hand provisional attack hit/hurt collision test for one fighter
+0x0604e984 func fighter_StepMoveDisplacementScript hand attack hit/hurt collision test for one fighter (was fighter_UpdateAttackCollision)
 0x0604ebfc func fighter_ProcessHitDamage hand hit resolution with damage and knockback per player pair
 0x0604edf8 func fighter_UpdateJointPositions hand computes joint positions from chi table pointers
 0x0604f0a0 func fighter_ComputeHitSphere hand builds hit and hurt sphere positions from joints
@@ -679,7 +679,7 @@
 0x06052ee4 func fighter_ScalePlayerFields hand multiplies ten fields of per-player struct by factor via callee
 0x06052f8c func math_BuildRotationMatrix hand builds 3x3 rotation matrix from axis xyz and angle using sin cos fixed multiply
 0x06053104 func camera_ComputeLookAngles hand computes yaw pitch to target using atan2 and sqrt, stores in param array
-0x06053260 func fighter_DrawJointMarkers hand provisional loops joints 2 to 6 pushing matrix, rotating, drawing per player
+0x06053260 func fighter_CalcJointRotationAngles hand loops joints 2 to 6 pushing matrix, rotating, drawing per player (was fighter_DrawJointMarkers)
 0x06053310 func fighter_ResetHitRecord hand fills hit record 4 shorts with value, copies position fields from fighter struct
 0x06053534 func fighter_LoadMoveData hand clears per-player records, updates hit record per player each frame (was fighter_UpdateHitRecords)
 0x06053904 func fighter_SelectAndUpdate hand sets current fighter pointer to player struct size 0x58 and calls two update callees
@@ -804,8 +804,8 @@
 0x0605edc0 func fight_StartThrowPair hand syncs both players into paired throw or hold state, copies move ids and facing
 0x0605ef00 func stub_0605ef00 hand empty stub returns immediately
 0x0605ef0c func fight_AddBonusToStructFields hand adds table value to eight consecutive ints of struct (was fight_AddMoveBonusArray)
-0x0605ef64 func fight_SubMoveBonusArray hand provisional: subtracts table value from eight consecutive ints of struct
-0x0605efbc func fight_GetMoveEntryByte0b hand provisional: reads byte 0xb of 0x13-byte move entry from per-player table
+0x0605ef64 func mem_SubStreamEntryDelta8 hand subtracts table value from eight consecutive ints of struct (was fight_SubMoveBonusArray)
+0x0605efbc func fight_GetMoveEntryByte0b hand reads byte 0xb of 0x13-byte move entry from per-player table
 0x0605efec func fight_GetMoveEntryByte0a hand reads byte 0xa of 0x13-byte move entry from per-player table
 0x0605f01c func fight_GetMoveFrameField4 hand reads byte 4 of 8-byte frame entry for current frame, side swapped by flag
 0x0605f07c func fight_GetCurMoveField4 hand gets move entry via helper and returns byte 4
@@ -831,9 +831,9 @@
 0x06060048 func fight_LoadInputRecord hand copies 4 bytes of input record by index from per-player table into globals
 0x060600e4 func fight_GetMoveRecordPtr hand returns pointer to 12-byte move record for id, handling id ranges
 0x06060140 func fight_GetMoveRecordByte0a hand returns byte 10 of 12-byte move record for current move
-0x060601c4 func fight_IsFacingAwayFromOpponent hand provisional: angle difference between player and opponent compared to threshold
+0x060601c4 func fight_IsFacingAwayFromOpponent hand angle difference between player and opponent compared to threshold
 0x06060218 func fight_GetMoveRecordWord0 hand returns first 16-bit word of move record for current move, side-swapped
-0x060602f4 func fight_FindMoveType6 hand provisional: loops over 8-byte move entries searching for type 6, no result used
+0x060602f4 func fight_FindMoveType6 hand loops over 8-byte move entries searching for type 6, no result used
 0x06060350 func fight_LoadInputRecordIfType hand clears input globals then loads record when entry type is 2,3 or 5
 0x06060438 func fight_IsMoveInputFree hand looks up move record and checks input flag table for free-to-act
 0x06060544 func fight_ClampPlayerToRing hand resets current player state and clamps X and Z position to ring half-extent with speed reset
@@ -1041,7 +1041,7 @@
 0x06071418 func cam_UpdateCameraPositionVars hand copies and initialises AI position values via helper (was ai_InitPositionVars)
 0x060714a4 func ai_ClearFlagA hand stores zero into a global
 0x060714b8 func ai_ClearFlagB hand stores zero into pnt_cnt style global
-0x060714cc func ai_ClearBlock hand provisional: single fill call with 8 and constant length
+0x060714cc func cam_ApproachAngleToZero hand single fill call with 8 and constant length (was ai_ClearBlock)
 0x060714f4 func math_ApproachAngleToZero hand single fill call with 8 and constant length, sibling of ai_ClearBlock (was ai_ClearBlock_2)
 0x0607151c func ai_SetGensokuFromFlag hand sets gensoku value from global masked 0xffff with optional offset
 0x0607155c func ai_UpdateGensoku hand checks two player flags and updates gensoku and chi table values
@@ -1053,7 +1053,7 @@
 0x060720bc func ai_UpdateCameraTarget hand when AI active, sets gensoku, calls helpers with 3 (was ai_ActionStepA)
 0x06072298 func cam_UpdateAIChaseCamera hand AI action step variant (was ai_ActionStepB)
 0x060724a8 func ai_UpdateCameraTarget_2 hand AI action step variant (was ai_ActionStepC)
-0x06072678 func ai_ActionStepD hand provisional: AI action step with random, sets gensoku
+0x06072678 func cam_UpdateFollowStepD hand AI action step with random, sets gensoku (was ai_ActionStepD)
 0x060727a4 func cam_UpdateCameraState hand AI action step variant (was ai_ActionStepE)
 0x060728c4 func cam_UpdateAIView hand AI action step variant (was ai_ActionStepF)
 0x06072a18 func cam_UpdateChaseCamera hand AI action step variant (was ai_ActionStepG)
@@ -1108,7 +1108,7 @@
 0x06075dd8 func math_ClampInt_2 hand integer clamp variant
 0x06075df4 func math_AngleInRange hand tests whether angle lies within a range
 0x06075e10 func math_AngleBetween hand tests or computes angle between two angle values
-0x06075e6c func math_ScaleHalf hand provisional: scales value by one half with sign handling
+0x06075e6c func math_HalfFixedMulDiv hand scales value by one half with sign handling (was math_ScaleHalf)
 0x06075ea0 func fight_GetMaxEntryValue hand returns maximum value among table entries
 0x06075edc func cam_UpdateDispatch hand dispatches camera update by camera mode
 0x06075f2c func cam_ResetScriptFlags hand resets camera script flags and counters
@@ -1128,7 +1128,7 @@
 0x0607656c func camscr_OpStartChannelA hand camera script opcode starting sub-script channel A
 0x06076614 func camscr_OpStartChannelB hand camera script opcode starting sub-script channel B
 0x060766bc func camscr_OpStartChannelC hand camera script opcode starting sub-script channel C
-0x06076744 func camscr_OpStartChannelD hand provisional: camera script opcode starting sub-script channel D
+0x06076744 func camscr_OpStartChannelD hand camera script opcode starting sub-script channel D
 0x06076788 func camscr_OpCall1 hand camera script opcode calling helper variant one
 0x060767b4 func camscr_OpCall2 hand camera script opcode calling helper variant two
 0x060767e0 func camscr_OpCall3 hand camera script opcode calling helper variant three
@@ -1140,11 +1140,11 @@
 0x06076990 func camscr_OpStartInline_2 hand camera script opcode starting inline script variant two
 0x06076a00 func camscr_OpStartInline_3 hand camera script opcode starting inline script variant three
 0x06076a50 func camscr_OpStartInline_4 hand camera script opcode starting inline script variant four
-0x06076a90 func camscr_OpCall5 hand provisional: camera script opcode calling helper variant five
+0x06076a90 func camscr_OpStartDirectWrap hand camera script opcode calling helper variant five (was camscr_OpCall5)
 0x06076abc func camscr_OpCall6 hand camera script opcode calling helper variant six
 0x06076ae8 func camscr_OpStartDirect3 hand camera script opcode calling helper variant seven (was camscr_OpCall7)
 0x06076b14 func camscr_OpSkip8 hand camera script opcode skipping eight bytes of script
-0x06076b28 func camscr_OpStartDirect_1 hand provisional: camera script opcode starting direct script variant one
+0x06076b28 func camscr_OpStartDirect_1 hand camera script opcode starting direct script variant one
 0x06076b58 func camscr_OpStartDirect_2 hand camera script opcode starting direct script variant two
 0x06076b88 func camscr_OpStartDirect_3 hand camera script opcode starting direct script variant three
 0x06076bb8 func camscr_OpSetFighterByte hand camera script opcode setting a per-fighter byte
@@ -1160,7 +1160,7 @@
 0x060771e8 func camposs_OpAddDelta hand position script opcode adding delta to position
 0x06077248 func camposs_OpAccelerate hand position script opcode accelerating position change
 0x060772f4 func camposs_OpLerpToTarget hand position script opcode lerping position toward target
-0x060773e4 func camposs_OpEaseSine hand provisional: position script opcode easing with sine curve
+0x060773e4 func camposs_OpLerpOverFrames hand position script opcode easing with sine curve (was camposs_OpEaseSine)
 0x060774f0 func camposs_OpEaseSine_2 hand position script sine easing variant two
 0x060775e8 func camposs_OpEaseSine_3 hand position script sine easing variant three
 0x060776d8 func camposs_OpOrbitOffset hand position script opcode orbiting offset around target
@@ -1170,7 +1170,7 @@
 0x06077944 func camposs_OpCallAddDelta hand position script opcode calling add-delta helper
 0x060779c0 func camposs_OpCallAccel hand position script opcode calling acceleration helper
 0x06077a80 func camposs_OpLerpToTarget_2 hand position script opcode calling lerp helper (was camposs_OpCallLerp)
-0x06077b98 func camposs_OpSetFlagWords hand provisional: position script opcode setting flag words
+0x06077b98 func camposs_OpSetFlagWords hand position script opcode setting flag words
 0x06077bd8 func camposs_OpClearFlag hand position script opcode clearing a flag
 0x06077bf8 func cam_SetTargetFromFighters hand sets camera look target from both fighters positions
 0x06077cdc func cam_SetTargetFromFighter hand sets camera look target from a single fighter
@@ -1380,14 +1380,14 @@
 0x0608b720 func snd_SendStopCmd hand CDC command sender: builds CR1-4 packet and issues to CD block (was cdc_SendCmd_b720)
 0x0608b780 func snd_SendPauseCmd hand CDC command sender: builds CR1-4 packet and issues to CD block (was cdc_SendCmd_b780)
 0x0608b7e0 func snd_SetChannelStatus hand CDC command sender: builds CR1-4 packet and issues to CD block (was cdc_SendCmd_b7e0)
-0x0608b858 func cdc_SendCmd_b858 hand provisional CDC command sender: builds CR1-4 packet and issues to CD block
+0x0608b858 func cdc_SendCmd_b858 hand CDC command sender: builds CR1-4 packet and issues to CD block
 0x0608b8d4 func cdc_SendCmd_b8d4 hand CDC command sender: builds CR1-4 packet and issues to CD block
 0x0608b98c func cdc_SendCmd hand CDC command sender: builds CR1-4 packet and issues to CD block (was cdc_SendCmd_b98c)
 0x0608ba00 func cdc_SendCmd_ba00 hand CDC command sender: builds CR1-4 packet and issues to CD block
 0x0608bb10 func cdc_WaitForCmdComplete hand CDC command sender: builds CR1-4 packet and issues to CD block (was cdc_SendCmd_bb10)
 0x0608bb70 func cdc_SendCmd_bb70 hand CDC command sender: builds CR1-4 packet and issues to CD block
 0x0608bc40 func cdc_Init hand CDC command sender: builds CR1-4 packet and issues to CD block (was cdc_SendCmd_bc40)
-0x0608bc94 func cdc_SendCmd_bc94 hand provisional CDC command sender: builds CR1-4 packet and issues to CD block
+0x0608bc94 func cdc_SendCmd_bc94 hand CDC command sender: builds CR1-4 packet and issues to CD block
 0x0608bce8 func cdc_SendCmd_bce8 hand CDC command sender: builds CR1-4 packet and issues to CD block
 0x0608bd64 func cdc_SendCmd_bd64 hand CDC command sender: builds CR1-4 packet and issues to CD block
 0x0608bde0 func snd_GetChannelStatus_bde0 hand CDC command sender: builds CR1-4 packet and issues to CD block (was cdc_SendCmd_bde0)
@@ -1408,10 +1408,10 @@
 0x0608c1b0 func cdc_HirqHelper_c1b0 hand HIRQ/CR register helper for CD block, tiny accessor
 0x0608c1c0 func cdc_ReadRRNum hand HIRQ/CR register helper for CD block, tiny accessor (was cdc_HirqHelper_c1c0)
 0x0608c1e8 func cdc_SetHirqMask hand HIRQ/CR register helper for CD block, tiny accessor (was cdc_HirqHelper_c1e8)
-0x0608c1fc func cdc_HirqHelper_c1fc hand provisional HIRQ/CR register helper for CD block, tiny accessor
+0x0608c1fc func cdc_ReadRegWord_c1fc hand HIRQ/CR register helper for CD block, tiny accessor (was cdc_HirqHelper_c1fc)
 0x0608c230 func cdc_ReadHirqData hand HIRQ/CR register helper for CD block (was cdc_HirqHelper_c230)
 0x0608c28c func cdc_WaitForHirq hand HIRQ/CR register helper for CD block (was cdc_HirqHelper_c28c)
-0x0608c2cc func cdc_HirqHelper_c2cc hand provisional HIRQ/CR register helper for CD block
+0x0608c2cc func cdc_ExecCmdCheckHirq_c2cc hand HIRQ/CR register helper for CD block (was cdc_HirqHelper_c2cc)
 0x0608c38c func cdc_HirqHelper_c38c hand HIRQ/CR register helper for CD block
 0x0608c3c0 func cdc_SetHirqParams hand HIRQ/CR register helper for CD block (was cdc_HirqHelper_c3c0)
 0x0608c3fc func cdc_ReadSubcodeRegisters hand HIRQ/CR register helper for CD block (was cdc_HirqHelper_c3fc)
@@ -1427,13 +1427,13 @@
 0x0608c900 func gfs_SeekFilePos hand GFS core handle/device operation (was gfs_Core_c900)
 0x0608c9b4 func gfs_GetRemainingSectors hand GFS core handle/device operation (was gfs_Core_c9b4)
 0x0608ca04 func gfs_Core_ca04 hand GFS core handle/device operation
-0x0608ca58 func gfs_Core_ca58 hand provisional GFS core handle/device operation
+0x0608ca58 func gfs_CalcFileBlocks hand GFS core handle/device operation (was gfs_Core_ca58)
 0x0608cab4 func gfs_GetFileStatus hand GFS core handle/device operation (was gfs_Core_cab4)
 0x0608cb14 func gfs_Core_GetStatus hand GFS core handle/device operation (was gfs_Core_cb14)
-0x0608cb88 func gfs_Core_cb88 hand provisional GFS core handle/device operation
+0x0608cb88 func gfs_ValidateHandleAndDispatch hand GFS core handle/device operation (was gfs_Core_cb88)
 0x0608cbb0 func gfs_Core_cbb0 hand GFS core handle/device operation
 0x0608cc78 func gfs_ReadSectors hand GFS core handle/device operation (was gfs_Core_cc78)
-0x0608cd10 func gfs_Core_cd10 hand provisional GFS core handle/device operation
+0x0608cd10 func gfs_PollHandleUntilDone hand GFS core handle/device operation (was gfs_Core_cd10)
 0x0608cdb8 func gfs_ReadSector hand GFS core handle/device operation (was gfs_Core_cdb8)
 0x0608cec4 func gfs_Core_cec4 hand GFS core handle/device operation
 0x0608cf38 func gfs_Core_cf38 hand GFS core handle/device operation
@@ -1441,17 +1441,17 @@
 0x0608cfe0 func gfs_Core_cfe0 hand GFS core handle/device operation
 0x0608d05c func gfs_Core_GetStatus_2 hand GFS core handle/device operation (was gfs_Core_d05c)
 0x0608d08c func gfs_Core_d08c hand GFS core handle/device operation
-0x0608d14c func gfs_Core_d14c hand provisional GFS core handle/device operation
-0x0608d1c0 func gfs_Core_d1c0 hand provisional GFS core handle/device operation
+0x0608d14c func gfs_ProcessHandleList hand GFS core handle/device operation (was gfs_Core_d14c)
+0x0608d1c0 func gfs_SwapHandleField58 hand GFS core handle/device operation (was gfs_Core_d1c0)
 0x0608d224 func gfs_GetFilePos hand GFS core handle/device operation (was gfs_Core_d224)
 0x0608d290 func gfs_Core_SetDeviceParam hand GFS core handle/device operation (was gfs_Core_d290)
 0x0608d2f4 func gfs_Core_SetMode hand GFS core handle/device operation (was gfs_Core_d2f4)
-0x0608d360 func gfs_Core_d360 hand provisional GFS core handle/device operation
-0x0608d3c4 func gfs_Core_d3c4 hand provisional GFS core handle/device operation
+0x0608d360 func gfs_StartHandleTransfer hand GFS core handle/device operation (was gfs_Core_d360)
+0x0608d3c4 func gfs_GetHandleBufferInfo hand GFS core handle/device operation (was gfs_Core_d3c4)
 0x0608d410 func gfs_Core_d410 hand GFS core handle/device operation
-0x0608d47c func gfs_Core_d47c hand provisional GFS core handle/device operation
+0x0608d47c func gfs_SetGlobalPair hand GFS core handle/device operation (was gfs_Core_d47c)
 0x0608d4ac func gfs_GetFileEntryFields hand GFS core handle/device operation, tiny accessor (was gfs_Core_d4ac)
-0x0608d4d0 func gfs_Core_d4d0 hand provisional GFS core handle/device operation
+0x0608d4d0 func gfs_AddSectorOffsetIfFlag hand GFS core handle/device operation (was gfs_Core_d4d0)
 0x0608d4f8 func gfs_Core_d4f8 hand GFS core handle/device operation
 0x0608d5d0 func gfs_InitDeviceOps hand GFS core handle/device operation (was gfs_Core_d5d0)
 0x0608d604 func gfs_Core_InitHandle hand GFS core handle/device operation (was gfs_Core_d604)
@@ -1466,13 +1466,13 @@
 0x0608d938 func gfs_FileOpen hand misc support (was sys_Misc_d938)
 0x0608d994 func gfs_ReadFileBlock hand GFS core handle/device operation (was gfs_CoreB_d994)
 0x0608da5c func gfs_ReadBlockHeader hand GFS core handle/device operation (was gfs_CoreB_da5c)
-0x0608db50 func gfs_CoreB_db50 hand provisional GFS core handle/device operation
+0x0608db50 func gfs_OpenAndReadDirEntry hand GFS core handle/device operation (was gfs_CoreB_db50)
 0x0608dbdc func gfs_CoreB_dbdc hand GFS core handle/device operation
 0x0608dc7c func gfs_CoreB_CompleteTransfer hand GFS core handle/device operation (was gfs_CoreB_dc7c)
-0x0608dd28 func gfs_CoreB_dd28 hand provisional GFS core handle/device operation
+0x0608dd28 func gfs_CalcFileSectorOffset hand GFS core handle/device operation (was gfs_CoreB_dd28)
 0x0608dd80 func gfs_ReadInit hand CD subcode/command packet builder (was cdc_Subcode_dd80)
 0x0608ddbc func cdc_ReadSubcode hand CD subcode/command packet builder (was cdc_Subcode_ddbc)
-0x0608ddfc func cdc_Subcode_ddfc hand provisional CD subcode/command packet builder
+0x0608ddfc func gfs_ReleaseHandleResources hand CD subcode/command packet builder (was cdc_Subcode_ddfc)
 0x0608de38 func cdc_GetStatusFlag_de38 hand CD subcode/command packet builder, tiny accessor (was cdc_Subcode_de38)
 0x0608de44 func cdc_Subcode_de44 hand CD subcode/command packet builder
 0x0608de98 func cdc_Subcode_de98 hand CD subcode/command packet builder
@@ -1545,9 +1545,9 @@
 0x0608fd74 func gfs_XferDispatch_fd74 hand GFS transfer object state-machine dispatch
 0x0608fe44 func gfs_XferDispatch_fe44 hand GFS transfer object state-machine dispatch
 0x0608feac func gfs_CopyBytes hand GFS transfer object state-machine dispatch (was gfs_XferDispatch_feac)
-0x0608fed4 func gfs_XferDispatch_fed4 hand provisional GFS transfer object state-machine dispatch, tiny accessor
+0x0608fed4 func gfs_XferGetField8 hand GFS transfer object state-machine dispatch, tiny accessor (was gfs_XferDispatch_fed4)
 0x0608fee0 func gfs_XferGetRemainingBytes_fee0 hand GFS transfer object state-machine dispatch, tiny accessor (was gfs_XferDispatch_fee0)
-0x0608fef4 func gfs_XferDispatch_fef4 hand provisional GFS transfer object state-machine dispatch
+0x0608fef4 func gfs_XferQueueRequest hand GFS transfer object state-machine dispatch (was gfs_XferDispatch_fef4)
 0x0608ff2c func gfs_XferAddBytes_ff2c hand GFS transfer object state-machine dispatch, tiny accessor (was gfs_XferDispatch_ff2c)
 0x0608ff48 func gfs_XferGetFields hand GFS transfer object state-machine dispatch, tiny accessor (was gfs_XferDispatch_ff48)
 0x0608ff5c func gfs_XferDispatch_ff5c hand GFS transfer object state-machine dispatch, tiny accessor
@@ -1556,11 +1556,11 @@
 0x06090004 func gfs_XferDispatch_GetMaxTransferSize hand GFS transfer object state-machine dispatch (was gfs_XferDispatch_0004)
 0x0609002c func gfs_XferDispatch_002c hand GFS transfer object state-machine dispatch
 0x06090054 func gfs_XferDispatch_0054 hand GFS transfer object state-machine dispatch
-0x0609007c func gfs_XferDispatch_007c hand provisional GFS transfer object state-machine dispatch, tiny accessor
+0x0609007c func gfs_XferStubReturn1 hand GFS transfer object state-machine dispatch, tiny accessor (was gfs_XferDispatch_007c)
 0x06090088 func gfs_XferDispatch_0088 hand GFS transfer object state-machine dispatch
 0x06090194 func gfs_CloseXferObject hand GFS transfer object state-machine dispatch (was gfs_XferDispatch_0194)
 0x060901bc func gfs_XferDispatch_01bc hand GFS transfer object state-machine dispatch
-0x06090260 func gfs_XferDispatch_0260 hand provisional GFS transfer object state-machine dispatch, tiny accessor
+0x06090260 func gfs_XferStubReturn0 hand GFS transfer object state-machine dispatch, tiny accessor (was gfs_XferDispatch_0260)
 0x060902d0 func gfs_CdSeekAndPoll hand GFS transfer object state-machine dispatch, tiny accessor (was gfs_XferDispatch_02d0)
 0x060902f8 func gfs_GetEndPosition hand returns sum of two handle fields, position plus length
 0x06090308 func gfs_Dev_ReadSectorCount hand GFS device vtable call wrapper (was gfs_Dev_0308)
@@ -1568,7 +1568,7 @@
 0x06090524 func gfs_Dev_ReadSector hand GFS device vtable call wrapper (was gfs_Dev_0524)
 0x0609055c func stub_0609055c hand tiny stub that only returns zero to caller
 0x060905b0 func gfs_Dev_05b0 hand GFS device vtable call wrapper, tiny accessor
-0x060905cc func gfs_Dev_05cc hand provisional GFS device vtable call wrapper
+0x060905cc func gfs_DevReadSectorWait hand GFS device vtable call wrapper (was gfs_Dev_05cc)
 0x06090600 func gfs_Dev_Lock hand GFS device vtable call wrapper (was gfs_Dev_0600)
 0x06090628 func gfs_Dev_IsLockedBy hand GFS device vtable call wrapper, tiny accessor (was gfs_Dev_0628)
 0x06090640 func gfs_Dev_Unlock hand GFS device vtable call wrapper, tiny accessor (was gfs_Dev_0640)
@@ -1579,21 +1579,21 @@
 0x060908e4 func gfs_AllocSlot hand find free slot byte of 0x18 in GFS work, mark used
 0x06090918 func gfs_CloseSlot hand close GFS slot after validation, resets state
 0x060909b8 func gfs_ReadStatusMasked hand read two status values, return masked result
-0x060909ec func gfs_Lock hand provisional take GFS lock flag, bump lock id counter
+0x060909ec func gfs_Lock hand take GFS lock flag, bump lock id counter
 0x06090a20 func gfs_Unlock hand release GFS lock if id matches
 0x06090a4c func gfs_IsLockedBy hand test GFS lock held with given id
 0x06090a70 func gfs_QueueRequest hand append request to GFS queue of 0x18 entries
 0x06090b30 func cdc_ReadSubheader hand GFS device vtable call wrapper (was gfs_Dev_0b30)
 0x06090b78 func gfs_Dev_ReadSector_2 hand GFS device vtable call wrapper (was gfs_Dev_0b78)
-0x06090bd0 func gfs_Dev_0bd0 hand provisional GFS device vtable call wrapper
+0x06090bd0 func gfs_DevSendCmdLocked hand GFS device vtable call wrapper (was gfs_Dev_0bd0)
 0x06090c30 func gfs_Dev_ReadStart hand GFS device vtable call wrapper (was gfs_Dev_0c30)
 0x06090c94 func gfs_Dev_ReadSectorStart hand GFS device vtable call wrapper (was gfs_Dev_0c94)
 0x06090cf0 func gfs_Dev_ReadSector_3 hand GFS device vtable call wrapper (was gfs_Dev_0cf0)
 0x06090d38 func gfs_Dev_SeekAndPlay hand GFS device vtable call wrapper (was gfs_Dev_0d38)
 0x06090d8c func gfs_IsBusyFor hand return 1 unless pending request matches id
-0x06090db8 func gfs_Dev_0db8 hand provisional GFS device vtable call wrapper
+0x06090db8 func gfs_DevReadStatus hand GFS device vtable call wrapper (was gfs_Dev_0db8)
 0x06090e6c func gfs_Dev_0e6c hand GFS device vtable call wrapper
-0x06090eb8 func gfs_Dev_0eb8 hand provisional GFS device vtable call wrapper
+0x06090eb8 func gfs_DevStartReadDir hand GFS device vtable call wrapper (was gfs_Dev_0eb8)
 0x06090f24 func gfs_IsIdle hand true when GFS pending request flag is 0
 0x06090f48 func gfs_ReadSectorInfo hand GFS device vtable call wrapper (was gfs_Dev_0f48)
 0x06090f90 func gfs_DirReadStep hand GFS device vtable call wrapper (was gfs_Dev_0f90)
