@@ -7,7 +7,7 @@ every function of the main program, then a review of every provisional name with
 | Program | Functions | Hand-named | Still `provisional` |
 |---|---|---|---|
 | 00DOA.BIN (main program at 0x06004000) | 1,605 | 1,603 | 0 |
-| Model 2A arcade program (i960 KB, ROM 0x0-0xfffff) | 1,969 | 1,968 | 21 |
+| Model 2A arcade program (i960 KB, ROM 0x0-0xfffff) | 1,969 | 1,968 | 1 |
 
 Review verdicts: round 1 705 confirmed, 191 renamed, 51 unsure; round 2 on those 51: 17 confirmed, 34 renamed. 0 placeholder (`FUN_`) names left.
 
@@ -40,7 +40,7 @@ You need your own copy of the game to use any of this.
 
 ## Arcade (Sega Model 2A)
 
-`arcade/` holds round 1 for the original arcade board: `hand_doaarc.txt` (names, same line format), `funcinfo_doaarc.tsv`, the naming prompt (`naming/prompt_ARC.txt`, i960 + Model 2A hardware map from the public MAME driver), Ghidra scripts and `tools/seeds.py` / `gaps.py` (function seeds from call targets, uncovered `ret` report). The i960 SLEIGH spec is in the motoraid-decomp repo. Program ROM = the two program EPROMs interleaved as 16-bit words (not included). Review (3 Sonnet reviewers, body + 2 callers via `tools/provctx_arc.py`): 79 confirmed, 79 renamed, 21 unsure (still `provisional`).
+`arcade/` holds round 1 for the original arcade board: `hand_doaarc.txt` (names, same line format), `funcinfo_doaarc.tsv`, the naming prompt (`naming/prompt_ARC.txt`, i960 + Model 2A hardware map from the public MAME driver), Ghidra scripts and `tools/seeds.py` / `gaps.py` (function seeds from call targets, uncovered `ret` report). The i960 SLEIGH spec is in the motoraid-decomp repo. Program ROM = the two program EPROMs interleaved as 16-bit words (not included). Review (3 Sonnet reviewers, body + 2 callers via `tools/provctx_arc.py`): 79 confirmed, 79 renamed, 21 unsure; round 2 on those 21: 15 confirmed, 5 renamed, 1 still `provisional`.
 
 ## Licence
 
