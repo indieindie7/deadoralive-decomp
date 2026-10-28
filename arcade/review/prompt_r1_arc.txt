@@ -1,0 +1,13 @@
+Review of provisional function names in a game decompile: Dead or Alive (Tecmo, 1997, Sega Model 2A arcade board, Intel i960 KB, 3D fighting game; strikes, throws, counter-holds, danger-zone ring floor). Research only.
+These names were marked provisional by a first naming pass. Now each entry also has its callers.
+Entry layout: "#### ITEM 0x<addr>", then the function decompile whose first line is "// ==== <name> @ <addr>", then up to 2 caller decompiles each after "---- caller". The current comment for each name is in nothing else; judge from code.
+Names of callees are already substituted. Program: ARC = the arcade program ROM 0x0-0xfffff (Model 2A hardware from the public MAME driver: 0x800000 geo, 0x804000 TGP FIFO, 0x900000 bufferram, 0x980000 video ctl, 0xe00000 CPU ctl, 0xe80000 IRQ, 0xf00000 timers, 0x1000000 tilemap, 0x1800000 palette, 0x1c00000 I/O (sticks, buttons, coins, sound cmds), 0x1d00000 backup SRAM, 0x2000000+ data ROM; work RAM 0x500000-0x5fffff). Ghidra i960 decompile is rough; infer from data flow. No SDK names exist.
+Name from what the code does; never copy text from any leaked source.
+Rule: read EVERY entry's body and its callers before deciding. Do not decide from the name or comment alone; do not skim. Read the file in pieces (offset/limit, about 600 lines at a time) until the end.
+For each entry decide, using the body AND how callers use it (arguments passed, result used, the caller's own name and job):
+- CONFIRM: the name fits.
+- RENAME: a clearly better name (same style: lowercase module prefix + CamelCase, letters digits underscore, no _<number> suffix; no invented SDK names).
+- UNSURE: still not enough evidence. Keep it.
+Write each verdict line to the result file as soon as you decide it (append as you go), in input order, exactly:
+ARC 0x<addr> <oldname> CONFIRM|RENAME|UNSURE <newname or oldname> <short reason, one line>
+Every entry gets exactly one line. Do not quote game text longer than 3 words. Edit no other file. At the end reply only with the counts: confirmed N renamed N unsure N.
