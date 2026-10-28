@@ -7,6 +7,7 @@ every function of the main program, then a review of every provisional name with
 | Program | Functions | Hand-named | Still `provisional` |
 |---|---|---|---|
 | 00DOA.BIN (main program at 0x06004000) | 1,605 | 1,603 | 0 |
+| Model 2A arcade program (i960 KB, ROM 0x0-0xfffff) | 1,969 | 1,968 | 179 |
 
 Review verdicts: round 1 705 confirmed, 191 renamed, 51 unsure; round 2 on those 51: 17 confirmed, 34 renamed. 0 placeholder (`FUN_`) names left.
 
@@ -36,6 +37,10 @@ You need your own copy of the game to use any of this.
 | `ghidra/review/prompt_r1_doa.txt` | the provisional-review prompt |
 | `ghidra/scripts/` | `FindSh2FunctionsMem.java` (SH-2 prologue scan in a raw image), `CreateAt.java`, `CsDumpAll.java` (decompile dump with headers) |
 | `tools/` | `ckprovctx.py` (review contexts with callers), `srprovapply.py` (apply verdicts), `pubfuncinfo.py` (strip strings from the export) |
+
+## Arcade (Sega Model 2A)
+
+`arcade/` holds round 1 for the original arcade board: `hand_doaarc.txt` (names, same line format), `funcinfo_doaarc.tsv`, the naming prompt (`naming/prompt_ARC.txt`, i960 + Model 2A hardware map from the public MAME driver), Ghidra scripts and `tools/seeds.py` / `gaps.py` (function seeds from call targets, uncovered `ret` report). The i960 SLEIGH spec is in the motoraid-decomp repo. Program ROM = the two program EPROMs interleaved as 16-bit words (not included). 179 names are still `provisional`; a review round is next.
 
 ## Licence
 
