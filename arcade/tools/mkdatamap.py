@@ -13,9 +13,7 @@ F=[("0","u8","mancom","debug str 0x4d00 test_PrintPlayerDebug@0x5100"),("1","u8"
 ("40","u8","downhit","debug str"),("41","u8","actcancel","debug str"),("42","u8","graspsta","debug str"),("43","u8","dwnasta","debug str"),("44","u8","mountsta","debug str"),
 ("46","u8","atkheight","debug str"),("47","u8","ringhit","debug str"),("4a","u8","drctajstflg","debug str"),("4b","u8","damagenum","debug str"),("4d","u8","hitgrasp","debug str"),("55","u8","a.c.use","debug str")]
 for o,t,n,p in F: out.append(f"| +0x{o} | {t} | {n} | {p} |")
-out+=["\nOPEN fields: health (NOT in the 0x58 record: no 16/32-bit life field; +0x10 float init 1.0 is OPEN, likely scale), guard flag, anim frame counter (per-fighter script state lives in a second array at 0x56ac14..0x56ac80, see below), unlisted offsets 0x3 0x10 0x20 0x22 0x24 0x26 0x2c-0x2f 0x31 0x36 0x3a-0x3d 0x45 0x48-0x54 are accessed (ramtab) but unnamed = OPEN.
-
-Ghidra: block WORKRAM 0x500000-0x5fffff (uninit) and struct Fighter (0x58) applied at g_fighter1/g_fighter2 (scripts/SetupRam.java).\n",
+out+=["\nOPEN fields: health (NOT in the 0x58 record: no 16/32-bit life field; +0x10 float init 1.0 OPEN, likely scale), guard flag, anim frame counter (per-fighter script state in a second array at 0x56ac14..0x56ac80), unlisted offsets 0x3 0x10 0x20 0x22 0x24 0x26 0x2c-0x2f 0x31 0x36 0x3a-0x3d 0x45 0x48-0x54 are accessed (ramtab) but unnamed = OPEN.\n\nGhidra: block WORKRAM 0x500000-0x5fffff (uninit) and struct Fighter (0x58) applied at g_fighter1/g_fighter2 (scripts/SetupRam.java).\n",
 "## Round / mode bytes\n","| addr | meaning | proof |","|---|---|---|",
 "| 0x54fd13 | round winner (1=P1,2=P2) | round_CheckKO writes |",
 "| 0x54fcfc | round state, 6 = KO/round over | round_CheckKO writes |",
