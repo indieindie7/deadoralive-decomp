@@ -1,0 +1,1877 @@
+500000	g_workram_base	array	PROVEN	cleared by mem_ClearWorkRam; region start
+501810	g_cpu_ctrl_init_words	array	PROVEN	dest of sys_InitCpuControl init-word copy
+5018c0	g_tgp_init_done	u32	PROVEN	==1 triggers coprocessor upload in video_InitSystem, then cleared
+5018d0	g_unk_5018d0	u8	OPEN	no named user
+5020f0	g_task_stacks	array	PROVEN	task_Create: param*0x1000+0x5020f0; stride 0x1000
+5420f0	g_framecopy_id	u32	PROVEN	compared with param to skip; set on request
+5420f4	g_framecopy_src_vram	u32	PROVEN	holds 0x11000000 or 0x11200000
+5420f8	g_framecopy_dst_vram	u32	PROVEN	frame copy destination vram address
+542100	g_pal_fade_slots	array	PROVEN	4 slots x 0x40c bytes; state byte at +0x40b
+54250b	g_pal_fade_slot0_state	u8	PROVEN	slot0 state byte (+0x40b), values 1..4
+543130	g_pal_fade_busy	u32	PROVEN	ORed with 1 when any fade slot active
+543140	g_unk_543140	u32	OPEN	used by video_InitSystem,tgp_InitViewport,stage_ResetState
+543150	g_unk_543150	u8	OPEN	used by video_InitSystem
+54b150	g_frame_parity	u8	PROVEN	toggled per frame; drives geo regs 0x801008/0x803008
+54b154	g_framecopy_state	u32	PROVEN	0 idle, 1..0xb steps of frame copy machine
+54b158	g_rect_convert_active	u32	PROVEN	rect-convert active flag
+54b15c	g_unk_54b15c	u32	OPEN	used by gfx_StepFrameCopyState,gfx_ForceFrameCopy
+54b160	g_unk_54b160	u32	OPEN	used by gfx_StepFrameCopyState
+54b164	g_rect_convert_x	u32	PROVEN	rect-convert resume x
+54b168	g_rect_convert_y	u32	PROVEN	rect-convert resume y
+54b170	g_vblank_flag	u32	PROVEN	incremented in vblank; waited and cleared by irq_WaitVBlank
+54b174	g_sched_cur_task	u32	PROVEN	current task index in scheduler
+54b178	g_sched_frame_count	u32	PROVEN	incremented per full sweep of 16 tasks
+54b17c	g_sched_task_idx	u32	PROVEN	0..0xf loop counter of scheduler
+54b180	g_task_switch_req	u32	PROVEN	1 sleep, 2 exit, 3 kill/pause
+54b184	g_task_sleep_frames	u32	PROVEN	param of task_Sleep
+54b188	g_sched_saved_fp	u32	PROVEN	scheduler saved fp
+54b18c	g_sched_saved_pfp	u32	PROVEN	scheduler saved pfp
+54b190	g_sched_saved_sp	u32	PROVEN	scheduler saved sp
+54b1a0	g_task_table	array	PROVEN	16 entries x 0x20 bytes: state,delay,fp,sp,entry,pfp
+54b3a0	g_task_cur_ptr	ptr	PROVEN	pointer to current task table entry
+54b3b0	g_unk_54b3b0	u8	OPEN	used by snd_UploadProgram
+54f3b0	g_unk_54f3b0	u32	OPEN	used by charsel_UpdateSelection,charsel_StartVsMode
+54f3b4	g_continue_countdown	u32	PROVEN	0x78 frames; at 0 resets game mode
+54f3b8	g_playtime_last_vbl	u32	PROVEN	snapshot for 60-tick compare in play time
+54f3bc	g_rank_wait_timer	u32	PROVEN	0xb4 frames; at 0 sets mode 2
+54f3c0	g_pause_active	u32	PROVEN	pause active flag
+54f3c4	g_pause_hold_count	u32	PROVEN	pause hold counter, < 0x14
+54f3c8	g_pause_toggle	u32	PROVEN	pause toggle flag
+54f3cc	g_debug_view_toggle	u32	PROVEN	debug view toggle counter
+54f3d0	g_unk_54f3d0	u32	OPEN	used by DOA_orph_2f04,game_HandleStartInput
+54f3d4	g_unk_54f3d4	u32	OPEN	used by backup_ApplyGameSettings
+54f3d8	g_unk_54f3d8	u32	OPEN	no named user
+54f3dc	g_lamp_seg_out_ptr	ptr	PROVEN	written by lamp_StepSequence and seg_DisplayNumber
+54f3e0	g_lamp_seq_idx	u32	PROVEN	lamp sequence step index
+54f3e4	g_lamp_step_timer	u16	PROVEN	lamp step timer (s16)
+54f3e6	g_lamp_seq_id	u8	PROVEN	index into ptr table 0x8fdd0; 0xff none
+54f3e7	g_unk_54f3e7	u8	OPEN	no named user
+54f3e8	g_lamp_running	u8	PROVEN	lamp sequencer running flag
+54f3e9	g_lamp_attract_step	u8	PROVEN	lamp attract step
+54f3ea	g_lamp_last_mode	u8	PROVEN	snapshot of game mode 54fcb3
+54f3eb	g_lamp_last_state	u8	PROVEN	snapshot of 54fcfd
+54f3ec	g_lamp_last_startpat	u8	PROVEN	snapshot of 54fd85 start pattern
+54f3f0	g_unk_54f3f0	u32	OPEN	used by test_PollDebugSwitches,fighter_ApplyHitReaction
+54f400	g_lamp_pulse_pending_a	u32	PROVEN	lamp pulse pending count
+54f404	g_lamp_pulse_pending_b	u32	PROVEN	lamp pulse pending count
+54f410	g_unk_54f410	u32	OPEN	used by game_LoadSettings,coin_UpdateCredits
+54f414	g_unk_54f414	u32	OPEN	used by game_LoadSettings
+54f418	g_unk_54f418	u32	OPEN	used by game_LoadSettings
+54f420	g_unk_54f420	u32	OPEN	used by game_LoadSettings,coin_UpdateCredits
+54f424	g_unk_54f424	u32	OPEN	used by game_LoadSettings
+54f428	g_unk_54f428	u32	OPEN	used by game_LoadSettings
+54f430	g_coin_divisor_a	u32	PROVEN	coins per credit A
+54f434	g_coin_divisor_b	u32	PROVEN	coins per credit B
+54f438	g_credit_mult_a	u32	PROVEN	credit multiplier A
+54f43c	g_credit_mult_b	u32	PROVEN	credit multiplier B
+54f440	g_bonus_threshold_a	u32	PROVEN	bonus threshold A
+54f444	g_bonus_threshold_b	u32	PROVEN	bonus threshold B
+54f448	g_bonus_coins_a	u32	PROVEN	bonus coin counter A
+54f44c	g_bonus_coins_b	u32	PROVEN	bonus coin counter B
+54f470	g_copyq_lock	u8	PROVEN	queue appends only when 0
+54f474	g_copyq_count	u32	PROVEN	copy queue entry count
+54f480	g_copyq	array	PROVEN	12 B entries (count,dest,src), max 10 per flush
+54f484	g_unk_54f484	u32	OPEN	used by irq_VBlankHandler
+54f488	g_unk_54f488	u32	OPEN	used by irq_VBlankHandler
+54f930	g_timer_irq_count	u32	PROVEN	timer irq counter
+54f934	g_unk_54f934	u32	OPEN	used by timer_SetPeriod0
+54f938	g_unk_54f938	u32	OPEN	used by timer_SetPeriod0
+54f950	g_unk_54f950	u8	OPEN	used by tile_InitSystem
+54f952	g_unk_54f952	u8	OPEN	used by tile_InitSystem
+54f954	g_tile_scroll_aux2	u16	PROVEN	copied to scroll reg2 in tile_CopyScrollColumn
+54f956	g_unk_54f956	u8	OPEN	used by tile_InitSystem
+54f960	g_tile_flush_fn	ptr	PROVEN	points to tile_FlushScrollRegs
+54f964	g_tile_scroll_reg0	u16	PROVEN	shadow flushed to 0x100a000 by tile_FlushScrollRegs
+54f966	g_tile_scroll_reg1	u16	PROVEN	shadow flushed to 0x100a000 by tile_FlushScrollRegs
+54f968	g_tile_scroll_reg2	u16	PROVEN	shadow flushed to 0x100a000 by tile_FlushScrollRegs
+54f96a	g_tile_scroll_reg3	u16	PROVEN	shadow flushed to 0x100a000 by tile_FlushScrollRegs
+54f96c	g_tile_scroll_reg4	u16	PROVEN	shadow flushed to 0x100a000 by tile_FlushScrollRegs
+54f96e	g_tile_scroll_reg5	u16	PROVEN	shadow flushed to 0x100a000 by tile_FlushScrollRegs
+54f970	g_tile_scroll_reg6	u16	PROVEN	shadow flushed to 0x100a000 by tile_FlushScrollRegs
+54f972	g_tile_scroll_reg7	u16	PROVEN	shadow flushed to 0x100a000 by tile_FlushScrollRegs
+54f980	g_tex_table_ptr	ptr	PROVEN	0x20c0000, 12 B texture entries
+54f984	g_text_cursor_y	u32	PROVEN	text row, bounded < 0x2f
+54f988	g_text_cursor_x	u32	PROVEN	text column, bounded < 0x3e
+54f98c	g_text_bank_attr	u32	PROVEN	(param & 1) << 14 attribute
+54f990	g_text_line_start_x	u32	PROVEN	line start column; 0x14 for error print
+54f994	g_tex_slot_limit	u32	PROVEN	texture slot scan index/limit
+54f9a0	g_tex_slot_used	array	PROVEN	u8[0x80] slot-used flags
+54fa40	g_snd_q_count	u32	PROVEN	sound queue count
+54fa44	g_snd_q_head	u32	PROVEN	read index, &0x1f
+54fa48	g_snd_q_tail	u32	PROVEN	write index, &0x1f
+54fa4c	g_snd_q_lock	u8	PROVEN	sound queue lock
+54fa50	g_snd_q	array	PROVEN	u32[32] sound command ring
+54fad0	g_unk_54fad0	u32	OPEN	used by DOA_orph_2f04,game_HandleStartInput
+54fad4	g_unk_54fad4	u8	OPEN	used by boot_Main
+54fad8	g_irq_mask_val	u32	PROVEN	0x19 written to 0xe80004
+54fadc	g_snd_upload_result	u32	PROVEN	result of snd_UploadProgram
+54fae0	g_test_mode_flag	u32	PROVEN	set 1 in test_Main; vblank skips coin_UpdateCredits
+54fae4	g_unk_54fae4	u32	OPEN	used by boot_InitHardware
+54fae8	g_unk_54fae8	u32	OPEN	used by boot_InitHardware
+54faec	g_unk_54faec	u32	OPEN	used by boot_InitHardware
+54faf0	g_entry8_table	array	PROVEN	32 x 8 B from ROM 0xcb5d0; decayed by fight_DecayEntryTable
+54fb00	g_unk_54fb00	u8	OPEN	used by fight_LoadEntryTableLo,fight_ReloadTableDefaults
+54fb10	g_unk_54fb10	u8	OPEN	used by fight_LoadEntryTableLo
+54fb20	g_unk_54fb20	u8	OPEN	used by fight_LoadEntryTableLo
+54fb30	g_unk_54fb30	u8	OPEN	used by fight_LoadEntryTableLo
+54fb40	g_unk_54fb40	u8	OPEN	used by fight_LoadEntryTableLo
+54fb50	g_unk_54fb50	u8	OPEN	used by fight_LoadEntryTableLo
+54fb60	g_unk_54fb60	u8	OPEN	used by fight_LoadEntryTableLo
+54fb70	g_unk_54fb70	u8	OPEN	used by fight_LoadEntryTableHi
+54fb80	g_unk_54fb80	u8	OPEN	used by fight_LoadEntryTableHi
+54fb90	g_unk_54fb90	u8	OPEN	used by fight_LoadEntryTableHi
+54fb91	g_unk_54fb91	u8	OPEN	used by fight_ReloadTableDefaults
+54fba0	g_unk_54fba0	u8	OPEN	used by fight_LoadEntryTableHi
+54fbb0	g_unk_54fbb0	u8	OPEN	used by fight_LoadEntryTableHi
+54fbc0	g_unk_54fbc0	u8	OPEN	used by fight_LoadEntryTableHi
+54fbc9	g_unk_54fbc9	u8	OPEN	used by stage_DrawModelsI
+54fbd0	g_unk_54fbd0	u8	OPEN	used by fight_LoadEntryTableHi
+54fbd1	g_unk_54fbd1	u8	OPEN	used by stage_ScrollLayers,stage_DrawModelsI
+54fbd9	g_unk_54fbd9	u8	OPEN	used by stage_ScrollLayers
+54fbe0	g_unk_54fbe0	u8	OPEN	used by fight_LoadEntryTableHi
+54fbe1	g_unk_54fbe1	u8	OPEN	used by fight_RunFrame
+54fbf0	g_unk_54fbf0	u32	OPEN	used by task_Scheduler,fx_CheckSlotDebug
+54fbf4	g_unk_54fbf4	u32	OPEN	used by irq_WaitVBlank,irq_VBlankHandler
+54fbf8	g_vblank_count	u32	PROVEN	incremented in vblank handler
+54fc00	g_fighter1_mancom	u8	PROVEN	DATAMAP fighter struct +0x0
+54fc01	g_fighter1_chrnum	u8	PROVEN	DATAMAP fighter struct +0x1
+54fc02	g_fighter1_chrcol	u8	PROVEN	DATAMAP fighter struct +0x2
+54fc03	g_unk_54fc03	u8	OPEN	used by fighter_UpdateFacing,game_HandleStartInput,charsel_UpdateSta
+54fc04	g_fighter1_pos_x	f32	PROVEN	DATAMAP fighter struct +0x4
+54fc08	g_fighter1_pos_y	f32	PROVEN	DATAMAP fighter struct +0x8
+54fc0c	g_fighter1_pos_z	f32	PROVEN	DATAMAP fighter struct +0xc
+54fc10	g_unk_54fc10	u32	OPEN	used by charsel_UpdateSelection,fight_UpdateRoundState
+54fc14	g_fighter1_drct	u32	PROVEN	DATAMAP fighter struct +0x14
+54fc18	g_fighter1_atkdrct	u32	PROVEN	DATAMAP fighter struct +0x18
+54fc1c	g_fighter1_bodydrct	u32	PROVEN	DATAMAP fighter struct +0x1c
+54fc20	g_unk_54fc20	u32	OPEN	used by charsel_UpdateSelection,ranking_UpdateNameEntry
+54fc22	g_unk_54fc22	u32	OPEN	used by fight_UpdateRoundState,fighter_InitRoundState,ranking_Update
+54fc24	g_unk_54fc24	u8	OPEN	used by fighter_InitRoundState
+54fc26	g_unk_54fc26	u8	OPEN	used by fighter_InitRoundState,ranking_InitEntry
+54fc28	g_fighter1_anime	u16	PROVEN	DATAMAP fighter struct +0x28
+54fc2a	g_fighter1_move_id	u8	PROVEN	DATAMAP fighter struct +0x2a
+54fc2b	g_fighter1_actcodeflg	u8	PROVEN	DATAMAP fighter struct +0x2b
+54fc2c	g_unk_54fc2c	u8	OPEN	used by fighter_InitRoundState,fighter_InitRoundState_2
+54fc2d	g_unk_54fc2d	u8	OPEN	used by cam_RunEventState,fighter_CheckRingEdgeEnter,fighter_InitRou
+54fc2e	g_unk_54fc2e	u8	OPEN	used by fighter_InitRoundState
+54fc2f	g_unk_54fc2f	u8	OPEN	used by fighter_CheckFacingSide,fighter_InitRoundState
+54fc30	g_fighter1_updownhead	u8	PROVEN	DATAMAP fighter struct +0x30
+54fc31	g_unk_54fc31	u8	OPEN	used by fighter_InitRoundState
+54fc32	g_fighter1_attackpoint	u8	PROVEN	DATAMAP fighter struct +0x32
+54fc33	g_fighter1_attacksta	u8	PROVEN	DATAMAP fighter struct +0x33
+54fc34	g_fighter1_animeflip	u8	PROVEN	DATAMAP fighter struct +0x34
+54fc35	g_fighter1_animeflg	u8	PROVEN	DATAMAP fighter struct +0x35
+54fc36	g_unk_54fc36	u8	OPEN	used by round_UpdateFighterTimers,hud_DrawFightLayout,hud_UpdateFigh
+54fc37	g_fighter1_hitattack	u8	PROVEN	DATAMAP fighter struct +0x37
+54fc38	g_fighter1_hitbody	u8	PROVEN	DATAMAP fighter struct +0x38
+54fc39	g_fighter1_hitstage	u8	PROVEN	DATAMAP fighter struct +0x39
+54fc3a	g_unk_54fc3a	u8	OPEN	used by fighter_InitRoundState
+54fc3b	g_unk_54fc3b	u8	OPEN	used by fighter_InitRoundState,fight_ResetPlayerData
+54fc3c	g_unk_54fc3c	u8	OPEN	used by fighter_InitRoundState
+54fc3d	g_unk_54fc3d	u8	OPEN	used by fighter_InitRoundState
+54fc3e	g_fighter1_beatsta	u8	PROVEN	DATAMAP fighter struct +0x3e
+54fc3f	g_fighter1_skysta	u8	PROVEN	DATAMAP fighter struct +0x3f
+54fc40	g_fighter1_downhit	u8	PROVEN	DATAMAP fighter struct +0x40
+54fc41	g_fighter1_actcancel	u8	PROVEN	DATAMAP fighter struct +0x41
+54fc42	g_fighter1_graspsta	u8	PROVEN	DATAMAP fighter struct +0x42
+54fc43	g_fighter1_dwnasta	u8	PROVEN	DATAMAP fighter struct +0x43
+54fc44	g_fighter1_mountsta	u8	PROVEN	DATAMAP fighter struct +0x44
+54fc45	g_unk_54fc45	u8	OPEN	used by fighter_InitRoundState,fighter_ReportBadState
+54fc46	g_fighter1_atkheight	u8	PROVEN	DATAMAP fighter struct +0x46
+54fc47	g_fighter1_ringhit	u8	PROVEN	DATAMAP fighter struct +0x47
+54fc48	g_unk_54fc48	u32	OPEN	used by fight_UpdateRoundState,hud_DrawFightLayout,fighter_InitRound
+54fc49	g_unk_54fc49	u8	OPEN	used by lamp_UpdateFight,fighter_InitRoundState,move_DispatchMoveCla
+54fc4a	g_fighter1_drctajstflg	u8	PROVEN	DATAMAP fighter struct +0x4a
+54fc4b	g_fighter1_damagenum	u8	PROVEN	DATAMAP fighter struct +0x4b
+54fc4c	g_unk_54fc4c	u8	OPEN	used by fighter_InitRoundState
+54fc4d	g_fighter1_hitgrasp	u8	PROVEN	DATAMAP fighter struct +0x4d
+54fc4e	g_unk_54fc4e	u8	OPEN	used by fighter_InitRoundState
+54fc4f	g_unk_54fc4f	u8	OPEN	used by fighter_InitRoundState,fighter_ClearFlags
+54fc50	g_unk_54fc50	u8	OPEN	used by charsel_UpdateSelection,fighter_InitRoundState
+54fc51	g_unk_54fc51	u8	OPEN	used by fighter_InitRoundState
+54fc52	g_unk_54fc52	u8	OPEN	used by fighter_InitRoundState,fighter_ClearFlags
+54fc53	g_unk_54fc53	u8	OPEN	used by hit_ResolveStrike,fighter_InitRoundState
+54fc54	g_unk_54fc54	u8	OPEN	used by fighter_InitRoundState,fighter_ClearFlags
+54fc55	g_fighter1_ac_use	u8	PROVEN	DATAMAP fighter struct +0x55
+54fc58	g_fighter2_mancom	u8	PROVEN	DATAMAP fighter struct +0x0
+54fc59	g_fighter2_chrnum	u8	PROVEN	DATAMAP fighter struct +0x1
+54fc5a	g_fighter2_chrcol	u8	PROVEN	DATAMAP fighter struct +0x2
+54fc5b	g_unk_54fc5b	u8	OPEN	used by game_HandleStartInput,charsel_UpdateState,fighter_ApplyHitRe
+54fc5c	g_fighter2_pos_x	f32	PROVEN	DATAMAP fighter struct +0x4
+54fc60	g_fighter2_pos_y	f32	PROVEN	DATAMAP fighter struct +0x8
+54fc64	g_fighter2_pos_z	f32	PROVEN	DATAMAP fighter struct +0xc
+54fc68	g_unk_54fc68	u32	OPEN	used by charsel_UpdateSelection,fight_UpdateRoundState
+54fc6c	g_fighter2_drct	u32	PROVEN	DATAMAP fighter struct +0x14
+54fc70	g_fighter2_atkdrct	u32	PROVEN	DATAMAP fighter struct +0x18
+54fc74	g_fighter2_bodydrct	u32	PROVEN	DATAMAP fighter struct +0x1c
+54fc78	g_unk_54fc78	u8	OPEN	used by ranking_UpdateNameEntry,charsel_UpdateSelection
+54fc7a	g_unk_54fc7a	u32	OPEN	used by fight_UpdateRoundState,fighter_InitRoundState,ranking_Update
+54fc7c	g_unk_54fc7c	u8	OPEN	used by fighter_InitRoundState
+54fc7e	g_unk_54fc7e	u8	OPEN	used by fighter_InitRoundState,ranking_InitEntry
+54fc80	g_fighter2_anime	u16	PROVEN	DATAMAP fighter struct +0x28
+54fc82	g_fighter2_move_id	u8	PROVEN	DATAMAP fighter struct +0x2a
+54fc83	g_fighter2_actcodeflg	u8	PROVEN	DATAMAP fighter struct +0x2b
+54fc84	g_unk_54fc84	u32	OPEN	used by DOA_orph_1f820,fighter_InitRoundState,fighter_InitRoundState
+54fc85	g_unk_54fc85	u8	OPEN	used by cam_RunEventState,fighter_InitRoundState,round_CheckKO
+54fc86	g_unk_54fc86	u8	OPEN	used by fighter_InitRoundState
+54fc87	g_unk_54fc87	u8	OPEN	used by fighter_InitRoundState
+54fc88	g_fighter2_updownhead	u8	PROVEN	DATAMAP fighter struct +0x30
+54fc89	g_unk_54fc89	u8	OPEN	used by fighter_InitRoundState
+54fc8a	g_fighter2_attackpoint	u8	PROVEN	DATAMAP fighter struct +0x32
+54fc8b	g_fighter2_attacksta	u8	PROVEN	DATAMAP fighter struct +0x33
+54fc8c	g_fighter2_animeflip	u8	PROVEN	DATAMAP fighter struct +0x34
+54fc8d	g_fighter2_animeflg	u8	PROVEN	DATAMAP fighter struct +0x35
+54fc8e	g_unk_54fc8e	u8	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud,fight_UpdateRoundStat
+54fc8f	g_fighter2_hitattack	u8	PROVEN	DATAMAP fighter struct +0x37
+54fc90	g_fighter2_hitbody	u8	PROVEN	DATAMAP fighter struct +0x38
+54fc91	g_fighter2_hitstage	u8	PROVEN	DATAMAP fighter struct +0x39
+54fc92	g_unk_54fc92	u8	OPEN	used by fighter_InitRoundState
+54fc93	g_unk_54fc93	u8	OPEN	used by fighter_InitRoundState,fight_ResetPlayerData
+54fc94	g_unk_54fc94	u8	OPEN	used by fighter_InitRoundState
+54fc95	g_unk_54fc95	u8	OPEN	used by fighter_InitRoundState
+54fc96	g_fighter2_beatsta	u8	PROVEN	DATAMAP fighter struct +0x3e
+54fc97	g_fighter2_skysta	u8	PROVEN	DATAMAP fighter struct +0x3f
+54fc98	g_fighter2_downhit	u8	PROVEN	DATAMAP fighter struct +0x40
+54fc99	g_fighter2_actcancel	u8	PROVEN	DATAMAP fighter struct +0x41
+54fc9a	g_fighter2_graspsta	u8	PROVEN	DATAMAP fighter struct +0x42
+54fc9b	g_fighter2_dwnasta	u8	PROVEN	DATAMAP fighter struct +0x43
+54fc9c	g_fighter2_mountsta	u8	PROVEN	DATAMAP fighter struct +0x44
+54fc9d	g_unk_54fc9d	u8	OPEN	used by fighter_InitRoundState
+54fc9e	g_fighter2_atkheight	u8	PROVEN	DATAMAP fighter struct +0x46
+54fc9f	g_fighter2_ringhit	u8	PROVEN	DATAMAP fighter struct +0x47
+54fca0	g_unk_54fca0	u8	OPEN	used by fight_UpdateRoundState,hud_DrawFightLayout,fighter_InitRound
+54fca1	g_unk_54fca1	u8	OPEN	used by lamp_UpdateFight,fighter_InitRoundState,move_DispatchMoveCla
+54fca2	g_fighter2_drctajstflg	u8	PROVEN	DATAMAP fighter struct +0x4a
+54fca3	g_fighter2_damagenum	u8	PROVEN	DATAMAP fighter struct +0x4b
+54fca4	g_unk_54fca4	u8	OPEN	used by fighter_InitRoundState
+54fca5	g_fighter2_hitgrasp	u8	PROVEN	DATAMAP fighter struct +0x4d
+54fca6	g_unk_54fca6	u8	OPEN	used by fighter_InitRoundState
+54fca7	g_unk_54fca7	u8	OPEN	used by fighter_InitRoundState,fighter_ClearFlags
+54fca8	g_unk_54fca8	u8	OPEN	used by charsel_UpdateSelection,fighter_InitRoundState
+54fca9	g_unk_54fca9	u8	OPEN	used by fighter_InitRoundState
+54fcaa	g_unk_54fcaa	u8	OPEN	used by fighter_InitRoundState,fighter_ClearFlags
+54fcab	g_unk_54fcab	u8	OPEN	used by fighter_InitRoundState
+54fcac	g_unk_54fcac	u8	OPEN	used by fighter_InitRoundState,fighter_ClearFlags
+54fcad	g_fighter2_ac_use	u8	PROVEN	DATAMAP fighter struct +0x55
+54fcb0	g_unk_54fcb0	u8	OPEN	used by hud_DrawStartPrompts,hud_DrawCreditPromptsAlt
+54fcb1	g_unk_54fcb1	u8	OPEN	used by charsel_UpdateSelection,round_CheckRankingEntry
+54fcb2	g_unk_54fcb2	u8	OPEN	used by fighter_ResetAnimState,charsel_UpdateSelection
+54fcb3	g_game_mode	u8	PROVEN	DATAMAP game mode
+54fcb4	g_play_mode	u8	PROVEN	DATAMAP play mode
+54fcc0	g_io_mux_sel0	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
+54fcc1	g_io_mux_sel1	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
+54fcc2	g_io_mux_sel2	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
+54fcc3	g_io_mux_sel3	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
+54fcc4	g_io_mux_sel4	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
+54fcc5	g_io_mux_sel5	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
+54fcc6	g_io_mux_sel6	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
+54fcc7	g_io_mux_sel7	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
+54fcc8	g_unk_54fcc8	u8	OPEN	used by io_ReadAllInputs
+54fccc	g_in_held	u32	PROVEN	inverted bytes of ports 0x1c00002/4/6/8
+54fccd	g_in_held_b1	u8	PROVEN	byte 1 of g_in_held
+54fcce	g_in_held_b2	u8	PROVEN	byte 2 of g_in_held
+54fccf	g_unk_54fccf	u8	OPEN	used by io_ReadAllInputs
+54fcd0	g_in_prev	u32	PROVEN	previous input word
+54fcd1	g_unk_54fcd1	u8	OPEN	no named user
+54fcd4	g_in_pressed	u32	PROVEN	pressed edge word
+54fcd5	g_in_pressed_b1	u8	PROVEN	byte 1 of g_in_pressed
+54fcd6	g_in_pressed_b2	u8	PROVEN	byte 2 of g_in_pressed
+54fcd8	g_in_released	u32	PROVEN	released edge word
+54fcdc	g_sw_cur	u8	PROVEN	low nibble of port 2, inverted
+54fcdd	g_sw_prev	u8	PROVEN	previous switch nibble
+54fcde	g_sw_pressed	u8	PROVEN	switch pressed edge
+54fcdf	g_sw_released	u8	PROVEN	switch released edge
+54fce0	g_unk_54fce0	u32	OPEN	used by game_HandleStartInput,hud_UpdatePlayerBanners,charsel_Update
+54fce1	g_coin_opt2	u8	PROVEN	test menu cycles 1-5 (test_CycleCoinSetting2)
+54fce4	g_credits_a	u8	PROVEN	max 0x18; mirrored to backup 0x1d0000c
+54fce8	g_coin_mode_a	u8	PROVEN	0xf = free play; loaded from 0x90670 table
+54fce9	g_coin_opt4	u8	PROVEN	test menu cycles 1-5 (test_CycleCoinSetting4)
+54fcea	g_unk_54fcea	u8	OPEN	used by fighter_ApplyHitReaction,game_HandleStartInput,fighter_Clear
+54fceb	g_unk_54fceb	u8	OPEN	used by game_HandleStartInput,fighter_ApplyHitReaction,fight_UpdateK
+54fcec	g_coin_opt3	u8	PROVEN	test menu cycles 1-5 (test_CycleCoinSetting3)
+54fced	g_coin_opt1	u8	PROVEN	test menu cycles 1-5 (test_CycleCoinSetting1)
+54fcee	g_unk_54fcee	u8	OPEN	used by charsel_UpdateState,game_HandleStartInput,game_ProcessJoin
+54fcef	g_coin_mode_toggle	u8	PROVEN	test_ToggleCoinMode toggles flag
+54fcf0	g_coin_mode_b	u8	PROVEN	loaded from 0x90671 table entry
+54fcf4	g_credits_b	u8	PROVEN	mirrored to backup 0x1d0000e
+54fcf8	g_unk_54fcf8	u8	OPEN	used by charsel_UpdateState,game_HandleStartInput,game_ProcessJoin
+54fcfa	g_unk_54fcfa	u8	OPEN	used by charsel_StartVsMode,cam_SetFollowParams,continue_TickCountdo
+54fcfb	g_unk_54fcfb	u8	OPEN	used by cam_SetFollowParams,continue_TickCountdown,charsel_UpdateSta
+54fcfc	g_round_state	u8	PROVEN	DATAMAP round state; 6 = KO
+54fcfd	g_unk_54fcfd	u8	OPEN	used by fight_UpdateRoundState,hud_UpdatePlayerBanners
+54fcfe	g_unk_54fcfe	u8	OPEN	used by fx_UpdateSlotsB,snd_SendCommandPair
+54fcff	g_unk_54fcff	u8	OPEN	used by game_ProcessJoin,hud_UpdateFightHud_2
+54fd00	g_unk_54fd00	u8	OPEN	used by charsel_UpdateState,hit_ResolveStrike,game_ProcessJoin
+54fd01	g_unk_54fd01	u32	OPEN	used by charsel_UpdateState,game_ProcessJoin,charsel_UpdateSelection
+54fd02	g_unk_54fd02	u32	OPEN	used by charsel_UpdateState,io_ReadCabinetInputs
+54fd03	g_unk_54fd03	u32	OPEN	used by charsel_UpdateState,hud_DrawFightLayout,hud_UpdateFightHud
+54fd04	g_unk_54fd04	u8	OPEN	used by io_ReadCabinetInputs,charsel_UpdateState,fighter_ApplyHitRea
+54fd08	g_unk_54fd08	u32	OPEN	used by ai_EvalWeightEntry,charsel_UpdateState,charsel_UpdateSelecti
+54fd0c	g_unk_54fd0c	u32	OPEN	used by ai_EvalWeightEntry,charsel_UpdateState,charsel_UpdateSelecti
+54fd10	g_win_streak	u8	PROVEN	+1 if same winner else reset to 1; 7-seg shown
+54fd11	g_last_winner	u8	PROVEN	set from round winner when it changes
+54fd12	g_unk_54fd12	u8	OPEN	used by backup_ApplyGameSettings,charsel_UpdateSelection,charsel_Che
+54fd13	g_round_winner	u8	PROVEN	DATAMAP round winner
+54fd14	g_unk_54fd14	u8	OPEN	used by charsel_StartVsMode,round_StartRound
+54fd15	g_clock_mins	u8	PROVEN	play clock minutes, cap 99
+54fd16	g_clock_secs	u8	PROVEN	play clock seconds, wraps at 0x3c
+54fd17	g_clock_frames	u8	PROVEN	play clock frames from round_TickTimer
+54fd20	g_eeprom_shadow	array	PROVEN	0x28 words from 54fd20; ID word 0x41323353
+54fd24	g_eeprom_magic	u16	PROVEN	eeprom magic 0x777
+54fd28	g_eeprom_cksum	u16	PROVEN	math_Checksum16 over 0x54fd2a, 0x22
+54fd2a	g_eeprom_cksum_area	array	PROVEN	start of checksummed area
+54fd2c	g_eeprom_write_count	u32	PROVEN	eeprom write counter
+54fd30	g_unk_54fd30	u8	OPEN	used by game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSe
+54fd31	g_unk_54fd31	u8	OPEN	used by game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSe
+54fd32	g_unk_54fd32	u8	OPEN	used by game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSe
+54fd33	g_unk_54fd33	u8	OPEN	used by game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSe
+54fd34	g_unk_54fd34	u8	OPEN	used by game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSe
+54fd35	g_unk_54fd35	u8	OPEN	used by game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSe
+54fd36	g_unk_54fd36	u8	OPEN	used by game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSe
+54fd37	g_unk_54fd37	u32	OPEN	used by backup_ApplyGameSettings,test_LoadSettingsClamped,test_Commi
+54fd38	g_unk_54fd38	u8	OPEN	used by backup_ApplyGameSettings,test_LoadSettingsClamped,test_Commi
+54fd39	g_unk_54fd39	u8	OPEN	used by backup_ApplyGameSettings,test_LoadSettingsClamped,test_Commi
+54fd3a	g_unk_54fd3a	u8	OPEN	used by test_LoadSettingsClamped,fighter_ClearComboFlags,test_Commit
+54fd3b	g_unk_54fd3b	u8	OPEN	used by fighter_ClearComboFlags,test_LoadSettingsClamped,test_Commit
+54fd3c	g_unk_54fd3c	u8	OPEN	used by backup_ApplyGameSettings,test_LoadSettingsClamped,test_Commi
+54fd3d	g_unk_54fd3d	u8	OPEN	used by backup_ApplyGameSettings,test_LoadSettingsClamped,test_Commi
+54fd3e	g_unk_54fd3e	u8	OPEN	used by test_CommitGameSettings
+54fd3f	g_unk_54fd3f	u8	OPEN	used by backup_ApplyGameSettings,test_LoadSettingsClamped,test_Commi
+54fd40	g_unk_54fd40	u8	OPEN	used by backup_ApplyGameSettings,test_LoadSettingsClamped,test_Commi
+54fd4c	g_backup_cksum	u16	PROVEN	backup checksum
+54fd4e	g_unk_54fd4e	u8	OPEN	used by eeprom_CheckAndInit
+54fd50	g_unk_54fd50	u32	OPEN	used by eeprom_CheckAndInit
+54fd70	g_unk_54fd70	u8	OPEN	used by backup_ApplyGameSettings
+54fd71	g_unk_54fd71	u8	OPEN	used by backup_ApplyGameSettings,fight_SelectKoVariant
+54fd72	g_unk_54fd72	u8	OPEN	used by backup_ApplyGameSettings,fight_SelectKoVariant
+54fd73	g_unk_54fd73	u8	OPEN	used by fighter_ScriptOpcodeDispatch,backup_ApplyGameSettings,fighte
+54fd74	g_unk_54fd74	u32	OPEN	used by backup_ApplyGameSettings,fighter_ApplyHitReaction
+54fd75	g_cfg_win_streak_limit	u8	PROVEN	0 unlimited; compared with g_win_streak
+54fd76	g_unk_54fd76	u8	OPEN	used by test_DrawCharacterWinMatrix,test_DrawCharacterWinStats,test_
+54fd77	g_ticks_per_sec	u8	PROVEN	holds 0x3c
+54fd78	g_round_time_setting	u8	PROVEN	0x1e loaded into 5555a0 each round
+54fd7c	g_ring_size_x	f32	PROVEN	24.0f ring half extent X (DATAMAP)
+54fd80	g_ring_size_z	f32	PROVEN	24.0f ring half extent Z (DATAMAP)
+54fd84	g_unk_54fd84	u8	OPEN	used by tile_ShowGraphicById,backup_ApplyGameSettings,attract_Update
+54fd85	g_unk_54fd85	u8	OPEN	used by test_ScreenSoundCheck,lamp_UpdateStartPattern
+54fd86	g_unk_54fd86	u8	OPEN	used by backup_ApplyGameSettings,move_AdvanceFrameMotion
+54fd88	g_unk_54fd88	u32	OPEN	used by backup_ApplyGameSettings,attract_UpdateDemo
+54fd8c	g_unk_54fd8c	u8	OPEN	used by fighter_InitRoundFighter,backup_ApplyGameSettings,fighter_St
+54fd8d	g_unk_54fd8d	u8	OPEN	used by fight_SpawnGuardEffect,round_ResetTimers
+54fd90	g_play_secs_p1	u32	PROVEN	per-player play counter; coin_ClearPlayCounter array
+54fd94	g_play_secs_p2	u32	PROVEN	incremented when play mode == 1
+54fd98	g_total_play_new	u32	PROVEN	= 0x1d00000 + fd90 total play
+54fd9c	g_backup_dirty	u32	PROVEN	backup SRAM dirty flag
+54fda0	g_setting_bonus	u8	PROVEN	test_ToggleSettingBonus toggles 0/1, prints +1
+54fda4	g_coin_partial_a	u32	PROVEN	mirrored to backup 0x1d00010
+54fda8	g_coin_partial_b	u32	PROVEN	mirrored to backup 0x1d00012
+54fdac	g_credit_flash_timer_a	u32	PROVEN	0x3c frame credit flash timer
+54fdb0	g_credit_flash_timer_b	u32	PROVEN	0x3c frame credit flash timer
+54fdb4	g_btn2_pressed	u8	PROVEN	button 2 pressed edge
+54fdb5	g_btn2_released	u8	PROVEN	button 2 released edge
+54fdb6	g_io_out_a	u8	PROVEN	lamp byte shadowed to port 0x1c0000a
+54fdb7	g_vbl_portrait_flush_flag	u8	PROVEN	vblank calls hud_WriteTilemapPortraits when 1
+54fdb8	g_vbl_hook_flag_b	u8	PROVEN	vblank calls stub_0007d070 when 1
+54fdc0	g_timer0_period_shadow	u32	PROVEN	mask 0xfffff, mirrored to 0xf00000
+54fdc4	g_timer1_period_shadow	u32	PROVEN	mask 0xfffff, mirrored to timer reg 0xf00004
+54fdc8	g_timer2_period_shadow	u32	PROVEN	mask 0xfffff, mirrored to timer reg 0xf00008
+54fdd0	g_btn_cur	u8	PROVEN	= ~port 0x1c00002 in io_ReadButtons
+54fdd1	g_btn_prev	u8	PROVEN	copy of g_btn_cur before refresh
+54fdd2	g_btn_pressed	u8	PROVEN	cur & ~prev edge
+54fdd3	g_btn_released	u8	PROVEN	port & prev edge
+54fdd4	g_btn2_cur	u8	PROVEN	copy of g_btn_cur; second edge-detect set
+54fdd5	g_btn2_prev	u8	PROVEN	prev of 54fdd4
+54fdd6	g_btn3_cur	u8	PROVEN	copy of g_btn_cur; third edge-detect set
+54fdd7	g_btn3_prev	u8	PROVEN	prev of 54fdd6
+54fdd8	g_btn3_pressed	u8	PROVEN	cur & ~prev of 54fdd6
+54fdd9	g_btn3_released	u8	PROVEN	port & prev of 54fdd6
+54fdda	g_io_out_a_shadow	u8	PROVEN	copy of 54fdb6 written to port 0x1c0000a
+54fde0	g_unk_54fde0	u8	OPEN	used by io_ReadAllInputs
+54fee0	g_unk_54fee0	u8	OPEN	used by io_ReadAllInputs
+54fef0	g_unk_54fef0	u8	OPEN	used by io_ReadAllInputs
+54fff0	g_unk_54fff0	u8	OPEN	used by io_ReadAllInputs
+550000	g_unk_550000	u8	OPEN	used by io_ReadAllInputs
+550100	g_unk_550100	u8	OPEN	used by io_ReadAllInputs
+550120	g_ring_max_x	f32	PROVEN	= ring width x (0x54fd7c)/2; fighter_PointOutsideRing
+550124	g_ring_min_x	f32	PROVEN	= 0 - 0x54fd7c/2
+550130	g_ring_max_z	f32	PROVEN	= 0x54fd80/2; fighter_PointOutsideRing
+550134	g_ring_min_z	f32	PROVEN	= 0 - 0x54fd80/2
+550140	g_atk_hit_latch	u8[2]	PROVEN	set 1 on strike hit, tested ==0 before recheck; per fighter
+550141	g_unk_550141	u8	OPEN	used by fight_UpdateHitChecks
+550144	g_side_sign	s16[2]	PROVEN	+1/-1 flips attackpoint 1/2 left-right tests per fighter
+550146	g_unk_550146	u16	OPEN	used by fight_UpdateHitChecks
+550150	g_unk_550150	u32	OPEN	used by fighter_CheckDangerZone,fighter_CalcKnockbackAngle,fighter_UpdateMotionState
+550158	g_unk_550158	u64	OPEN	used by fighter_CalcKnockbackAngle
+55015c	g_unk_55015c	u32	OPEN	used by fighter_UpdateMotionState
+550160	g_unk_550160	u32	OPEN	used by fighter_UpdateMotionState
+550164	g_unk_550164	u32	OPEN	used by fighter_CalcKnockbackAngle,fighter_UpdateMotionState
+550180	g_unk_550180	u32	OPEN	used by fighter_FacingEdgeTest_2,fighter_UpdateMotionState,cam_ResetViewAngles
+550188	g_unk_550188	u32	OPEN	used by fighter_FacingEdgeTest_2
+5501a0	g_unk_5501a0	u32	OPEN	used by fighter_FacingWallTest,fighter_UpdateMotionState,fight_InitSceneState
+5501a8	g_unk_5501a8	u64	OPEN	used by fighter_FacingWallTest
+5501ac	g_unk_5501ac	blob	OPEN	used by fighter_UpdateMotionState
+5501b4	g_unk_5501b4	u32	OPEN	used by fighter_FacingWallTest
+5501d0	g_hit_tab0	array	PROVEN	ptr stored to 0x5657c0 by hit_InitTables
+550284	g_hit_tab1	array	PROVEN	ptr stored to 0x5657c4 by hit_InitTables
+550288	g_unk_550288	u32	OPEN	used by fighter_UpdateBodyParts
+55028c	g_unk_55028c	u32	OPEN	used by fighter_UpdateBodyParts
+550340	g_hit_tab2	array	PROVEN	ptr stored to 0x5657c8 by hit_InitTables; hurtbox loader
+55037c	g_unk_55037c	blob	OPEN	used by hit_InitTables,fighter_UpdateBodyParts
+5503c0	g_body_sphere_pos	f32[2][15][3]	PROVEN	DATAMAP: p*0xb4+i*0xc
+550530	g_body_sphere_radius	f32[2][15]	PROVEN	DATAMAP: p*0x3c+i*4
+5510f0	g_unk_5510f0	u32	OPEN	used by hit_SetImpactScale
+552610	g_body_capsule_pos	f32[2][15][6]	PROVEN	DATAMAP: p*0x168+i*0x18
+552640	g_body_capsule_pos+0x30	f32	PROVEN	member i=2 of g_body_capsule_pos
+5528e0	g_body_capsule_radius	f32[2][15]	PROVEN	DATAMAP: p*0x3c+i*4
+5528e8	g_body_capsule_radius+8	f32	PROVEN	member i=2 of g_body_capsule_radius
+552960	g_atk_sphere_pos	f32[2][15][3]	PROVEN	DATAMAP: p*0xb4+i*0xc
+552ad0	g_atk_sphere_radius	f32[2][15]	PROVEN	DATAMAP: p*0x3c+i*4
+554bb0	g_atk_volume_slot	u8[2][15][4]	PROVEN	DATAMAP: p*0x3c+part*4, byte0 active
+554c30	g_body_volume_slot	u8[2][15][4]	PROVEN	DATAMAP: p*0x3c+part*4, byte0 type
+554cb0	g_hurt_part_enable_a	u8 x4 stride	PROVEN	hit_PartsActive tests byte at idx*4; hit_LoadHurtboxTable fills
+554cec	g_hurt_part_enable_b	u8 x4 stride	PROVEN	hit_PartsActive tests byte at idx*4+0x554cec
+554d30	g_unk_554d30	blob	OPEN	used by fighter_UpdateFrame,tgp_MulBoneMatrices,fighter_DrawAllModels
+554d60	g_unk_554d60	blob	OPEN	used by cam_UpdatePlayerViewAngles,cam_SendViewMatrixToTgp
+554d70	g_unk_554d70	u128	OPEN	used by cam_UpdatePlayerViewAngles,cam_SendViewMatrixToTgp
+554d80	g_unk_554d80	u128	OPEN	used by cam_UpdatePlayerViewAngles,cam_SendViewMatrixToTgp
+5552d0	g_unk_5552d0	u32	OPEN	used by fighter_FacingWallTest,cam_UpdateRoundEvent,fighter_UpdateStateAttack
+5552d4	g_unk_5552d4	u32	OPEN	used by hit_ApplyAttackToDefender,hold_StartCounterResponse,move_ComputeKnockback
+5552d8	g_unk_5552d8	u32	OPEN	used by fighter_FacingWallTest
+5552dc	g_unk_5552dc	u32	OPEN	used by cam_UpdatePlayerViewAngles,fighter_CheckRingBoundsMulti,cam_ResetViewAngles
+5552e0	g_unk_5552e0	u32	OPEN	used by fighter_CheckRingBoundsMulti,cam_UpdatePlayerViewAngles,cam_ResetViewAngles
+5552e4	g_unk_5552e4	u32	OPEN	used by fighter_CheckRingBoundsMulti,cam_UpdatePlayerViewAngles,cam_ResetViewAngles
+5552e8	g_unk_5552e8	u32	OPEN	used by cam_UpdateFollowOffset,fighter_CheckRingBoundsMulti,cam_EventSmoothBothFighters
+5552ec	g_unk_5552ec	u32	OPEN	used by fighter_CalcLaunchVelocity,cam_UpdateFollowOffset,fighter_CheckRingBoundsMulti
+5552f0	g_unk_5552f0	u32	OPEN	used by cam_UpdateFollowOffset,fighter_CheckRingBoundsMulti,cam_EventSmoothBothFighters
+5552f4	g_unk_5552f4	u32	OPEN	used by fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5552f8	g_unk_5552f8	u32	OPEN	used by fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5552fc	g_unk_5552fc	u32	OPEN	used by fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+55533c	g_unk_55533c	u32	OPEN	used by fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+555340	g_unk_555340	u32	OPEN	used by fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+555344	g_unk_555344	u32	OPEN	used by fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+555388	g_unk_555388	u32	OPEN	used by cam_EventLowAngle,cam_EventHighAngle
+55539c	g_unk_55539c	u32	OPEN	used by cam_UpdateFollowOffset,cam_EventSmoothBothFighters
+5553a0	g_unk_5553a0	u32	OPEN	used by cam_UpdateFollowOffset,cam_EventSmoothBothFighters
+5553a4	g_unk_5553a4	u32	OPEN	used by cam_UpdateFollowOffset,cam_EventSmoothBothFighters
+5553a8	g_unk_5553a8	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553ac	g_unk_5553ac	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553b0	g_unk_5553b0	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553f0	g_unk_5553f0	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553f4	g_unk_5553f4	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553f8	g_unk_5553f8	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5555a0	g_round_time_secs	u8	PROVEN	round_TickTimer decrements on subframe wrap; 0 => time out
+5555a1	g_round_time_pct	u8	PROVEN	round_TickTimer: 100*(limit-1-subframe)/limit
+5555a2	g_unk_5555a2	u8	OPEN	used by cam_RunEventState,ai_UpdateFacingFor,cam_AngOpRandomSide
+5555a4	g_dist_p1_p2	f32	PROVEN	TGP result after dx,dz of fighters; cam_SetModeState compares 11/14/17/20
+5555a8	g_angle_p1_to_p2	u32	PROVEN	TGP atan result of P2-P1 delta; written to drct, +0x8000 flip
+5555ac	g_cam_mode	u8	PROVEN	DATAMAP camera mode; cam_SetModeState ==2 test, init 0xfe
+5555ad	g_unk_5555ad	u8	OPEN	used by cam_UpdateByMode,cam_StepFovTable,cam_UpdateFollowFighterParam
+5555b0	g_unk_5555b0	u32	OPEN	used by charsel_ReadSelection,charsel_UpdateCursor,stage_UpdateScrollA
+5555b4	g_unk_5555b4	u32	OPEN	used by cmd_CheckFacingAngle,stage_DrawModelsA,stage_DrawModelsI
+5555b8	g_cam_pos_x	f32	PROVEN	cam_SetPosition subtracts it; math_DistanceToCamera
+5555bc	g_unk_5555bc	u32	OPEN	used by cam_BuildMatrixGroundClip,stage_DrawModelsE,cam_BuildMatrix
+5555c0	g_cam_pos_z	f32	PROVEN	cam_SetPosition subtracts it from param z
+5555c4	g_unk_5555c4	u32	OPEN	used by stage_DrawModelsA,stage_DrawModelsI,fight_RunFrame
+5555c8	g_unk_5555c8	u32	OPEN	used by stage_DrawModelsE,stage_DrawModelsD,fight_RunFrame
+5555cc	g_unk_5555cc	u32	OPEN	used by stage_DrawModelsA,stage_DrawModelsI,fight_RunFrame
+5555d0	g_cam_vec_x	f32	PROVEN	cam_UpdateRotation: (5555d0 - 5b9778) direction vec3
+5555d4	g_cam_vec_y	f32	PROVEN	cam_UpdateRotation vec3 y
+5555d8	g_cam_vec_z	f32	PROVEN	cam_UpdateRotation vec3 z
+5555dc	g_unk_5555dc	u8	OPEN	used by fight_UpdateRoundState,fighter_ApplyHitReaction,fighter_UpdateFacing
+5555dd	g_unk_5555dd	u8	OPEN	used by fight_UpdateRoundState,fight_QueueRoundSoundTail,fighter_InitRoundState
+5555de	g_unk_5555de	u8	OPEN	indexes table 0x90cc0; set from 0x90c90/0x90ca0 tables; stage/bg select OPEN
+5555df	g_unk_5555df	u8	OPEN	used by hud_UpdateFightHud,hud_DrawFightLayout,hud_DrawStateA
+5555e0	g_unk_5555e0	u8	OPEN	used by fight_UpdateKO,charsel_Init,fight_StepMatchLoad
+5555e2	g_unk_5555e2	u8	OPEN	used by ai_EvalWeightEntry,fight_UpdateKO,aiop_DelayScaledByLevel
+5555e3	g_round_over_flag	u8	PROVEN	DATAMAP: round_CheckKO sets 1
+5555e4	g_unk_5555e4	u8	OPEN	used by fight_UpdateRoundState,ranking_UpdateNameEntry,fight_UpdateKO
+5555e5	g_countdown_secs	u8	PROVEN	set 10, decremented each 0x3c frames; fight_ClampLifeGauge
+5555e6	g_unk_5555e6	u8	OPEN	init for fighter+0x20 u16 from table 0x90d70[cfg]; role OPEN
+5555e7	g_unk_5555e7	u8	OPEN	used by fight_UpdateRoundState,ranking_UpdateNameEntry
+5555e8	g_unk_5555e8	u8	OPEN	used by io_ReadCabinetInputs,round_UpdateModeScreensTail,fight_UpdateRoundState
+5555e9	g_unk_5555e9	u8	OPEN	used by round_UpdateModeScreensTail,fight_UpdateRoundState,fighter_UpdateFacing
+5555ea	g_unk_5555ea	u8	OPEN	used by round_UpdateModeScreensTail,fight_UpdateRoundState
+5555eb	g_unk_5555eb	u8	OPEN	used by hud_DrawCreditPromptsAlt,-,stage_Init
+5555ec	g_round_frame_counter	u16	PROVEN	round_TickTimeout increments, returns 1 at 0xb7 / 299
+5555ee	g_unk_5555ee	u16	OPEN	used by hit_BuildHitBuffers,motion_RunMoveScript
+5555f0	g_unk_5555f0	u16	OPEN	used by hit_BuildHitBuffers,motion_RunMoveScript
+5555f2	g_unk_5555f2	u16	OPEN	used by hit_BuildHitBuffers,motion_RunMoveScript
+5555f4	g_unk_5555f4	u16	OPEN	used by hit_BuildHitBuffers,motion_RunMoveScript
+5555f8	g_unk_5555f8	u32	OPEN	used by hit_BuildHitBuffers,motion_RunMoveScript
+5555fc	g_unk_5555fc	u16	OPEN	used by hit_LoadHitBufferChecked,hit_ResolveStrike,hit_LoadHitBuffer
+5555fe	g_unk_5555fe	u16	OPEN	used by hit_LoadHitBufferChecked,fighter_UpdateStateAirRise,fighter_UpdateStateAirFall
+555600	g_unk_555600	u16	OPEN	used by hit_LoadHitBufferChecked,fighter_UpdateStateAirRise,fighter_UpdateStateAirFall
+555602	g_unk_555602	u16	OPEN	used by hit_LoadHitBufferChecked,hit_LoadHitBuffer,fighter_InitScript
+555604	g_unk_555604	u32	OPEN	used by hit_LoadHitBufferChecked,hit_LoadHitBuffer,fighter_InitScript
+55560f	g_unk_55560f	u8	OPEN	used by hit_ResolveStrike,hit_CalcDamage_tail,fighter_UpdateAirPhysics
+555610	g_unk_555610	u8	OPEN	used by hit_ResolveStrike,hit_CalcDamage_tail
+555611	g_unk_555611	u8	OPEN	used by hit_ResolveStrike,round_UpdateModeScreens,hud_DrawRoundNumberTiles
+555612	g_unk_555612	u8	OPEN	used by move_StartRecovery,ai_ApplyQueuedScript
+555614	g_unk_555614	u8	OPEN	used by move_StartRecovery,ai_ApplyQueuedScript
+555616	g_unk_555616	u8	OPEN	used by cam_UpdatePlayerViewAngles,-,script_OpSetFlagB
+555617	g_unk_555617	u8	OPEN	used by fighter_ApplyHitReaction,round_UpdateModeScreens,round_UpdateModeScreensTail
+555618	g_unk_555618	u8	OPEN	used by fight_DecayEntryTable,attract_StepIntroSequence,fight_StepMatchLoad
+555619	g_unk_555619	u8	OPEN	used by attract_EnterMode4,charsel_Init,round_StartRound
+55561a	g_unk_55561a	u8	OPEN	used by round_TickDelayTimer,charsel_Init,charsel_DrawSelectScreenTiles
+55561b	g_unk_55561b	u8	OPEN	used by -,cmd_SetGlobalFlag561b,hud_UpdatePlayerBanners
+55561c	g_unk_55561c	u8	OPEN	used by aiop_SetGlobal561c,ai_ApplyQueuedScript,fight_CheckPlayerActionable
+55561e	g_unk_55561e	blob	OPEN	used by hud_UpdateFightHud
+555620	g_unk_555620	blob	OPEN	used by hud_DrawFightLayout
+55562c	g_unk_55562c	u32	OPEN	used by hud_ClearTileLayer
+555640	g_unk_555640	blob	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud
+55564c	g_unk_55564c	blob	OPEN	used by hud_DrawFightLayout
+555660	g_unk_555660	u32	OPEN	used by charsel_DrawPortrait,charsel_LoadPortraitPalette,hud_DrawFightLayout
+55566c	g_unk_55566c	blob	OPEN	used by hud_DrawFightLayout
+555680	g_unk_555680	u32	OPEN	used by geo_BuildVertexTableA
+555690	g_unk_555690	u32	OPEN	used by geo_BuildVertexTableB
+5556a0	g_unk_5556a0	blob	OPEN	used by geo_BuildVertexTable
+555760	g_unk_555760	u32	OPEN	used by fight_ResetRoundTimer,hud_DrawTileEntry
+555770	g_unk_555770	blob	OPEN	used by geo_BuildVertexTable,tile_CopyBlock8x8
+5557f0	g_unk_5557f0	blob	OPEN	used by geo_BuildVertexTable,tile_CopyBlock8x8
+555870	g_unk_555870	blob	OPEN	used by geo_BuildVertexTable,tile_CopyBlock8x8
+5558f0	g_unk_5558f0	blob	OPEN	used by geo_BuildVertexTable,tile_CopyBlock8x8
+557570	g_unk_557570	blob	OPEN	used by geo_BuildVertexTableA,tile_CopyBlock8x10
+557610	g_unk_557610	blob	OPEN	used by tile_CopyBlock8x10
+5576b0	g_unk_5576b0	blob	OPEN	used by tile_CopyBlock8x10
+557750	g_unk_557750	blob	OPEN	used by tile_CopyBlock8x10
+5577f0	g_unk_5577f0	blob	OPEN	used by geo_BuildVertexTableB,tile_CopyBlock8x10
+557890	g_unk_557890	blob	OPEN	used by tile_CopyBlock8x10
+557930	g_unk_557930	blob	OPEN	used by tile_CopyBlock8x10
+5579d0	g_unk_5579d0	blob	OPEN	used by tile_CopyBlock8x10
+557a70	g_unk_557a70	mixed	OPEN	used by charsel_InitPortraitPos,hud_DrawFightLayout,hud_UpdateFightHud
+557a74	g_unk_557a74	u32	OPEN	used by hud_DrawFightLayout
+557a78	g_unk_557a78	mixed	OPEN	used by hud_UpdateFightHud_2,hud_DrawStateB,charsel_InitPortraitPos
+557a7c	g_unk_557a7c	u32	OPEN	used by hud_UpdateFightHud_2,hud_DrawStateB,hud_DrawFightLayout
+557a80	g_unk_557a80	u32	OPEN	used by charsel_LoadPortraitPalette,charsel_DrawPortrait,hud_DrawFightLayout
+557a84	g_unk_557a84	u32	OPEN	used by hud_DrawFightLayout,charsel_DrawNameTiles,charsel_DrawIconRows
+557a88	g_unk_557a88	u8	OPEN	used by hud_DrawFightLayout,charsel_DrawIconRows,charsel_DrawIconRows_2
+557a90	g_hud_icon_list	u8[9]	PROVEN	charsel_DrawIconRows list; init 4,5,8,2,0xc,6,1,0xb at 557a91..98
+557a91	g_unk_557a91	u8	OPEN	used by charsel_DrawIconRows,charsel_DrawIconRows_2,hud_DrawFightLayout
+557a92	g_unk_557a92	u8	OPEN	used by hud_DrawFightLayout
+557a93	g_unk_557a93	u8	OPEN	used by hud_DrawFightLayout
+557a94	g_unk_557a94	u8	OPEN	used by hud_DrawFightLayout
+557a95	g_unk_557a95	u8	OPEN	used by hud_DrawFightLayout
+557a96	g_unk_557a96	u8	OPEN	used by hud_DrawFightLayout
+557a97	g_unk_557a97	u8	OPEN	used by hud_DrawFightLayout
+557a98	g_unk_557a98	u8	OPEN	used by hud_DrawFightLayout
+557aa0	g_unk_557aa0	u8	OPEN	used by charsel_DrawIconRows,charsel_DrawIconRows_2,hud_UpdateFightHud
+557ab0	g_rotate_table	f32[3+]	PROVEN	math_InitRotateTable builds sin/cos from angles at 0x90c00
+557ab4	g_unk_557ab4	u32	OPEN	used by math_InitRotateTable
+557ab8	g_unk_557ab8	u32	OPEN	used by math_InitRotateTable
+557b70	g_unk_557b70	mixed	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud,fighter_AdvanceMoveVariant
+557b74	g_unk_557b74	u32	OPEN	used by hud_DrawFightLayout
+557b78	g_unk_557b78	u32	OPEN	used by hud_DrawFightLayout
+557b7c	g_unk_557b7c	u32	OPEN	used by hud_DrawFightLayout
+557b80	g_unk_557b80	u32	OPEN	used by hud_DrawFightLayout
+557b84	g_unk_557b84	u32	OPEN	used by hud_DrawFightLayout
+557b88	g_unk_557b88	u32	OPEN	used by hud_DrawFightLayout
+557b8c	g_unk_557b8c	u32	OPEN	used by hud_DrawFightLayout
+557b90	g_unk_557b90	u32	OPEN	used by hud_DrawFightLayout
+557b94	g_unk_557b94	u32	OPEN	used by hud_DrawFightLayout
+557b98	g_unk_557b98	u32	OPEN	used by hud_DrawFightLayout
+557b9c	g_unk_557b9c	u32	OPEN	used by hud_DrawFightLayout
+557ba0	g_unk_557ba0	u32	OPEN	used by hud_DrawFightLayout
+557ba4	g_unk_557ba4	u32	OPEN	used by hud_DrawFightLayout
+557ba8	g_unk_557ba8	u32	OPEN	used by hud_DrawFightLayout
+557bac	g_unk_557bac	u32	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud
+557bb0	g_unk_557bb0	u32	OPEN	used by hud_DrawFightLayout
+557bb4	g_unk_557bb4	u32	OPEN	used by hud_DrawFightLayout
+557bb8	g_unk_557bb8	u32	OPEN	used by hud_DrawFightLayout
+557bbc	g_unk_557bbc	u32	OPEN	used by hud_DrawFightLayout
+557bc0	g_unk_557bc0	u32	OPEN	used by hud_DrawFightLayout
+557bc4	g_unk_557bc4	u32	OPEN	used by hud_DrawFightLayout
+557bc8	g_unk_557bc8	u32	OPEN	used by hud_DrawFightLayout
+557bcc	g_unk_557bcc	u32	OPEN	used by hud_DrawFightLayout
+557bd0	g_unk_557bd0	u32	OPEN	used by hud_DrawFightLayout
+557bd4	g_unk_557bd4	u32	OPEN	used by hud_DrawFightLayout
+557bd8	g_unk_557bd8	u32	OPEN	used by hud_DrawFightLayout
+557bdc	g_unk_557bdc	u32	OPEN	used by hud_DrawFightLayout
+557be0	g_unk_557be0	u32	OPEN	used by hud_DrawFightLayout
+557be4	g_unk_557be4	u32	OPEN	used by hud_DrawFightLayout
+557bf0	g_unk_557bf0	u32	OPEN	used by fight_ResetRoundTimer,hud_DrawTileEntry
+557bf4	g_hud_icon_idx	u8	PROVEN	indexes g_hud_icon_list in hud_DrawFightLayout init
+557bf5	g_unk_557bf5	u8	OPEN	used by hud_DrawFightLayout
+557bf6	g_unk_557bf6	u8	OPEN	used by hud_DrawFightLayout
+557bf8	g_unk_557bf8	u32	OPEN	used by hud_UpdateFightHud,hud_DrawFightLayout
+557bfc	g_unk_557bfc	u32	OPEN	used by hud_UpdateFightHud,hud_DrawFightLayout
+557c00	g_unk_557c00	u8	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud,hud_UpdateFightHud_2
+557c01	g_unk_557c01	u8	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud,hud_UpdateFightHud_2
+557c02	g_unk_557c02	u8	OPEN	used by hud_DrawFightLayout
+557c04	g_unk_557c04	u8	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud
+557c05	g_unk_557c05	u8	OPEN	used by hud_DrawFightLayout
+557c06	g_unk_557c06	u8	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud
+557c07	g_unk_557c07	u8	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud
+557c08	g_unk_557c08	u32	OPEN	used by hud_UpdateFightHud,fight_UpdateDangerZoneTimer,hud_DrawFightLayout
+557c0c	g_unk_557c0c	u32	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud
+557c10	g_unk_557c10	u8	OPEN	used by hud_UpdateFightHud,hud_UpdateFightHud_2,hud_DrawFightLayout
+557c11	g_unk_557c11	u8	OPEN	used by hud_DrawFightLayout,hud_UpdateFightHud_2
+557c18	g_unk_557c18	u32	OPEN	used by hud_UpdateFightHud,hud_DrawFightLayout
+557c1c	g_unk_557c1c	u32	OPEN	used by hud_UpdateFightHud,hud_DrawFightLayout
+557c20	g_unk_557c20	u8	OPEN	used by hud_UpdateFightHud,hud_DrawFightLayout
+557c21	g_unk_557c21	u8	OPEN	used by hud_UpdateFightHud,hud_DrawFightLayout
+557c22	g_unk_557c22	u16	OPEN	used by hud_UpdateFightHud,hud_DrawTileEntry,hud_DrawFightLayout
+557c24	g_unk_557c24	u8	OPEN	used by hud_UpdateFightHud
+557c28	g_unk_557c28	u32	OPEN	used by fight_UpdateDangerZoneTimer
+557c40	g_countdown_frame	u32	PROVEN	reload 0x3c, decrements; fight_ClampLifeGauge 60Hz tick
+557c44	g_unk_557c44	u32	OPEN	used by fight_UpdateRoundState,fight_MainStep,fighter_UpdateFacing
+557c48	g_unk_557c48	u32	OPEN	used by io_ReadCabinetInputs,fighter_ApplyHitReaction,fighter_UpdateInputBuffer
+557c4c	g_unk_557c4c	u32	OPEN	used by fighter_UpdateInputBuffer,fight_ClampLifeGauge,fight_PlayHitEffect
+557c50	g_unk_557c50	u32	OPEN	used by fighter_UpdateInputBuffer,fight_ClampLifeGauge,fight_PlayHitEffect
+557c54	g_unk_557c54	u32	OPEN	used by fighter_ApplyHitReaction,io_ReadCabinetInputs,fighter_UpdateInputBuffer
+557c60	g_unk_557c60	u8	OPEN	used by -
+557c61	g_unk_557c61	u8	OPEN	used by snd_PlaySfxA,snd_PlaySfxB,fighter_SetAnimTransition_2
+557c62	g_unk_557c62	u8	OPEN	used by snd_PlaySfxC,snd_PlaySfxD,fighter_SetAnimTransition_2
+557c63	g_unk_557c63	u8	OPEN	used by snd_PlaySfxE,snd_PlaySfxF,fighter_SetAnimTransition_2
+557c64	g_unk_557c64	u8	OPEN	used by charsel_LoadLayerD,charsel_LoadLayerE,charsel_ClearLayerB
+557c65	g_unk_557c65	u8	OPEN	used by -,fighter_ResetAnimState,fighter_SetAnimTransition
+557c66	g_unk_557c66	u8	OPEN	used by -,move_StartHold
+557c67	g_unk_557c67	u8	OPEN	used by -,move_StartRecovery
+557c68	g_unk_557c68	u8	OPEN	used by -
+557c69	g_unk_557c69	u8	OPEN	used by -
+557c6a	g_unk_557c6a	u8	OPEN	used by -
+557c6b	g_unk_557c6b	u8	OPEN	used by fighter_ClearViaB3C0,fighter_SetAnimTransition,script_OpLoadTableEntry
+557c6c	g_unk_557c6c	u8	OPEN	used by fighter_SetMoveEnd_2,fighter_SetAnimTransition,fighter_SetAnimTransition_2
+557c6e	g_unk_557c6e	u8	OPEN	used by fighter_SetAnimTransition_2,snd_CallCommandB,snd_CallCommandC
+557c70	g_script_ptr	ptr	PROVEN	read ptr: *p, p+1, p+=2 in move_/snd_/script opcodes
+557c74	g_script_frame	s16	PROVEN	incremented, compared with *(g_script_ptr+4)
+557c78	g_unk_557c78	u32	OPEN	used by fighter_ClearViaB3C0,script_OpLoadTableEntry
+557c7c	g_unk_557c7c	u16	OPEN	used by fighter_ClearViaB3C0,script_OpLoadTableEntry
+557c7e	g_unk_557c7e	u16	OPEN	used by fighter_ClearViaB3C0,script_OpLoadTableEntry
+557c80	g_unk_557c80	u32	OPEN	used by charsel_ShowPortraitA,charsel_LoadLayerD,charsel_DrawPortraits
+557c90	g_unk_557c90	blob	OPEN	used by charsel_LoadLayerD,charsel_DrawPortraits,charsel_LoadLayerE
+557ca0	g_unk_557ca0	u8	OPEN	used by script_OpWaitIfFlag,attract_ClearFlag,attract_RunDemo
+557ca1	g_unk_557ca1	u8	OPEN	used by script_OpReloadDefaults,tile_WriteEntryPair,attract_RunDemo
+557ca4	g_unk_557ca4	u32	OPEN	used by script_OpCallTable,script_OpReturn_2
+557ca8	g_unk_557ca8	u16	OPEN	used by fighter_SetHitFlag,fighter_SetMoveEnd_2
+557cc0	g_unk_557cc0	blob	OPEN	used by attract_DrawTitle,attract_StepFade,tile_ClearTitleLayer
+557d20	g_unk_557d20	blob	OPEN	used by pal_WriteColourBlock_2
+557d30	g_unk_557d30	u32	OPEN	used by tile_FillRange,attract_DrawTitle
+557d34	g_unk_557d34	u32	OPEN	used by tile_FillRange,tile_InitStreamFromHandle
+557d38	g_unk_557d38	u16	OPEN	used by tile_FillRange,tile_InitStreamFromHandle
+557d3c	g_unk_557d3c	u32	OPEN	used by tile_FillRange,tile_InitStreamFromHandle
+557d40	g_unk_557d40	u32	OPEN	used by tile_FillRange,tile_InitStreamFromHandle
+557d44	g_unk_557d44	u16	OPEN	used by tile_FillRange,attract_DrawTitle
+557d48	g_unk_557d48	u32	OPEN	used by attract_DrawTitle,attract_StepScroll
+557d4c	g_unk_557d4c	u32	OPEN	used by attract_StepScroll,attract_DrawTitle
+557d50	g_unk_557d50	u32	OPEN	used by attract_StepScroll,attract_DrawTitle
+557d54	g_unk_557d54	u8	OPEN	used by tile_FillRange,attract_DrawTitle
+557d55	g_unk_557d55	u8	OPEN	used by tile_ClearTitleLayer,attract_DrawTitle
+557d56	g_unk_557d56	u8	OPEN	used by attract_StateA,attract_StateB,attract_ClearFlag
+557d58	g_unk_557d58	u16	OPEN	used by attract_StateB,attract_ClearFlag,pal_WriteColourBlock_2
+557d70	g_unk_557d70	u32	OPEN	used by -,charsel_Init,round_TickDelayTimer
+557d74	g_unk_557d74	u32	OPEN	used by round_UpdateMain,fighter_PlaceStartPositions,charsel_Update
+557d78	g_unk_557d78	u32	OPEN	used by charsel_Update,-,charsel_Init
+557d7c	g_unk_557d7c	u32	OPEN	used by charsel_Update
+557d80	g_unk_557d80	u32	OPEN	used by round_TickDelayTimer,charsel_Init
+557d88	g_name_entry_chars	u16[3]	PROVEN	init 0x20 (space), 3 cells, idx 557d90
+557d8a	g_unk_557d8a	u16	OPEN	used by charsel_Init,charsel_Update,io_ReadCoinsAndStart
+557d8c	g_unk_557d8c	u16	OPEN	used by charsel_Init,charsel_Update,io_ReadCoinsAndStart
+557d90	g_name_entry_idx	u32	PROVEN	loop <3 over g_name_entry_chars
+557d94	g_unk_557d94	u32	OPEN	used by io_ReadServiceSwitch,io_ReadCoinsAndStart
+557d98	g_unk_557d98	u32	OPEN	used by charsel_Update,io_ReadCoinsAndStart,io_ReadServiceSwitch
+557d9c	g_unk_557d9c	u32	OPEN	used by round_WaitTimer,round_UpdateMain,fighter_PlaceStartPositions
+557da0	g_unk_557da0	u32	OPEN	used by round_WaitTimer,round_UpdateMain
+557da4	g_unk_557da4	u32	OPEN	used by fighter_UpdatePosition,round_IntegratePosClamp,round_UpdateMain
+557da8	g_unk_557da8	u32	OPEN	used by round_IntegratePosClamp,fighter_UpdatePosition,round_UpdateMain
+557dac	g_unk_557dac	u32	OPEN	used by fighter_UpdatePosition,round_IntegratePosClamp,round_UpdateMain
+557db0	g_unk_557db0	u32	OPEN	used by round_IntegratePosClamp,fighter_UpdatePosition
+557db4	g_unk_557db4	u32	OPEN	used by round_IntegratePosClamp,fighter_UpdatePosition
+557db8	g_unk_557db8	u32	OPEN	used by round_IntegratePosClamp,fighter_UpdatePosition
+557dbc	g_unk_557dbc	u32	OPEN	used by fighter_UpdateHeight,fighter_UpdateVelocity
+557dc0	g_unk_557dc0	u32	OPEN	used by fighter_UpdateHeight
+557dc4	g_unk_557dc4	u32	OPEN	used by fighter_UpdateHeight,fighter_UpdateVelocity
+557dd0	g_unk_557dd0	u32	OPEN	used by charsel_UpdateCursor,round_UpdateMain,charsel_Update
+557e18	g_unk_557e18	u32	OPEN	used by charsel_Init,charsel_UpdateCursor,charsel_Update
+557e68	g_unk_557e68	u32	OPEN	used by charsel_Init,charsel_Update
+557eb8	g_unk_557eb8	u32	OPEN	used by charsel_Init,round_TickDelayTimer,round_UpdateMain
+557ec0	g_clock_subframe	u8	PROVEN	round_TickTimer counts to 0x54fd77, feeds 54fd16/54fd15 clock
+557ec8	g_unk_557ec8	mixed	OPEN	used by ranking_UpdateNameEntry,hit_ApplyPendingDamage,ranking_CallInit
+557ecc	g_unk_557ecc	mixed	OPEN	used by ranking_UpdateNameEntry
+557ed0	g_unk_557ed0	mixed	OPEN	used by ranking_UpdateNameEntry,ranking_CallInit,hit_ApplyPendingDamage
+557ed4	g_unk_557ed4	mixed	OPEN	used by ranking_UpdateNameEntry
+557ed8	g_unk_557ed8	blob	OPEN	used by ranking_CallInit,ranking_UpdateNameEntry
+557ee0	g_unk_557ee0	blob	OPEN	used by ranking_CallInit,ranking_UpdateNameEntry
+557ee8	g_unk_557ee8	u8	OPEN	used by ranking_UpdateNameEntry,round_CheckKO,ranking_InitEntry
+557ee9	g_unk_557ee9	u8	OPEN	used by ranking_UpdateNameEntry,round_CheckKO,ranking_InitEntry
+557eea	g_unk_557eea	u8	OPEN	used by ranking_UpdateNameEntry,ranking_InitEntry
+557eeb	g_round_timeout_flag	u8	PROVEN	round_TickTimer sets 1 when seconds reach 0
+557eec	g_unk_557eec	u16	OPEN	used by ranking_InitEntry,ranking_UpdateNameEntry
+557eee	g_unk_557eee	u16	OPEN	used by ranking_InitEntry,ranking_UpdateNameEntry
+557ef0	g_unk_557ef0	u8	OPEN	used by ranking_UpdateNameEntry,ranking_InitEntry
+557ef1	g_unk_557ef1	u8	OPEN	used by ranking_InitEntry,ranking_UpdateNameEntry
+557ef2	g_unk_557ef2	u8	OPEN	used by ranking_InitEntry,ranking_UpdateNameEntry
+557ef3	g_unk_557ef3	u8	OPEN	used by ranking_InitEntry,ranking_UpdateNameEntry
+557ef4	g_unk_557ef4	u8	OPEN	used by ranking_InitEntry,ranking_UpdateNameEntry
+557ef8	g_unk_557ef8	u32	OPEN	used by ranking_UpdateNameEntry
+557efc	g_round_time_subframe	u8	PROVEN	round_TickTimer +1 per frame, wraps at 0x54fd77
+557f20	g_unk_557f20	u8	OPEN	used by hit_CalcDamageAll,hit_CalcDamage,hit_ApplyAttackToDefender
+557f22	g_unk_557f22	u8	OPEN	used by hit_ApplyAttackToDefender,hit_CalcDamageAll,hit_CalcDamage
+557f24	g_unk_557f24	u8	OPEN	used by fighter_UpdateStateAirRise,fighter_UpdateStateAirFall,hit_ApplyAttackToDefender
+557f28	g_unk_557f28	u32	OPEN	used by fighter_DispatchStates,fighter_DispatchStatesLoopTail,hold_ApplyHoldPair
+557f2c	g_unk_557f2c	u32	OPEN	used by fighter_InitRoundState_2,-,DOA_orph_1f820
+557f30	g_unk_557f30	u32	OPEN	used by round_SelectWinPose,DOA_orph_1f820
+557f34	g_unk_557f34	u32	OPEN	used by DOA_orph_1f820
+557f38	g_unk_557f38	u32	OPEN	used by round_SelectWinPose,-
+557f3c	g_unk_557f3c	u32	OPEN	used by -
+557f40	g_unk_557f40	u32	OPEN	used by fighter_UpdateStateDownRecover,fighter_UpdateStateIdle,fighter_UpdateStateStun
+557f48	g_unk_557f48	u8	OPEN	used by hit_ApplyAttackToDefender,hit_QueueResponseMove,hit_RestoreSavedMove
+557f4a	g_unk_557f4a	u8	OPEN	used by hit_QueueResponseMove,hit_ApplyAttackToDefender,hit_RestoreSavedMove
+557f4c	g_unk_557f4c	u8	OPEN	used by hit_RestoreSavedMove,hit_QueueResponseMove
+557f4e	g_unk_557f4e	u8	OPEN	used by hit_ApplyAttackToDefender,hit_RestoreSavedMove,hit_QueueResponseMove
+557f50	g_unk_557f50	u8	OPEN	used by hit_ApplyAttackToDefender,hit_RestoreSavedMove,hit_QueueResponseMove
+557f52	g_unk_557f52	u8	OPEN	used by hit_ApplyAttackToDefender,hit_RestoreSavedMove,move_SelectHitVariant
+557f54	g_unk_557f54	u8	OPEN	used by hit_ApplyAttackToDefender,hit_RestoreSavedMove,move_SelectHitVariant
+557f56	g_unk_557f56	u8	OPEN	used by hit_ApplyAttackToDefender,hit_RestoreSavedMove
+557f58	g_unk_557f58	u32	OPEN	used by hit_ApplyAttackToDefender,hit_RestoreSavedMove
+557f60	g_unk_557f60	u8	OPEN	used by DOA_orph_1f820,round_SelectWinPose
+557f68	g_unk_557f68	u32	OPEN	used by fighter_UpdateFacing_2
+557f70	g_unk_557f70	u32	OPEN	used by hit_ApplyAttackToDefender,fighter_SetupHitState,stub_00024ecc
+557f78	g_unk_557f78	u8	OPEN	used by fighter_UpdateFacing_2,fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f79	g_unk_557f79	u8	OPEN	used by fighter_ApplyRingLaunch,fighter_InitRoundState_2,fighter_UpdateAirPhysics
+557f7a	g_unk_557f7a	u8	OPEN	used by fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f7b	g_unk_557f7b	u8	OPEN	used by fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f7c	g_unk_557f7c	u8	OPEN	used by fighter_InitRoundState_2,fighter_SetupHitState,fighter_ShiftMoveHistory
+557f7d	g_unk_557f7d	u8	OPEN	used by fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f7e	g_unk_557f7e	u8	OPEN	used by fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f7f	g_unk_557f7f	u8	OPEN	used by fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f80	g_unk_557f80	u8	OPEN	used by hit_CalcDamageAll,hit_CalcDamage,hit_GetDamageScale
+557f82	g_unk_557f82	u8	OPEN	used by hold_StartCounterResponse,hit_GetDamageScale,fighter_UpdateStateAirRise
+557f84	g_unk_557f84	u8	OPEN	used by hit_ApplyAttackToDefender,fighter_ResumeAfterMove,fighter_SetupHitState
+557f90	g_unk_557f90	u16	OPEN	used by hit_LoadHitBuffer,hit_BuildHitBuffers,hit_LoadHitBufferChecked
+563f90	g_ai_hist0	u8[2][0x80]	PROVEN	pl*0x80+idx ring; cleared by ai_StepHistoryClear
+564090	g_ai_hist1	u8[2][0x80]	PROVEN	pl*0x80+idx ring; cleared by ai_StepHistoryClear
+564190	g_ai_hist2	u8[2][0x80]	PROVEN	pl*0x80+idx ring; cleared by ai_StepHistoryClear
+564290	g_ai_hist3	u8[2][0x80]	PROVEN	pl*0x80+idx ring; cleared by ai_StepHistoryClear
+564390	g_ai_hist4	u8[2][0x80]	PROVEN	pl*0x80+idx ring; cleared by ai_StepHistoryClear
+564490	g_ai_hist5	u8[2][0x80]	PROVEN	pl*0x80+idx ring; cleared by ai_StepHistoryClear
+564590	g_ai_hist_head	u8	PROVEN	ring idx &0x7f, +1 per step; AI history
+564591	g_unk_564591	u8	OPEN	used by ai_ScanScriptRange,ai_RunScriptFull,ai_ScanScriptBack
+564592	g_unk_564592	u8	OPEN	used by ai_RunScriptFull,-,ai_RunStateMachine
+564593	g_unk_564593	u8	OPEN	used by cmd_MatchHeldDirection,ai_OpMatchInput,cmd_MatchDirectionMasked
+564594	g_ai_inhist_ptrs	ptr[5]	PROVEN	st lda 0x563f90/4090/4190/4290/4390+slot*0x80 at 0x26384-0x26414
+564598	g_ai_inhist_ptrs+0x4	ptr[5]	PROVEN	st lda 0x563f90/4090/4190/4290/4390+slot*0x80 at 0x26384-0x26414
+56459c	g_ai_inhist_ptrs+0x8	ptr[5]	PROVEN	st lda 0x563f90/4090/4190/4290/4390+slot*0x80 at 0x26384-0x26414
+5645a0	g_ai_inhist_ptrs+0xc	ptr[5]	PROVEN	st lda 0x563f90/4090/4190/4290/4390+slot*0x80 at 0x26384-0x26414
+5645a4	g_ai_inhist_ptrs+0x10	ptr[5]	PROVEN	st lda 0x563f90/4090/4190/4290/4390+slot*0x80 at 0x26384-0x26414
+5645a8	g_cmd_script_cursor	ptr(u16*)	PROVEN	OpLoadCounter reads *p then steps p; operand fetch
+5645ac	g_cmd_script_entry	ptr	PROVEN	= table[param*4]; cursor = *entry in ai_ScriptDispatch
+5645b0	g_cmd_script_table	ptr	PROVEN	= *(0xa7680+chrnum*4) per-character script table
+5645b4	g_cmd_scan_counter	s16	PROVEN	OpLoadCounter loads; OpDecrementLoop/OpMatchInput decrement, <0 aborts
+5645b6	g_ai_slot	u8	PROVEN	looped 0..1; indexes per-slot arrays; fighter=0x54fc00+slot*0x58
+5645b7	g_ai_opp_slot	u8	PROVEN	stob of g_ai_slot xor 1 at 0x26398
+5645b8	g_cmd_first_flag	u8	PROVEN	=1 at every script start; OpMatchInput steps ring back if 1
+5645ba	g_cmd_operand	u16	PROVEN	script operand; bits 0x40/0x80 swapped when flipped; masks ring byte
+5645bc	g_cmd_abort_flag	u8	PROVEN	set 1 when scan counter <0 or ring nonempty; ends match
+5645bd	g_cmd_done_flag	u8	PROVEN	cmd_SetFlagBd sets; interpret loops until ==1
+5645be	g_ai_picked_move	s8	PROVEN	0xff none; ai_RunDelayedPick stores move, copies to fighter+0x2c
+5645c0	g_ai_self_fighter	ptr	PROVEN	st 0x54fc00+slot*0x58 at 0x26384
+5645c4	g_ai_opp_fighter	ptr	PROVEN	st 0x54fc00+(slot^1)*0x58 at 0x263c0
+5645c8	g_unk_5645c8	u8	OPEN	w1; ai_RunScriptStep ai_PickHoldOrCounterMove
+5645ca	g_unk_5645ca	u8	OPEN	w1; ai_RunScriptStep ai_RunStateMachine
+5645cc	g_unk_5645cc	u16	OPEN	w2; ai_RunScriptStep cmd_CheckFrameRange
+5645ce	g_unk_5645ce	unk	OPEN	w-; 
+5645d0	g_ai_state_class	u8[2]	PROVEN	= fighter+0x2d; switch in ai_RunScriptFull, move_GetStateClassFor
+5645d2	g_ai_state_class_prev	u8[2]	PROVEN	copy of g_ai_state_class each frame
+5645d4	g_ai_state_class_prev2	u8[2]	PROVEN	copy of prev
+5645d6	g_unk_5645d6	u8	OPEN	w1; 
+5645da	g_ai_last_move_da	s8[2]	PROVEN	ai_ClearLastMove sets 0xff (paired with dc)
+5645dc	g_ai_last_move_dc	s8[2]	PROVEN	ai_ClearLastMove sets 0xff (paired with da)
+5645de	g_unk_5645de	u8	OPEN	w1; ai_RunScriptStep
+5645e0	g_unk_5645e0	u8	OPEN	w1; ai_TickJumpBoost ai_TickJumpBoostInput ai_StateDangerZoneBounce
+5645e2	g_unk_5645e2	u8	OPEN	w1; ai_RunScriptStep ai_RunScriptFull cmd_CheckMoveCondition
+5645e3	g_unk_5645e3	u8	OPEN	w1; ai_RunScriptFull
+5645e4	g_ai_opp_arc_flag	u8[2]	PROVEN	1 if (relangle+0xaaaa)&0xffff<0x5555 in ai_UpdateFacingFor
+5645e6	g_ai_flip_input	u8[2]	PROVEN	= rng/slot xor facing; swaps 0x40/0x80 bits in cmd operand
+5645e8	g_ai_opp_side_sign	s8[2]	PROVEN	0/1/-1 by relative-angle window in ai_UpdateFacingFor
+5645ec	g_ai_wait_timer	u16[2]	PROVEN	ai_TickWaitTimer counts; <1 starts phase 1
+5645f0	g_ai_wait_timer2	u16[2]	PROVEN	set 0x14 then decremented; <0 picks move
+5645f4	g_ai_wait_phase	u8[2]	PROVEN	0 waiting, 1 acting in ai_UpdateWaitTimer
+5645f8	g_unk_5645f8	u16	OPEN	w2; ai_InitWaitTimer
+5645fc	g_unk_5645fc	u16	OPEN	w2; ai_InitWaitTimer
+564600	g_unk_564600	u8	OPEN	w1; ai_InitWaitTimer
+564604	g_ai_wait_saved	u16[2]	PROVEN	copy of g_ai_wait_timer2 when phase 1 begins
+564608	g_ai_opp_move_snap	u8[2]	PROVEN	opp fighter+0x2a recorded on state change
+564610	g_ai_move_queue	s8[2][4]	PROVEN	stride 4/slot; shift-down pop, 0xff fill in ai_ClearQueue
+564618	g_ai_move_queue_cnt	s8[2]	PROVEN	decremented on pop in ai_UpdateWaitTimer
+56461c	g_ai_hist_clear_on	i32	PROVEN	=1 starts ring clear loop; ai_StepHistoryClear
+564620	g_ai_hist_clear_pos	i32	PROVEN	ring index cleared 8 per step; >0x7f ends
+564624	g_ai_weight_table_ptr	ptr	PROVEN	passed to ai_PickWeightedMove; advanced via +2 link
+564628	g_unk_564628	u8	OPEN	w1; ai_ApplyPendingReaction
+56462a	g_unk_56462a	u8	OPEN	w1; ai_ApplyPendingReaction
+56462c	g_ai_profile_ptr	ptr	PROVEN	ai_TimerElapsed(+8/+0xe); +0x13 level scaling in SetPickDelay
+564630	g_unk_564630	u8	OPEN	w1; ai_RunStateMachine ai_PickIdleMove ai_IndexTable
+564632	g_unk_564632	u8	OPEN	w1; ai_RunStateMachine ai_StateEndFlag ai_SituationTableDefault
+564636	g_unk_564636	u8	OPEN	w1; ai_SelectSituationTable ai_SituationTableByOpponent ai_PickIdleMove
+564638	g_unk_564638	u8	OPEN	w1; ai_RunStateMachine ai_ResetAll ai_ApplyQueuedScript
+56463c	g_unk_56463c	u16	OPEN	w2; aiop_DelayScaledByLevel aiop_DelayIfLevelLow aiop_TickDelay
+564640	g_unk_564640	u16	OPEN	w2; aiop_DelayFrames aiop_DelayRandom aiop_DelayRandomRange
+564648	g_unk_564648	u32	OPEN	w4; aiop_AdvanceScript ai_StartMoveScript ai_StartDefaultScript
+564650	g_unk_564650	u8	OPEN	w1; aiop_SetMoveOnce ai_StartMoveScript ai_StartDefaultScript
+564660	g_unk_564660	u8	OPEN	w1; ai_PickSequencedMove ai_ClearHistoryBuffers
+5646a0	g_unk_5646a0	u8	OPEN	w1; ai_PickSequencedMove ai_ClearHistoryBuffers
+5646e0	g_unk_5646e0	u16	OPEN	w2; ai_SelectTableByCounter3
+5646e4	g_unk_5646e4	u8	OPEN	w1; ai_RunStateMachine
+5646f0	g_ai_move_hist	u8[2][16]	PROVEN	0xff cleared; ai_PushMoveHistory slot*0x10+idx
+564710	g_ai_move_hist_idx	u8[2]	PROVEN	ring index &0xf in ai_PushMoveHistory
+564712	g_ai_cls0a_move_cnt	u8[2]	PROVEN	++ on new move in state class 10, -- from opp class 10
+564714	g_ai_cls0b_move_cnt	u8[2]	PROVEN	++ in state class 0xb; read by ai_GetBlockWeight
+564716	g_ai_cls0f_move_cnt	u8[2]	PROVEN	++ in state class 0xf, -- from opp class 0xf
+564718	g_unk_564718	u8	OPEN	w1; ai_ResetAll ai_TrackMoveCounters ai_PickDefenceVsMove
+56471a	g_ai_react_pending	u8[2]	PROVEN	cleared by ai_TickReactionDelay/StateRecordOpponentMove
+56471c	g_ai_react_delay	s8[2]	PROVEN	decremented; <=0 applies stored move
+56471e	g_ai_react_move	u8[2]	PROVEN	copied to g_ai_picked_move when delay expires
+564720	g_ai_pick_pending	u8[2]	PROVEN	cleared when ai_RunDelayedPick fires; reset clears
+564722	g_ai_pick_delay	s8[2]	PROVEN	level-scaled in SetPickDelay; counts down <0 fires
+564724	g_ai_pick_delay_init	u8[2]	PROVEN	copy of g_ai_pick_delay set in ai_SetPickDelay
+564728	g_ai_pick_table_ptr	ptr[2]	PROVEN	stored by SetPickDelay; weighted pick in RunDelayedPick
+564730	g_unk_564730	u16	OPEN	w2; ai_PickIdleMove ai_SelectSituationTable
+564732	g_unk_564732	u16	OPEN	w2; ai_PickIdleMove ai_SelectSituationTable
+564734	g_unk_564734	u16	OPEN	w2; ai_ResetAll ai_TimerElapsedScaledByLevel ai_TimerElapsedScaledMinus
+564738	g_unk_564738	u16	OPEN	w2; 
+56473c	g_unk_56473c	u16	OPEN	w2; 
+564740	g_unk_564740	u16	OPEN	w2; 
+564744	g_unk_564744	u16	OPEN	w2; ai_SelectTableByCounter2
+56474a	g_unk_56474a	u8	OPEN	w1; ai_ApplyQueuedScript aiop_SetParam4a
+56474c	g_unk_56474c	u8	OPEN	w1; 
+56474e	g_ai_prev_state_class	u8[2]	PROVEN	compared with fighter+0x2d in TrackMoveCounters
+564750	g_unk_564750	u8	OPEN	w1; 
+564752	g_ai_prev_move	u8[2]	PROVEN	compared with fighter+0x2a in TrackMoveCounters
+564754	g_unk_564754	u8	OPEN	w1; 
+564756	g_unk_564756	u8	OPEN	w1; ai_ResetAll
+564758	g_unk_564758	u16	OPEN	w2; 
+56475c	g_unk_56475c	u8	OPEN	w1; ai_ResetAll
+56475e	g_unk_56475e	u8	OPEN	w1; ai_RunScriptStep
+564760	g_unk_564760	u8	OPEN	w1; 
+564762	g_ai_reset_cd_a	s8	PROVEN	=10 on mode change; dec; <0 clears move history
+564763	g_ai_reset_cd_b	s8	PROVEN	=11 trigger; dec; <0 clears queue/rings
+564764	g_unk_564764	u32	OPEN	w4; 
+564768	g_unk_564768	u32	OPEN	w4; 
+56476e	g_cmd_op_counter	u8	PROVEN	0 at script start; ++ per opcode read
+564775	g_unk_564775	u8	OPEN	w1; 
+564776	g_unk_564776	u8	OPEN	w1; ai_StartMoveScript ai_StartDefaultScript ai_ResolveMoveEntry
+564778	g_unk_564778	u8	OPEN	w1; aiop_AdvanceScript ai_StartMoveScript ai_StartDefaultScript
+56477c	g_unk_56477c	u32	OPEN	w4; 
+5647c0	g_unk_5647c0	u32	OPEN	w4; fighter_DispatchMotionState
+5647c4	g_unk_5647c4	u8	OPEN	w1; fighter_CheckRingEdgeEnter fighter_InitMotionState
+5647c5	g_unk_5647c5	u8	OPEN	w1; fighter_InitMotionState fighter_CheckRingEdgeEnter
+5647c6	g_unk_5647c6	u16	OPEN	w2; fighter_CheckRingEdgeEnter fighter_InitMotionState
+5647c8	g_unk_5647c8	u8	OPEN	w1; fighter_CheckRingEdgeEnter
+5647d0	g_unk_5647d0	u8	OPEN	w1; hit_LoadKnockbackParams cam_UpdateFollowOffset fighter_InitMotionState
+5647d1	g_unk_5647d1	u8	OPEN	w1; hit_LoadKnockbackParams cam_UpdateFollowOffset
+5647d2	g_unk_5647d2	u8	OPEN	w1; cam_UpdateFollowOffset hit_LoadKnockbackParams fighter_InitMotionState
+5647d3	g_unk_5647d3	u8	OPEN	w1; cam_UpdateFollowOffset hit_LoadKnockbackParams
+5647d8	g_unk_5647d8	u32	OPEN	w4; fighter_DispatchMotionState fighter_InitMotionState
+5647e0	g_launch_vel_x	f32[2]	PROVEN	added to pos_x each frame in ApplyLaunchVelocity
+5647e8	g_launch_vel_y	f32[2]	PROVEN	added to pos_y; minus gravity const each frame
+5647f0	g_launch_vel_z	f32[2]	PROVEN	added to pos_z each frame
+5647f8	g_pushback_vel_x	f32[2]	PROVEN	added to pos_x then *friction in hit_ApplyPushbackStep
+564800	g_pushback_vel_z	f32[2]	PROVEN	added to pos_z then *friction in hit_ApplyPushbackStep
+564808	g_follow_offset	f32[2]	PROVEN	per slot; table 0xb5f30 added in cam_UpdateFollowOffset
+56480c	g_follow_offset+0x4	f32[2]	PROVEN	per slot; table 0xb5f30 added in cam_UpdateFollowOffset
+564810	g_unk_564810	u32	OPEN	w4; fighter_CalcLaunchVelocity fighter_InitMotionState tgp_ComputeSinCos
+564814	g_unk_564814	u32	OPEN	w4; fighter_CalcLaunchVelocity fighter_InitMotionState tgp_ComputeSinCos
+564818	g_unk_564818	u32	OPEN	w4; fighter_CalcLaunchVelocity fighter_InitMotionState tgp_ComputeSinCos
+56481c	g_unk_56481c	u32	OPEN	w4; cam_UpdateFollowOffset fighter_InitMotionState
+564820	g_unk_564820	u32	OPEN	w4; fighter_DispatchMotionState
+564830	g_unk_564830	u32	OPEN	w4; hud_UpdatePlayerBanners
+564834	g_unk_564834	u32	OPEN	w4; hud_UpdatePlayerBanners hud_UpdateBannerStepsP2Tail hud_ClearBannerP2
+564840	g_credit_digits_buf	u8[4]	PROVEN	hand: digit chars copied by tile_CopyCreditDigitsBox
+564841	g_credit_digits_buf+0x1	u8[4]	PROVEN	hand: digit chars copied by tile_CopyCreditDigitsBox
+564842	g_credit_digits_buf+0x2	u8[4]	PROVEN	hand: digit chars copied by tile_CopyCreditDigitsBox
+564843	g_credit_digits_buf+0x3	u8[4]	PROVEN	hand: digit chars copied by tile_CopyCreditDigitsBox
+564850	g_unk_564850	u32	OPEN	w4; hud_StepComboBoxAnim hud_ClearComboBoxPlayer hud_DrawComboBoxPlayer
+564858	g_unk_564858	u32	OPEN	w4; attract_IntroFadeBitsFrag attract_IntroWaitFramesFrag attract_IntroScrollStep
+564860	g_unk_564860	u32	OPEN	w4; attract_UpdateScreenMode attract_InitScreenState snd_PlayAnnouncerForState
+564864	g_unk_564864	u32	OPEN	w4; attract_EnterMode2
+564868	g_unk_564868	u32	OPEN	w4; attract_EnterMode2
+56486c	g_unk_56486c	u32	OPEN	w4; hud_UpdateScreenLayout
+5648c8	g_unk_5648c8	u16	OPEN	w2; tile_ScrollWipeStep tile_DrawGraphicToTilemap
+5648ca	g_unk_5648ca	u16	OPEN	w2; tile_DrawGraphicToTilemap tile_ScrollWipeStep
+5648cc	g_unk_5648cc	u16	OPEN	w2; tile_ScrollWipeStep
+5648ce	g_unk_5648ce	u16	OPEN	w2; tile_ScrollWipeStep
+5648d0	g_unk_5648d0	u32	OPEN	w4; charsel_PickBackgroundId charsel_ScreenStepLoadBg_2 charsel_ScreenStepLoadBg
+5648d4	g_unk_5648d4	u32	OPEN	w4; charsel_PickForegroundId charsel_ScreenStepLoadFg_2 charsel_ScreenStepLoadFg_3
+5648d8	g_unk_5648d8	u32	OPEN	w4; charsel_LoadPortraitNext charsel_LoadPortraitLast attract_ScreenInit
+5648dc	g_unk_5648dc	u32	OPEN	w4; attract_ScreenStepClear attract_ScreenStepLoadCd attract_ScreenStepLoadCd_3
+5648e0	g_tileup_dst_ptr	ptr	PROVEN	= slot*0x1000+0x1080000; stepped in res_BeginTileUpload
+5648e4	g_tileup_hdr_ptr	ptr	PROVEN	= *(0x20c0000+id*0xc) resource header
+5648e8	g_tileup_src_ptr	ptr	PROVEN	= hdr+1; stepped per copied word
+5648ec	g_tileup_word_cnt	i32	PROVEN	= *hdr; loop bound of copy
+5648f0	g_unk_5648f0	u32	OPEN	w4; res_BeginTileUpload2
+564900	g_tile_msg_rows	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564970	g_tile_msg_rows+0x70	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+5649e0	g_tile_msg_rows+0xe0	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+5649e2	g_tile_msg_rows+0xe2	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564a50	g_tile_msg_rows+0x150	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564ac0	g_tile_msg_rows+0x1c0	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564b30	g_tile_msg_rows+0x230	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564ba0	g_tile_msg_rows+0x2a0	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564c10	g_tile_msg_rows+0x310	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564c80	g_tile_msg_rows+0x380	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564cf0	g_tile_msg_rows+0x3f0	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564d60	g_tile_msg_rows+0x460	u8[11][0x70]	PROVEN	hand: message tile rows table, stride 0x70, copied to tilemap
+564f90	g_unk_564f90	u32	OPEN	w4; hud_DrawCreditPrompts hud_DrawCreditPromptTail hud_UpdateScreenLayout
+564f94	g_unk_564f94	u32	OPEN	w4; hud_UpdatePlayerBanners hud_DrawStartPrompts hud_DrawCreditPromptsAlt
+564f98	g_unk_564f98	u32	OPEN	w4; hud_DrawStartPrompts hud_UpdatePlayerBanners hud_DrawCreditPromptsAlt
+564f9c	g_unk_564f9c	u32	OPEN	w4; hud_UpdatePlayerBanners hud_DrawCreditPromptsAlt hud_UpdateBannerStepsP2
+564fa0	g_unk_564fa0	u32	OPEN	w4; hud_DrawCreditPromptsAlt hud_DrawWaitPromptP2 hud_ResetPromptTimerP2
+564fb0	g_tile_startmsg_rows	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+56500c	g_tile_startmsg_rows+0x5c	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+565068	g_tile_startmsg_rows+0xb8	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+5650c4	g_tile_startmsg_rows+0x114	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+565120	g_tile_startmsg_rows+0x170	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+56517c	g_tile_startmsg_rows+0x1cc	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+5651d8	g_tile_startmsg_rows+0x228	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+565234	g_tile_startmsg_rows+0x284	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+565290	g_tile_startmsg_rows+0x2e0	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+5652ec	g_tile_startmsg_rows+0x33c	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+5653a4	g_tile_startmsg_rows+0x3f4	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+565400	g_tile_startmsg_rows+0x450	u8[13][0x5c]	PROVEN	tile_CopyStartMessage/BuildMode0 rows, stride 0x5c
+565460	g_unk_565460	u32	OPEN	w4; hud_UpdatePlayerBanners round_UpdateModeScreens
+565464	g_unk_565464	u32	OPEN	w4; hud_UpdatePlayerBanners hud_UpdateBannerStepsP2 hud_UpdateBannerStepsP2Tail
+565468	g_unk_565468	u32	OPEN	w4; hud_UpdatePlayerBanners attract_EnterMode0
+56546c	g_unk_56546c	u32	OPEN	w4; hud_StepBannerFadeP hud_ResetBannerTimerP2 hud_UpdatePlayerBanners
+565470	g_unk_565470	u32	OPEN	w4; attract_BuildMode2Tiles charsel_FreeScreenResource
+565480	g_unk_565480	u32	OPEN	w4; attract_BuildMode0Tiles charsel_FreeScreenResource_2
+565490	g_unk_565490	u32	OPEN	w4; attract_StepTilemapFadeIn snd_PlayAnnouncerForState
+5654b0	g_unk_5654b0	u32	OPEN	w4; charsel_LoadPortraitFirst rank_DrawRankIcon
+5654bc	g_unk_5654bc	unk	OPEN	w-; charsel_LoadPortraitResources
+5654c8	g_unk_5654c8	unk	OPEN	w-; charsel_LoadPortraitResources
+5654e0	g_unk_5654e0	unk	OPEN	w-; charsel_LoadPortraitResources
+5654ec	g_unk_5654ec	unk	OPEN	w-; charsel_LoadPortraitResources
+5654f8	g_unk_5654f8	unk	OPEN	w-; charsel_LoadPortraitResources
+565510	g_unk_565510	unk	OPEN	w-; charsel_LoadPortraitResources
+565534	g_unk_565534	unk	OPEN	w-; charsel_LoadPortraitResources
+565540	g_unk_565540	unk	OPEN	w-; charsel_LoadPortraitLast
+565570	g_unk_565570	u32	OPEN	w4; charsel_ScreenStepLoadBg_2 charsel_ScreenStepLoadBg_3 charsel_ScreenStepLoadBg_4
+565580	g_unk_565580	u32	OPEN	w4; charsel_PickForegroundId charsel_ScreenStepLoadFg_2 charsel_ScreenStepLoadFg_3
+5655a0	g_unk_5655a0	u32	OPEN	w4; hud_UpdateScreenLayout hud_ClearHudRows charsel_FreeScreenResource
+5655b0	g_unk_5655b0	u32	OPEN	w4; attract_ScreenStepLoadCd_2 attract_ScreenStepLoadCd_3 attract_ScreenStepFree
+5655c0	g_unk_5655c0	u8[16]	OPEN	w16; charsel_DrawSelectScreenTiles charsel_ClearSelectScreen
+5655cc	g_unk_5655cc	unk	OPEN	w-; charsel_DrawSelectScreenTiles charsel_ClearSelectScreen
+5655d8	g_unk_5655d8	u32	OPEN	w4; charsel_DrawSelectScreenTiles charsel_ClearSelectScreen
+5655f0	g_unk_5655f0	u32	OPEN	w4; attract_IntroLoadGraphicFrag attract_StepIntroSequence attract_IntroEndFrag
+565600	g_unk_565600	u32	OPEN	w4; tile_ShowGraphicById tile_BlitTileMapRows attract_InitScreenState
+565604	g_unk_565604	u16	OPEN	w2; attract_InitScreenState hud_UpdateLifeBars hud_DrawRoundStatusFrame
+565606	g_unk_565606	u16	OPEN	w2; attract_InitScreenState hud_DrawRoundStatusFrame
+56562a	g_unk_56562a	unk	OPEN	w-; attract_InitScreenState
+565650	g_unk_565650	u16	OPEN	w2; attract_InitScreenState hud_UpdateLifeBars
+565652	g_unk_565652	u16	OPEN	w2; attract_InitScreenState
+565658	g_unk_565658	u64	OPEN	w8; attract_InitScreenState
+565660	g_unk_565660	u64	OPEN	w8; attract_InitScreenState
+565668	g_unk_565668	u8	OPEN	w1; attract_InitScreenState
+565670	g_unk_565670	u8	OPEN	w1; attract_InitScreenState
+565674	g_unk_565674	u8	OPEN	w1; attract_InitScreenState
+565678	g_unk_565678	u16	OPEN	w2; snd_PlayAnnouncerForState snd_StepAnnouncerTimer attract_InitScreenState
+56567a	g_unk_56567a	u8	OPEN	w1; attract_InitScreenState
+56567b	g_unk_56567b	u8	OPEN	w1; snd_PlayAnnouncerForState attract_InitScreenState snd_StepAnnouncerTimer
+56567c	g_unk_56567c	u16	OPEN	w2; snd_PlayAnnouncerForState attract_InitScreenState
+56567e	g_unk_56567e	u8	OPEN	w1; hud_BlinkRoundWinMarks hud_DrawRoundWinMarks round_UpdateModeScreens
+56567f	g_unk_56567f	u8	OPEN	w1; hud_BlinkRoundWinMarks round_UpdateModeScreens hud_DrawRoundWinMarks
+565680	g_unk_565680	u8	OPEN	w1; round_UpdateModeScreens hud_BlinkRoundWinMarks attract_InitScreenState
+565681	g_unk_565681	u8	OPEN	w1; round_UpdateModeScreens hud_BlinkRoundWinMarks attract_InitScreenState
+565682	g_unk_565682	u8	OPEN	w1; hud_DrawRoundWinMarks attract_InitScreenState round_UpdateModeScreens
+565683	g_unk_565683	u8	OPEN	w1; hud_DrawRoundWinMarks attract_InitScreenState round_UpdateModeScreens
+565684	g_unk_565684	u8	OPEN	w1; attract_UpdateScreenMode attract_InitScreenState attract_EnterMode0
+565688	g_unk_565688	u32	OPEN	w4; attract_UpdateScreenMode tile_ShowGraphicById attract_InitScreenState
+56568c	g_unk_56568c	u32	OPEN	w4; attract_BuildMode2Tiles charsel_FreeScreenResource attract_InitScreenState
+565690	g_unk_565690	u8	OPEN	w1; hud_UpdateScreenLayout attract_InitScreenState attract_UpdateScreenMode
+565694	g_unk_565694	u32	OPEN	w4; attract_BuildMode0Tiles charsel_FreeScreenResource_2 attract_InitScreenState
+565698	g_unk_565698	u8	OPEN	w1; round_UpdateModeScreensTail attract_InitScreenState
+5656a0	g_unk_5656a0	u32	OPEN	w4; attract_InitScreenState charsel_LoadPortraitFirst
+5656a4	g_unk_5656a4	u32	OPEN	w4; charsel_LoadPortraitResources
+5656a8	g_unk_5656a8	u32	OPEN	w4; charsel_LoadPortraitResources
+5656b0	g_unk_5656b0	u32	OPEN	w4; attract_InitScreenState charsel_LoadPortraitResources
+5656b4	g_unk_5656b4	u32	OPEN	w4; charsel_LoadPortraitResources
+5656b8	g_unk_5656b8	u32	OPEN	w4; charsel_LoadPortraitResources
+5656c0	g_unk_5656c0	u32	OPEN	w4; attract_InitScreenState charsel_LoadPortraitResources
+5656cc	g_unk_5656cc	u32	OPEN	w4; charsel_LoadPortraitResources
+5656d0	g_unk_5656d0	u32	OPEN	w4; attract_InitScreenState charsel_LoadPortraitLast
+5656e0	g_unk_5656e0	u32	OPEN	w4; snd_PlayAnnouncerForState attract_StepTilemapFadeIn attract_InitScreenState
+5656e4	g_unk_5656e4	u32	OPEN	w4; attract_InitScreenState
+5656e8	g_unk_5656e8	u32	OPEN	w4; rank_FreeAllResources_2 attract_InitScreenState charsel_ScreenStepLoadBg_2
+5656ec	g_unk_5656ec	u32	OPEN	w4; rank_FreeAllResources_2 attract_InitScreenState charsel_PickForegroundId
+5656f0	g_unk_5656f0	u32	OPEN	w4; attract_InitScreenState
+5656f4	g_unk_5656f4	u32	OPEN	w4; hud_UpdateScreenLayout hud_ClearHudRows charsel_FreeScreenResource
+5656f8	g_unk_5656f8	u32	OPEN	w4; attract_ScreenStepFree rank_ScreenStepFree rank_FreeAllResources_2
+5656fc	g_unk_5656fc	u32	OPEN	w4; charsel_DrawSelectScreenTiles charsel_ClearSelectScreen attract_InitScreenState
+565700	g_unk_565700	u32	OPEN	w4; attract_IntroEndFrag attract_InitScreenState attract_StepIntroSequence
+565704	g_unk_565704	u32	OPEN	w4; attract_UpdateScreenMode tile_ShowGraphicById tile_DrawGraphicToTilemap
+565708	g_unk_565708	u32	OPEN	w4; attract_StepTilemapFadeIn attract_EnterMode0
+56570c	g_unk_56570c	u8	OPEN	w1; round_UpdateModeScreens attract_EnterMode0 round_UpdateModeScreensTail
+565710	g_unk_565710	u32	OPEN	w4; attract_EnterMode4 attract_UpdateScreenMode charsel_DrawSelectScreenTiles
+565714	g_unk_565714	u8	OPEN	w1; attract_EnterMode4
+565718	g_unk_565718	u32	OPEN	w4; attract_ScreenInit hud_UpdateScreenLayout attract_ScreenStepFree
+56571c	g_unk_56571c	u32	OPEN	w4; hud_UpdateScreenLayout attract_ScreenInit attract_ScreenStepFree
+565720	g_unk_565720	u64	OPEN	w8; round_UpdateModeScreens hud_UpdateComboDisplay
+565728	g_unk_565728	u32	OPEN	w4; hud_UpdateComboDisplay round_UpdateModeScreens
+56572c	g_unk_56572c	u32	OPEN	w4; hud_UpdateComboDisplay
+565730	g_unk_565730	u64	OPEN	w8; round_UpdateModeScreens hud_UpdateComboDisplay hud_StepComboBoxAnim
+565738	g_unk_565738	u32	OPEN	w4; hud_StepComboBoxAnim round_UpdateModeScreens hud_UpdateComboDisplay
+565740	g_unk_565740	u64	OPEN	w8; round_UpdateModeScreens hud_UpdateComboDisplay hud_StepComboBoxAnim
+565748	g_unk_565748	u64	OPEN	w8; round_UpdateModeScreens hud_UpdateComboDisplay
+565750	g_unk_565750	u8	OPEN	w1; round_UpdateModeScreens hud_DrawRoundNumberTiles
+565751	g_unk_565751	u8	OPEN	w1; hud_DrawRoundNumberTiles round_UpdateModeScreens
+565752	g_unk_565752	u8	OPEN	w1; round_UpdateModeScreensTail attract_StepIntroSequence
+565754	g_unk_565754	u32	OPEN	w4; attract_StepTilemapFadeIn
+565758	g_unk_565758	u32	OPEN	w4; attract_StepTilemapFadeIn
+56575c	g_unk_56575c	u16	OPEN	w2; attract_StepTilemapFadeIn
+565760	g_unk_565760	u32	OPEN	w4; attract_StepIntroSequence attract_IntroScrollStep attract_IntroFadeBitsFrag
+565764	g_unk_565764	u32	OPEN	w4; attract_IntroScrollStep attract_AdvanceIntroState
+565768	g_unk_565768	u32	OPEN	w4; attract_IntroScrollStepFrag attract_AdvanceIntroState attract_StepIntroSequence
+56576c	g_unk_56576c	u32	OPEN	w4; attract_IntroScrollStep attract_IntroLoadGraphicFrag
+565770	g_unk_565770	u32	OPEN	w4; attract_IntroScrollStep attract_IntroLoadGraphicFrag
+565774	g_unk_565774	u16	OPEN	w2; attract_IntroScrollStep attract_IntroLoadGraphicFrag
+565780	g_unk_565780	u32	OPEN	w4; tile_ShowGraphicById tile_BlitTileMapRows tile_DrawGraphicToTilemap
+5657a0	g_unk_5657a0	u32	OPEN	w4; tile_DrawGraphicToTilemap tile_ScrollWipeStep
+5657a4	g_unk_5657a4	u16	OPEN	w2; tile_ScrollWipeStep tile_DrawGraphicToTilemap
+5657a8	g_unk_5657a8	u32	OPEN	w4; attract_BuildMode2Tiles
+5657ac	g_unk_5657ac	u16	OPEN	w2; attract_BuildMode2Tiles
+5657b0	g_unk_5657b0	u32	OPEN	w4; attract_BuildMode0Tiles
+5657b4	g_unk_5657b4	u16	OPEN	w2; attract_BuildMode0Tiles
+5657b8	g_unk_5657b8	u32	OPEN	w4; tile_ClearRankArea tile_ClearRankAreaPair attract_ScreenInit
+5657c0	g_unk_5657c0	u32	OPEN	w4; hit_InitTables hit_TestSpheres
+5657c4	g_unk_5657c4	u32	OPEN	w4; hit_InitTables hit_TestSpheres
+5657c8	g_unk_5657c8	u32	OPEN	w4; hit_InitTables hit_TestSpheres
+5657cc	g_unk_5657cc	u32	OPEN	w4; hit_InitTables hit_TestSpheres
+5657d0	g_unk_5657d0	u32	OPEN	w4; hit_CheckFighterAttacks hit_CheckFighterAttacksAlt fight_UpdateHitChecks
+5657d4	g_unk_5657d4	u32	OPEN	w4; fighter_UpdateBodyParts
+5657e0	g_unk_5657e0	u8	OPEN	w1; move_SetupAttack move_StartMove
+5657e8	g_unk_5657e8	u32	OPEN	w4; move_StartMove ai_UpdateTargetAngle ai_ComputeApproach
+5657f0	g_unk_5657f0	u32	OPEN	w4; ai_UpdateTargetAngle move_StartMove
+5657f8	g_unk_5657f8	u32	OPEN	w4; ai_UpdateTargetAngle move_StartMove
+565800	g_unk_565800	u32	OPEN	w4; move_StartMove ai_UpdateTargetAngle ai_ComputeApproach
+565808	g_unk_565808	u32	OPEN	w4; move_StartMove ai_UpdateTargetAngle ai_ComputeApproach
+565810	g_unk_565810	u32	OPEN	w4; ai_ComputeApproach move_StartMove
+565818	g_unk_565818	u32	OPEN	w4; move_StartMove ai_ComputeApproach
+565820	g_unk_565820	u32	OPEN	w4; move_StartMove ai_ComputeApproach
+565828	g_unk_565828	u32	OPEN	w4; ai_ComputeApproach move_StartMove
+565830	g_unk_565830	u32	OPEN	w4; move_StartMove ai_ComputeApproach
+565838	g_unk_565838	u32	OPEN	w4; move_StartMove ai_UpdateTargetAngle
+565840	g_unk_565840	u32	OPEN	w4; move_StartMove
+565850	g_unk_565850	unk	OPEN	w-; geo_DrawCharacterParts move_StartMove
+565988	g_unk_565988	unk	OPEN	w-; geo_DrawCharacterParts
+565d30	g_unk_565d30	u32	OPEN	w4; move_StartMove ai_UpdateTargetAngle ai_ComputeApproach
+565d40	g_unk_565d40	u32	OPEN	w4; fighter_ScriptOpcodeDispatch fighter_ResetMoveFlags
+565d48	g_unk_565d48	u32	OPEN	w4; fighter_ScriptOpcodeDispatch fighter_ResetMoveFlags
+565d58	g_unk_565d58	u32	OPEN	w4; fighter_ScriptOpcodeDispatch
+565d60	g_unk_565d60	unk	OPEN	w-; cam_SetTarget cam_InitRecord
+565e40	g_unk_565e40	u32	OPEN	w4; fight_UpdateHitChecks move_ScriptOpSetHitReactFlag fighter_ScriptOpcodeDispatch
+565e44	g_unk_565e44	u32	OPEN	w4; fight_UpdateHitChecks
+565e50	g_unk_565e50	unk	OPEN	w-; hit_TestAttackVsBodyAlt hit_LoadHitboxTable hit_TestBoxOverlap
+565fc0	g_unk_565fc0	u8	OPEN	w1; fighter_UpdateBodyParts hit_TestBoxOverlap hit_LoadBoxShape
+565fd0	g_unk_565fd0	u8	OPEN	w1; fighter_UpdateBodyParts
+565fe0	g_unk_565fe0	unk	OPEN	w-; fighter_UpdateBodyParts hit_TestBoxOverlap hit_LoadBoxShape
+566080	g_unk_566080	unk	OPEN	w-; fighter_UpdateBodyParts
+5660a0	g_unk_5660a0	u32	OPEN	w4; fighter_UpdateBodyParts hit_TestBoxOverlap hit_LoadBoxShape
+5660b8	g_unk_5660b8	unk	OPEN	w-; fighter_UpdateBodyParts
+5660c0	g_unk_5660c0	unk	OPEN	w-; fighter_UpdateBodyParts hit_TestBoxOverlap hit_ClearHurtArrays
+5660f4	g_unk_5660f4	u32	OPEN	w4; fighter_UpdateBodyParts
+5660f8	g_unk_5660f8	u32	OPEN	w4; fighter_UpdateBodyParts
+566108	g_unk_566108	unk	OPEN	w-; fighter_UpdateBodyParts
+566120	g_unk_566120	u32	OPEN	w4; fighter_UpdateBodyParts hit_TestBoxOverlap hit_ClearHurtArrays
+566130	g_unk_566130	u32	OPEN	w4; fighter_UpdateBodyParts
+566140	g_unk_566140	unk	OPEN	w-; move_SetupAttack move_StartMove geo_DrawFighterModelA
+5661d0	g_unk_5661d0	unk	OPEN	w-; move_SetupAttack
+56a800	g_unk_56a800	unk	OPEN	w-; move_SelectHitReaction move_IntegrateMotion move_GetReactionEntry
+56a810	g_unk_56a810	u16	OPEN	w2; fighter_SetStateFromTable
+56a814	g_unk_56a814	u32	OPEN	w4; ai_ComputeApproach
+56a8f0	g_unk_56a8f0	unk	OPEN	w-; fighter_UpdateMotionState fighter_UpdateGroundContact
+56a8f4	g_unk_56a8f4	u32	OPEN	w4; move_ComputeKnockback
+56a90c	g_unk_56a90c	u32	OPEN	w4; ai_ComputeApproach
+56aa60	g_unk_56aa60	u32	OPEN	w4; round_UpdateFighterPair fight_InitRoundCameraFighters move_IntegrateMotion
+56aa64	g_unk_56aa64	u32	OPEN	w4; fight_InitRoundCameraFighters fight_ClearPlayerVectors
+56aa68	g_unk_56aa68	u32	OPEN	w4; round_UpdateFighterPair fight_InitRoundCameraFighters move_IntegrateMotion
+56aa6c	g_unk_56aa6c	u32	OPEN	w4; fight_InitRoundCameraFighters fight_ClearPlayerVectors
+56aa70	g_unk_56aa70	unk	OPEN	w-; move_AdvanceFrameMotion fighter_UpdateMotionState fighter_UpdateCameraTarget
+56aa88	g_unk_56aa88	u32	OPEN	w4; ai_ComputeApproach
+56abe0	g_unk_56abe0	u32	OPEN	w4; round_UpdateFighterPair fight_InitRoundCameraFighters ai_ComputeApproach
+56abe4	g_unk_56abe4	u32	OPEN	w4; fight_InitRoundCameraFighters fight_ClearPlayerVectors
+56abe8	g_unk_56abe8	u32	OPEN	w4; ai_ComputeApproach round_UpdateFighterPair fight_InitRoundCameraFighters
+56abec	g_unk_56abec	u32	OPEN	w4; fight_InitRoundCameraFighters fight_ClearPlayerVectors
+56abf0	g_unk_56abf0	unk	OPEN	w-; fight_InitSceneState
+56abf8	g_unk_56abf8	u32	OPEN	w4; ai_ComputeApproach fighter_ApplyFloorHeight
+56ac10	g_unk_56ac10	u8	OPEN	w1; cam_UpdateZoom cam_SetTarget fighter_ScriptOpcodeDispatch
+56ac12	g_unk_56ac12	u16	OPEN	w2; fighter_InitPlayerSlotFlags fight_InitRoundCameraFighters
+56ac14	g_fanim_timer	s16[2]	PROVEN	decremented while >0 in round_ResetFighterTimers
+56ac18	g_unk_56ac18	u8	OPEN	w1; fighter_ScriptOpcodeDispatch motion_RunMoveScript motion_LoadFrameSet
+56ac20	g_fscript_accum	f32[2]	PROVEN	+= g_fscript_accum_step when 56ac18==1
+56ac28	g_fscript_accum_step	f32[2]	PROVEN	added to g_fscript_accum each frame
+56ac30	g_fscript_state	u8[2]	PROVEN	0/1/2 handshake with fighter animeflg in ApplyPendingFlags
+56ac34	g_unk_56ac34	u16	OPEN	w2; fighter_InitScript fighter_UpdateVelocity_2 round_UpdateFighterTimers
+56ac38	g_unk_56ac38	u8	OPEN	w1; round_UpdateFighterTimers fight_InitSceneState
+56ac3c	g_fscript_event_frame	s16[2]	PROVEN	0xffff none; compared with frame counter in RunScriptStep
+56ac40	g_unk_56ac40	u16	OPEN	w2; move_AdvanceFrameMotion round_UpdateFighterTimers move_StepScriptOrEnd
+56ac44	g_unk_56ac44	u8	OPEN	w1; fighter_InitScript round_UpdateFighterTimers fighter_UpdateVelocity_2
+56ac46	g_unk_56ac46	u8	OPEN	w1; round_UpdateFighterTimers fighter_InitScript move_StepScriptOrEnd
+56ac48	g_unk_56ac48	u8	OPEN	w1; motion_RunMoveScript round_UpdateFighterTimers fighter_InitScript
+56ac4c	g_unk_56ac4c	u16	OPEN	w2; fighter_StartMoveScript round_UpdateFighterTimers motion_RunMoveScript
+56ac50	g_unk_56ac50	u8	OPEN	w1; round_UpdateFighterTimers fighter_ScriptOpcodeDispatch fighter_ResetMoveFlags
+56ac52	g_unk_56ac52	u8	OPEN	w1; round_UpdateFighterTimers fighter_ScriptOpcodeDispatch fighter_ResetMoveFlags
+56ac58	g_fdrct_latched	u32[2]	PROVEN	= fighter.drct each frame unless 56ac52 set
+56ac60	g_fpend_attacksta	u8[2]	PROVEN	ApplyPendingFlags -> fighter.attacksta=1
+56ac62	g_fpend_actcancel	u8[2]	PROVEN	ApplyPendingFlags -> fighter.actcancel=1, clears
+56ac64	g_fpend_graspsta	u8[2]	PROVEN	ApplyPendingFlags -> fighter.graspsta=1, clears
+56ac66	g_fpend_toggle_2e	u8[2]	PROVEN	ApplyPendingFlags toggles fighter+0x2e
+56ac68	g_fpend_drctajst	u8[2]	PROVEN	ApplyPendingFlags -> fighter.drctajstflg
+56ac6c	g_fsaved_animeflip	s16[2]	PROVEN	stores fighter.animeflip when state 1->2
+56ac70	g_unk_56ac70	u8	OPEN	w1; fighter_StartMoveScript round_UpdateFighterTimers
+56ac72	g_unk_56ac72	u8	OPEN	w1; round_UpdateFighterTimers fighter_CalcKnockbackAngle fighter_UpdateCameraTarget
+56ac78	g_unk_56ac78	u32	OPEN	w4; fighter_CalcKnockbackAngle fighter_UpdateCameraTarget round_UpdateFighterTimers
+56ac80	g_fanim_speed_scale	f32[2]	PROVEN	init 1.0f; set by frame thresholds 0x3c/0x62/0x78
+56ac88	g_fdrct_at_reset	u32[2]	PROVEN	= fighter.drct in round_ResetFighterTimers
+56ac90	g_unk_56ac90	u16	OPEN	w2; fighter_StartScriptMove fight_InitSceneState
+56ac94	g_fscript_frame	s16[2]	PROVEN	compared with event frame; set in fighter_InitScript
+56ac96	g_fscript_frame+0x2	s16[2]	PROVEN	compared with event frame; set in fighter_InitScript
+56ac98	g_fscript_ptr	ptr[2]	PROVEN	script word pointer advanced in fighter_RunScriptStep
+56aca0	g_unk_56aca0	u8	OPEN	used by fighter_RunScriptStep, fighter_ScriptOpcodeDispatch; role unproven
+56aca4	g_unk_56aca4	u16	OPEN	used by fighter_CalcKnockbackAngle, fighter_StartScriptMove; role unproven
+56aca8	g_unk_56aca8	u32	OPEN	used by move_AdvanceFrameMotion, fighter_StartScriptMove; role unproven
+56acb0	g_unk_56acb0	f32	OPEN	used by fighter_UpdateCameraTarget, fighter_StartScriptMove; role unproven
+56acd0	g_unk_56acd0	f32	OPEN	used by move_AdvanceFrameMotion, fighter_StartScriptMove; role unproven
+56acd4	g_unk_56acd4	f32	OPEN	used by fight_InitSceneState; role unproven
+56acd8	g_unk_56acd8	f32	OPEN	used by move_AdvanceFrameMotion, fight_InitSceneState; role unproven
+56acf0	g_unk_56acf0	f32	OPEN	used by move_AdvanceFrameMotion, motion_AdvanceKeyframe; role unproven
+56acf8	g_script_float_ptr	ptr[2]	PROVEN	pointer post-incremented, floats read through it
+56ad00	g_unk_56ad00	u32	OPEN	used by move_AdvanceFrameMotion, fighter_StartScriptMove; role unproven
+56ad80	g_unk_56ad80	f32	OPEN	used by fighter_StartScriptMove, move_AdvanceFrameMotion; role unproven
+56ad84	g_unk_56ad84	f32	OPEN	used by fighter_StartScriptMove, move_ApplyScriptOffset; role unproven
+56ada0	g_unk_56ada0	u16	OPEN	used by fighter_StartScriptMove, fighter_InitScript; role unproven
+56ada8	g_unk_56ada8	u32	OPEN	used by move_AdvanceFrameMotion, motion_AdvanceKeyframe; role unproven
+56adb0	g_unk_56adb0	f32	OPEN	used by fighter_InitScript, move_StoreScriptOffset; role unproven
+56adb8	g_unk_56adb8	u8	OPEN	used by fighter_InitScript, fighter_ScriptOpcodeDispatch; role unproven
+56adc0	g_unk_56adc0	u32	OPEN	used by fighter_InitScript, fighter_UpdateVelocity_2; role unproven
+56adc8	g_unk_56adc8	u32	OPEN	used by fighter_InitScript, fighter_UpdateVelocity_2; role unproven
+56add0	g_unk_56add0	f32	OPEN	used by fighter_InitScript, fighter_ScriptOpcodeSetSpeed; role unproven
+56add8	g_unk_56add8	u32	OPEN	used by fighter_InitScript, fighter_UpdateVelocity_2; role unproven
+56ade0	g_unk_56ade0	f32	OPEN	used by fighter_InitScript, fighter_UpdateVelocity_2; role unproven
+56ade8	g_unk_56ade8	u8	OPEN	used by fighter_ScriptOpcodeDispatch, move_ScriptOpQueueCommand; role unproven
+56adea	g_unk_56adea	u16	OPEN	used by fighter_ScriptOpcodeDispatch, fighter_UpdateFrame; role unproven
+56adf0	g_unk_56adf0	u32	OPEN	used by fighter_ScriptOpcodeDispatch, hit_QueueFightEffects; role unproven
+5882b0	g_unk_5882b0	u16	OPEN	used by move_StepScriptOrEnd, stub_00043004; role unproven
+5882b4	g_unk_5882b4	u8	OPEN	used by fighter_ScriptOpcodeDispatch, move_ScriptOpCopyByteToFighter4b; role unproven
+5882b6	g_unk_5882b6	u8	OPEN	used by fighter_CalcKnockbackAngle, move_ScriptOpSetByte5882b6; role unproven
+5882b8	g_unk_5882b8	u8	OPEN	used by fighter_ResetAnimSlot, fighter_LoadAnimSlot; role unproven
+5882bc	g_unk_5882bc	u16	OPEN	used by fighter_UpdateFrame, tgp_SendFighterModelRefs; role unproven
+5882c0	g_snd_cmd_a	u32[2]	PROVEN	|0xa00000, other player value to snd_QueueCommand
+5882c8	g_snd_cmd_b	u32[2]	PROVEN	|0xa00000, other player value to snd_QueueCommand
+5882d0	g_unk_5882d0	u8	OPEN	used by fighter_ScriptOpcodeDispatch, fighter_CalcKnockbackAngle; role unproven
+5882d4	g_unk_5882d4	u8	OPEN	used by fighter_ScriptOpcodeDispatch, fighter_UpdateFrame; role unproven
+5882d5	g_unk_5882d5	u8	OPEN	used by fighter_ScriptOpcodeDispatch, fighter_UpdateFrame; role unproven
+5882d8	g_unk_5882d8	u8	OPEN	used by fighter_ScriptOpcodeDispatch, move_AdvanceFrameMotion; role unproven
+5882e0	g_unk_5882e0	u32	OPEN	used by fight_CheckPlayerActionable, fighter_ScriptOpcodeDispatch; role unproven
+5882e8	g_unk_5882e8	u32	OPEN	used by fighter_ScriptOpcodeDispatch, fighter_UpdateJuggleMotion; role unproven
+5882f0	g_script_byte_ptr	ptr[2]	PROVEN	pointer post-incremented, bytes read via *p++
+5882f8	g_unk_5882f8	u8	OPEN	used by fighter_ResetAnimSlot, fighter_ScriptOpcodeDispatch; role unproven
+5882fa	g_unk_5882fa	u8	OPEN	used by fighter_StartMoveScript, tgp_SendFighterModelRefs; role unproven
+5882fc	g_unk_5882fc	u8	OPEN	used by fighter_StartMoveScript, fighter_ResetSlotAndCall; role unproven
+5882fd	g_unk_5882fd	u8	OPEN	used by fighter_ReportBadValue, fighter_LookupModelPtr; role unproven
+5882fe	g_unk_5882fe	u16	OPEN	used by fighter_StartMoveScript, fight_InitSceneState; role unproven
+588300	g_unk_588300	u16	OPEN	used by fighter_StartMoveScript, fighter_ReportBadValue; role unproven
+588302	g_unk_588302	u16	OPEN	used by fight_RunHookCallbacks, fighter_StartMoveScript; role unproven
+588310	g_unk_588310	u32	OPEN	used by fighter_StartMoveScript, round_ResetState; role unproven
+588700	g_unk_588700	u16	OPEN	used by fighter_StartMoveScript, round_ResetState; role unproven
+588708	g_unk_588708	u32	OPEN	used by fighter_StartMoveScript; role unproven
+588710	g_unk_588710	u8	OPEN	used by fighter_StartMoveScript, fight_InitSceneState; role unproven
+588720	g_unk_588720	u32	OPEN	used by fighter_UpdateMotionState, fight_InitSceneState; role unproven
+588724	g_unk_588724	f32	OPEN	used by fighter_CheckFacingSide; role unproven
+588740	g_fighter_b2d_snapshot	u8[2]	PROVEN	written from g_fighter1/2 byte +0x2d
+588741	g_fighter_b2d_snapshot+0x1	u8	PROVEN	member of g_fighter_b2d_snapshot: written from g_fighter1/2 byte +0x2d
+588742	g_moveid_snapshot	u8[2]	PROVEN	written from g_fighter1/2.moveid; indexes 0x14B table
+588743	g_moveid_snapshot+0x1	u8	PROVEN	member of g_moveid_snapshot: written from g_fighter1/2.moveid; indexes 0x14B table
+588744	g_unk_588744	u8	OPEN	used by move_StepScriptOrEnd, move_ClearFrameCounter; role unproven
+588748	g_unk_588748	f32	OPEN	used by move_AdvanceFrameMotion, fight_InitSceneState; role unproven
+588750	g_unk_588750	u32	OPEN	used by move_AdvanceFrameMotion; role unproven
+5888c0	g_drct_plus_quarter	u32[2]	PROVEN	(drct+0x4000)&0xffff per player (drct+90deg)
+5888d0	g_unk_5888d0	u32	OPEN	used by fight_ResetPlayerFx; role unproven
+5888d4	g_unk_5888d4	f32	OPEN	used by fighter_UpdateFrame, fighter_UpdateCameraTarget; role unproven
+5888f0	g_unk_5888f0	vec128	OPEN	used by fighter_UpdateFrame, tgp_MulBoneMatrices; role unproven
+588900	g_unk_588900	vec128	OPEN	used by fighter_UpdateFrame, tgp_MulBoneMatrices; role unproven
+588910	g_unk_588910	vec128	OPEN	used by fighter_UpdateFrame, tgp_MulBoneMatrices; role unproven
+588920	g_unk_588920	vec128	OPEN	used by fighter_UpdateFrame; role unproven
+588930	g_unk_588930	vec128	OPEN	used by fighter_UpdateFrame; role unproven
+588940	g_unk_588940	vec128	OPEN	used by fighter_UpdateFrame; role unproven
+588944	g_unk_588944	u32	OPEN	used by fighter_UpdateFrame; role unproven
+588948	g_unk_588948	u32	OPEN	used by fighter_UpdateFrame; role unproven
+58894c	g_unk_58894c	u32	OPEN	used by fighter_UpdateFrame; role unproven
+588950	g_unk_588950	u16	OPEN	used by fight_SetEffectByMotion, fighter_UpdateFrame; role unproven
+588952	g_unk_588952	u16	OPEN	used by fight_InitSceneState; role unproven
+588954	g_unk_588954	u16	OPEN	used by fighter_PushHitEffects, fight_InitSceneState; role unproven
+588956	g_unk_588956	u16	OPEN	used by fight_InitSceneState; role unproven
+58895a	g_unk_58895a	u16	OPEN	used by fight_InitSceneState; role unproven
+58895c	g_unk_58895c	u16	OPEN	used by fight_InitSceneState; role unproven
+588960	g_unk_588960	u16	OPEN	used by fight_InitSceneState; role unproven
+588962	g_unk_588962	u16	OPEN	used by fight_InitSceneState; role unproven
+588964	g_unk_588964	u16	OPEN	used by fight_InitSceneState; role unproven
+588966	g_unk_588966	u16	OPEN	used by fight_InitSceneState; role unproven
+58896a	g_unk_58896a	u16	OPEN	used by fight_InitSceneState; role unproven
+58896c	g_unk_58896c	u16	OPEN	used by fight_InitSceneState; role unproven
+588970	g_unk_588970	u32	OPEN	used by fighter_UpdateFrame, fighter_UpdateMotionState; role unproven
+588f10	g_unk_588f10	u32	OPEN	used by fighter_UpdateFrame, fighter_UpdateMotionState; role unproven
+588f20	g_unk_588f20	u32	OPEN	used by fighter_UpdateFrame, fight_ClearAccumulators; role unproven
+588f30	g_unk_588f30	u32	OPEN	used by fight_ClearAccumulators, fight_InitSceneAndClear; role unproven
+588f40	g_unk_588f40	u32	OPEN	used by fighter_UpdateFrame, fighter_UpdateMotionState; role unproven
+588f60	g_unk_588f60	u64	OPEN	used by geo_DrawSpecialFighterPart, cam_UpdatePlayerViewAngles; role unproven
+588f64	g_unk_588f64	u32	OPEN	used by geo_DrawSpecialFighterPart, cam_UpdatePlayerViewAngles; role unproven
+588f70	g_unk_588f70	u8	OPEN	used by cam_UpdatePlayerViewAngles, fighter_UpdateFrame; role unproven
+588f71	g_unk_588f71	u8	OPEN	used by fight_SaveCameraState, fight_InitSceneState; role unproven
+588f80	g_part_state	struct[2][15]x0x68	PROVEN	index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+588fe8	g_part_state+0x68	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589050	g_part_state+0xd0	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+5890b8	g_part_state+0x138	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589120	g_part_state+0x1a0	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589188	g_part_state+0x208	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+5891f0	g_part_state+0x270	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589258	g_part_state+0x2d8	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+5892c0	g_part_state+0x340	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589328	g_part_state+0x3a8	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589390	g_part_state+0x410	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+5893f8	g_part_state+0x478	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589460	g_part_state+0x4e0	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+5894c8	g_part_state+0x548	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589530	g_part_state+0x5b0	u32	PROVEN	member of g_part_state: index p*0x618+i*0x68, 15 parts like volumes; fields OPEN
+589bb0	g_unk_589bb0	f32	OPEN	used by fighter_UpdateMotionState, round_InitFighterSetup; role unproven
+589bc0	g_unk_589bc0	f32	OPEN	used by fighter_UpdateMotionState, fighter_CalcPosVelocity; role unproven
+589bc4	g_unk_589bc4	f32	OPEN	used by fighter_CalcPosVelocity; role unproven
+589bc8	g_unk_589bc8	f32	OPEN	used by fighter_CalcPosVelocity; role unproven
+589bf0	g_unk_589bf0	f32	OPEN	used by fighter_UpdateCameraTarget, fighter_UpdateVelocity_2; role unproven
+589c10	g_unk_589c10	u32	OPEN	used by fighter_UpdateCameraTarget, fighter_UpdateVelocity_2; role unproven
+589d80	g_unk_589d80	f32	OPEN	used by fighter_ApplyFloorHeight, fight_InitSceneState; role unproven
+589da0	g_unk_589da0	u8	OPEN	used by fighter_PushHitEffects; role unproven
+589da2	g_unk_589da2	u16	OPEN	used by fighter_PushHitEffects; role unproven
+589db0	g_unk_589db0	vec128	OPEN	used by fighter_PushHitEffects, cam_UpdatePlayerViewAngles; role unproven
+589db4	g_unk_589db4	u32	OPEN	used by cam_SendViewMatrixToTgp, cam_UpdatePlayerViewAngles; role unproven
+589db8	g_unk_589db8	u32	OPEN	used by fight_InitSceneState; role unproven
+589dbc	g_unk_589dbc	u32	OPEN	used by fight_InitSceneState; role unproven
+589dc0	g_unk_589dc0	vec128	OPEN	used by fighter_PushHitEffects, cam_UpdatePlayerViewAngles; role unproven
+589dc4	g_unk_589dc4	u32	OPEN	used by cam_UpdatePlayerViewAngles, cam_SendViewMatrixToTgp; role unproven
+589dc8	g_unk_589dc8	u32	OPEN	used by fight_InitSceneState; role unproven
+589dcc	g_unk_589dcc	u32	OPEN	used by fight_InitSceneState; role unproven
+589dd0	g_unk_589dd0	u16	OPEN	used by fighter_ResetMoveFlags, round_ResetState; role unproven
+589dd2	g_unk_589dd2	u16	OPEN	used by fighter_ResetMoveFlags, round_ResetState; role unproven
+589dd4	g_unk_589dd4	u16	OPEN	used by fighter_ResetMoveFlags, round_ResetState; role unproven
+589dd8	g_unk_589dd8	u8	OPEN	used by fighter_ResetMoveFlags, fight_InitSceneState; role unproven
+589dd9	g_unk_589dd9	u8	OPEN	used by hit_LoadAttackTable, move_DispatchHitboxLoad; role unproven
+589dda	g_unk_589dda	u8	OPEN	used by hit_TestBoxOverlap, fight_InitSceneState; role unproven
+589ddb	g_unk_589ddb	u32	OPEN	used by hit_TestBoxOverlap, fight_InitSceneState; role unproven
+589ddc	g_unk_589ddc	u32	OPEN	used by ; role unproven
+589de0	g_unk_589de0	u8	OPEN	used by round_SetupSceneState; role unproven
+589de1	g_unk_589de1	u8	OPEN	used by geo_DrawCharacterParts, fighter_ResetSlotAndCall; role unproven
+589df0	g_unk_589df0	u64	OPEN	used by geo_DrawGroundShadow, geo_DrawGroundShadow_2; role unproven
+589df4	g_unk_589df4	f32	OPEN	used by geo_DrawGroundShadow, geo_DrawGroundShadow_2; role unproven
+589df8	g_unk_589df8	f32	OPEN	used by geo_DrawGroundShadow, geo_DrawGroundShadow_2; role unproven
+589e00	g_unk_589e00	u8	OPEN	used by fighter_InitPlayerSlotFlags, fight_InitRoundCameraFighters; role unproven
+589e01	g_unk_589e01	u8	OPEN	used by fighter_InitPlayerSlotFlags, fight_InitRoundCameraFighters; role unproven
+589e02	g_chrnum_snapshot	u8[2]	PROVEN	written from g_fighter1/2.chrnum, compared to it
+589e03	g_chrnum_snapshot+0x1	u8	PROVEN	member of g_chrnum_snapshot: written from g_fighter1/2.chrnum, compared to it
+589e04	g_fighter_b48_snapshot	u8[2]	PROVEN	written from fighter byte +0x48, compared to it
+589e05	g_fighter_b48_snapshot+0x1	u8	PROVEN	member of g_fighter_b48_snapshot: written from fighter byte +0x48, compared to it
+589e08	g_unk_589e08	u32	OPEN	used by fight_InitRoundCameraFighters, cam_UpdatePlayerViewAngles; role unproven
+589e0c	g_unk_589e0c	u32	OPEN	used by fight_InitRoundCameraFighters; role unproven
+589e10	g_unk_589e10	u32	OPEN	used by motion_LoadFrameSet, motion_RunMoveScript; role unproven
+589e14	g_unk_589e14	u32	OPEN	used by motion_RunMoveScript, motion_DispatchScriptOp; role unproven
+589e18	g_unk_589e18	u32	OPEN	used by motion_RunMoveScript; role unproven
+589eb0	g_unk_589eb0	vec128	OPEN	used by motion_RunMoveScript, motion_DispatchScriptOp; role unproven
+589f50	g_unk_589f50	u32	OPEN	used by motion_LoadFrameSet, motion_RunMoveScript; role unproven
+589f58	g_unk_589f58	u32	OPEN	used by motion_LoadFrameSet, motion_RunMoveScript; role unproven
+589f5c	g_unk_589f5c	u32	OPEN	used by fight_InitSceneState; role unproven
+589f60	g_motion_keyframe_ptr	ptr	PROVEN	steps +3 floats, tests 4.29e9 terminator
+589f64	g_unk_589f64	u8	OPEN	used by motion_SetCurrentMove, motion_ReportError_2; role unproven
+589f68	g_cur_move_id	s32[2]	PROVEN	hand: motion_SetCurrentMove copies fighter move id
+589f6c	g_unk_589f6c	u32	OPEN	used by motion_ReportError_2; role unproven
+589f70	g_unk_589f70	u32	OPEN	used by motion_SetCurrentMove, motion_ReportError_2; role unproven
+589f74	g_unk_589f74	u32	OPEN	used by motion_ReportError_2; role unproven
+589f80	g_unk_589f80	f32	OPEN	used by geo_DrawGroundShadow, geo_DrawGroundShadow_2; role unproven
+58a1e0	g_unk_58a1e0	u32	OPEN	used by fight_ClearPlayerVectors; role unproven
+58a1e4	g_unk_58a1e4	u32	OPEN	used by fight_ClearPlayerVectors; role unproven
+58a1e8	g_unk_58a1e8	u32	OPEN	used by fight_ClearPlayerVectors; role unproven
+58a1ec	g_unk_58a1ec	u32	OPEN	used by fight_ClearPlayerVectors; role unproven
+58a1f0	g_unk_58a1f0	u32	OPEN	used by fight_ClearPlayerVectors; role unproven
+58a1f4	g_unk_58a1f4	u32	OPEN	used by fight_ClearPlayerVectors; role unproven
+58a1f8	g_move_hit_hdr_ptr	ptr	PROVEN	pointer; 58a1fc = this+4 (0x14B hit entries)
+58a1fc	g_move_hit_entries_ptr	ptr	PROVEN	indexed param*0x14; DATAMAP move hit entries 0x14B
+58a200	g_unk_58a200	vec128	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a204	g_unk_58a204	u32	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a208	g_unk_58a208	u32	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a20c	g_unk_58a20c	u32	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a210	g_unk_58a210	vec128	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a214	g_unk_58a214	u32	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a218	g_unk_58a218	u32	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a21c	g_unk_58a21c	u32	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a220	g_unk_58a220	vec128	OPEN	used by geo_DrawFighterModelA, geo_DrawFighterModelB; role unproven
+58a7d0	g_unk_58a7d0	f32	OPEN	used by fighter_CalcPosVelocity, fight_ClearPlayerVectors; role unproven
+58a800	g_unk_58a800	f32	OPEN	used by fighter_CalcPosVelocity, fight_ClearPlayerVectors; role unproven
+58a830	g_unk_58a830	f32	OPEN	used by fighter_UpdateMotionIndex, fighter_CalcPosVelocity; role unproven
+58a860	g_player_chr_tbl_idx	u16[2]	PROVEN	chrnum lookup in ROM table 0xc24c0, used as index
+58a862	g_unk_58a862	u16	OPEN	used by fight_InitSceneState; role unproven
+58a870	g_unk_58a870	f32	OPEN	used by cam_TrackPlayerPosDelta, fight_InitSceneState; role unproven
+58b780	g_unk_58b780	u32	OPEN	used by fight_InitSceneState; role unproven
+58b782	g_unk_58b782	u32	OPEN	used by fight_InitSceneState; role unproven
+58b790	g_unk_58b790	u32	OPEN	used by geo_DrawGroundShadow, geo_DrawGroundShadow_2; role unproven
+58ba60	g_shadow_cur_ptr	ptr	PROVEN	pointer var set to base+offset, float pair written
+58ba64	g_shadow_dst_base_ptr	ptr	PROVEN	stores p*0x168+0x58b790 in geo_DrawGroundShadow
+58ba68	g_shadow_src_base_ptr	ptr	PROVEN	stores p*0xb4+0x5552d0 (body sphere pos base)
+58ba6c	g_unk_58ba6c	u32	OPEN	used by cam_CalcAngleToTarget; role unproven
+58ba70	g_unk_58ba70	u32	OPEN	used by cam_SendTargetVectors; role unproven
+58ba74	g_unk_58ba74	u32	OPEN	used by fight_InitSceneState; role unproven
+58ba78	g_unk_58ba78	u32	OPEN	used by fight_InitSceneState; role unproven
+58ba80	g_unk_58ba80	u16	OPEN	used by round_ResetState; role unproven
+58ba82	g_unk_58ba82	u16	OPEN	used by round_ResetState; role unproven
+58ba84	g_unk_58ba84	u16	OPEN	used by round_ResetState; role unproven
+58ba86	g_unk_58ba86	u16	OPEN	used by round_ResetState; role unproven
+58ba88	g_unk_58ba88	u16	OPEN	used by round_ResetState; role unproven
+58ba90	g_unk_58ba90	u32	OPEN	used by fight_InitSceneState; role unproven
+58ba94	g_unk_58ba94	u16	OPEN	used by round_ResetState; role unproven
+58ba96	g_unk_58ba96	u16	OPEN	used by round_ResetState; role unproven
+58ba98	g_unk_58ba98	u16	OPEN	used by fight_InitSceneState; role unproven
+58ba9a	g_unk_58ba9a	u16	OPEN	used by round_ResetState; role unproven
+58ba9c	g_unk_58ba9c	u16	OPEN	used by round_ResetState; role unproven
+58ba9e	g_unk_58ba9e	u16	OPEN	used by round_ResetState; role unproven
+58baa0	g_unk_58baa0	u16	OPEN	used by round_ResetState; role unproven
+58baa4	g_unk_58baa4	u32	OPEN	used by fight_InitSceneState; role unproven
+58baa8	g_unk_58baa8	u16	OPEN	used by round_ResetState; role unproven
+58baaa	g_unk_58baaa	u8	OPEN	used by round_ResetState; role unproven
+58baac	g_unk_58baac	u16	OPEN	used by fight_InitSceneState; role unproven
+58baae	g_unk_58baae	u16	OPEN	used by fight_InitSceneState; role unproven
+58bab0	g_floor_y	f32	PROVEN	stored 0x3f800000 (1.0), written to y; floor y=1.0
+58bab4	g_unk_58bab4	u8	OPEN	used by round_ResetState; role unproven
+58bab5	g_unk_58bab5	u8	OPEN	used by fight_InitSceneState; role unproven
+58bac0	g_unk_58bac0	u16	OPEN	used by round_ResetState; role unproven
+58bac2	g_unk_58bac2	u16	OPEN	used by round_ResetState; role unproven
+58bac4	g_unk_58bac4	u16	OPEN	used by round_ResetState; role unproven
+58bac6	g_unk_58bac6	u16	OPEN	used by round_ResetState; role unproven
+58bac8	g_unk_58bac8	u16	OPEN	used by round_ResetState; role unproven
+58baca	g_unk_58baca	u16	OPEN	used by round_ResetState; role unproven
+58bacc	g_unk_58bacc	u16	OPEN	used by round_ResetState; role unproven
+58bace	g_unk_58bace	u16	OPEN	used by round_ResetState; role unproven
+58bad0	g_unk_58bad0	u16	OPEN	used by round_ResetState; role unproven
+58bad2	g_unk_58bad2	u16	OPEN	used by round_ResetState; role unproven
+58bae0	g_unk_58bae0	u16	OPEN	used by round_ResetState; role unproven
+58bae2	g_unk_58bae2	u16	OPEN	used by round_ResetState; role unproven
+58bae4	g_unk_58bae4	u16	OPEN	used by round_ResetState; role unproven
+58bae6	g_unk_58bae6	u16	OPEN	used by round_ResetState; role unproven
+58bae8	g_unk_58bae8	u16	OPEN	used by round_ResetState; role unproven
+58baea	g_unk_58baea	u16	OPEN	used by round_ResetState; role unproven
+58baec	g_unk_58baec	u16	OPEN	used by round_ResetState; role unproven
+58baee	g_unk_58baee	u16	OPEN	used by round_ResetState; role unproven
+58baf0	g_unk_58baf0	u16	OPEN	used by round_ResetState; role unproven
+58baf2	g_unk_58baf2	u16	OPEN	used by round_ResetState; role unproven
+58bb00	g_unk_58bb00	u16	OPEN	used by round_ResetState; role unproven
+58bb10	g_unk_58bb10	u32	OPEN	used by round_ResetState; role unproven
+58bb50	g_unk_58bb50	u8	OPEN	used by round_ResetState; role unproven
+58bb60	g_unk_58bb60	u32	OPEN	used by round_ResetState; role unproven
+58bb80	g_unk_58bb80	u8	OPEN	used by round_ResetState; role unproven
+58bb81	g_unk_58bb81	u8	OPEN	used by fight_InitSceneState; role unproven
+58bb90	g_unk_58bb90	u32	OPEN	used by cam_UpdatePlayerViewAngles, cam_ResetViewAngles; role unproven
+58bb94	g_unk_58bb94	u32	OPEN	used by cam_UpdatePlayerViewAngles, fight_InitSceneState; role unproven
+58bb98	g_unk_58bb98	u32	OPEN	used by fight_InitSceneState; role unproven
+58bb9c	g_unk_58bb9c	u32	OPEN	used by fight_InitSceneState; role unproven
+58bba0	g_unk_58bba0	u32	OPEN	used by cam_ResetViewAngles, fight_InitSceneState; role unproven
+58bba4	g_unk_58bba4	u32	OPEN	used by cam_UpdatePlayerViewAngles, fight_InitSceneState; role unproven
+58bba8	g_unk_58bba8	u32	OPEN	used by fight_InitSceneState; role unproven
+58bbac	g_unk_58bbac	u32	OPEN	used by fight_InitSceneState; role unproven
+58bbb0	g_unk_58bbb0	u32	OPEN	used by cam_UpdatePlayerViewAngles, fight_InitSceneState; role unproven
+58bbb4	g_unk_58bbb4	u32	OPEN	used by fight_InitSceneState; role unproven
+58bbf0	g_unk_58bbf0	u32	OPEN	used by fight_InitSceneState; role unproven
+58bbf8	g_unk_58bbf8	u32	OPEN	used by fight_InitSceneState; role unproven
+58bbfc	g_unk_58bbfc	u32	OPEN	used by fight_InitSceneState; role unproven
+58bc00	g_unk_58bc00	u32	OPEN	used by fight_InitSceneState; role unproven
+58bc04	g_unk_58bc04	u32	OPEN	used by fight_InitSceneState; role unproven
+58bc08	g_unk_58bc08	u16	OPEN	used by fight_InitSceneState; role unproven
+58bc0a	g_unk_58bc0a	u16	OPEN	used by fight_InitSceneState; role unproven
+58bc0c	g_unk_58bc0c	u8	OPEN	used by fight_InitSceneState; role unproven
+58bc0d	g_unk_58bc0d	u8	OPEN	used by fight_RunHookCallbacks, fight_InitSceneState; role unproven
+58bc10	g_unk_58bc10	u32	OPEN	used by fx_InitSlots, fx_SpawnHitSpark; role unproven
+58bc30	g_unk_58bc30	f32	OPEN	used by fx_UpdateAll, fx_SpawnHitSpark; role unproven
+58bc34	g_unk_58bc34	f32	OPEN	used by fx_SpawnHitSpark; role unproven
+58bc38	g_unk_58bc38	f32	OPEN	used by fx_SpawnHitSpark; role unproven
+58bc40	g_unk_58bc40	u32	OPEN	used by fx_UpdateAll, fx_DrawSparks; role unproven
+58bc50	g_unk_58bc50	u16	OPEN	used by fx_UpdateAll, fx_InitSlots; role unproven
+58bc60	g_unk_58bc60	u32	OPEN	used by fx_InitSlots, fx_SpawnHitSpark; role unproven
+590c60	g_unk_590c60	u16	OPEN	used by fx_InitSlots; role unproven
+590c70	g_unk_590c70	u16	OPEN	used by fx_InitSlots; role unproven
+590cf0	g_anchor_hist_c0	f32[2][10]	PROVEN	shift register a[i]=a[i+1], stride 0x78/player
+590cf4	g_anchor_hist_c0+0x4	u32	PROVEN	member of g_anchor_hist_c0: shift register a[i]=a[i+1], stride 0x78/player
+590d18	g_anchor_hist_c1	f32[2][10]	PROVEN	shift register, stride 0x78/player
+590d1c	g_anchor_hist_c1+0x4	u32	PROVEN	member of g_anchor_hist_c1: shift register, stride 0x78/player
+590d40	g_anchor_hist_c2	f32[2][10]	PROVEN	shift register, stride 0x78/player
+590d44	g_anchor_hist_c2+0x4	u32	PROVEN	member of g_anchor_hist_c2: shift register, stride 0x78/player
+590ee0	g_unk_590ee0	u16	OPEN	used by fx_InitEffectC, fx_UpdateEffectC; role unproven
+590ee4	g_unk_590ee4	u16	OPEN	used by fx_InitEffectC; role unproven
+590f00	g_fx_effectAB_pool	struct[2]x0x2a0	PROVEN	p*0x2a0 in fx_InitEffectA/B/StepEffect
+591980	g_unk_591980	f32	OPEN	used by fx_DrawEffectC, fx_InitEffectC; role unproven
+5919b0	g_fx_dust_particles	struct[2][16]x0x54	PROVEN	hand: fx_InitDustParticles 16 particles/player, stride 0x540
+592430	g_unk_592430	u32	OPEN	used by fx_TickDustTimersB, fx_InitDustParticles_2; role unproven
+5925b0	g_unk_5925b0	u32	OPEN	used by fx_InitSparkSlots, fx_TickSparkSlots; role unproven
+592900	g_unk_592900	u32	OPEN	used by fx_InitSparkSlots, fx_TickSparkSlots; role unproven
+593400	g_unk_593400	u32	OPEN	used by fx_DrawSparks, fx_UpdateDebrisPool; role unproven
+593404	g_unk_593404	u32	OPEN	used by fx_UpdateAll, fx_SlotDispatch; role unproven
+593408	g_fx_cur_player	s32	PROVEN	assigned player idx, then used as multiplier for pools
+59340c	g_unk_59340c	u32	OPEN	used by fx_SlotDispatch, fx_InitHitSlots; role unproven
+593410	g_unk_593410	u16	OPEN	used by fx_UpdateDebrisPool, fx_SlotDispatch; role unproven
+593414	g_unk_593414	u32	OPEN	used by fx_InitSlotsB, fx_StepBounce_2; role unproven
+593420	g_fx_hit_slots	struct[2][4]x0x24	PROVEN	p*0x90+i*0x24, fx_InitHitSlots/UpdateHitSlots
+5938a0	g_fx_slotsB_pool	struct[2]x0xcc	PROVEN	hand: fx_InitSlotsB second slot pool, stride 0xcc
+593f00	g_unk_593f00	u32	OPEN	used by fx_CheckSlotsActive; role unproven
+59be80	g_fx_debris_pool	struct[2]x0x7f8	PROVEN	hand: fx_UpdateDebrisPool, stride 0x7f8 per player
+59fe40	g_fx_debris_list	struct[2]x0x30	PROVEN	hand: fx_DrawDebrisD list, stride 0x30
+59fe44	g_fx_debris_list+0x4	u32	PROVEN	member of g_fx_debris_list: hand: fx_DrawDebrisD list, stride 0x30
+59fe70	g_fx_debris_list+0x30	u32	PROVEN	member of g_fx_debris_list: hand: fx_DrawDebrisD list, stride 0x30
+59fff0	g_unk_59fff0	vec128	OPEN	used by stage_DrawModelsA; role unproven
+5a0000	g_unk_5a0000	vec128	OPEN	used by stage_DrawModelsA; role unproven
+5a0010	g_unk_5a0010	vec128	OPEN	used by stage_DrawModelsA; role unproven
+5a0020	g_unk_5a0020	vec128	OPEN	used by stage_DrawModelsA; role unproven
+5a0030	g_unk_5a0030	vec128	OPEN	used by stage_DrawModelsA; role unproven
+5a0040	g_unk_5a0040	u32	OPEN	used by stage_DrawModelsA, fx_ResetEffectState; role unproven
+5a0044	g_unk_5a0044	u32	OPEN	used by stage_DrawModelsA, fx_ResetEffectState; role unproven
+5a0048	g_unk_5a0048	u32	OPEN	used by stage_DrawModelsA, fx_ResetEffectState; role unproven
+5a004c	g_unk_5a004c	f32	OPEN	used by stage_DrawModelsA, fx_ResetEffectState; role unproven
+5a0050	g_unk_5a0050	f32	OPEN	used by stage_DrawModelsA, fx_ResetEffectState; role unproven
+5a0054	g_unk_5a0054	f32	OPEN	used by stage_DrawModelsA, fx_ResetEffectState; role unproven
+5a0060	g_unk_5a0060	vec128	OPEN	used by stage_DrawModelsC, stage_InitLightTable; role unproven
+5a0064	g_unk_5a0064	u32	OPEN	used by stage_DrawModelsC; role unproven
+5a0068	g_unk_5a0068	u32	OPEN	used by stage_DrawModelsC; role unproven
+5a006c	g_unk_5a006c	u32	OPEN	used by stage_DrawModelsC; role unproven
+5a0070	g_unk_5a0070	vec128	OPEN	used by stage_DrawModelsC, stage_InitLightTable; role unproven
+5a0074	g_unk_5a0074	u32	OPEN	used by stage_DrawModelsC; role unproven
+5a0078	g_unk_5a0078	u32	OPEN	used by stage_DrawModelsC; role unproven
+5a007c	g_unk_5a007c	u32	OPEN	used by stage_DrawModelsC; role unproven
+5a0080	g_unk_5a0080	u32	OPEN	used by stage_DrawModelsC, stage_InitLightTable; role unproven
+5a0084	g_unk_5a0084	u32	OPEN	used by stage_DrawModelsC, stage_InitLightTable; role unproven
+5a0088	g_unk_5a0088	u32	OPEN	used by stage_DrawModelsC, stage_InitLightTable; role unproven
+5a008c	g_unk_5a008c	u32	OPEN	used by stage_DrawModelsC, stage_InitLightTable; role unproven
+5a0090	g_unk_5a0090	u32	OPEN	used by stage_DrawModelsC, stage_InitLightTable; role unproven
+5a0094	g_unk_5a0094	u32	OPEN	used by stage_DrawModelsA, stage_DrawModelsI; role unproven
+5a00a0	g_unk_5a00a0	f32	OPEN	used by stage_DrawModelsE, stage_InitScrollState; role unproven
+5a00a4	g_unk_5a00a4	f32	OPEN	used by stage_DrawModelsE, stage_InitScrollState; role unproven
+5a00b0	g_unk_5a00b0	u32	OPEN	used by stage_DrawModelsH; role unproven
+5a00b4	g_unk_5a00b4	u32	OPEN	used by stage_DrawModelsH; role unproven
+5a00c0	g_unk_5a00c0	vec128	OPEN	used by stage_DrawModelsI; role unproven
+5a00d0	g_unk_5a00d0	vec128	OPEN	used by stage_DrawModelsI; role unproven
+5a00e0	g_unk_5a00e0	vec128	OPEN	used by stage_DrawModelsI; role unproven
+5a00f0	g_unk_5a00f0	vec128	OPEN	used by stage_DrawModelsI; role unproven
+5a0100	g_unk_5a0100	vec128	OPEN	used by stage_DrawModelsI; role unproven
+5a0110	g_unk_5a0110	vec128	OPEN	used by stage_DrawModelsI; role unproven
+5a0120	g_unk_5a0120	u32	OPEN	used by stage_DrawModelsI; role unproven
+5a0124	g_unk_5a0124	u32	OPEN	used by stage_DrawModelsI; role unproven
+5a0128	g_unk_5a0128	u32	OPEN	used by stage_DrawModelsI; role unproven
+5a012c	g_unk_5a012c	f32	OPEN	used by stage_DrawModelsI; role unproven
+5a0130	g_unk_5a0130	f32	OPEN	used by stage_DrawModelsI; role unproven
+5a0134	g_unk_5a0134	f32	OPEN	used by stage_DrawModelsI; role unproven
+5a0138	g_unk_5a0138	u32	OPEN	used by stage_DrawModelsI; role unproven
+5a013c	g_unk_5a013c	u32	OPEN	used by stage_DrawModelsI; role unproven
+5a0140	g_unk_5a0140	u32	OPEN	used by stage_DrawModelsI; role unproven
+5a0144	g_unk_5a0144	u32	OPEN	used by stage_DrawModelsJ; role unproven
+5a0148	g_unk_5a0148	u32	OPEN	used by stage_DrawModelsJ; role unproven
+5a014c	g_unk_5a014c	u32	OPEN	used by stage_DrawModelsJ; role unproven
+5a0150	g_unk_5a0150	u32	OPEN	used by stage_DrawModelsJ; role unproven
+5a0160	g_unk_5a0160	u32	OPEN	used by tile_ScrollBackground; role unproven
+5a0170	g_unk_5a0170	u16	OPEN	used by tile_UpdateSky; role unproven
+5a0174	g_unk_5a0174	u8	OPEN	used by tile_UpdateSky; role unproven
+5a0175	g_unk_5a0175	u8	OPEN	used by tile_UpdateSky; role unproven
+5a01b0	g_unk_5a01b0	u32	OPEN	used by script_RunMotionObject, obj_InitState; role unproven
+5a01b8	g_unk_5a01b8	u32	OPEN	used by script_RunMotionObject, obj_UpdateMotionObjects; role unproven
+5a01c0	g_stage_light_level_tbl	u32[]	PROVEN	hand: stage_InitLightTable fills light level table
+5a0234	g_unk_5a0234	u32	OPEN	used by geo_DrawMotionObjectA; role unproven
+5a02a8	g_unk_5a02a8	u32	OPEN	used by geo_DrawMotionObjectA, geo_DrawMotionObjectC; role unproven
+5a02ac	g_unk_5a02ac	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02b0	g_unk_5a02b0	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02b4	g_unk_5a02b4	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02b8	g_unk_5a02b8	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02bc	g_unk_5a02bc	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02c0	g_unk_5a02c0	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02c4	g_unk_5a02c4	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02c8	g_unk_5a02c8	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02cc	g_unk_5a02cc	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02d0	g_unk_5a02d0	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02d4	g_unk_5a02d4	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02d8	g_unk_5a02d8	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02dc	g_unk_5a02dc	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02e0	g_unk_5a02e0	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02e4	g_unk_5a02e4	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02e8	g_unk_5a02e8	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02ec	g_unk_5a02ec	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02f0	g_unk_5a02f0	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02f4	g_unk_5a02f4	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02f8	g_unk_5a02f8	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a02fc	g_unk_5a02fc	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a0300	g_unk_5a0300	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a0304	g_unk_5a0304	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a0308	g_unk_5a0308	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a030c	g_unk_5a030c	u32	OPEN	used by obj_InitSlotsC; role unproven
+5a0310	g_unk_5a0310	u32	OPEN	meaning unproven; users obj_InitSlotsC
+5a0314	g_unk_5a0314	u32	OPEN	meaning unproven; users obj_InitSlotsC
+5a0318	g_unk_5a0318	u32	OPEN	meaning unproven; users obj_InitSlotsC
+5a0320	g_unk_5a0320	u32	OPEN	meaning unproven; users sway_DrawChainModels,sway_ResetState
+5a0330	g_unk_5a0330	u32	OPEN	no decomp refs; users sway_DrawChainModels,sway_ResetState
+5a14b0	g_unk_5a14b0	u32	OPEN	meaning unproven; users sway_DrawChainModels,sway_ResetState
+5a14c0	g_unk_5a14c0	u32	OPEN	no decomp refs; users sway_ResetState
+5a14d0	g_unk_5a14d0	u8	OPEN	no decomp refs; users sway_UpdateChain,sway_UpdateAll
+5a1684	g_unk_5a1684	u32	OPEN	meaning unproven; users sway_UpdateAll,sway_DrawChain
+5a1860	g_unk_5a1860	u32	OPEN	meaning unproven; users sway_UpdateAll,sway_DrawChain
+5a1890	g_unk_5a1890	u8	OPEN	no decomp refs; users sway_UpdateChain,sway_BlendSegmentAmps
+5a1924	g_unk_5a1924	u8	OPEN	no decomp refs; users sway_StepHistory,sway_UpdateChain
+5a1a3c	g_unk_5a1a3c	u8	OPEN	no decomp refs; users sway_BlendSegmentAmps,sway_UpdateChain
+5a3500	g_unk_5a3500	u32	OPEN	meaning unproven; users sway_UpdateAll,sway_ResetChain
+5a3504	g_sway_chain_count	s32	PROVEN	++ per chain; used as index into 5a3510 array
+5a3510	g_sway_chain_ptrs	array[n]xptr	PROVEN	*(5a3504*4+0x5a3510)=ptr store in sway_UpdateAll
+5a3bc0	g_unk_5a3bc0	u8	OPEN	no decomp refs; users sway_DrawGroupB,sway_ClearState
+5a3bc4	g_unk_5a3bc4	u32	OPEN	no decomp refs; users sway_StepPulseSchedule
+5a6e00	g_unk_5a6e00	u32	OPEN	meaning unproven; users sway_DrawGroupB,sway_StepRotation
+5a6e04	g_unk_5a6e04	u32	OPEN	meaning unproven; users sway_StepPulseSchedule,sway_ClearState
+5a6e08	g_unk_5a6e08	u32	OPEN	meaning unproven; users sway_StepPulseSchedule,sway_ClearState
+5a6e0c	g_unk_5a6e0c	u32	OPEN	meaning unproven; users sway_StepPulseSchedule,sway_StepRotation
+5a6e10	g_effect_frame_timer	s32	PROVEN	-1 per frame, reloaded from table 0xccdf0[idx]
+5a6e14	g_effect_model_idx	u32	PROVEN	++ wraps at 16; indexes tables 0xccdf0/0xccb70
+5a6e20	g_unk_5a6e20	u32	OPEN	meaning unproven; users geo_DrawEffectModel
+5a6e24	g_unk_5a6e24	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e28	g_unk_5a6e28	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e2c	g_unk_5a6e2c	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e30	g_unk_5a6e30	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e34	g_unk_5a6e34	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e38	g_unk_5a6e38	u32	OPEN	meaning unproven; users fx_ResetEffectState_2
+5a6e40	g_unk_5a6e40	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e44	g_unk_5a6e44	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e48	g_unk_5a6e48	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e4c	g_unk_5a6e4c	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e50	g_effect_timer2	s32	PROVEN	countdown, reloaded from table 0xcce30[idx]
+5a6e54	g_effect_cnt_mod3	u32	PROVEN	++ wrap at 3
+5a6e58	g_effect_cnt_mod5	u32	PROVEN	++ wrap at 5
+5a6e5c	g_unk_5a6e5c	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e60	g_effect_idx_mod10	u32	PROVEN	++ wrap at 10; indexes table 0xccec0
+5a6e64	g_unk_5a6e64	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e68	g_unk_5a6e68	u32	OPEN	meaning unproven; users geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e70	g_unk_5a6e70	u32	OPEN	meaning unproven; users obj_UpdateMotionObjects,obj_ClearState
+5a6e8c	g_unk_5a6e8c	u32	OPEN	meaning unproven; users obj_UpdateMotionObjects
+5a6eb0	g_unk_5a6eb0	f32	OPEN	meaning unproven; users fx_DrawSwingingObject,fx_StepSwingTimeline
+5a6eb4	g_unk_5a6eb4	u32	OPEN	meaning unproven; users fx_StepSwingAngle,fx_DrawSwingingObject
+5a6eb8	g_swing_timeline_counter	f32	PROVEN	+1 per step in fx_StepSwingTimeline
+5a6ebc	g_unk_5a6ebc	f32	OPEN	meaning unproven; users fx_StepSwingTimeline,fx_StepSwingAngle
+5a6ec0	g_unk_5a6ec0	f32	OPEN	meaning unproven; users fx_StepSwingTimeline,fx_InitSwingState
+5a6ec4	g_swing_angle	s32	PROVEN	clamped >=-0x17ff in fx_StepSwingAngle
+5a6ec8	g_unk_5a6ec8	u32	OPEN	meaning unproven; users fx_FlashStep02,fx_FlashStep05
+5a6ed0	g_unk_5a6ed0	u8[16]	OPEN	meaning unproven; users fx_ApplyFlashLights,fx_FlashReset
+5a6ee0	g_flash_ring_idx	u32	PROVEN	-1 &0x7f ring index into table 0x2099b90
+5a6ee4	g_flash_state	u32	PROVEN	switch(state) in fx_StepFlashState
+5a6ee8	g_unk_5a6ee8	u32	OPEN	meaning unproven; users fx_FlashStep09,fx_FlashStep01
+5a6eec	g_unk_5a6eec	u32	OPEN	meaning unproven; users fx_FlashStep06,fx_FlashStep07
+5a6f00	g_unk_5a6f00	u64	OPEN	meaning unproven; users fighter_UpdateFrame,tgp_SendFighterModel
+5a6f04	g_unk_5a6f04	u32	OPEN	meaning unproven; users round_UpdateTimerState
+5a6f08	g_unk_5a6f08	u8	OPEN	meaning unproven; users hud_WriteTilemapPortraits,fight_StepMatchLoad
+5a6f0a	g_unk_5a6f0a	u8	OPEN	meaning unproven; users hud_WriteTilemapPortraits,stage_ResetState
+5a6f0b	g_unk_5a6f0b	u8	OPEN	meaning unproven; users hud_WriteTilemapPortraits,stage_ResetState
+5a6f0c	g_unk_5a6f0c	u8	OPEN	meaning unproven; users hud_WriteTilemapPortraits,stage_ResetState
+5a6f0d	g_unk_5a6f0d	u8	OPEN	meaning unproven; users fight_StepMatchLoad,fx_UpdateAll
+5a6f10	g_unk_5a6f10	u32	OPEN	meaning unproven; users stage_DrawModelsB,stage_DrawModelsC
+5a6f14	g_unk_5a6f14	u32	OPEN	meaning unproven; users fight_StepMatchLoad,fx_DrawEffect
+5a6f18	g_unk_5a6f18	u32	OPEN	meaning unproven; users round_UpdateTimerState,fx_DrawEffect
+5a6f1c	g_unk_5a6f1c	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_PickVariant
+5a6f1d	g_unk_5a6f1d	u8	OPEN	meaning unproven; users fight_StepMatchLoad
+5a6f1e	g_unk_5a6f1e	u8	OPEN	meaning unproven; users fight_StepMatchLoad,tgp_SelectModelVariant
+5a6f20	g_unk_5a6f20	u8	OPEN	meaning unproven; users fight_StepMatchLoad,tgp_SelectModelVariant
+5a6f21	g_unk_5a6f21	u8	OPEN	meaning unproven; users stage_ResetState,fight_StepMatchLoad
+5a6f22	g_unk_5a6f22	u16	OPEN	meaning unproven; users fight_RunFrame,vec_ScrollDirection
+5a6f24	g_unk_5a6f24	f32	OPEN	meaning unproven; users vec_ScrollDirection,stage_SetLodLevel_2
+5a6f28	g_unk_5a6f28	f32	OPEN	meaning unproven; users vec_ScrollDirection,stage_SetLodLevel_2
+5a6f30	g_unk_5a6f30	u32	OPEN	no decomp refs; users vec_ScrollDirection,stage_Init
+5a6f34	g_unk_5a6f34	u32	OPEN	no decomp refs; users vec_ScrollDirection
+5a7550	g_unk_5a7550	u8	OPEN	no decomp refs; users vec_ScrollDirection,stage_Init
+5a7620	g_unk_5a7620	u32	OPEN	meaning unproven; users stage_DrawModelsI,stage_DrawModelsA
+5a7624	g_unk_5a7624	u32	OPEN	meaning unproven; users stage_DrawModelsB,stage_DrawModelsC
+5a7630	g_unk_5a7630	u8[16]	OPEN	meaning unproven; users stage_DrawModelsE,stage_InitScrollState
+5a7634	g_unk_5a7634	f32	OPEN	meaning unproven; users stage_DrawModelsE
+5a7638	g_unk_5a7638	f32	OPEN	meaning unproven; users stage_DrawModelsE
+5a763c	g_unk_5a763c	u32	OPEN	meaning unproven; users stage_DrawModelsE
+5a7640	g_unk_5a7640	u8[16]	OPEN	meaning unproven; users stage_DrawModelsE,stage_InitScrollState
+5a7644	g_unk_5a7644	f32	OPEN	meaning unproven; users stage_DrawModelsE
+5a7648	g_unk_5a7648	u32	OPEN	meaning unproven; users stage_DrawModelsE
+5a764c	g_unk_5a764c	f32	OPEN	meaning unproven; users stage_DrawModelsE
+5a7650	g_unk_5a7650	u8[16]	OPEN	meaning unproven; users stage_DrawModelsE,stage_InitScrollState
+5a7654	g_unk_5a7654	u32	OPEN	meaning unproven; users stage_DrawModelsE
+5a7658	g_unk_5a7658	f32	OPEN	meaning unproven; users stage_DrawModelsE
+5a765c	g_unk_5a765c	f32	OPEN	meaning unproven; users stage_DrawModelsE
+5a7670	g_unk_5a7670	u64	OPEN	meaning unproven; users stage_InitScrollState
+5a7674	g_unk_5a7674	f32	OPEN	meaning unproven; users stage_ScrollLayers,stage_DrawModelsE
+5a7678	g_unk_5a7678	f32	OPEN	meaning unproven; users stage_ScrollLayers,stage_DrawModelsE
+5a7680	g_unk_5a7680	u32	OPEN	meaning unproven; users stage_InitScrollState
+5a7684	g_unk_5a7684	u32	OPEN	meaning unproven; users stage_ScrollLayers,stage_DrawModelsI
+5a7688	g_unk_5a7688	u32	OPEN	meaning unproven; users stage_DrawModelsE,stage_InitScrollState
+5a768c	g_unk_5a768c	u32	OPEN	meaning unproven; users stage_DrawModelsE,stage_InitScrollState
+5a7690	g_unk_5a7690	u32	OPEN	meaning unproven; users stage_DrawModelsE,stage_InitScrollState
+5a7694	g_unk_5a7694	u32	OPEN	meaning unproven; users stage_DrawModelsE,stage_InitScrollState
+5a7698	g_unk_5a7698	u32	OPEN	meaning unproven; users tile_ScrollBackground,stage_Init
+5a769c	g_unk_5a769c	u8	OPEN	meaning unproven; users tile_ScrollBackground,stage_Init
+5a769d	g_unk_5a769d	u8	OPEN	meaning unproven; users tile_ScrollBackground,stage_Init
+5a769e	g_unk_5a769e	u8	OPEN	meaning unproven; users stage_LoadBackground,stage_ResetState
+5a76a0	g_unk_5a76a0	u8	OPEN	no decomp refs; users tile_UpdateRollB,stage_BuildTilemapOffsets
+5af6a0	g_unk_5af6a0	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_LoadBackground
+5af6a4	g_stage_tex_upload_count	s32	PROVEN	++ in stage_UploadTexture, limit test 0x29f
+5af6b0	g_unk_5af6b0	u32	OPEN	meaning unproven; users stage_FreeBackground,stage_BuildTilemapOffsets
+5af6bc	g_unk_5af6bc	u32	OPEN	meaning unproven; users stage_LoadBackground,stage_FreeBackground
+5af6c8	g_unk_5af6c8	u32	OPEN	meaning unproven; users stage_LoadBackground,stage_FreeBackground
+5af6d4	g_unk_5af6d4	u32	OPEN	meaning unproven; users stage_LoadBackground,stage_FreeBackground
+5af700	g_stage_bg_entry_0	ptr	PROVEN	table[stage 5555de*8+0xcb150+2i]*0xc+0x20c0008 in LoadBackground
+5af704	g_stage_bg_entry_1	ptr	PROVEN	table[stage 5555de*8+0xcb150+2i]*0xc+0x20c0008 in LoadBackground
+5af708	g_stage_bg_entry_2	ptr	PROVEN	table[stage 5555de*8+0xcb150+2i]*0xc+0x20c0008 in LoadBackground
+5af70c	g_stage_bg_entry_3	ptr	PROVEN	table[stage 5555de*8+0xcb150+2i]*0xc+0x20c0008 in LoadBackground
+5af710	g_unk_5af710	u8	OPEN	meaning unproven; users stage_UpdateBackground,stage_LoadBackground
+5af711	g_unk_5af711	u8	OPEN	meaning unproven; users stage_UpdateBackground,stage_Init
+5af720	g_unk_5af720	u8	OPEN	no decomp refs; users stage_BuildTilemapOffsets
+5b9720	g_unk_5b9720	u16	OPEN	meaning unproven; users tile_UpdateRollA,tile_UpdateRollB
+5b9722	g_unk_5b9722	u16	OPEN	meaning unproven; users stage_UpdateScrollA
+5b9724	g_unk_5b9724	u16	OPEN	meaning unproven; users stage_UpdateScrollA,tile_UpdateRollA
+5b9726	g_unk_5b9726	u16	OPEN	meaning unproven; users stage_UpdateScrollA
+5b9728	g_unk_5b9728	u16	OPEN	meaning unproven; users tile_UpdateRollA,stage_UpdateScrollA
+5b972c	g_unk_5b972c	u32	OPEN	meaning unproven; users tile_UpdateRollA,tile_UpdateRollB
+5b9730	g_unk_5b9730	u32	OPEN	meaning unproven; users tile_UpdateRollA,tile_UpdateRollB
+5b9734	g_unk_5b9734	u32	OPEN	meaning unproven; users tile_UpdateRollA,tile_UpdateRollB
+5b9738	g_unk_5b9738	u32	OPEN	meaning unproven; users tile_UpdateRollA,tile_UpdateRollB
+5b973c	g_unk_5b973c	u32	OPEN	meaning unproven; users stage_ResetState,stage_Init
+5b9740	g_unk_5b9740	u32	OPEN	meaning unproven; users stage_ResetState
+5b9744	g_unk_5b9744	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_ResetState
+5b9745	g_unk_5b9745	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_ResetState
+5b9746	g_unk_5b9746	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_ResetState
+5b9748	g_unk_5b9748	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_ResetState
+5b9749	g_unk_5b9749	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_ResetState
+5b974a	g_unk_5b974a	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_ResetState
+5b974b	g_unk_5b974b	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_ResetState
+5b974c	g_unk_5b974c	u8	OPEN	meaning unproven; users stage_ResetState
+5b974d	g_unk_5b974d	u8	OPEN	meaning unproven; users stage_ResetState
+5b974e	g_unk_5b974e	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_ResetState
+5b974f	g_unk_5b974f	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_Init
+5b9750	g_unk_5b9750	u32	OPEN	meaning unproven; users fight_StepMatchLoad,stage_Init
+5b9754	g_unk_5b9754	u32	OPEN	meaning unproven; users fight_StepMatchLoad,stage_Init
+5b9758	g_unk_5b9758	u8	OPEN	meaning unproven; users stage_Init,fight_StepMatchLoad
+5b9759	g_unk_5b9759	u8	OPEN	meaning unproven; users stage_Init
+5b975a	g_unk_5b975a	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_Init
+5b975b	g_unk_5b975b	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_Init
+5b975c	g_unk_5b975c	u16	OPEN	meaning unproven; users stage_Init
+5b975e	g_unk_5b975e	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_Init
+5b975f	g_unk_5b975f	u8	OPEN	meaning unproven; users stage_Init
+5b9760	g_unk_5b9760	u8	OPEN	meaning unproven; users stage_Init
+5b9761	g_unk_5b9761	u8	OPEN	meaning unproven; users stage_Init
+5b9762	g_unk_5b9762	u8	OPEN	meaning unproven; users stage_Init
+5b9763	g_unk_5b9763	u8	OPEN	meaning unproven; users stage_Init
+5b9764	g_unk_5b9764	u16	OPEN	meaning unproven; users stage_Init
+5b9766	g_unk_5b9766	u16	OPEN	meaning unproven; users cam_SetModeState,stage_Init
+5b9768	g_unk_5b9768	u8	OPEN	meaning unproven; users stage_Init
+5b976c	g_unk_5b976c	u8	OPEN	meaning unproven; users stage_Init,fight_RunFrame
+5b976d	g_unk_5b976d	u8	OPEN	meaning unproven; users stage_Init
+5b976e	g_unk_5b976e	u8	OPEN	meaning unproven; users stage_Init,fight_UpdateEdgeFxSecondPair
+5b976f	g_unk_5b976f	u8	OPEN	meaning unproven; users stage_Init
+5b9770	g_unk_5b9770	u32	OPEN	meaning unproven; users stage_InitFourSlots,fight_LoadEntryTableLo
+5b9774	g_unk_5b9774	u8	OPEN	meaning unproven; users fight_StepMatchLoad,stage_Init
+5b9778	g_unk_5b9778	f32	OPEN	meaning unproven; users stage_Init,stage_SetLodLevel_2
+5b977c	g_unk_5b977c	f32	OPEN	meaning unproven; users stage_Init,stage_SetLodLevel_2
+5b9780	g_unk_5b9780	f32	OPEN	meaning unproven; users stage_Init,stage_SetLodLevel_2
+5b9784	g_unk_5b9784	u16	OPEN	meaning unproven; users fight_RunFrame,-
+5b9786	g_unk_5b9786	u8	OPEN	meaning unproven; users stage_SetLodLevel_2,-
+5b9790	g_stage_lod_slot	array[8]xu16 stride 0x18	PROVEN	SetLodLevel_2 fills all 8 slots from this
+5b97a8	g_stage_lod_slot_1	u16	PROVEN	stride 0x18 from 5b9790; set = 5b9790 in SetLodLevel_2
+5b97c0	g_stage_lod_slot_2	u16	PROVEN	stride 0x18 from 5b9790; set = 5b9790 in SetLodLevel_2
+5b97d8	g_stage_lod_slot_3	u16	PROVEN	stride 0x18 from 5b9790; set = 5b9790 in SetLodLevel_2
+5b97f0	g_stage_lod_slot_4	u16	PROVEN	stride 0x18 from 5b9790; set = 5b9790 in SetLodLevel_2
+5b9808	g_stage_lod_slot_5	u16	PROVEN	stride 0x18 from 5b9790; set = 5b9790 in SetLodLevel_2
+5b9820	g_stage_lod_slot_6	u16	PROVEN	stride 0x18 from 5b9790; set = 5b9790 in SetLodLevel_2
+5b9838	g_stage_lod_slot_7	u16	PROVEN	stride 0x18 from 5b9790; set = 5b9790 in SetLodLevel_2
+5b9850	g_stage_slot0_id	u16	PROVEN	stage_InitFourSlots slot0 (stride 0x10); 0xffff init
+5b9852	g_stage_slot0_val	u16	PROVEN	slot0+2 written in stage_InitFourSlots
+5b9856	g_stage_slot0_index	u16	PROVEN	slot0+6 const 0; indexes table 0x58bc10
+5b9860	g_stage_slot1_id	u16	PROVEN	stage_InitFourSlots slot1 (stride 0x10); 0xffff init
+5b9862	g_stage_slot1_val	u16	PROVEN	slot1+2 written in stage_InitFourSlots
+5b9866	g_stage_slot1_index	u16	PROVEN	slot1+6 const 1; indexes table 0x58bc10
+5b9870	g_stage_slot2_id	u16	PROVEN	stage_InitFourSlots slot2 (stride 0x10); 0xffff init
+5b9872	g_stage_slot2_val	u16	PROVEN	slot2+2 written in stage_InitFourSlots
+5b9876	g_stage_slot2_index	u16	PROVEN	slot2+6 const 2; indexes table 0x58bc10
+5b9880	g_stage_slot3_id	u16	PROVEN	stage_InitFourSlots slot3 (stride 0x10); 0xffff init
+5b9882	g_stage_slot3_val	u16	PROVEN	slot3+2 written in stage_InitFourSlots
+5b9886	g_stage_slot3_index	u16	PROVEN	slot3+6 const 3; indexes table 0x58bc10
+5b9890	g_unk_5b9890	u8	OPEN	meaning unproven; users fight_StepMatchLoad
+5b9891	g_unk_5b9891	u8	OPEN	meaning unproven; users fight_StepMatchLoad
+5b9892	g_unk_5b9892	u8	OPEN	meaning unproven; users fight_StepMatchLoad
+5b9894	g_unk_5b9894	u32	OPEN	meaning unproven; users fight_RunFrame,-
+5b9898	g_unk_5b9898	u32	OPEN	meaning unproven; users fight_RunFrame,-
+5b989c	g_unk_5b989c	u32	OPEN	meaning unproven; users fight_RunFrame,-
+5b98a0	g_cam_ref_vec_x	f32	PROVEN	vec3 dot product in math_DistanceToCamera; 0.0 init in fight_RunFrame
+5b98a4	g_cam_ref_vec_y	f32	PROVEN	vec3 dot product in math_DistanceToCamera
+5b98a8	g_cam_ref_vec_z	f32	PROVEN	vec3 dot product in math_DistanceToCamera
+5b9978	g_vram_load_src_rom	ptr	PROVEN	mem_CopyRomToVram arg1; +0x20000 for next bank
+5bdb40	g_unk_5bdb40	u8	OPEN	no decomp refs; users -
+5bdb50	g_unk_5bdb50	u16	OPEN	no decomp refs; users script_OpSpawnObject,script_OpFollowObject
+5bf840	g_script_light_fade_active	u8	PROVEN	set 1 by script_OpSetLightFade
+5bf844	g_script_cam_spin_active	s32	PROVEN	set 1 by script_OpSetCameraSpin; tested !=0 in StepObjects
+5bf848	g_script_cam_pan_active	s32	PROVEN	set 1 by script_OpSetCameraPan; tested !=0 in StepObjects
+5bf84c	g_script_op_byte	u8	PROVEN	=**(param+8) script byte; compared 0/<0
+5bf850	g_script_spin_a	s32	PROVEN	init table 0xcea10; += step 5bf858; sent to *6a4
+5bf854	g_script_spin_b	s32	PROVEN	init table 0xcea14; += step 5bf85c
+5bf858	g_script_spin_step_a	s32	PROVEN	table 0xcea18; added to 5bf850
+5bf85c	g_script_spin_step_b	s32	PROVEN	table 0xcea1c; added to 5bf854
+5bf860	g_script_pan_x	f32	PROVEN	init table 0xcea20; += 5bf868; sent *6a8
+5bf864	g_script_pan_y	f32	PROVEN	init table 0xcea24; += 5bf86c; sent *6a8
+5bf868	g_script_pan_step_x	f32	PROVEN	table 0xcea28; added to 5bf860
+5bf86c	g_script_pan_step_y	f32	PROVEN	table 0xcea2c; added to 5bf864
+5bf870	g_unk_5bf870	u32	OPEN	meaning unproven; users mem_VramLoadSelectA,mem_VramLoadSelectB
+5bf874	g_unk_5bf874	u32	OPEN	meaning unproven; users mem_VramLoadSelectE
+5bf878	g_unk_5bf878	u32	OPEN	meaning unproven; users mem_CopyRomToVramWiden
+5bf87c	g_unk_5bf87c	u32	OPEN	meaning unproven; users mem_CopyRomToVramWiden,mem_SaveCopyCursor
+5bf880	g_unk_5bf880	u32	OPEN	meaning unproven; users mem_CopyRomToVramWiden,mem_SaveCopyCursor
+5bf890	g_unk_5bf890	u8	OPEN	no decomp refs; users io_UpdateButtonHold
+5bf8a0	g_unk_5bf8a0	u8	OPEN	meaning unproven; users move_DispatchMoveClass,cam_RunScript
+5bf8a1	g_unk_5bf8a1	u8	OPEN	meaning unproven; users move_DispatchMoveClass,cam_RunScript
+5bf8a4	g_unk_5bf8a4	u32	OPEN	meaning unproven; users cmd_MatchDirectionWindow,cmd_OrHistoryBytes
+5bf8b0	g_cam_target_x	f32	PROVEN	cam_GetMidpointTarget out; camera pos 5555b8 = this + dist*...
+5bf8b4	g_cam_target_y	f32	PROVEN	cam_GetMidpointTarget out; 5555bc = this + dist
+5bf8b8	g_cam_target_z	f32	PROVEN	cam_GetMidpointTarget out; 5555c0 = this - dist
+5bf8bc	g_cam_pos_copy_x	f32	PROVEN	=5555b8; cam_LookAtPoints arg after target xyz
+5bf8c0	g_cam_pos_copy_y	f32	PROVEN	=5555bc; cam_LookAtPoints arg
+5bf8c4	g_cam_pos_copy_z	f32	PROVEN	=5555c0; cam_LookAtPoints arg
+5bf8c8	g_cam_pitch	s16.16	PROVEN	written from cam_RandomPitchFromTable via 5bf934; approach-angle
+5bf8cc	g_cam_yaw	s16.16	PROVEN	set from 5555a8, bodydrct delta in cam_ChooseYawSide, RotateYaw/ShakeYaw
+5bf8d0	g_unk_5bf8d0	f32	OPEN	meaning unproven; users -,cam_RunEventState
+5bf8d4	g_cam_distance	f32	PROVEN	cam_ComputeFitDistance out, clamp 3.2..50, ShakeYaw adds step
+5bf8d8	g_unk_5bf8d8	u8	OPEN	meaning unproven; users cam_UpdateByMode,cam_StepFovTable
+5bf8dc	g_unk_5bf8dc	f32	OPEN	meaning unproven; users -,cam_UpdateByMode
+5bf8e0	g_unk_5bf8e0	u32	OPEN	meaning unproven; users cam_UpdateRoundEvent,-
+5bf8e4	g_unk_5bf8e4	u32	OPEN	meaning unproven; users -,cam_EventRingOutView
+5bf8e8	g_unk_5bf8e8	u32	OPEN	no decomp refs; users -,cam_YawForFighter
+5bf8ec	g_unk_5bf8ec	u32	OPEN	no decomp refs; users -
+5bf8f0	g_unk_5bf8f0	u8	OPEN	no decomp refs; users -
+5bf8f8	g_cam_fighter_x	array[2]xf32	PROVEN	indexed 4*i; approach to fighter x 5552e8/55539c
+5bf8fc	g_cam_fighter_x_p2	f32	PROVEN	2nd elem of g_cam_fighter_x (5bf8f8+4*i)
+5bf900	g_cam_fighter_y	array[2]xf32	PROVEN	indexed 4*i+0x5bf900; smoothed fighter y
+5bf904	g_cam_fighter_y_p2	f32	PROVEN	2nd elem of g_cam_fighter_y (5bf900+4*i)
+5bf908	g_cam_fighter_z	array[2]xf32	PROVEN	indexed 4*i; approach to 5552f0/5553a4
+5bf90c	g_cam_fighter_z_p2	f32	PROVEN	2nd elem of g_cam_fighter_z (5bf908+4*i)
+5bf910	g_unk_5bf910	u32	OPEN	meaning unproven; users cam_UpdateRoundEvent,-
+5bf914	g_unk_5bf914	u32	OPEN	meaning unproven; users -,cam_EventRingOutView
+5bf918	g_unk_5bf918	u8	OPEN	no decomp refs; users -
+5bf919	g_cam_mode_cached	u8	PROVEN	compared with 5555ac camera mode in UpdateByMode
+5bf91a	g_unk_5bf91a	u8	OPEN	meaning unproven; users -,cam_RunEventState
+5bf91c	g_unk_5bf91c	u8	OPEN	no decomp refs; users -,cam_SelectEventByMove
+5bf91d	g_unk_5bf91d	u8	OPEN	no decomp refs; users -
+5bf91e	g_unk_5bf91e	u8	OPEN	meaning unproven; users cam_RunEventState,cam_UpdateByMode
+5bf91f	g_unk_5bf91f	u8	OPEN	meaning unproven; users cam_UpdateMain
+5bf920	g_cam_fit_distance	f32	PROVEN	cam_ComputeFitDistance out, clamp 3.2..50, approach to 5bf8d4
+5bf924	g_unk_5bf924	u8	OPEN	meaning unproven; users cam_UpdateByMode,cam_UpdateRoundEvent
+5bf928	g_cam_script_ptr	ptr	PROVEN	script ptr from table 0xd1210[mode]; switch(*ptr) opcodes
+5bf92c	g_cam_yaw_rel_body	s16.16	PROVEN	cam yaw minus fighter bodydrct
+5bf930	g_unk_5bf930	u8	OPEN	meaning unproven; users cam_UpdateDefaultEvent,cam_RunEventState
+5bf931	g_unk_5bf931	u8	OPEN	meaning unproven; users cam_RunEventState,cam_SelectEventByMove
+5bf932	g_unk_5bf932	u8	OPEN	meaning unproven; users cam_UpdateDefaultEvent,cam_RunEventState
+5bf933	g_unk_5bf933	u8	OPEN	meaning unproven; users cam_RunEventState,cam_SelectEventByMove
+5bf934	g_cam_pitch_pick	s16.16	PROVEN	cam_RandomPitchFromTable result, copied to g_cam_pitch
+5bf938	g_cam_yaw_target	s16.16	PROVEN	cam_YawFromRingDirection result, copied to g_cam_yaw
+5bf93c	g_cam_shake_dist_step	f32	PROVEN	const -0.005 added to g_cam_distance in EventShakeYaw
+5bf940	g_unk_5bf940	u8	OPEN	meaning unproven; users cam_EventRingOutView
+5bf941	g_cam_winner_idx	u8	PROVEN	=0x54fd13 round winner; indexes cam fighter arrays
+5bf944	g_cam_y_offset	f32	PROVEN	const 0.75; added to fighter pos_y for target y
+5bf948	g_cam_pitch_goal	s16.16	PROVEN	ApproachAngle(g_cam_pitch, this); const 0x18e3
+5bf94c	g_cam_goal_x	f32	PROVEN	ApproachDeadzone goal for g_cam_target_x; =off+fighter pos_x
+5bf950	g_cam_goal_y	f32	PROVEN	ApproachDeadzone goal for g_cam_target_y, clamp 0.5..10
+5bf954	g_cam_goal_z	f32	PROVEN	ApproachDeadzone goal for g_cam_target_z; =off+fighter pos_z
+5bf958	g_unk_5bf958	u8	OPEN	meaning unproven; users cam_UpdateByMode,cam_StepFovTable
+5bf959	g_unk_5bf959	u8	OPEN	meaning unproven; users cam_UpdateByMode,cam_StepFovTable
+5bf95c	g_cam_follow_off_x	f32	PROVEN	added to fighter pos_x for g_cam_goal_x
+5bf960	g_cam_follow_off_z	f32	PROVEN	added to fighter pos_z for g_cam_goal_z
+5bf964	g_unk_5bf964	f32	OPEN	meaning unproven; users cam_UpdateByMode
+5bf968	g_unk_5bf968	u8	OPEN	meaning unproven; users cam_UpdateFollowFighterParam
+5bf96c	g_unk_5bf96c	f32	OPEN	meaning unproven; users cam_UpdateFollowFighterParam
+5bf970	g_unk_5bf970	u32	OPEN	meaning unproven; users cam_UpdateFollowFighterParam
+5bf974	g_unk_5bf974	f32	OPEN	meaning unproven; users cam_UpdateFollowFighterParam
+5bf978	g_unk_5bf978	u8	OPEN	meaning unproven; users cam_ScriptInit,cam_RunScript
+5bf979	g_cam_pos_track_active	u8	PROVEN	flag set in cam_StartPosTrack*; all-zero test in ScriptInit
+5bf97a	g_cam_target_track_active	u8	PROVEN	flag set in cam_StartTargetTrack*
+5bf97b	g_cam_angle_track_active	u8	PROVEN	flag set in cam_StartAngleTrack*
+5bf97c	g_cam_dist_track_active	u8	PROVEN	flag set in cam_StartDistTrack*
+5bf97d	g_cam_pos_offset_track_active	u8	PROVEN	flag set in cam_SetPosOffsetTrack
+5bf97e	g_cam_target_offset_track_active	u8	PROVEN	flag set in cam_SetTargetOffsetTrack
+5bf97f	g_cam_angle_offset_track_active	u8	PROVEN	flag set in cam_SetAngleOffsetTrack
+5bf980	g_unk_5bf980	u8	OPEN	meaning unproven; users cam_ScriptInit,cam_RunScript
+5bf984	g_cam_wait_counter	s32	PROVEN	cam_OpWaitFrames ++ vs script[+4]
+5bf988	g_cam_pos_track_ptr	ptr	PROVEN	from table 0xcece0 or script inline; StartPosTrack
+5bf98c	g_unk_5bf98c	u32	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf990	g_unk_5bf990	u32	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf994	g_unk_5bf994	u32	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf998	g_unk_5bf998	u32	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf99c	g_unk_5bf99c	u8	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf9a0	g_unk_5bf9a0	u32	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf9a4	g_unk_5bf9a4	u32	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf9a8	g_unk_5bf9a8	u8	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf9ac	g_cam_pos_offset_track_ptr	ptr	PROVEN	from table 0xceae0 or inline; SetPosOffsetTrack
+5bf9b0	g_unk_5bf9b0	u8	OPEN	meaning unproven; users cam_StartPosTrackIdx,cam_SetPosOffsetTrack
+5bf9b4	g_cam_target_track_ptr	ptr	PROVEN	from table 0xcece0 or inline; StartTargetTrack
+5bf9b8	g_unk_5bf9b8	u32	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9bc	g_unk_5bf9bc	u32	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9c0	g_unk_5bf9c0	u32	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9c4	g_unk_5bf9c4	u32	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9c8	g_unk_5bf9c8	u8	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9cc	g_unk_5bf9cc	u32	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9d0	g_unk_5bf9d0	u32	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9d4	g_unk_5bf9d4	u8	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9d8	g_cam_target_offset_track_ptr	ptr	PROVEN	from table 0xceae0 or inline; SetTargetOffsetTrack
+5bf9dc	g_unk_5bf9dc	u8	OPEN	meaning unproven; users cam_StartTargetTrackIdx,cam_SetTargetOffsetTrack
+5bf9e0	g_cam_angle_track_ptr	ptr	PROVEN	from table 0xcece0 or inline; AngOp* read *ptr
+5bf9e4	g_cam_angle_track_counter	s32	PROVEN	AngOp ++ vs track[+0x10]
+5bf9e8	g_cam_angle_vel_pitch	s32	PROVEN	AngOpAccel; added into g_cam_pitch
+5bf9ec	g_cam_angle_vel_yaw	s32	PROVEN	AngOpAccel; added into g_cam_yaw
+5bf9f0	g_cam_angle_vel_roll	s32	PROVEN	AngOpAccel; added into 5bf8d0 third angle
+5bf9f4	g_unk_5bf9f4	u8	OPEN	meaning unproven; users cam_StepAngleTrack,cam_StartAngleTrackIdx
+5bf9f8	g_cam_angle_offset_track_ptr	ptr	PROVEN	from table 0xceae0 or inline; SetAngleOffsetTrack
+5bf9fc	g_unk_5bf9fc	u8	OPEN	meaning unproven; users cam_StartAngleTrackIdx,cam_SetAngleOffsetTrack
+5bfa00	g_cam_dist_track_ptr	ptr	PROVEN	from table 0xcece0 or inline; DistOp* read *ptr
+5bfa04	g_cam_dist_track_counter	f32	PROVEN	DistOp += 1.0 vs track[+8]
+5bfa08	g_cam_dist_vel	f32	PROVEN	DistOpAccel; added into g_cam_distance
+5bfa0c	g_unk_5bfa0c	u8	OPEN	meaning unproven; users cam_StepDistTrack,cam_StartDistTrackIdx
+5bfa10	g_unk_5bfa10	u8	OPEN	no decomp refs; users cam_StepPosTrack
+5bfa14	g_unk_5bfa14	u8	OPEN	no decomp refs; users cam_StepPosTrack
+5bfa18	g_unk_5bfa18	u8	OPEN	no decomp refs; users cam_StepPosTrack
+5bfa1c	g_unk_5bfa1c	u8	OPEN	no decomp refs; users cam_StepTargetOffsetTrack
+5bfa20	g_unk_5bfa20	u8	OPEN	no decomp refs; users cam_StepTargetOffsetTrack
+5bfa24	g_unk_5bfa24	u8	OPEN	no decomp refs; users cam_StepTargetOffsetTrack
+5bfa28	g_unk_5bfa28	u8	OPEN	meaning unproven; users cam_StepChannel,cam_StepPosOpcode
+5bfa2c	g_cam_pos_chan_x	f32	PROVEN	ApproachDeadzone(0x5bfa2c, goal 5bfa38); cam pos channel
+5bfa30	g_cam_pos_chan_y	f32	PROVEN	ApproachDeadzone(0x5bfa30, goal 5bfa3c)
+5bfa34	g_cam_pos_chan_z	f32	PROVEN	ApproachDeadzone(0x5bfa34, goal 5bfa40)
+5bfa38	g_cam_pos_goal_x	f32	PROVEN	goal arg of ApproachDeadzone for 5bfa2c
+5bfa3c	g_cam_pos_goal_y	f32	PROVEN	goal arg of ApproachDeadzone for 5bfa30
+5bfa40	g_cam_pos_goal_z	f32	PROVEN	goal arg of ApproachDeadzone for 5bfa34
+5bfa44	g_unk_5bfa44	f32	OPEN	meaning unproven; users cam_PosOpOrbitAccel,cam_PosOpAccel
+5bfa48	g_unk_5bfa48	f32	OPEN	meaning unproven; users cam_PosOpAccel,cam_PosOpLerp
+5bfa4c	g_unk_5bfa4c	f32	OPEN	meaning unproven; users cam_PosOpAccel,cam_PosOpLerp
+5bfa50	g_cam_pos_op_counter	f32	PROVEN	PosOp += 1.0 (ease/lerp step)
+5bfa54	g_cam_pos_op_ptr	ptr	PROVEN	switch(*(float*)ptr&0xff) opcode stream
+5bfa58	g_unk_5bfa58	u8	OPEN	meaning unproven; users cam_StepPosOpcode,cam_StepChannel
+5bfa5c	g_cam_pos_approach_a	f32	PROVEN	ApproachDeadzone param4 for pos channels
+5bfa60	g_cam_pos_approach_b	f32	PROVEN	ApproachDeadzone param5 for pos channels
+5bfa64	g_unk_5bfa64	u8	OPEN	meaning unproven; users cam_ComputeFitDistance,cam_ComputeFitDistanceMin
+5bfaf0	g_test_menu_cursor	u8	PROVEN	tile_SetCursor(0x16,v*3+8); 0..0xb in test_DrawMainMenu
+5bfaf4	g_unk_5bfaf4	u8	OPEN	meaning unproven; users test_Main,test_RequestExit
+5bfaf5	g_unk_5bfaf5	u8	OPEN	meaning unproven; users test_Main,test_ScreenRamTest
+5bfb00	g_unk_5bfb00	u8	OPEN	meaning unproven; users test_ScreenRamTest
+5bfb01	g_test_wait_timer	u8	PROVEN	decremented in test_WaitTimer
+5bfb10	g_unk_5bfb10	u32	OPEN	meaning unproven; users test_ScreenInputTest
+5bfb20	g_unk_5bfb20	u32	OPEN	meaning unproven; users test_ScreenSoundCheck
+5bfb30	g_unk_5bfb30	u8	OPEN	no decomp refs; users test_DrawColourBars,test_DrawPaletteGrid
+5bfb40	g_unk_5bfb40	u32	OPEN	meaning unproven; users test_ScreenColour
+5bfb50	g_test_sound_sel	s32	PROVEN	index<0x11 into snd_QueueCommand table 0x209c860 (0x20 stride)
+5bfb54	g_unk_5bfb54	u32	OPEN	meaning unproven; users test_ScreenSoundTest
+5bfb60	g_test_settings_cursor	u8	PROVEN	tile_SetCursor(0x16,v*3+8); 0..0xb in settings menu
+5bfb62	g_test_setting_0	u8	PROVEN	test_CycleSetting/Toggle0; cycles 0..5; reset+clamped on load
+5bfb63	g_test_setting_1	u8	PROVEN	test_CycleSetting/Toggle1; cycles 0..5; reset+clamped on load
+5bfb64	g_test_setting_2	u8	PROVEN	test_CycleSetting/Toggle2; cycles 0..3; reset+clamped on load
+5bfb65	g_test_setting_3	u8	PROVEN	test_CycleSetting/Toggle3; cycles 0..3; reset+clamped on load
+5bfb66	g_test_setting_4	u8	PROVEN	test_CycleSetting/Toggle4; cycles 0..3; reset+clamped on load
+5bfb67	g_test_setting_5	u8	PROVEN	test_CycleSetting/Toggle5; toggle; reset+clamped on load
+5bfb68	g_test_setting_6	u8	PROVEN	test_CycleSetting/Toggle6; cycles 0..2; reset+clamped on load
+5bfb69	g_test_setting_7	u8	PROVEN	test_CycleSetting/Toggle7; toggle; reset+clamped on load
+5bfb6a	g_test_setting_8	u8	PROVEN	test_CycleSetting/Toggle8; cycles 0..10; reset+clamped on load
+5bfb6b	g_test_setting_9	u8	PROVEN	test_CycleSetting/Toggle9; toggle; reset+clamped on load
+5bfb70	g_test_coin_cursor	u8	PROVEN	tile_SetCursor(0x16,table[v]); coin menu, max 9
+5bfb72	g_test_coin_table_idx	u8	PROVEN	indexes table 0x90670 -> 0x54fce8; clamp 0xd..0x1a
+5bfb80	g_test_confirm_flag_1	u8	PROVEN	test_ConfirmMenuInput set 1, tested ==0
+5bfb90	g_unk_5bfb90	u32	OPEN	meaning unproven; users test_BookkeepingInput
+5bfb94	g_unk_5bfb94	u32	OPEN	meaning unproven; users test_BookkeepingInput,test_DrawCharacterWinStats
+5bfba0	g_test_confirm_flag_2	u8	PROVEN	test_ConfirmMenuInput set 1, tested ==0
+5bfbb0	g_test_confirm_flag_3	u8	PROVEN	test_ConfirmMenuInput set 1, tested ==0
+5bfbc0	g_rand_state	u32	PROVEN	math_RandNext: *0x5d588b65 LCG, returns state; math_SeedRand
+5fffff	g_unk_5fffff	u8	OPEN	no decomp refs; users mem_ClearWorkRam
