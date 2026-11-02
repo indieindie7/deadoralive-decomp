@@ -96,3 +96,7 @@ OPEN: true stage id byte (work[0x7251] is only a selector), select bytes, ai_Scr
 | 0x507251 | u8 | NOT stage id: scratch (values 0,8,64,88,149... change every 40 frames) | D |
 
 STILL OPEN (not proven): guard flag (hold button run E showed mv 192/196 cls 11 anim 437/431 while holding, but P1 also took 40 dmg: it is DOA hold/counter not a guard bit), anim frame counter, true stage id byte, stage-select byte, ai_ScriptInterpreter opcodes 0x28910, move table 0x95750 decode, 4 stray rets, 11 orphans meaning.
+
+## Status 11-02 late
+Globals: 775 PROVEN / 1102 OPEN (round 2 added 204 by code evidence). 11 orphans named; 4 stray rets placed (tile_PrintString x2, fight_RunFrame, new fn script_StateDispatchLoop 0x7a8d0). AI opcodes: ai_opcodes.md (33 tokens PROVEN, button/direction bit names OPEN). Move table 0x95750: move_table.tsv (1944 entries decoded; pair table + chr12 count OPEN).
+Still OPEN: guard flag, anim frame counter, true stage id / stage-select byte, 1102 globals (mostly init-only or register-indexed).
