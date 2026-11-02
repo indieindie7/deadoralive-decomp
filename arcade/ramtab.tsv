@@ -1,0 +1,1877 @@
+500000			0	0	1	0	1	mem_ClearWorkRam
+501810			0	0	2	0	2	sys_InitCpuControl,-
+5018c0	4:5		2	3	0	0	3	-,video_InitSystem,sys_InitCpuControl
+5018d0			0	0	1	0	1	-
+5020f0			0	0	1	1	1	task_Create
+5420f0	4:15		12	3	0	0	15	gfx_CopyRectBatch,gfx_ResetTransferState,gfx_StartFrameCopy_2
+5420f4	4:8		6	2	0	0	7	gfx_ForceFrameCopy,gfx_CopyStrip1,gfx_CopyStrip2
+5420f8	4:6		5	1	0	0	6	gfx_ForceFrameCopy,gfx_CopyStrip3,gfx_CopyStrip4
+542100		4:4	0	0	6	0	5	pal_StartFade,pal_ResetFadeSlots,pal_PrepareFadeStep
+54250b	1:1	4:1	0	1	0	0	1	pal_ResetFadeSlots
+543130	4:5		2	3	0	0	4	pal_UpdateFades_2,pal_ResetFadeSlots,tgp_SendFrameEndCommand
+543140	4:4		2	2	0	0	3	video_InitSystem,tgp_InitViewport,stage_ResetState
+543150			0	0	2	0	1	video_InitSystem
+54b150	4:10		6	4	0	0	5	test_ShowStatusHang,video_ToggleFrameFlag,video_ToggleFlag801008
+54b154	4:17		4	13	0	0	17	gfx_ResetTransferState,gfx_StartFrameCopy,gfx_ForceFrameCopy
+54b158	4:8		2	6	0	0	4	gfx_ConvertRectTo32bit,mem_CopyRomToVram,gfx_ResetTransferState
+54b15c	4:3		1	2	0	0	2	gfx_StepFrameCopyState,gfx_ForceFrameCopy
+54b160	4:2		1	1	0	0	1	gfx_StepFrameCopyState
+54b164	4:4		0	4	0	0	2	gfx_ConvertRectTo32bit,mem_CopyRomToVram
+54b168	4:6		2	4	0	0	2	gfx_ConvertRectTo32bit,mem_CopyRomToVram
+54b170	4:6		2	4	0	0	4	irq_WaitVBlank,irq_VBlankHandler,boot_Main
+54b174	4:1		0	1	0	0	1	task_Scheduler
+54b178	1:2,4:3		4	1	0	0	4	task_Scheduler,fighter_ResetSlotAndCall,fighter_ReportBadValue
+54b17c	4:4		2	2	0	0	1	task_Scheduler
+54b180	4:8		4	4	0	0	4	task_Scheduler,task_Sleep,task_Exit
+54b184	4:4		2	2	0	0	2	task_Scheduler,task_Sleep
+54b188	4:5		3	2	0	0	1	task_Scheduler
+54b18c	4:5		3	2	0	0	1	task_Scheduler
+54b190	4:5		3	2	0	0	1	task_Scheduler
+54b1a0	4:1		0	1	5	5	6	task_Scheduler,task_Create,task_Kill
+54b3a0	4:10		8	2	0	0	2	task_Scheduler,task_CallEntry
+54b3b0	2:1	2:1	0	1	1	0	1	snd_UploadProgram
+54f3b0	4:11		2	9	0	0	5	charsel_UpdateSelection,charsel_StartVsMode,-
+54f3b4	4:7		4	3	0	0	5	continue_TickCountdown,-,DOA_orph_2f04
+54f3b8	4:3		1	2	0	0	2	backup_UpdatePlayTime,-
+54f3bc	4:4		1	3	0	0	2	round_CheckRankingEntry,-
+54f3c0	4:12		6	6	0	0	11	charsel_UpdateSelection,-,continue_TickCountdown
+54f3c4	4:4		2	2	0	0	3	game_PauseHoldStep,game_PauseHoldRepeat,game_PauseHoldRelease
+54f3c8	4:7		2	5	0	0	4	test_PollDebugSwitches,continue_TickCountdown,-
+54f3cc	4:6		3	3	0	0	2	test_PollDebugSwitches,-
+54f3d0	4:4		1	3	0	0	3	DOA_orph_2f04,-,game_HandleStartInput
+54f3d4	4:2		1	1	0	0	2	-,backup_ApplyGameSettings
+54f3d8	4:1		0	1	0	0	1	-
+54f3dc	4:24		23	1	0	0	11	seg_DisplayNumberAlt,seg_DisplayNumber,seg_WriteTensDigit
+54f3e0	4:29		7	22	0	0	14	lamp_UpdateFight,lamp_StepSequence,lamp_UpdateCharsel
+54f3e4	2:24		4	20	0	0	12	lamp_UpdateFight,lamp_StepSequence,lamp_UpdateCharsel
+54f3e6	1:25		10	15	0	0	6	lamp_UpdateFight,lamp_UpdateCharsel,lamp_UpdateAttract
+54f3e7	1:1		0	1	0	0	1	-
+54f3e8	1:20		6	14	0	0	8	lamp_UpdateFight,lamp_UpdateAttract,lamp_UpdateCharsel
+54f3e9	1:7		3	4	0	0	2	lamp_UpdateAttract,-
+54f3ea	1:4		3	1	0	0	4	-,lamp_UpdateAttract,lamp_UpdateCharsel
+54f3eb	1:2		1	1	0	0	2	-,lamp_UpdateFight
+54f3ec	1:3		1	2	0	0	2	-,lamp_UpdateStartPattern
+54f3f0	4:5		4	1	0	0	5	-,test_PollDebugSwitches,fighter_ApplyHitReaction
+54f400	4:5		2	3	1	0	2	coin_UpdateCredits,game_LoadSettings
+54f404	4:3		1	2	1	0	2	coin_UpdateCredits,game_LoadSettings
+54f410	4:1		0	1	1	0	2	game_LoadSettings,coin_UpdateCredits
+54f414	4:1		0	1	0	0	1	game_LoadSettings
+54f418	4:1		0	1	0	0	1	game_LoadSettings
+54f420	4:1		0	1	1	0	2	game_LoadSettings,coin_UpdateCredits
+54f424	4:1		0	1	0	0	1	game_LoadSettings
+54f428	4:1		0	1	0	0	1	game_LoadSettings
+54f430	4:4		2	2	0	0	2	game_LoadSettings,coin_UpdateCredits
+54f434	4:6		4	2	0	0	2	coin_UpdateCredits,game_LoadSettings
+54f438	4:3		1	2	0	0	2	game_LoadSettings,coin_UpdateCredits
+54f43c	4:4		2	2	0	0	2	game_LoadSettings,coin_UpdateCredits
+54f440	4:3		1	2	0	0	2	game_LoadSettings,coin_UpdateCredits
+54f444	4:4		2	2	0	0	2	game_LoadSettings,coin_UpdateCredits
+54f448	4:7		2	5	0	0	3	coin_UpdateCredits,game_LoadSettings,coin_SpendCredits
+54f44c	4:11		4	7	0	0	3	coin_UpdateCredits,game_LoadSettings,coin_SpendCredits
+54f470	1:4		1	3	0	0	4	vblank_QueueCopy,vblank_FlushCopyQueue,irq_InitTimers
+54f474	4:12		7	5	0	0	5	vblank_FlushCopyQueue,irq_VBlankHandler,vblank_QueueCopy
+54f480	4:3		2	1	2	3	3	vblank_QueueCopy,vblank_FlushCopyQueue,irq_VBlankHandler
+54f484	4:1		1	0	0	1	1	irq_VBlankHandler
+54f488	4:1		1	0	0	1	1	irq_VBlankHandler
+54f930	4:3		1	2	0	0	2	irq_TimerHandler,irq_InitTimers
+54f934	4:1		0	1	0	0	1	timer_SetPeriod0
+54f938	4:1		0	1	0	0	1	timer_SetPeriod0
+54f950	2:3		0	3	0	0	2	-,tile_InitSystem
+54f952	2:2		0	2	0	0	2	tile_InitSystem,-
+54f954	2:3		1	2	1	0	3	-,tile_InitSystem,tile_CopyScrollColumn
+54f956	2:2		0	2	0	0	2	tile_InitSystem,-
+54f960	4:1		0	1	0	0	1	tile_InitSystem
+54f964	2:4		0	4	1	0	5	tile_FlushScrollRegs,tile_ClearAll,hud_DrawFightLayout
+54f966	2:1		0	1	0	0	1	tile_ClearAll
+54f968	2:9		1	8	0	0	9	tile_ClearAll,tile_CopyScrollColumn,hud_DrawFightLayout
+54f96a	2:2		0	2	0	0	2	tile_ClearAll,tile_SetScrollLayerB
+54f96c	2:5		0	5	0	0	5	tile_ClearAll,hud_DrawFightLayout,attract_IntroScrollStep
+54f96e	2:1		0	1	0	0	1	tile_ClearAll
+54f970	2:8		1	7	0	0	8	tile_ClearAll,hud_DrawFightLayout,tile_SetScrollLayerA
+54f972	2:2		0	2	0	0	2	tile_ClearAll,tile_SetScrollLayerB
+54f980	4:21		18	3	0	0	17	tex_LoadEntry,tile_DrawLayerRegion,tile_InitSystem
+54f984	4:26		15	11	0	0	12	tile_PutChar,tile_PrintString,tile_PrintString_2
+54f988	4:33		16	17	0	0	12	tile_PutChar,tile_PrintString,tile_PrintString_2
+54f98c	2:2,4:2		2	2	0	0	4	tile_InitSystem,tile_SetTextBank,tile_PutChar
+54f990	4:7		3	4	0	0	6	tex_LoadEntry,tile_SetCursor,tile_NewLine
+54f994	4:3		1	2	0	0	2	tex_InitSlots,tex_ResetSlots
+54f9a0	1:11		6	5	0	11	6	tex_Alloc,tex_LoadEntry,tex_ResetSlots
+54fa40	4:9		5	4	0	0	4	snd_QueueCommand,snd_QueueStopAll,snd_SendQueued
+54fa44	4:3		1	2	0	0	2	snd_SendQueued,snd_InitUart
+54fa48	4:7		4	3	0	0	3	snd_QueueCommand,snd_QueueStopAll,snd_InitUart
+54fa4c	1:6		1	5	0	0	4	snd_QueueCommand,snd_QueueStopAll,snd_InitUart
+54fa50	4:4	4:4	1	3	0	0	4	snd_InitUart,snd_SendQueued,snd_QueueCommand
+54fad0	4:3		2	1	0	0	3	-,DOA_orph_2f04,game_HandleStartInput
+54fad4	1:1		0	1	0	0	1	boot_Main
+54fad8	4:15		14	1	0	0	10	task_Scheduler,irq_TimerHandler,boot_Main
+54fadc	4:5		3	2	0	0	4	boot_Main,-,DOA_orph_2f04
+54fae0	4:3		1	2	0	0	3	boot_InitHardware,irq_VBlankHandler,test_Main
+54fae4	4:1		0	1	0	0	1	boot_InitHardware
+54fae8	4:1		0	1	0	0	1	boot_InitHardware
+54faec	4:1		0	1	0	0	1	boot_InitHardware
+54faf0	1:3,8:2,16:2	8:3	1	6	11	2	12	fight_DecayEntryTable,fight_ReloadTableDefaults,geo_DrawEffectModel
+54fb00	8:1,16:1		0	2	0	0	2	fight_LoadEntryTableLo,fight_ReloadTableDefaults
+54fb10	16:1		0	1	0	0	1	fight_LoadEntryTableLo
+54fb20	16:1		0	1	0	0	1	fight_LoadEntryTableLo
+54fb30	16:1		0	1	0	0	1	fight_LoadEntryTableLo
+54fb40	16:1		0	1	0	0	1	fight_LoadEntryTableLo
+54fb50	16:1		0	1	0	0	1	fight_LoadEntryTableLo
+54fb60	16:1		0	1	0	0	1	fight_LoadEntryTableLo
+54fb70	16:1		0	1	0	0	1	fight_LoadEntryTableHi
+54fb80	16:1		0	1	0	0	1	fight_LoadEntryTableHi
+54fb90	16:1		0	1	0	0	1	fight_LoadEntryTableHi
+54fb91	1:1		0	1	0	0	1	fight_ReloadTableDefaults
+54fba0	16:1		0	1	0	0	1	fight_LoadEntryTableHi
+54fbb0	16:1		0	1	0	0	1	fight_LoadEntryTableHi
+54fbc0	16:1		0	1	0	0	1	fight_LoadEntryTableHi
+54fbc9	1:1		0	1	0	0	1	stage_DrawModelsI
+54fbd0	16:1		0	1	0	0	1	fight_LoadEntryTableHi
+54fbd1	1:2		0	2	0	0	2	stage_ScrollLayers,stage_DrawModelsI
+54fbd9	1:1		0	1	0	0	1	stage_ScrollLayers
+54fbe0	16:1		0	1	0	0	1	fight_LoadEntryTableHi
+54fbe1	1:1		0	1	0	0	1	fight_RunFrame
+54fbf0	4:2		1	1	0	0	2	task_Scheduler,fx_CheckSlotDebug
+54fbf4	4:3		1	2	0	0	2	irq_WaitVBlank,irq_VBlankHandler
+54fbf8	4:6		4	2	0	0	4	backup_UpdatePlayTime,irq_VBlankHandler,-
+54fc00	1:64,2:3,16:6	8:89	67	6	210	11	175	-,fighter_ApplyHitReaction,hud_UpdateFightHud
+54fc01	1:86	8:43	82	4	1	3	60	hud_DrawFightLayout,move_CompareMovePriority,fight_InitRoundCameraFighters
+54fc02	1:26	8:14	19	7	1	0	17	hud_DrawFightLayout,fight_SpawnImpactEffect,fx_GetCharEffectBase
+54fc03	1:12		8	4	3	2	7	fighter_UpdateFacing,game_HandleStartInput,charsel_UpdateState
+54fc04	4:13	8:2	10	3	0	3	11	ai_EvalWeightEntry,fighter_SetRingEdgePush,test_PrintPlayerDebug
+54fc08	4:6,8:1	8:1	4	3	0	0	7	test_PrintPlayerDebug,charsel_InitPortraitPos,fighter_InitRoundState
+54fc0c	4:12	8:2	10	2	0	3	10	ai_EvalWeightEntry,fighter_SetRingEdgePush,test_PrintPlayerDebug
+54fc10	4:5,16:5	8:3	7	3	1	0	6	charsel_UpdateSelection,-,fight_UpdateRoundState
+54fc14	2:1,4:9	8:5	7	3	0	0	9	fighter_CalcLaunchAngle,test_PrintPlayerDebug,charsel_InitPortraitPos
+54fc18	2:1,4:3	8:1	3	1	0	0	3	hold_PickCounterMove,test_PrintPlayerDebug,fighter_InitRoundState
+54fc1c	2:1,4:7	8:4	7	1	0	0	7	fighter_IsFacingAway,test_PrintPlayerDebug,fighter_InitRoundState
+54fc20	2:4,16:5		8	1	0	0	4	charsel_UpdateSelection,ranking_UpdateNameEntry,-
+54fc22	2:4		0	4	0	0	4	fight_UpdateRoundState,fighter_InitRoundState,ranking_UpdateNameEntry
+54fc24	2:1		0	1	0	0	1	fighter_InitRoundState
+54fc26	2:2		0	2	0	0	2	fighter_InitRoundState,ranking_InitEntry
+54fc28	2:6		2	4	0	0	6	test_PrintPlayerDebug,hud_DrawFightLayout,hud_UpdateFightHud
+54fc2a	1:29	8:16	21	8	0	2	25	fighter_InitRoundState_2,move_GetNextMove,fighter_InitRoundState
+54fc2b	1:21	8:14	20	1	0	4	21	test_PrintPlayerDebug,fighter_InitRoundState,move_GetCurrentHitIndex
+54fc2c	1:3	8:1	0	3	1	0	4	fighter_InitRoundState,-,fighter_InitRoundState_2
+54fc2d	1:20	8:2	18	2	0	0	16	cam_RunEventState,fighter_CheckRingEdgeEnter,fighter_InitRoundState
+54fc2e	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc2f	1:3	8:2	0	3	0	0	2	fighter_CheckFacingSide,fighter_InitRoundState
+54fc30	1:2,16:5		6	1	0	0	4	charsel_UpdateSelection,-,test_PrintPlayerDebug
+54fc31	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc32	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc33	1:5	8:1	3	2	0	0	5	test_PrintPlayerDebug,fighter_InitRoundState,fight_UpdateHitChecks
+54fc34	1:5		1	4	0	0	5	test_PrintPlayerDebug,hud_DrawFightLayout,fighter_InitRoundState
+54fc35	1:6	8:3	1	5	1	0	6	fighter_InitRoundState_2,test_PrintPlayerDebug,move_StepScriptOrEnd
+54fc36	1:8	8:2	2	6	0	0	7	round_UpdateFighterTimers,hud_DrawFightLayout,hud_UpdateFightHud
+54fc37	1:6		2	4	0	0	5	fight_UpdateHitChecks,test_PrintPlayerDebug,fighter_InitRoundState
+54fc38	1:8		3	5	0	0	7	fight_UpdateHitChecks,test_PrintPlayerDebug,fighter_InitRoundState
+54fc39	1:5	8:3	1	4	0	0	5	test_PrintPlayerDebug,fighter_InitRoundState,sway_TryTriggerChain
+54fc3a	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc3b	1:2		0	2	0	0	2	fighter_InitRoundState,fight_ResetPlayerData
+54fc3c	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc3d	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc3e	1:3	8:1	2	1	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,hit_CalcDamage
+54fc3f	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc40	1:2,16:5		6	1	1	1	5	charsel_UpdateSelection,-,test_PrintPlayerDebug
+54fc41	1:3		2	1	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,motion_ReportError_2
+54fc42	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc43	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc44	1:4		3	1	0	0	4	test_PrintPlayerDebug,fighter_InitRoundState,round_CheckKO
+54fc45	1:2		1	1	0	0	2	fighter_InitRoundState,fighter_ReportBadState
+54fc46	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc47	1:6	8:4	1	5	1	1	6	fighter_CheckRingBoundsSimple,test_PrintPlayerDebug,fighter_InitRoundState
+54fc48	1:14	8:4	5	9	0	0	12	fight_UpdateRoundState,hud_DrawFightLayout,fighter_InitRoundState
+54fc49	1:9	8:3	2	7	1	1	10	lamp_UpdateFight,fighter_InitRoundState,move_DispatchMoveClass
+54fc4a	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc4b	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc4c	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc4d	1:1		1	0	0	0	1	test_PrintPlayerDebug
+54fc4e	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc4f	1:2		0	2	0	0	2	fighter_InitRoundState,fighter_ClearFlags
+54fc50	1:1,8:5		5	1	0	0	3	charsel_UpdateSelection,-,fighter_InitRoundState
+54fc51	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc52	1:2		0	2	0	0	2	fighter_InitRoundState,fighter_ClearFlags
+54fc53	1:2	8:1	1	1	0	0	2	hit_ResolveStrike,fighter_InitRoundState
+54fc54	1:2		0	2	0	0	2	fighter_InitRoundState,fighter_ClearFlags
+54fc55	1:3		1	2	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,fighter_ClearFlags
+54fc58	1:49,2:3,16:4		49	7	21	0	29	hud_UpdateFightHud,fighter_ApplyHitReaction,game_HandleStartInput
+54fc59	1:40		36	4	1	0	22	hud_DrawFightLayout,fight_InitRoundCameraFighters,fight_RunHookCallbacks
+54fc5a	1:12		7	5	0	0	7	hud_DrawFightLayout,hud_UpdateFightHud,fight_SpawnImpactEffect
+54fc5b	1:11		8	3	1	0	7	game_HandleStartInput,charsel_UpdateState,fighter_ApplyHitReaction
+54fc5c	4:10		7	3	0	0	10	test_PrintPlayerDebug,charsel_InitPortraitPos,fighter_InitRoundState
+54fc60	4:6		3	3	0	0	6	test_PrintPlayerDebug,charsel_InitPortraitPos,fighter_InitRoundState
+54fc64	4:10		7	3	0	0	10	test_PrintPlayerDebug,charsel_InitPortraitPos,fighter_InitRoundState
+54fc68	4:2,16:5		0	7	1	0	4	charsel_UpdateSelection,-,fight_UpdateRoundState
+54fc6c	2:1,4:4		2	3	0	0	5	test_PrintPlayerDebug,charsel_InitPortraitPos,fighter_InitRoundState
+54fc70	2:1,4:1		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc74	2:1,4:2		2	1	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,ai_UpdateFacing
+54fc78	2:5,16:5		4	6	0	0	4	ranking_UpdateNameEntry,charsel_UpdateSelection,-
+54fc7a	2:4		0	4	0	0	4	fight_UpdateRoundState,fighter_InitRoundState,ranking_UpdateNameEntry
+54fc7c	2:1		0	1	0	0	1	fighter_InitRoundState
+54fc7e	2:2		0	2	0	0	2	fighter_InitRoundState,ranking_InitEntry
+54fc80	2:6		2	4	0	0	6	test_PrintPlayerDebug,hud_DrawFightLayout,hud_UpdateFightHud
+54fc82	1:10		5	5	0	0	8	fighter_InitRoundState_2,fighter_InitRoundState,round_CheckKO
+54fc83	1:3		2	1	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,move_CompareMovePriority
+54fc84	1:4		0	4	0	0	3	DOA_orph_1f820,fighter_InitRoundState,fighter_InitRoundState_2
+54fc85	1:16		14	2	0	0	13	cam_RunEventState,fighter_InitRoundState,round_CheckKO
+54fc86	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc87	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc88	1:2,16:5		1	6	0	0	4	charsel_UpdateSelection,-,test_PrintPlayerDebug
+54fc89	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc8a	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc8b	1:3		1	2	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,fight_ResetPlayerData
+54fc8c	1:5		1	4	0	0	5	test_PrintPlayerDebug,hud_DrawFightLayout,fighter_InitRoundState
+54fc8d	1:3		1	2	1	0	3	fighter_InitRoundState_2,test_PrintPlayerDebug,fight_ResetPlayerData
+54fc8e	1:6		0	6	0	0	6	hud_DrawFightLayout,hud_UpdateFightHud,fight_UpdateRoundState
+54fc8f	1:5		2	3	0	0	5	test_PrintPlayerDebug,fighter_InitRoundState,hit_ResolveContacts
+54fc90	1:7		2	5	0	0	7	test_PrintPlayerDebug,fighter_InitRoundState,cam_UpdateFollowOffset
+54fc91	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc92	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc93	1:2		0	2	0	0	2	fighter_InitRoundState,fight_ResetPlayerData
+54fc94	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc95	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc96	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc97	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc98	1:2,16:5		1	6	0	0	4	charsel_UpdateSelection,-,test_PrintPlayerDebug
+54fc99	1:3		2	1	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,motion_ReportError_2
+54fc9a	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc9b	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc9c	1:3		2	1	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,round_CheckKO
+54fc9d	1:1		0	1	0	0	1	fighter_InitRoundState
+54fc9e	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fc9f	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fca0	1:10		3	7	0	0	8	fight_UpdateRoundState,hud_DrawFightLayout,fighter_InitRoundState
+54fca1	1:6		2	4	0	0	6	lamp_UpdateFight,fighter_InitRoundState,move_DispatchMoveClass
+54fca2	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fca3	1:2		1	1	0	0	2	test_PrintPlayerDebug,fighter_InitRoundState
+54fca4	1:1		0	1	0	0	1	fighter_InitRoundState
+54fca5	1:1		1	0	0	0	1	test_PrintPlayerDebug
+54fca6	1:1		0	1	0	0	1	fighter_InitRoundState
+54fca7	1:2		0	2	0	0	2	fighter_InitRoundState,fighter_ClearFlags
+54fca8	1:1,8:5		0	6	0	0	3	charsel_UpdateSelection,-,fighter_InitRoundState
+54fca9	1:1		0	1	0	0	1	fighter_InitRoundState
+54fcaa	1:2		0	2	0	0	2	fighter_InitRoundState,fighter_ClearFlags
+54fcab	1:1		0	1	0	0	1	fighter_InitRoundState
+54fcac	1:2		0	2	0	0	2	fighter_InitRoundState,fighter_ClearFlags
+54fcad	1:3		1	2	0	0	3	test_PrintPlayerDebug,fighter_InitRoundState,fighter_ClearFlags
+54fcb0	1:28		27	1	0	0	16	hud_DrawStartPrompts,hud_DrawCreditPromptsAlt,-
+54fcb1	1:23		7	16	0	0	6	-,charsel_UpdateSelection,round_CheckRankingEntry
+54fcb2	1:12		3	9	0	0	8	-,fighter_ResetAnimState,charsel_UpdateSelection
+54fcb3	1:90		78	12	0	0	41	game_HandleStartInput,-,fighter_ScriptOpcodeDispatch
+54fcb4	1:92		66	26	0	0	35	game_HandleStartInput,hud_UpdatePlayerBanners,charsel_UpdateSelection
+54fcc0			0	0	1	0	1	io_ReadAllInputs
+54fcc1			0	0	1	0	1	io_ReadAllInputs
+54fcc2			0	0	1	0	1	io_ReadAllInputs
+54fcc3	1:1		0	1	0	0	1	io_ReadAllInputs
+54fcc4	1:1		0	1	0	0	1	io_ReadAllInputs
+54fcc5	1:1		0	1	0	0	1	io_ReadAllInputs
+54fcc6	1:1		0	1	0	0	1	io_ReadAllInputs
+54fcc7	1:1		0	1	0	0	1	io_ReadAllInputs
+54fcc8			0	0	1	0	1	io_ReadAllInputs
+54fccc	1:7,4:6		13	0	1	0	7	test_ScreenInputTest,round_UpdateMain,round_WaitTimer
+54fccd	1:32		31	1	0	13	12	test_ScreenInputTest,ai_HandleHoldInput,ai_SetGuardFromInput
+54fcce	1:13,2:1		13	1	0	0	6	test_ScreenInputTest,hit_ResolveStrike,charsel_CheckHiddenCode
+54fccf	1:1		0	1	0	0	1	io_ReadAllInputs
+54fcd0	4:1		0	1	0	0	1	io_ReadAllInputs
+54fcd1	1:1		1	0	0	1	1	-
+54fcd4	1:33,4:4		36	1	3	0	24	test_PollDebugSwitches,game_HandleStartInput,round_CheckRankingEntry
+54fcd5	1:40		39	1	0	5	21	test_ScreenSoundTest,test_BookkeepingInput,test_Main
+54fcd6	1:5		5	0	0	0	5	hud_UpdateFightHud,hud_UpdateFightHud_2,fighter_UpdateInputBuffer
+54fcd8	1:1,4:1		1	1	0	0	2	io_ReadAllInputs,test_ScreenInputTest
+54fcdc			0	0	1	0	1	io_ReadAllInputs
+54fcdd	1:1		0	1	0	0	1	io_ReadAllInputs
+54fcde	1:1		0	1	0	0	1	io_ReadAllInputs
+54fcdf	1:1		0	1	0	0	1	io_ReadAllInputs
+54fce0	1:24		14	10	0	0	9	game_HandleStartInput,hud_UpdatePlayerBanners,charsel_UpdateState
+54fce1	1:24		17	7	0	0	8	game_HandleStartInput,hud_UpdatePlayerBanners,test_CycleCoinSetting2
+54fce4	2:4,4:52		49	7	0	0	13	hud_UpdatePlayerBanners,coin_UpdateCredits,game_HandleStartInput
+54fce8	1:43		36	7	0	0	17	hud_UpdatePlayerBanners,test_SelectCoinTableEntry,game_HandleStartInput
+54fce9	1:24		17	7	0	0	9	game_HandleStartInput,test_CycleCoinSetting4,hud_UpdatePlayerBanners
+54fcea	1:22		18	4	0	0	12	fighter_ApplyHitReaction,game_HandleStartInput,fighter_ClearComboFlags
+54fceb	1:17		14	3	0	0	12	game_HandleStartInput,fighter_ApplyHitReaction,fight_UpdateKO
+54fcec	1:30		23	7	0	0	12	game_HandleStartInput,test_CycleCoinSetting3,hud_DrawStartPrompts
+54fced	1:25		18	7	0	0	10	game_HandleStartInput,test_CycleCoinSetting1,hud_DrawCreditPromptsAlt
+54fcee	1:10		5	5	0	0	4	charsel_UpdateState,game_HandleStartInput,game_ProcessJoin
+54fcef	1:28		21	7	0	0	18	hud_UpdatePlayerBanners,test_ToggleCoinMode,game_LoadSettings
+54fcf0	1:26		19	7	0	0	12	game_HandleStartInput,game_LoadSettings,test_ToggleCoinMode
+54fcf4	2:3,4:32		29	6	0	0	10	coin_UpdateCredits,hud_UpdatePlayerBanners,game_HandleStartInput
+54fcf8	1:10		5	5	0	0	4	charsel_UpdateState,game_HandleStartInput,game_ProcessJoin
+54fcfa	1:12		7	5	0	6	10	charsel_StartVsMode,cam_SetFollowParams,continue_TickCountdown
+54fcfb	1:6		3	3	0	0	5	cam_SetFollowParams,continue_TickCountdown,charsel_UpdateState
+54fcfc	1:36		3	33	0	0	13	fighter_ApplyHitReaction,ranking_UpdateNameEntry,round_CheckKO
+54fcfd	1:61		50	11	0	0	32	-,fight_UpdateRoundState,hud_UpdatePlayerBanners
+54fcfe	1:92		84	8	0	0	62	-,fx_UpdateSlotsB,snd_SendCommandPair
+54fcff	1:3		1	2	0	0	2	game_ProcessJoin,hud_UpdateFightHud_2
+54fd00	1:6		1	5	0	2	4	charsel_UpdateState,hit_ResolveStrike,game_ProcessJoin
+54fd01	1:4		0	4	0	0	3	charsel_UpdateState,game_ProcessJoin,charsel_UpdateSelection
+54fd02	1:4		1	3	0	0	2	charsel_UpdateState,io_ReadCabinetInputs
+54fd03	1:14		10	4	0	0	8	charsel_UpdateState,hud_DrawFightLayout,hud_UpdateFightHud
+54fd04	1:7		4	3	0	0	3	io_ReadCabinetInputs,charsel_UpdateState,fighter_ApplyHitReaction
+54fd08	4:13		8	5	0	0	11	ai_EvalWeightEntry,charsel_UpdateState,charsel_UpdateSelection
+54fd0c	4:11		6	5	0	0	9	ai_EvalWeightEntry,charsel_UpdateState,charsel_UpdateSelection
+54fd10	1:28		22	6	0	0	13	seg_DisplayNumberAlt,fighter_ApplyHitReaction,seg_DisplayNumber
+54fd11	1:13		8	5	0	0	5	charsel_UpdateSelection,hud_UpdatePlayerBanners,fighter_ApplyHitReaction
+54fd12	1:5		3	2	0	0	4	backup_ApplyGameSettings,charsel_UpdateSelection,charsel_CheckHiddenCode
+54fd13	1:119		100	19	0	0	43	fighter_ApplyHitReaction,hit_ResolveStrike,round_SelectWinPose
+54fd14	1:3		1	2	0	0	2	charsel_StartVsMode,round_StartRound
+54fd15	1:11		6	5	0	0	9	round_TickTimer,rank_FindTimeRank,round_ResetTimers
+54fd16	1:11		6	5	0	0	9	round_TickTimer,rank_FindTimeRank,round_ResetTimers
+54fd17	1:9		5	4	0	0	9	rank_FindTimeRank,round_ResetTimers,hud_DrawFightLayout
+54fd20	4:1		1	0	4	0	4	eeprom_ResetShadow,eeprom_CheckAndInit,eeprom_ReadAll
+54fd24	2:1		1	0	0	0	1	eeprom_CheckAndInit
+54fd28	2:3		2	1	7	0	9	eeprom_CheckAndInit,backup_ApplyGameSettings,game_LoadSettings
+54fd2a			0	0	2	0	2	eeprom_CheckAndInit,eeprom_Save
+54fd2c	4:4		2	2	0	0	3	eeprom_Save,eeprom_CheckAndInit,eeprom_ResetWithValue
+54fd30	1:2		1	1	1	0	3	game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSettings
+54fd31	1:3		2	1	0	0	3	game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSettings
+54fd32	1:3		2	1	0	0	3	game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSettings
+54fd33	1:3		2	1	0	0	3	game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSettings
+54fd34	1:3		2	1	0	0	3	game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSettings
+54fd35	1:3		2	1	0	0	3	game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSettings
+54fd36	1:3		2	1	0	0	3	game_LoadSettings,backup_LoadCoinSettings,backup_StoreCoinSettings
+54fd37	1:4		3	1	0	0	3	backup_ApplyGameSettings,test_LoadSettingsClamped,test_CommitGameSettings
+54fd38	1:3		2	1	0	0	3	backup_ApplyGameSettings,test_LoadSettingsClamped,test_CommitGameSettings
+54fd39	1:3		2	1	0	0	3	backup_ApplyGameSettings,test_LoadSettingsClamped,test_CommitGameSettings
+54fd3a	1:3		2	1	1	0	3	test_LoadSettingsClamped,fighter_ClearComboFlags,test_CommitGameSettings
+54fd3b	1:2		1	1	1	0	3	fighter_ClearComboFlags,test_LoadSettingsClamped,test_CommitGameSettings
+54fd3c	1:3		2	1	0	0	3	backup_ApplyGameSettings,test_LoadSettingsClamped,test_CommitGameSettings
+54fd3d	1:3		2	1	0	0	3	backup_ApplyGameSettings,test_LoadSettingsClamped,test_CommitGameSettings
+54fd3e	1:1		0	1	0	0	1	test_CommitGameSettings
+54fd3f	1:3		2	1	0	0	3	backup_ApplyGameSettings,test_LoadSettingsClamped,test_CommitGameSettings
+54fd40	1:3		2	1	0	0	3	backup_ApplyGameSettings,test_LoadSettingsClamped,test_CommitGameSettings
+54fd4c	2:3		3	0	2	0	3	eeprom_CheckAndInit,eeprom_CopyToBackup,eeprom_CopyFromBackup
+54fd4e			0	0	1	0	1	eeprom_CheckAndInit
+54fd50	4:1		1	0	0	0	1	eeprom_CheckAndInit
+54fd70	1:3		1	2	0	0	2	backup_ApplyGameSettings,-
+54fd71	1:3		1	2	0	0	2	backup_ApplyGameSettings,fight_SelectKoVariant
+54fd72	1:3		1	2	0	0	2	backup_ApplyGameSettings,fight_SelectKoVariant
+54fd73	1:10		8	2	0	0	5	fighter_ScriptOpcodeDispatch,backup_ApplyGameSettings,fighter_ClearStateFlag
+54fd74	1:4		2	2	0	0	2	backup_ApplyGameSettings,fighter_ApplyHitReaction
+54fd75	1:4		2	2	0	0	3	backup_ApplyGameSettings,io_ReadCabinetInputs,fighter_ApplyHitReaction
+54fd76	1:15		14	1	0	0	5	test_DrawCharacterWinMatrix,test_DrawCharacterWinStats,test_BookkeepingInput
+54fd77	1:5		4	1	0	0	5	backup_ApplyGameSettings,ranking_UpdateNameEntry,round_TickTimer
+54fd78	1:5		4	1	0	0	3	fight_UpdateRoundState,hud_DrawTimerDigits,backup_ApplyGameSettings
+54fd7c	4:20		19	1	0	0	16	ai_EvalWeightEntry,fighter_CheckRingEdgeEnter,fighter_SetRingEdgePush
+54fd80	4:20		19	1	0	0	16	ai_EvalWeightEntry,fighter_CheckRingEdgeEnter,fighter_SetRingEdgePush
+54fd84	1:6		3	3	0	0	4	tile_ShowGraphicById,backup_ApplyGameSettings,attract_UpdateScreenMode
+54fd85	1:11		5	6	0	0	6	test_ScreenSoundCheck,-,lamp_UpdateStartPattern
+54fd86	1:2		1	1	0	0	2	backup_ApplyGameSettings,move_AdvanceFrameMotion
+54fd88	4:2		1	1	0	0	2	backup_ApplyGameSettings,attract_UpdateDemo
+54fd8c	1:10		9	1	0	0	8	fighter_InitRoundFighter,backup_ApplyGameSettings,fighter_StartMoveScript
+54fd8d	1:6		3	3	0	0	2	fight_SpawnGuardEffect,round_ResetTimers
+54fd90	4:7	4:1	3	4	1	0	4	io_ReadStickButtons,backup_UpdatePlayTime,backup_RecordPlayStats
+54fd94	4:4		2	2	0	0	2	backup_UpdatePlayTime,io_ReadPlayerInput
+54fd98	4:4		0	4	0	0	4	backup_UpdatePlayTime,backup_RecordPlayStats,io_ReadStickButtons
+54fd9c	4:15		1	14	0	0	10	coin_UpdateCredits,backup_CommitIfDirty,coin_SpendCredits
+54fda0	1:13		6	7	0	0	7	test_ToggleSettingBonus,game_LoadSettings,test_ResetCoinDefaults
+54fda4	2:1,4:19		14	6	1	0	8	coin_UpdateCredits,hud_UpdatePlayerBanners,game_LoadSettings
+54fda8	2:1,4:19		11	9	1	0	7	coin_UpdateCredits,game_LoadSettings,hud_UpdatePlayerBanners
+54fdac	4:14		8	6	0	0	6	coin_UpdateCredits,fighter_UpdateInputBuffer,fight_ClampLifeGauge
+54fdb0	4:11		6	5	0	0	6	coin_UpdateCredits,fighter_UpdateInputBuffer,fight_ClampLifeGauge
+54fdb4	1:2		1	1	0	0	2	coin_UpdateCredits,io_ReadButtons
+54fdb5	1:3		2	1	0	0	2	coin_UpdateCredits,io_ReadButtons
+54fdb6	1:1		1	0	2	0	2	coin_UpdateLamp,io_ReadButtons
+54fdb7	1:4		1	3	0	0	4	irq_VBlankHandler,hud_DrawFightLayout,hud_WriteTilemapPortraits
+54fdb8	1:1		1	0	0	0	1	irq_VBlankHandler
+54fdc0	4:2	4:1	1	1	0	0	2	irq_TimerHandler,timer_SetPeriod0
+54fdc4	4:1		0	1	0	0	1	timer_SetPeriod1
+54fdc8	4:1		0	1	0	0	1	timer_SetPeriod2
+54fdd0	1:2		1	1	0	0	1	io_ReadButtons
+54fdd1	1:1		0	1	0	0	1	io_ReadButtons
+54fdd2	1:1		0	1	0	0	1	io_ReadButtons
+54fdd3	1:1		0	1	0	0	1	io_ReadButtons
+54fdd4			0	0	1	0	1	io_ReadButtons
+54fdd5	1:1		0	1	0	0	1	io_ReadButtons
+54fdd6			0	0	1	0	1	io_ReadButtons
+54fdd7	1:1		0	1	0	0	1	io_ReadButtons
+54fdd8	1:1		0	1	0	0	1	io_ReadButtons
+54fdd9	1:1		0	1	0	0	1	io_ReadButtons
+54fdda	1:2		1	1	0	0	1	io_ReadButtons
+54fde0	1:1		1	0	0	1	1	io_ReadAllInputs
+54fee0	1:1		0	1	0	0	1	io_ReadAllInputs
+54fef0	1:1		1	0	0	1	1	io_ReadAllInputs
+54fff0	1:1		0	1	0	0	1	io_ReadAllInputs
+550000	1:1		1	0	0	1	1	io_ReadAllInputs
+550100	1:1		0	1	0	0	1	io_ReadAllInputs
+550120	4:4,8:2		5	1	0	0	6	fighter_PointOutsideRing,fighter_CheckDangerZone,fight_ClearPlayerVectors
+550124	4:4		3	1	0	0	4	fight_ClearPlayerVectors,geo_DrawGroundShadow,geo_DrawGroundShadow_2
+550130	4:4,8:2		5	1	0	0	6	fighter_PointOutsideRing,fighter_CheckDangerZone,fight_ClearPlayerVectors
+550134	4:4		3	1	0	0	4	fight_ClearPlayerVectors,geo_DrawGroundShadow,geo_DrawGroundShadow_2
+550140	1:8		1	7	0	7	4	hit_CheckFighterAttacks,hit_CheckFighterAttacksAlt,fight_UpdateHitChecks
+550141	1:1		1	0	0	0	1	fight_UpdateHitChecks
+550144	1:1,2:43	2:42	39	5	3	1	28	fighter_ScriptOpcodeDispatch,move_AdvanceFrameMotion,hit_TestBoxOverlap
+550146	2:1		1	0	0	0	1	fight_UpdateHitChecks
+550150	4:1		1	0	3	4	4	fighter_CheckDangerZone,fighter_CalcKnockbackAngle,fighter_UpdateMotionState
+550158	8:1		1	0	0	1	1	fighter_CalcKnockbackAngle
+55015c	4:1		0	1	0	1	1	fighter_UpdateMotionState
+550160	4:1		0	1	0	1	1	fighter_UpdateMotionState
+550164	4:2		1	1	0	2	2	fighter_CalcKnockbackAngle,fighter_UpdateMotionState
+550180	4:1	4:2	1	0	3	2	4	fighter_FacingEdgeTest_2,fighter_UpdateMotionState,cam_ResetViewAngles
+550188	4:1		1	0	0	1	1	fighter_FacingEdgeTest_2
+5501a0	4:1	8:1	1	0	2	2	3	fighter_FacingWallTest,fighter_UpdateMotionState,fight_InitSceneState
+5501a8	8:1		1	0	0	1	1	fighter_FacingWallTest
+5501ac			0	0	1	1	1	fighter_UpdateMotionState
+5501b4	4:1	8:1	1	0	0	0	1	fighter_FacingWallTest
+5501d0		4:1	0	0	6	3	4	hit_TestBoxOverlap,hit_InitTables,fighter_UpdateBodyParts
+550284			0	0	2	0	2	hit_InitTables,fighter_UpdateBodyParts
+550288	4:1		1	0	0	1	1	fighter_UpdateBodyParts
+55028c	4:1		1	0	0	1	1	fighter_UpdateBodyParts
+550340	4:1	4:1	1	0	4	3	4	fighter_UpdateBodyParts,hit_InitTables,hit_LoadHurtboxTable
+55037c			0	0	2	0	2	hit_InitTables,fighter_UpdateBodyParts
+5503c0		4:3	0	0	4	1	4	hit_TestAttackVsBody,hit_TestAttackVsBodyAlt,hit_LoadAttackTable
+550530		4:3	0	0	4	1	4	hit_TestAttackVsBody,hit_TestAttackVsBodyAlt,hit_LoadAttackTable
+5510f0	4:1		1	0	1	1	1	hit_SetImpactScale
+552610		8:3	0	0	4	1	4	hit_TestAttackVsBody,hit_TestAttackVsBodyAlt,hit_LoadAttackTable
+552640		8:1	0	0	1	0	1	hit_TestBoxOverlap
+5528e0		4:3	0	0	4	1	4	hit_TestAttackVsBody,hit_TestAttackVsBodyAlt,fight_StoreSlotEntry
+5528e8	4:1	4:1	1	0	0	0	1	hit_TestBoxOverlap
+552960		4:2	0	0	6	4	4	hit_TestAttackVsBody,hit_TestAttackVsBodyAlt,hit_LoadHitboxTable
+552ad0		4:5	0	0	6	1	4	hit_TestAttackVsBody,hit_TestAttackVsBodyAlt,hit_LoadHitboxTable
+554bb0	1:2	4:2	2	0	2	2	4	hit_GetPartTypeA,hit_LoadHitboxTable,hit_ClearHitboxSlots
+554c30	1:2	4:2	2	0	2	2	4	hit_GetPartTypeB,hit_LoadAttackTable,hit_ClearAttackSlots
+554cb0	1:5	4:4	5	0	3	3	5	hit_TestBoxOverlap,hit_PartsActive,fighter_UpdateBodyParts
+554cec	1:1	4:1	1	0	0	0	1	fighter_UpdateBodyParts
+554d30			0	0	4	4	4	fighter_UpdateFrame,tgp_MulBoneMatrices,fighter_DrawAllModels
+554d60			0	0	2	0	2	cam_UpdatePlayerViewAngles,cam_SendViewMatrixToTgp
+554d70	16:2		0	2	0	2	2	cam_UpdatePlayerViewAngles,cam_SendViewMatrixToTgp
+554d80	16:2		0	2	0	2	2	cam_UpdatePlayerViewAngles,cam_SendViewMatrixToTgp
+5552d0	4:6	4:4	6	0	27	8	23	fighter_FacingWallTest,cam_UpdateRoundEvent,fighter_UpdateStateAttack
+5552d4	4:4	4:3	4	0	0	1	3	hit_ApplyAttackToDefender,hold_StartCounterResponse,move_ComputeKnockback
+5552d8	4:2		2	0	0	2	1	fighter_FacingWallTest
+5552dc	4:2		2	0	3	4	4	cam_UpdatePlayerViewAngles,fighter_CheckRingBoundsMulti,cam_ResetViewAngles
+5552e0	4:4		4	0	0	4	4	fighter_CheckRingBoundsMulti,cam_UpdatePlayerViewAngles,cam_ResetViewAngles
+5552e4	4:4		4	0	0	4	4	fighter_CheckRingBoundsMulti,cam_UpdatePlayerViewAngles,cam_ResetViewAngles
+5552e8	4:3		3	0	0	1	3	cam_UpdateFollowOffset,fighter_CheckRingBoundsMulti,cam_EventSmoothBothFighters
+5552ec	4:8	4:4	8	0	0	2	7	fighter_CalcLaunchVelocity,cam_UpdateFollowOffset,fighter_CheckRingBoundsMulti
+5552f0	4:3		3	0	0	1	3	cam_UpdateFollowOffset,fighter_CheckRingBoundsMulti,cam_EventSmoothBothFighters
+5552f4	4:3		3	0	0	1	3	fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5552f8	4:3		3	0	0	1	3	fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5552fc	4:3		3	0	0	1	3	fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+55533c	4:3		3	0	0	1	3	fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+555340	4:3		3	0	0	1	3	fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+555344	4:3		3	0	0	1	3	fighter_CheckRingBoundsMulti,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+555388	4:2	4:2	2	0	0	0	2	cam_EventLowAngle,cam_EventHighAngle
+55539c	4:2		2	0	0	0	2	cam_UpdateFollowOffset,cam_EventSmoothBothFighters
+5553a0	4:2		2	0	0	0	2	cam_UpdateFollowOffset,cam_EventSmoothBothFighters
+5553a4	4:2		2	0	0	0	2	cam_UpdateFollowOffset,cam_EventSmoothBothFighters
+5553a8	4:2		2	0	0	0	2	fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553ac	4:2		2	0	0	0	2	fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553b0	4:2		2	0	0	0	2	fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553f0	4:2		2	0	0	0	2	fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553f4	4:2		2	0	0	0	2	fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5553f8	4:2		2	0	0	0	2	fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+5555a0	1:11		7	4	0	0	6	fight_UpdateRoundState,hit_ResolveStrike,round_TickTimer
+5555a1	1:9		5	4	0	0	6	hit_ResolveStrike,fight_UpdateRoundState,ranking_UpdateNameEntry
+5555a2	1:36		26	10	0	0	24	cam_RunEventState,ai_UpdateFacingFor,cam_AngOpRandomSide
+5555a4	4:24		23	1	0	0	19	ai_PickDefenceVsMove,-,ai_PickIdleMove
+5555a8	2:19,4:40		55	4	0	0	29	fighter_CalcLaunchAngle,cam_RunEventState,math_AngleInRange
+5555ac	1:51		24	27	0	0	25	cam_UpdateByMode,fighter_ApplyHitReaction,fight_UpdateRoundState
+5555ad	1:21		11	10	0	0	10	cam_UpdateByMode,cam_StepFovTable,cam_UpdateFollowFighterParam
+5555b0	4:9		8	1	0	0	6	charsel_ReadSelection,charsel_UpdateCursor,stage_UpdateScrollA
+5555b4	4:9		8	1	0	0	6	cmd_CheckFacingAngle,stage_DrawModelsA,stage_DrawModelsI
+5555b8	4:36		32	4	0	0	30	cam_BuildMatrixGroundClip,stage_DrawModelsB,stage_DrawModelsC
+5555bc	4:35		30	5	0	0	29	cam_BuildMatrixGroundClip,stage_DrawModelsE,cam_BuildMatrix
+5555c0	4:33		29	4	0	0	28	stage_DrawModelsB,fight_RunFrame,cam_BuildMatrixGroundClip
+5555c4	4:6		5	1	0	0	4	stage_DrawModelsA,stage_DrawModelsI,fight_RunFrame
+5555c8	4:5		4	1	0	0	4	stage_DrawModelsE,stage_DrawModelsD,fight_RunFrame
+5555cc	4:7		6	1	0	0	4	stage_DrawModelsA,stage_DrawModelsI,fight_RunFrame
+5555d0	4:22		7	15	0	0	15	hud_DrawCounterRight,-,geo_DrawEffectModel
+5555d4	4:23		8	15	0	0	16	hud_DrawCounterRight,-,geo_DrawEffectModel
+5555d8	4:21		7	14	0	0	15	hud_DrawCounterRight,-,cam_RandomizeCameraPose
+5555dc	1:11		7	4	0	0	7	fight_UpdateRoundState,fighter_ApplyHitReaction,fighter_UpdateFacing
+5555dd	1:10		6	4	0	0	7	fight_UpdateRoundState,fight_QueueRoundSoundTail,fighter_InitRoundState
+5555de	1:45		40	5	0	0	23	stage_LoadBackground,fight_StepMatchLoad,stage_Init
+5555df	1:15		4	11	0	0	11	hud_UpdateFightHud,hud_DrawFightLayout,hud_DrawStateA
+5555e0	1:22		12	10	0	0	14	fight_UpdateKO,charsel_Init,fight_StepMatchLoad
+5555e2	1:16		14	2	0	0	5	ai_EvalWeightEntry,fight_UpdateKO,aiop_DelayScaledByLevel
+5555e3	1:13		2	11	0	0	4	ranking_UpdateNameEntry,round_CheckKO,fight_UpdateRoundState
+5555e4	1:11		7	4	0	0	8	fight_UpdateRoundState,ranking_UpdateNameEntry,fight_UpdateKO
+5555e5	1:22		10	12	0	0	7	fighter_UpdateInputBuffer,fight_ClampLifeGauge,io_ReadCabinetInputs
+5555e6	1:9		7	2	0	0	6	fight_SelectKoVariant,fighter_InitRoundState,ranking_UpdateNameEntry
+5555e7	1:4		1	3	0	0	2	fight_UpdateRoundState,ranking_UpdateNameEntry
+5555e8	1:9		4	5	0	0	7	io_ReadCabinetInputs,round_UpdateModeScreensTail,fight_UpdateRoundState
+5555e9	1:6		1	5	0	0	5	round_UpdateModeScreensTail,fight_UpdateRoundState,fighter_UpdateFacing
+5555ea	1:3		1	2	0	0	2	round_UpdateModeScreensTail,fight_UpdateRoundState
+5555eb	1:27		25	2	0	0	23	hud_DrawCreditPromptsAlt,-,stage_Init
+5555ec	2:23		13	10	0	0	5	hit_ResolveStrike,round_TickTimeout,fighter_PushHitEffects
+5555ee	2:2		1	1	0	0	2	hit_BuildHitBuffers,motion_RunMoveScript
+5555f0	2:2		1	1	0	0	2	hit_BuildHitBuffers,motion_RunMoveScript
+5555f2	2:2		1	1	0	0	2	hit_BuildHitBuffers,motion_RunMoveScript
+5555f4	2:2		1	1	0	0	2	hit_BuildHitBuffers,motion_RunMoveScript
+5555f8	4:2		1	1	0	0	2	hit_BuildHitBuffers,motion_RunMoveScript
+5555fc	2:5		2	3	0	0	4	hit_LoadHitBufferChecked,hit_ResolveStrike,hit_LoadHitBuffer
+5555fe	2:6		3	3	0	0	5	hit_LoadHitBufferChecked,fighter_UpdateStateAirRise,fighter_UpdateStateAirFall
+555600	2:6		3	3	0	0	5	hit_LoadHitBufferChecked,fighter_UpdateStateAirRise,fighter_UpdateStateAirFall
+555602	2:4		1	3	0	0	3	hit_LoadHitBufferChecked,hit_LoadHitBuffer,fighter_InitScript
+555604	4:4		1	3	0	0	3	hit_LoadHitBufferChecked,hit_LoadHitBuffer,fighter_InitScript
+55560f	1:9		5	4	0	0	3	hit_ResolveStrike,hit_CalcDamage_tail,fighter_UpdateAirPhysics
+555610	1:2		1	1	0	0	2	hit_ResolveStrike,hit_CalcDamage_tail
+555611	1:7		3	4	0	0	3	hit_ResolveStrike,round_UpdateModeScreens,hud_DrawRoundNumberTiles
+555612	1:4		1	3	0	4	2	move_StartRecovery,ai_ApplyQueuedScript
+555614	1:3		1	2	0	3	2	move_StartRecovery,ai_ApplyQueuedScript
+555616	1:4		2	2	0	0	3	cam_UpdatePlayerViewAngles,-,script_OpSetFlagB
+555617	1:5		3	2	0	0	4	fighter_ApplyHitReaction,round_UpdateModeScreens,round_UpdateModeScreensTail
+555618	1:4		2	2	0	0	3	fight_DecayEntryTable,attract_StepIntroSequence,fight_StepMatchLoad
+555619	1:5		3	2	0	0	3	attract_EnterMode4,charsel_Init,round_StartRound
+55561a	1:5		3	2	0	0	3	round_TickDelayTimer,charsel_Init,charsel_DrawSelectScreenTiles
+55561b	1:4		2	2	0	0	4	-,cmd_SetGlobalFlag561b,hud_UpdatePlayerBanners
+55561c	1:3		1	2	0	0	3	aiop_SetGlobal561c,ai_ApplyQueuedScript,fight_CheckPlayerActionable
+55561e			0	0	1	1	1	hud_UpdateFightHud
+555620			0	0	1	0	1	hud_DrawFightLayout
+55562c	4:1		1	0	1	0	1	hud_ClearTileLayer
+555640			0	0	6	1	2	hud_DrawFightLayout,hud_UpdateFightHud
+55564c			0	0	3	0	1	hud_DrawFightLayout
+555660	4:1	4:1	1	0	2	0	3	charsel_DrawPortrait,charsel_LoadPortraitPalette,hud_DrawFightLayout
+55566c			0	0	1	0	1	hud_DrawFightLayout
+555680	4:1		1	0	1	0	1	geo_BuildVertexTableA
+555690	4:1		1	0	1	0	1	geo_BuildVertexTableB
+5556a0		4:1	0	0	1	0	1	geo_BuildVertexTable
+555760	4:1		1	0	1	0	2	fight_ResetRoundTimer,hud_DrawTileEntry
+555770			0	0	2	2	2	geo_BuildVertexTable,tile_CopyBlock8x8
+5557f0			0	0	2	2	2	geo_BuildVertexTable,tile_CopyBlock8x8
+555870			0	0	2	2	2	geo_BuildVertexTable,tile_CopyBlock8x8
+5558f0			0	0	2	2	2	geo_BuildVertexTable,tile_CopyBlock8x8
+557570			0	0	2	0	2	geo_BuildVertexTableA,tile_CopyBlock8x10
+557610			0	0	1	0	1	tile_CopyBlock8x10
+5576b0			0	0	1	0	1	tile_CopyBlock8x10
+557750			0	0	1	0	1	tile_CopyBlock8x10
+5577f0			0	0	2	0	2	geo_BuildVertexTableB,tile_CopyBlock8x10
+557890			0	0	1	0	1	tile_CopyBlock8x10
+557930			0	0	1	0	1	tile_CopyBlock8x10
+5579d0			0	0	1	0	1	tile_CopyBlock8x10
+557a70	4:1,8:1		1	1	1	1	3	charsel_InitPortraitPos,hud_DrawFightLayout,hud_UpdateFightHud
+557a74	4:1		0	1	0	0	1	hud_DrawFightLayout
+557a78	4:7,8:1		3	5	1	1	5	hud_UpdateFightHud_2,hud_DrawStateB,charsel_InitPortraitPos
+557a7c	4:7		2	5	0	0	3	hud_UpdateFightHud_2,hud_DrawStateB,hud_DrawFightLayout
+557a80	4:6		4	2	0	0	3	charsel_LoadPortraitPalette,charsel_DrawPortrait,hud_DrawFightLayout
+557a84	4:5		4	1	0	0	4	hud_DrawFightLayout,charsel_DrawNameTiles,charsel_DrawIconRows
+557a88	1:10		6	4	0	0	4	hud_DrawFightLayout,charsel_DrawIconRows,charsel_DrawIconRows_2
+557a90	1:17		15	2	2	15	5	hud_DrawFightLayout,fight_UpdateDangerZoneTimer,hud_UpdateFightHud
+557a91	1:1		0	1	2	0	3	charsel_DrawIconRows,charsel_DrawIconRows_2,hud_DrawFightLayout
+557a92	1:1		0	1	0	0	1	hud_DrawFightLayout
+557a93	1:1		0	1	0	0	1	hud_DrawFightLayout
+557a94	1:1		0	1	0	0	1	hud_DrawFightLayout
+557a95	1:1		0	1	0	0	1	hud_DrawFightLayout
+557a96	1:1		0	1	0	0	1	hud_DrawFightLayout
+557a97	1:1		0	1	0	0	1	hud_DrawFightLayout
+557a98	1:1		0	1	0	0	1	hud_DrawFightLayout
+557aa0	1:7		6	1	0	0	4	charsel_DrawIconRows,charsel_DrawIconRows_2,hud_UpdateFightHud
+557ab0	4:3		2	1	3	2	3	math_InitRotateTable,hud_DrawCounterLeft,hud_DrawCounterRight
+557ab4	4:1		0	1	0	0	1	math_InitRotateTable
+557ab8	4:1		0	1	0	0	1	math_InitRotateTable
+557b70	1:1,4:5	4:6	1	5	3	2	4	hud_DrawFightLayout,hud_UpdateFightHud,fighter_AdvanceMoveVariant
+557b74	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b78	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b7c	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b80	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b84	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b88	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b8c	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b90	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b94	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b98	4:1		0	1	0	0	1	hud_DrawFightLayout
+557b9c	4:1		0	1	0	0	1	hud_DrawFightLayout
+557ba0	4:1		0	1	0	0	1	hud_DrawFightLayout
+557ba4	4:1		0	1	0	0	1	hud_DrawFightLayout
+557ba8	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bac	4:4	4:3	0	4	0	0	2	hud_DrawFightLayout,hud_UpdateFightHud
+557bb0	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bb4	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bb8	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bbc	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bc0	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bc4	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bc8	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bcc	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bd0	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bd4	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bd8	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bdc	4:1		0	1	0	0	1	hud_DrawFightLayout
+557be0	4:1		0	1	0	0	1	hud_DrawFightLayout
+557be4	4:1		0	1	0	0	1	hud_DrawFightLayout
+557bf0	4:2		1	1	0	0	2	fight_ResetRoundTimer,hud_DrawTileEntry
+557bf4	1:10		8	2	0	0	2	hud_DrawFightLayout,hud_UpdateFightHud
+557bf5	1:5		0	5	0	0	1	hud_DrawFightLayout
+557bf6	1:4		0	4	0	0	1	hud_DrawFightLayout
+557bf8	4:4		3	1	1	1	2	hud_UpdateFightHud,hud_DrawFightLayout
+557bfc	4:4		3	1	0	0	2	hud_UpdateFightHud,hud_DrawFightLayout
+557c00	1:4		2	2	0	0	3	hud_DrawFightLayout,hud_UpdateFightHud,hud_UpdateFightHud_2
+557c01	1:4		2	2	0	0	3	hud_DrawFightLayout,hud_UpdateFightHud,hud_UpdateFightHud_2
+557c02	1:5		3	2	0	0	1	hud_DrawFightLayout
+557c04	1:3		1	2	0	1	2	hud_DrawFightLayout,hud_UpdateFightHud
+557c05	1:2		1	1	0	0	1	hud_DrawFightLayout
+557c06	1:5		0	5	0	1	2	hud_DrawFightLayout,hud_UpdateFightHud
+557c07	1:4		0	4	0	0	2	hud_DrawFightLayout,hud_UpdateFightHud
+557c08	4:4	4:2	3	1	1	1	3	hud_UpdateFightHud,fight_UpdateDangerZoneTimer,hud_DrawFightLayout
+557c0c	4:3		2	1	0	0	2	hud_DrawFightLayout,hud_UpdateFightHud
+557c10	1:4		2	2	1	2	3	hud_UpdateFightHud,hud_UpdateFightHud_2,hud_DrawFightLayout
+557c11	1:2		1	1	0	0	2	hud_DrawFightLayout,hud_UpdateFightHud_2
+557c18	4:7		3	4	2	1	2	hud_UpdateFightHud,hud_DrawFightLayout
+557c1c	4:7		3	4	0	0	2	hud_UpdateFightHud,hud_DrawFightLayout
+557c20	1:3		0	3	1	1	2	hud_UpdateFightHud,hud_DrawFightLayout
+557c21	1:3		0	3	0	0	2	hud_UpdateFightHud,hud_DrawFightLayout
+557c22	2:8		4	4	0	0	3	hud_UpdateFightHud,hud_DrawTileEntry,hud_DrawFightLayout
+557c24	1:4		3	1	0	0	1	hud_UpdateFightHud
+557c28	4:7	4:5	6	1	0	2	1	fight_UpdateDangerZoneTimer
+557c40	4:16		4	12	0	0	3	fighter_UpdateInputBuffer,fight_ClampLifeGauge,fight_PlayHitEffect
+557c44	4:9		1	8	0	0	8	fight_UpdateRoundState,fight_MainStep,fighter_UpdateFacing
+557c48	4:10		3	7	0	0	3	io_ReadCabinetInputs,fighter_ApplyHitReaction,fighter_UpdateInputBuffer
+557c4c	4:9		3	6	0	0	3	fighter_UpdateInputBuffer,fight_ClampLifeGauge,fight_PlayHitEffect
+557c50	4:6		2	4	0	0	3	fighter_UpdateInputBuffer,fight_ClampLifeGauge,fight_PlayHitEffect
+557c54	4:4		2	2	0	0	3	fighter_ApplyHitReaction,io_ReadCabinetInputs,fighter_UpdateInputBuffer
+557c60	1:3		1	2	0	0	1	-
+557c61	1:12		5	7	0	0	7	snd_PlaySfxA,snd_PlaySfxB,fighter_SetAnimTransition_2
+557c62	1:13		7	6	0	0	8	snd_PlaySfxC,snd_PlaySfxD,fighter_SetAnimTransition_2
+557c63	1:13		7	6	0	0	8	snd_PlaySfxE,snd_PlaySfxF,fighter_SetAnimTransition_2
+557c64	1:9		4	5	0	0	5	charsel_LoadLayerD,charsel_LoadLayerE,charsel_ClearLayerB
+557c65	1:9		3	6	0	0	7	-,fighter_ResetAnimState,fighter_SetAnimTransition
+557c66	1:7		4	3	0	0	2	-,move_StartHold
+557c67	1:3		1	2	0	0	2	-,move_StartRecovery
+557c68	1:4		1	3	0	0	1	-
+557c69	1:4		1	3	0	0	1	-
+557c6a	1:2		1	1	0	0	1	-
+557c6b	1:5		1	4	0	0	4	fighter_ClearViaB3C0,fighter_SetAnimTransition,script_OpLoadTableEntry
+557c6c	1:6		1	5	0	6	5	fighter_SetMoveEnd_2,fighter_SetAnimTransition,fighter_SetAnimTransition_2
+557c6e	1:3		0	3	0	0	3	fighter_SetAnimTransition_2,snd_CallCommandB,snd_CallCommandC
+557c70	4:191		153	38	26	0	51	move_StartStrike,move_StartStrike_2,move_EndMove
+557c74	2:20		9	11	0	0	7	charsel_ShowPortraitA,snd_SendCommandPair,attract_StepB
+557c78	4:4		2	2	0	0	2	fighter_ClearViaB3C0,script_OpLoadTableEntry
+557c7c	2:4		2	2	0	0	2	fighter_ClearViaB3C0,script_OpLoadTableEntry
+557c7e	2:4		2	2	0	0	2	fighter_ClearViaB3C0,script_OpLoadTableEntry
+557c80	4:3		1	2	0	0	3	charsel_ShowPortraitA,charsel_LoadLayerD,charsel_DrawPortraits
+557c90			0	0	10	0	5	charsel_LoadLayerD,charsel_DrawPortraits,charsel_LoadLayerE
+557ca0	1:4		2	2	0	0	4	script_OpWaitIfFlag,attract_ClearFlag,attract_RunDemo
+557ca1	1:3		1	2	0	0	3	script_OpReloadDefaults,tile_WriteEntryPair,attract_RunDemo
+557ca4	4:2		1	1	0	0	2	script_OpCallTable,script_OpReturn_2
+557ca8	2:2	2:2	1	1	0	0	2	fighter_SetHitFlag,fighter_SetMoveEnd_2
+557cc0		4:3	0	0	4	0	4	attract_DrawTitle,attract_StepFade,tile_ClearTitleLayer
+557d20			0	0	1	0	1	pal_WriteColourBlock_2
+557d30	4:5		2	3	0	0	2	tile_FillRange,attract_DrawTitle
+557d34	4:4		1	3	0	0	2	tile_FillRange,tile_InitStreamFromHandle
+557d38	2:2		1	1	0	0	2	tile_FillRange,tile_InitStreamFromHandle
+557d3c	4:2		1	1	0	0	2	tile_FillRange,tile_InitStreamFromHandle
+557d40	4:2		1	1	0	0	2	tile_FillRange,tile_InitStreamFromHandle
+557d44	2:5		2	3	0	0	2	tile_FillRange,attract_DrawTitle
+557d48	4:2		1	1	0	0	2	attract_DrawTitle,attract_StepScroll
+557d4c	4:6		3	3	0	0	2	attract_StepScroll,attract_DrawTitle
+557d50	4:7		4	3	0	0	2	attract_StepScroll,attract_DrawTitle
+557d54	1:6		3	3	0	0	2	tile_FillRange,attract_DrawTitle
+557d55	1:3		1	2	0	0	2	tile_ClearTitleLayer,attract_DrawTitle
+557d56	1:6		3	3	0	0	4	attract_StateA,attract_StateB,attract_ClearFlag
+557d58	2:6		3	3	0	0	3	attract_StateB,attract_ClearFlag,pal_WriteColourBlock_2
+557d70	4:4		1	3	0	0	4	-,charsel_Init,round_TickDelayTimer
+557d74	4:10		9	1	0	0	6	round_UpdateMain,fighter_PlaceStartPositions,charsel_Update
+557d78	4:7		5	2	0	0	6	charsel_Update,-,charsel_Init
+557d7c	4:4		3	1	0	0	1	charsel_Update
+557d80	4:5		2	3	0	0	2	round_TickDelayTimer,charsel_Init
+557d88	2:7	2:4	2	5	0	0	5	round_UpdateMain,charsel_Init,charsel_UpdateCursor
+557d8a	2:3		2	1	0	0	3	charsel_Init,charsel_Update,io_ReadCoinsAndStart
+557d8c	2:3		2	1	0	0	3	charsel_Init,charsel_Update,io_ReadCoinsAndStart
+557d90	4:21		16	5	0	0	4	round_UpdateMain,charsel_Update,charsel_ReadSelection
+557d94	4:4		3	1	0	0	2	io_ReadServiceSwitch,io_ReadCoinsAndStart
+557d98	4:7		6	1	0	0	3	charsel_Update,io_ReadCoinsAndStart,io_ReadServiceSwitch
+557d9c	4:5		1	4	0	0	3	round_WaitTimer,round_UpdateMain,fighter_PlaceStartPositions
+557da0	4:9		3	6	0	0	2	round_WaitTimer,round_UpdateMain
+557da4	4:8		5	3	0	0	6	fighter_UpdatePosition,round_IntegratePosClamp,round_UpdateMain
+557da8	4:10		6	4	0	0	6	round_IntegratePosClamp,fighter_UpdatePosition,round_UpdateMain
+557dac	4:8		5	3	0	0	6	fighter_UpdatePosition,round_IntegratePosClamp,round_UpdateMain
+557db0	4:3		1	2	0	0	2	round_IntegratePosClamp,fighter_UpdatePosition
+557db4	4:3		1	2	0	0	2	round_IntegratePosClamp,fighter_UpdatePosition
+557db8	4:3		1	2	0	0	2	round_IntegratePosClamp,fighter_UpdatePosition
+557dbc	4:2		1	1	0	0	2	fighter_UpdateHeight,fighter_UpdateVelocity
+557dc0	4:1		0	1	0	0	1	fighter_UpdateHeight
+557dc4	4:2		1	1	0	0	2	fighter_UpdateHeight,fighter_UpdateVelocity
+557dd0	4:4		3	1	5	4	4	charsel_UpdateCursor,round_UpdateMain,charsel_Update
+557e18	4:3		1	2	0	1	3	charsel_Init,charsel_UpdateCursor,charsel_Update
+557e68	4:2		1	1	0	0	2	charsel_Init,charsel_Update
+557eb8	4:6		5	1	0	0	6	charsel_Init,round_TickDelayTimer,round_UpdateMain
+557ec0	1:5		2	3	0	0	4	round_TickTimer,ranking_CallInit,ranking_InitEntry
+557ec8	2:1,4:8	4:7	5	4	3	0	3	ranking_UpdateNameEntry,hit_ApplyPendingDamage,ranking_CallInit
+557ecc	2:1,4:2		2	1	0	0	1	ranking_UpdateNameEntry
+557ed0	2:1,4:11	4:6	6	6	2	0	3	ranking_UpdateNameEntry,ranking_CallInit,hit_ApplyPendingDamage
+557ed4	2:1,4:5		3	3	0	0	1	ranking_UpdateNameEntry
+557ed8			0	0	2	0	2	ranking_CallInit,ranking_UpdateNameEntry
+557ee0			0	0	2	0	2	ranking_CallInit,ranking_UpdateNameEntry
+557ee8	1:9		1	8	0	0	3	ranking_UpdateNameEntry,round_CheckKO,ranking_InitEntry
+557ee9	1:9		1	8	0	0	3	ranking_UpdateNameEntry,round_CheckKO,ranking_InitEntry
+557eea	1:5		2	3	0	0	2	ranking_UpdateNameEntry,ranking_InitEntry
+557eeb	1:7		3	4	0	0	3	ranking_UpdateNameEntry,round_TickTimer,ranking_InitEntry
+557eec	2:2		0	2	0	0	2	ranking_InitEntry,ranking_UpdateNameEntry
+557eee	2:2		0	2	0	0	2	ranking_InitEntry,ranking_UpdateNameEntry
+557ef0	1:3		1	2	0	0	2	ranking_UpdateNameEntry,ranking_InitEntry
+557ef1	1:2		1	1	0	0	2	ranking_InitEntry,ranking_UpdateNameEntry
+557ef2	1:2		1	1	0	0	2	ranking_InitEntry,ranking_UpdateNameEntry
+557ef3	1:2		1	1	0	0	2	ranking_InitEntry,ranking_UpdateNameEntry
+557ef4	1:2		1	1	0	0	2	ranking_InitEntry,ranking_UpdateNameEntry
+557ef8	4:2		1	1	0	0	1	ranking_UpdateNameEntry
+557efc	1:3		1	2	0	0	2	round_TickTimer,ranking_UpdateNameEntry
+557f20	1:18		14	4	0	18	5	hit_CalcDamageAll,hit_CalcDamage,hit_ApplyAttackToDefender
+557f22	1:7		4	3	0	7	3	hit_ApplyAttackToDefender,hit_CalcDamageAll,hit_CalcDamage
+557f24	1:4		2	2	0	4	4	fighter_UpdateStateAirRise,fighter_UpdateStateAirFall,hit_ApplyAttackToDefender
+557f28	4:4		1	3	0	0	4	fighter_DispatchStates,fighter_DispatchStatesLoopTail,hold_ApplyHoldPair
+557f2c	4:4		1	3	0	0	3	fighter_InitRoundState_2,-,DOA_orph_1f820
+557f30	4:5	4:4	2	3	0	0	2	round_SelectWinPose,DOA_orph_1f820
+557f34	4:1		0	1	0	0	1	DOA_orph_1f820
+557f38	4:5	4:4	2	3	0	0	2	round_SelectWinPose,-
+557f3c	4:1		0	1	0	0	1	-
+557f40	4:5	4:5	1	4	0	0	3	fighter_UpdateStateDownRecover,fighter_UpdateStateIdle,fighter_UpdateStateStun
+557f48	1:7		6	1	0	7	4	hit_ApplyAttackToDefender,hit_QueueResponseMove,hit_RestoreSavedMove
+557f4a	1:6		4	2	0	6	4	hit_QueueResponseMove,hit_ApplyAttackToDefender,hit_RestoreSavedMove
+557f4c	1:2		1	1	0	2	2	hit_RestoreSavedMove,hit_QueueResponseMove
+557f4e	1:3		2	1	0	3	3	hit_ApplyAttackToDefender,hit_RestoreSavedMove,hit_QueueResponseMove
+557f50	1:4		2	2	0	4	3	hit_ApplyAttackToDefender,hit_RestoreSavedMove,hit_QueueResponseMove
+557f52	1:3		1	2	0	3	3	hit_ApplyAttackToDefender,hit_RestoreSavedMove,move_SelectHitVariant
+557f54	1:18		4	14	0	18	3	hit_ApplyAttackToDefender,hit_RestoreSavedMove,move_SelectHitVariant
+557f56	1:3		1	2	0	3	2	hit_ApplyAttackToDefender,hit_RestoreSavedMove
+557f58	4:4	4:4	2	2	0	0	2	hit_ApplyAttackToDefender,hit_RestoreSavedMove
+557f60	1:2		1	1	0	0	2	DOA_orph_1f820,round_SelectWinPose
+557f68	4:4	4:4	1	3	0	0	1	fighter_UpdateFacing_2
+557f70	4:3	4:3	1	2	0	0	3	hit_ApplyAttackToDefender,fighter_SetupHitState,stub_00024ecc
+557f78	1:3		2	1	1	2	3	fighter_UpdateFacing_2,fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f79	1:5	2:3	3	2	0	0	4	fighter_ApplyRingLaunch,fighter_InitRoundState_2,fighter_UpdateAirPhysics
+557f7a	1:1		0	1	1	0	2	fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f7b	1:2		0	2	0	0	2	fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f7c	1:2	2:1	1	1	1	0	3	fighter_InitRoundState_2,fighter_SetupHitState,fighter_ShiftMoveHistory
+557f7d	1:2		0	2	0	0	2	fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f7e	1:1		0	1	1	0	2	fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f7f	1:2		0	2	0	0	2	fighter_InitRoundState_2,fighter_ShiftMoveHistory
+557f80	1:9		4	5	0	9	6	hit_CalcDamageAll,hit_CalcDamage,hit_GetDamageScale
+557f82	1:8		6	2	0	8	6	hold_StartCounterResponse,hit_GetDamageScale,fighter_UpdateStateAirRise
+557f84	1:4		1	3	0	4	3	hit_ApplyAttackToDefender,fighter_ResumeAfterMove,fighter_SetupHitState
+557f90	2:3		2	1	3	3	3	hit_LoadHitBuffer,hit_BuildHitBuffers,hit_LoadHitBufferChecked
+563f90	1:3		1	2	1	4	3	-,ai_StepHistoryClear,move_CanUseMove
+564090	1:2		0	2	3	5	4	-,ai_StepHistoryClear,ai_ClearInputBuffers
+564190	1:2		0	2	4	6	4	-,ai_StepHistoryClear,ai_ClearInputBuffers
+564290	1:6		1	5	1	7	5	-,ai_StepHistoryClear,ai_RunScriptFull
+564390	1:12		8	4	2	14	10	-,cmd_MatchButtonOpponentSlot,ai_StepHistoryClear
+564490	1:4		2	2	2	6	4	cmd_SkipUntilBufferOne,cmd_SkipUntilBufferZero,-
+564590	1:33		21	12	0	0	9	-,ai_ScanScriptRange,ai_RunScriptFull
+564591	1:40		29	11	0	0	7	ai_ScanScriptRange,ai_RunScriptFull,ai_ScanScriptBack
+564592	1:15		11	4	0	0	10	ai_RunScriptFull,-,ai_RunStateMachine
+564593	1:78		54	24	0	0	18	cmd_MatchHeldDirection,ai_OpMatchInput,cmd_MatchDirectionMasked
+564594	4:13		12	1	0	0	8	cmd_MatchHeldDirection,ai_PickMoveTable,ai_PickMoveTableTailB
+564598	4:16		15	1	0	0	8	ai_RunScriptStep,ai_RunScriptFull,ai_RunScriptDefault
+56459c	4:5		4	1	0	0	4	cmd_MatchDirectionPair,-,ai_OpMatchInput
+5645a0	4:6		5	1	0	0	3	cmd_ConsumeButtonA,cmd_MatchButtonA,-
+5645a4	4:7		6	1	0	0	4	cmd_ConsumeButtonB,ai_ScanScriptRange,-
+5645a8	4:55		28	27	0	0	22	ai_ScriptInterpret,cmd_MatchDirectionPair,ai_OpPrintFormatted
+5645ac	4:6		2	4	0	0	3	ai_ScriptDispatch,ai_ScriptDispatch_2,ai_ScriptInterpret
+5645b0	4:2		0	2	0	0	2	ai_ScriptDispatch,ai_ScriptDispatch_2
+5645b4	2:42		26	16	0	0	15	ai_OpDecrementLoop,ai_OpMatchInput,cmd_MatchDirectionBackward
+5645b6	1:450		434	16	0	0	123	-,ai_RunScriptStep,ai_InitWaitTimer
+5645b7	1:22		21	1	0	0	11	ai_TrackMoveCounters,cmd_MatchButtonOpponentSlot,ai_RunStateMachine
+5645b8	1:21		11	10	0	0	9	ai_OpMatchInput,cmd_MatchHeldDirection,cmd_MatchDirectionMasked
+5645ba	1:3,2:35		25	13	3	0	7	ai_OpMatchInput,cmd_MatchHeldDirection,cmd_MatchDirectionMasked
+5645bc	1:65		28	37	0	0	28	cmd_MatchHeldDirection,cmd_ConsumeButtonA,cmd_ConsumeButtonB
+5645bd	1:3		1	2	0	0	2	ai_ScriptInterpret,cmd_SetFlagBd
+5645be	1:80		34	46	0	0	41	ai_RunScriptFull,ai_PickDefenceVsMove,ai_PickIdleMove
+5645c0	4:161		160	1	0	0	79	ai_RunScriptStep,ai_EvalWeightEntry,ai_RunStateMachine
+5645c4	4:84		83	1	0	0	40	move_CanUseMove,ai_SelectSituationTable,ai_TrackMoveCounters
+5645c8	1:11		4	7	0	11	3	ai_RunScriptStep,-,ai_PickHoldOrCounterMove
+5645ca	1:6		4	2	0	6	4	-,ai_RunScriptStep,ai_RunStateMachine
+5645cc	2:8	2:8	7	1	1	0	6	ai_RunScriptStep,-,cmd_CheckFrameRange
+5645ce			0	0	1	0	1	-
+5645d0	1:17		13	4	0	17	3	ai_RunScriptStep,ai_RunScriptFull,-
+5645d2	1:12		8	4	0	12	3	ai_RunScriptFull,ai_RunScriptStep,-
+5645d4	1:7		3	4	0	7	3	ai_RunScriptStep,-,ai_RunScriptFull
+5645d6	1:4		3	1	0	4	1	-
+5645da	1:10		2	8	0	10	6	ai_RunScriptStep,-,ai_ClearLastMove
+5645dc	1:12		2	10	0	12	7	ai_RunScriptStep,-,ai_RunScriptFull
+5645de	1:3		1	2	0	0	1	ai_RunScriptStep
+5645e0	1:12		6	6	0	12	3	ai_TickJumpBoost,ai_TickJumpBoostInput,ai_StateDangerZoneBounce
+5645e2	1:3		1	2	0	0	3	ai_RunScriptStep,ai_RunScriptFull,cmd_CheckMoveCondition
+5645e3	1:1		0	1	0	0	1	ai_RunScriptFull
+5645e4	1:12		10	2	0	12	11	ai_UpdateFacingFor,ai_RunScriptDefault,ai_RunScriptFull
+5645e6	1:10		8	2	0	10	8	ai_UpdateFacingFor,cmd_MatchDirectionPair,ai_OpSwapInputBits
+5645e8	1:6		3	3	0	6	2	ai_UpdateFacingFor,move_CanUseMove
+5645ec	2:30	2:30	15	15	0	0	6	ai_InitWaitTimer,ai_UpdateDangerWait,ai_TickWaitTimer
+5645f0	2:12	2:12	7	5	0	0	3	ai_UpdateWaitTimer,ai_UpdateDangerWait,ai_InitWaitTimer
+5645f4	1:6		2	4	0	6	3	ai_UpdateWaitTimer,ai_InitWaitTimer,ai_UpdateDangerWait
+5645f8	2:1	2:1	0	1	0	0	1	ai_InitWaitTimer
+5645fc	2:1	2:1	0	1	0	0	1	ai_InitWaitTimer
+564600	1:2		0	2	0	2	1	ai_InitWaitTimer
+564604	2:3	2:3	0	3	0	0	3	ai_UpdateWaitTimer,ai_InitWaitTimer,ai_UpdateDangerWait
+564608	1:3		1	2	0	3	3	ai_RunScriptStep,ai_InitWaitTimer,ai_StateRecordOpponentMove
+564610	1:6	4:3	1	5	3	6	6	ai_PopQueuedMove,ai_ScriptInterpret,ai_ClearQueue
+564618	1:14		9	5	0	14	6	ai_RunScriptFull,ai_PopQueuedMove,ai_ScriptInterpret
+56461c	4:3		1	2	0	0	2	ai_StepHistoryClear,ai_StartHistoryClear
+564620	4:10		8	2	0	0	2	ai_StepHistoryClear,ai_StartHistoryClear
+564624	4:33		18	15	0	0	24	ai_IndexTable,ai_FilterByDistance,ai_FilterByTimeFloat
+564628	1:2		1	1	0	2	1	ai_ApplyPendingReaction
+56462a	1:1		1	0	0	1	1	ai_ApplyPendingReaction
+56462c	4:29		28	1	0	0	27	ai_RunStateMachine,ai_UpdateDangerWait,-
+564630	1:20		15	5	0	0	20	ai_RunStateMachine,ai_PickIdleMove,ai_IndexTable
+564632	1:3		1	2	0	3	3	ai_RunStateMachine,ai_StateEndFlag,ai_SituationTableDefault
+564636	1:22		7	15	0	0	11	ai_SelectSituationTable,ai_SituationTableByOpponent,ai_PickIdleMove
+564638	1:21		7	14	0	21	17	ai_RunStateMachine,ai_ResetAll,ai_ApplyQueuedScript
+56463c	2:28	2:28	14	14	0	0	11	aiop_DelayScaledByLevel,aiop_DelayIfLevelLow,aiop_TickDelay
+564640	2:6	2:6	0	6	0	0	6	aiop_DelayFrames,aiop_DelayRandom,aiop_DelayRandomRange
+564648	4:11	4:11	6	5	0	0	10	aiop_AdvanceScript,ai_StartMoveScript,ai_StartDefaultScript
+564650	1:7		1	6	0	7	6	aiop_SetMoveOnce,ai_StartMoveScript,ai_StartDefaultScript
+564660	1:5		2	3	1	6	2	ai_PickSequencedMove,ai_ClearHistoryBuffers
+5646a0	1:1		0	1	2	3	2	ai_PickSequencedMove,ai_ClearHistoryBuffers
+5646e0	2:5	2:5	3	2	0	0	2	-,ai_SelectTableByCounter3
+5646e4	1:1		0	1	0	1	1	ai_RunStateMachine
+5646f0	1:2		0	2	11	2	13	ai_ClearMoveHistory,ai_PushMoveHistory,ai_GetMoveRepeatWeightTail
+564710	1:4		2	2	0	4	2	ai_PushMoveHistory,ai_ClearMoveHistory
+564712	1:17		14	3	0	17	13	ai_TrackMoveCounters,ai_ClearMoveHistory,ai_GetMoveRepeatWeight
+564714	1:17		14	3	0	17	13	ai_TrackMoveCounters,ai_ClearMoveHistory,ai_GetBlockWeight
+564716	1:6		3	3	0	6	2	ai_TrackMoveCounters,ai_ClearMoveHistory
+564718	1:3		1	2	0	3	3	ai_ResetAll,ai_TrackMoveCounters,ai_PickDefenceVsMove
+56471a	1:7		2	5	0	7	6	ai_PickHoldOrCounterMove,ai_StateRecordOpponentMove,ai_PickReactionMove
+56471c	1:8		4	4	0	8	4	ai_TickReactionDelay,ai_PickHoldOrCounterMove,ai_AccumulateWeights
+56471e	1:4		2	2	0	4	4	ai_TickReactionDelay,ai_PickHoldOrCounterMove,ai_AccumulateWeights
+564720	1:13		7	6	0	13	10	ai_RunStateMachine,ai_ResetAll,ai_StatePickAttackMove
+564722	1:5		3	2	0	5	2	ai_RunDelayedPick,ai_SetPickDelay
+564724	1:1		0	1	0	1	1	ai_SetPickDelay
+564728	4:2	4:2	1	1	0	0	2	ai_SetPickDelay,ai_RunDelayedPick
+564730	2:10		3	7	0	0	8	ai_PickIdleMove,-,ai_SelectSituationTable
+564732	2:8		2	6	0	0	8	ai_PickIdleMove,-,ai_SelectSituationTable
+564734	2:3		2	1	0	0	3	ai_ResetAll,ai_TimerElapsedScaledByLevel,ai_TimerElapsedScaledMinus
+564738	2:3	2:3	2	1	0	0	1	-
+56473c	2:2	2:2	1	1	0	0	1	-
+564740	2:2	2:2	1	1	0	0	1	-
+564744	2:6	2:6	3	3	0	0	2	-,ai_SelectTableByCounter2
+56474a	1:3		1	2	0	3	2	ai_ApplyQueuedScript,aiop_SetParam4a
+56474c	1:2		0	2	0	2	1	-
+56474e	1:21		19	2	0	21	12	ai_RunStateMachine,-,ai_RunScriptStep
+564750	1:2		1	1	0	2	1	-
+564752	1:12		10	2	0	12	3	ai_TrackMoveCounters,-,ai_InitWaitTimer
+564754	1:2		0	2	0	2	1	-
+564756	1:2		1	1	0	0	2	-,ai_ResetAll
+564758	2:1	2:1	0	1	0	0	1	-
+56475c	1:2		1	1	0	0	2	-,ai_ResetAll
+56475e	1:2		1	1	0	2	2	-,ai_RunScriptStep
+564760	1:2		1	1	0	2	1	-
+564762	1:5		3	2	0	0	1	ai_ResetAll
+564763	1:5		3	2	0	0	1	ai_ResetAll
+564764	4:1		0	1	0	0	1	-
+564768	4:3		1	2	0	0	1	-
+56476e	1:3		1	2	0	0	1	ai_ScriptInterpret
+564775	1:1		0	1	0	0	1	-
+564776	1:4		0	4	0	4	4	ai_StartMoveScript,ai_StartDefaultScript,ai_ResolveMoveEntry
+564778	1:6		1	5	0	6	5	aiop_AdvanceScript,ai_StartMoveScript,ai_StartDefaultScript
+56477c	4:1		0	1	0	0	1	-
+5647c0	4:5		2	3	0	0	1	fighter_DispatchMotionState
+5647c4	1:2		0	2	1	0	2	fighter_CheckRingEdgeEnter,fighter_InitMotionState
+5647c5	1:2		0	2	0	0	2	fighter_InitMotionState,fighter_CheckRingEdgeEnter
+5647c6	2:5		2	3	0	0	2	fighter_CheckRingEdgeEnter,fighter_InitMotionState
+5647c8	1:3		1	2	0	0	1	fighter_CheckRingEdgeEnter
+5647d0	1:6		2	4	0	1	3	hit_LoadKnockbackParams,cam_UpdateFollowOffset,fighter_InitMotionState
+5647d1	1:5		2	3	0	0	2	hit_LoadKnockbackParams,cam_UpdateFollowOffset
+5647d2	1:13		11	2	0	2	3	cam_UpdateFollowOffset,hit_LoadKnockbackParams,fighter_InitMotionState
+5647d3	1:9		9	0	0	0	2	cam_UpdateFollowOffset,hit_LoadKnockbackParams
+5647d8	4:12	4:12	5	7	0	0	2	fighter_DispatchMotionState,fighter_InitMotionState
+5647e0	4:17	4:17	8	9	0	0	9	fighter_UpdateLaunchFlight,fighter_ApplyLaunchVelocity,hit_SetKnockbackVelocity
+5647e8	4:23	4:23	14	9	0	0	9	fighter_UpdateLaunchFlight,fighter_ApplyLaunchVelocity,fighter_ApplyKnockbackStep
+5647f0	4:17	4:17	8	9	0	0	9	fighter_UpdateLaunchFlight,fighter_ApplyLaunchVelocity,hit_SetKnockbackVelocity
+5647f8	4:6	4:6	2	4	0	0	4	hit_ApplyPushbackStep,fighter_InitMotionState,fighter_CheckStumbleStart
+564800	4:6	4:6	2	4	0	0	4	hit_ApplyPushbackStep,fighter_InitMotionState,fighter_CheckStumbleStart
+564808	4:8	4:1	1	7	4	0	2	cam_UpdateFollowOffset,fighter_InitMotionState
+56480c	4:7		1	6	4	0	1	cam_UpdateFollowOffset
+564810	4:4		1	3	0	0	3	fighter_CalcLaunchVelocity,fighter_InitMotionState,tgp_ComputeSinCos
+564814	4:4		1	3	0	0	3	fighter_CalcLaunchVelocity,fighter_InitMotionState,tgp_ComputeSinCos
+564818	4:4		1	3	0	0	3	fighter_CalcLaunchVelocity,fighter_InitMotionState,tgp_ComputeSinCos
+56481c	4:4		1	3	0	0	2	cam_UpdateFollowOffset,fighter_InitMotionState
+564820	4:5		2	3	0	0	1	fighter_DispatchMotionState
+564830	4:9		7	2	0	0	1	hud_UpdatePlayerBanners
+564834	4:9		7	2	0	0	5	hud_UpdatePlayerBanners,hud_UpdateBannerStepsP2Tail,hud_ClearBannerP2
+564840	1:11		1	10	6	0	5	hud_DrawCreditPromptsAlt,hud_DrawStartPrompts,hud_StepStartPromptP2
+564841	1:1		1	0	0	0	1	tile_CopyCreditDigitsBox
+564842	1:11		1	10	0	0	4	hud_DrawCreditPromptsAlt,hud_DrawStartPrompts,hud_StepStartPromptP2
+564843			0	0	10	0	3	hud_DrawCreditPromptsAlt,hud_DrawStartPrompts,hud_StepStartPromptP2
+564850	4:6	4:6	2	4	0	0	3	hud_StepComboBoxAnim,hud_ClearComboBoxPlayer,hud_DrawComboBoxPlayer
+564858	4:8		4	4	0	0	5	attract_IntroFadeBitsFrag,attract_IntroWaitFramesFrag,attract_IntroScrollStep
+564860	4:4		1	3	0	0	3	attract_UpdateScreenMode,attract_InitScreenState,snd_PlayAnnouncerForState
+564864	4:1		0	1	0	0	1	attract_EnterMode2
+564868	4:1		0	1	0	0	1	attract_EnterMode2
+56486c	4:4		2	2	0	0	1	hud_UpdateScreenLayout
+5648c8	2:3		1	2	0	0	2	tile_ScrollWipeStep,tile_DrawGraphicToTilemap
+5648ca	2:3		1	2	0	0	2	tile_DrawGraphicToTilemap,tile_ScrollWipeStep
+5648cc	2:5		2	3	0	0	1	tile_ScrollWipeStep
+5648ce	2:5		2	3	0	0	1	tile_ScrollWipeStep
+5648d0	4:6		5	1	0	0	6	charsel_PickBackgroundId,charsel_ScreenStepLoadBg_2,charsel_ScreenStepLoadBg
+5648d4	4:5		4	1	0	0	4	charsel_PickForegroundId,charsel_ScreenStepLoadFg_2,charsel_ScreenStepLoadFg_3
+5648d8	4:6		3	3	0	0	4	charsel_LoadPortraitNext,charsel_LoadPortraitLast,attract_ScreenInit
+5648dc	4:12		6	6	0	0	12	attract_ScreenStepClear,attract_ScreenStepLoadCd,attract_ScreenStepLoadCd_3
+5648e0	4:11		4	7	0	0	2	res_BeginTileUpload2,res_BeginTileUpload
+5648e4	4:4		1	3	0	0	2	res_BeginTileUpload2,res_BeginTileUpload
+5648e8	4:11		4	7	0	0	2	res_BeginTileUpload2,res_BeginTileUpload
+5648ec	4:10		7	3	0	0	2	res_BeginTileUpload2,res_BeginTileUpload
+5648f0	4:2		1	1	0	0	1	res_BeginTileUpload2
+564900			0	0	9	0	7	tile_CopyMessageRowsA,attract_BuildMode2Tiles,tile_CopyMessageRowsB
+564970			0	0	3	0	2	attract_BuildMode2Tiles,tile_CopyCreditDigitsBox
+5649e0			0	0	2	0	1	attract_BuildMode2Tiles
+5649e2	2:3	2:3	3	0	0	0	1	tile_CopyCreditDigitsBox
+564a50			0	0	3	0	2	attract_BuildMode2Tiles,tile_CopyCreditRowsFrag
+564ac0			0	0	2	0	1	attract_BuildMode2Tiles
+564b30			0	0	2	0	1	attract_BuildMode2Tiles
+564ba0			0	0	2	0	1	attract_BuildMode2Tiles
+564c10			0	0	1	0	1	attract_BuildMode2Tiles
+564c80			0	0	1	0	1	attract_BuildMode2Tiles
+564cf0			0	0	1	0	1	attract_BuildMode2Tiles
+564d60			0	0	1	0	1	attract_BuildMode2Tiles
+564f90	4:13		8	5	0	0	6	hud_DrawCreditPrompts,hud_DrawCreditPromptTail,hud_UpdateScreenLayout
+564f94	4:59		31	28	0	0	13	hud_UpdatePlayerBanners,hud_DrawStartPrompts,hud_DrawCreditPromptsAlt
+564f98	4:90		63	27	0	0	23	hud_DrawStartPrompts,hud_UpdatePlayerBanners,hud_DrawCreditPromptsAlt
+564f9c	4:32		13	19	0	0	15	hud_UpdatePlayerBanners,hud_DrawCreditPromptsAlt,hud_UpdateBannerStepsP2
+564fa0	4:15		8	7	0	0	7	hud_DrawCreditPromptsAlt,hud_DrawWaitPromptP2,hud_ResetPromptTimerP2
+564fb0		4:1	0	0	3	0	2	tile_CopyStartMessage,attract_BuildMode0Tiles
+56500c			0	0	2	0	2	tile_CopyStartMessage,attract_BuildMode0Tiles
+565068	2:1	2:1	1	0	1	0	2	tile_CopyStartMessage,attract_BuildMode0Tiles
+5650c4			0	0	1	0	1	attract_BuildMode0Tiles
+565120			0	0	1	0	1	attract_BuildMode0Tiles
+56517c			0	0	1	0	1	attract_BuildMode0Tiles
+5651d8			0	0	1	0	1	attract_BuildMode0Tiles
+565234			0	0	1	0	1	attract_BuildMode0Tiles
+565290			0	0	1	0	1	attract_BuildMode0Tiles
+5652ec			0	0	1	0	1	attract_BuildMode0Tiles
+5653a4			0	0	1	0	1	attract_BuildMode0Tiles
+565400			0	0	1	0	1	attract_BuildMode0Tiles
+565460	4:6,8:1		3	4	0	0	2	hud_UpdatePlayerBanners,round_UpdateModeScreens
+565464	4:6		3	3	0	0	4	hud_UpdatePlayerBanners,hud_UpdateBannerStepsP2,hud_UpdateBannerStepsP2Tail
+565468	4:4,8:1		2	3	0	0	2	hud_UpdatePlayerBanners,attract_EnterMode0
+56546c	4:4		2	2	0	0	3	hud_StepBannerFadeP,hud_ResetBannerTimerP2,hud_UpdatePlayerBanners
+565470	4:1		1	0	3	0	2	attract_BuildMode2Tiles,charsel_FreeScreenResource
+565480	4:1		1	0	2	0	2	attract_BuildMode0Tiles,charsel_FreeScreenResource_2
+565490	4:1		1	0	3	0	2	attract_StepTilemapFadeIn,snd_PlayAnnouncerForState
+5654b0	4:1	4:2	1	0	3	0	4	-,charsel_LoadPortraitFirst,rank_DrawRankIcon
+5654bc			0	0	1	0	1	charsel_LoadPortraitResources
+5654c8			0	0	1	0	1	charsel_LoadPortraitResources
+5654e0			0	0	1	0	1	charsel_LoadPortraitResources
+5654ec			0	0	1	0	1	charsel_LoadPortraitResources
+5654f8			0	0	1	0	1	charsel_LoadPortraitResources
+565510			0	0	1	0	1	charsel_LoadPortraitResources
+565534			0	0	1	0	1	charsel_LoadPortraitResources
+565540			0	0	1	0	1	charsel_LoadPortraitLast
+565570	4:2		2	0	4	0	6	charsel_ScreenStepLoadBg_2,charsel_ScreenStepLoadBg_3,charsel_ScreenStepLoadBg_4
+565580	4:1		1	0	4	0	5	charsel_PickForegroundId,charsel_ScreenStepLoadFg_2,charsel_ScreenStepLoadFg_3
+5655a0	4:1		1	0	3	0	3	hud_UpdateScreenLayout,hud_ClearHudRows,charsel_FreeScreenResource
+5655b0	4:1		1	0	8	0	9	attract_ScreenStepLoadCd_2,attract_ScreenStepLoadCd_3,attract_ScreenStepFree
+5655c0	16:1		1	0	3	0	2	charsel_DrawSelectScreenTiles,charsel_ClearSelectScreen
+5655cc			0	0	2	0	2	charsel_DrawSelectScreenTiles,charsel_ClearSelectScreen
+5655d8	4:1		1	0	2	0	2	charsel_DrawSelectScreenTiles,charsel_ClearSelectScreen
+5655f0	4:1		1	0	3	0	3	attract_IntroLoadGraphicFrag,attract_StepIntroSequence,attract_IntroEndFrag
+565600	4:11		10	1	0	0	4	tile_ShowGraphicById,tile_BlitTileMapRows,attract_InitScreenState
+565604	2:2		0	2	1	0	3	attract_InitScreenState,hud_UpdateLifeBars,hud_DrawRoundStatusFrame
+565606	2:2		0	2	0	0	2	attract_InitScreenState,hud_DrawRoundStatusFrame
+56562a			0	0	1	0	1	attract_InitScreenState
+565650	2:1		0	1	1	0	2	attract_InitScreenState,hud_UpdateLifeBars
+565652	2:1		0	1	0	0	1	attract_InitScreenState
+565658	8:1		0	1	0	0	1	attract_InitScreenState
+565660	8:1		0	1	0	0	1	attract_InitScreenState
+565668	1:1		0	1	0	0	1	attract_InitScreenState
+565670	1:1		0	1	0	0	1	attract_InitScreenState
+565674	1:1		0	1	0	0	1	attract_InitScreenState
+565678	2:8		1	7	0	0	3	snd_PlayAnnouncerForState,snd_StepAnnouncerTimer,attract_InitScreenState
+56567a	1:1		0	1	0	0	1	attract_InitScreenState
+56567b	1:4		1	3	0	0	3	snd_PlayAnnouncerForState,attract_InitScreenState,snd_StepAnnouncerTimer
+56567c	2:3		0	3	0	0	2	snd_PlayAnnouncerForState,attract_InitScreenState
+56567e	1:11		5	6	0	0	5	hud_BlinkRoundWinMarks,hud_DrawRoundWinMarks,round_UpdateModeScreens
+56567f	1:8		1	7	0	0	4	hud_BlinkRoundWinMarks,round_UpdateModeScreens,hud_DrawRoundWinMarks
+565680	1:6		2	4	0	0	4	round_UpdateModeScreens,hud_BlinkRoundWinMarks,attract_InitScreenState
+565681	1:6		2	4	0	0	4	round_UpdateModeScreens,hud_BlinkRoundWinMarks,attract_InitScreenState
+565682	1:4		1	3	0	0	3	hud_DrawRoundWinMarks,attract_InitScreenState,round_UpdateModeScreens
+565683	1:4		1	3	0	0	3	hud_DrawRoundWinMarks,attract_InitScreenState,round_UpdateModeScreens
+565684	1:6		4	2	0	0	4	attract_UpdateScreenMode,attract_InitScreenState,attract_EnterMode0
+565688	4:5		1	4	0	0	3	attract_UpdateScreenMode,tile_ShowGraphicById,attract_InitScreenState
+56568c	4:8		4	4	0	0	4	attract_BuildMode2Tiles,charsel_FreeScreenResource,attract_InitScreenState
+565690	1:8		4	4	0	0	6	hud_UpdateScreenLayout,attract_InitScreenState,attract_UpdateScreenMode
+565694	4:8		4	4	0	0	4	attract_BuildMode0Tiles,charsel_FreeScreenResource_2,attract_InitScreenState
+565698	1:3		1	2	0	0	2	round_UpdateModeScreensTail,attract_InitScreenState
+5656a0	4:2	4:1	0	2	2	0	4	attract_InitScreenState,-,charsel_LoadPortraitFirst
+5656a4	4:1		0	1	0	0	1	charsel_LoadPortraitResources
+5656a8	4:1		0	1	0	0	1	charsel_LoadPortraitResources
+5656b0	4:1		0	1	1	0	2	attract_InitScreenState,charsel_LoadPortraitResources
+5656b4	4:1		0	1	0	0	1	charsel_LoadPortraitResources
+5656b8	4:1		0	1	0	0	1	charsel_LoadPortraitResources
+5656c0	4:1		0	1	1	0	2	attract_InitScreenState,charsel_LoadPortraitResources
+5656cc	4:1		0	1	0	0	1	charsel_LoadPortraitResources
+5656d0	4:1		0	1	1	0	2	attract_InitScreenState,charsel_LoadPortraitLast
+5656e0	4:5		2	3	0	0	3	snd_PlayAnnouncerForState,attract_StepTilemapFadeIn,attract_InitScreenState
+5656e4	4:1		0	1	0	0	1	attract_InitScreenState
+5656e8	4:4		1	3	0	0	3	rank_FreeAllResources_2,attract_InitScreenState,charsel_ScreenStepLoadBg_2
+5656ec	4:4		1	3	0	0	3	rank_FreeAllResources_2,attract_InitScreenState,charsel_PickForegroundId
+5656f0	4:1		0	1	0	0	1	attract_InitScreenState
+5656f4	4:8		4	4	0	0	4	hud_UpdateScreenLayout,hud_ClearHudRows,charsel_FreeScreenResource
+5656f8	4:9		3	6	0	0	6	attract_ScreenStepFree,rank_ScreenStepFree,rank_FreeAllResources_2
+5656fc	4:5		2	3	0	0	3	charsel_DrawSelectScreenTiles,charsel_ClearSelectScreen,attract_InitScreenState
+565700	4:5		2	3	0	0	4	attract_IntroEndFrag,attract_InitScreenState,attract_StepIntroSequence
+565704	4:3		1	2	0	0	3	attract_UpdateScreenMode,tile_ShowGraphicById,tile_DrawGraphicToTilemap
+565708	4:7		3	4	0	0	2	attract_StepTilemapFadeIn,attract_EnterMode0
+56570c	1:6		4	2	0	0	3	round_UpdateModeScreens,attract_EnterMode0,round_UpdateModeScreensTail
+565710	4:4		2	2	0	0	3	attract_EnterMode4,attract_UpdateScreenMode,charsel_DrawSelectScreenTiles
+565714	1:3		1	2	0	0	1	attract_EnterMode4
+565718	4:29		14	15	0	0	18	attract_ScreenInit,hud_UpdateScreenLayout,attract_ScreenStepFree
+56571c	4:10		8	2	0	0	6	hud_UpdateScreenLayout,attract_ScreenInit,attract_ScreenStepFree
+565720	8:2		0	2	1	0	2	round_UpdateModeScreens,hud_UpdateComboDisplay
+565728	4:2,8:2		1	3	1	0	2	hud_UpdateComboDisplay,round_UpdateModeScreens
+56572c	4:2		1	1	0	0	1	hud_UpdateComboDisplay
+565730	8:2	4:1	0	2	2	0	3	round_UpdateModeScreens,hud_UpdateComboDisplay,hud_StepComboBoxAnim
+565738	4:4,8:2	4:3	2	4	1	1	3	hud_StepComboBoxAnim,round_UpdateModeScreens,hud_UpdateComboDisplay
+565740	8:2		0	2	2	1	3	round_UpdateModeScreens,hud_UpdateComboDisplay,hud_StepComboBoxAnim
+565748	8:3		0	3	1	0	2	round_UpdateModeScreens,hud_UpdateComboDisplay
+565750	1:3		1	2	0	0	2	round_UpdateModeScreens,hud_DrawRoundNumberTiles
+565751	1:3		1	2	0	0	2	hud_DrawRoundNumberTiles,round_UpdateModeScreens
+565752	1:2		1	1	0	0	2	round_UpdateModeScreensTail,attract_StepIntroSequence
+565754	4:6		3	3	0	0	1	attract_StepTilemapFadeIn
+565758	4:13		6	7	0	0	1	attract_StepTilemapFadeIn
+56575c	2:7		6	1	0	0	1	attract_StepTilemapFadeIn
+565760	4:13		7	6	0	0	8	attract_StepIntroSequence,attract_IntroScrollStep,attract_IntroFadeBitsFrag
+565764	4:4		2	2	0	0	2	attract_IntroScrollStep,attract_AdvanceIntroState
+565768	4:7		3	4	0	0	6	attract_IntroScrollStepFrag,attract_AdvanceIntroState,attract_StepIntroSequence
+56576c	4:7		3	4	0	0	2	attract_IntroScrollStep,attract_IntroLoadGraphicFrag
+565770	4:5		2	3	0	0	2	attract_IntroScrollStep,attract_IntroLoadGraphicFrag
+565774	2:3		2	1	0	0	2	attract_IntroScrollStep,attract_IntroLoadGraphicFrag
+565780	4:2	4:5	2	0	5	0	3	tile_ShowGraphicById,tile_BlitTileMapRows,tile_DrawGraphicToTilemap
+5657a0	4:2		1	1	0	0	2	tile_DrawGraphicToTilemap,tile_ScrollWipeStep
+5657a4	2:3		2	1	0	0	2	tile_ScrollWipeStep,tile_DrawGraphicToTilemap
+5657a8	4:33		31	2	0	0	1	attract_BuildMode2Tiles
+5657ac	2:211		210	1	0	0	1	attract_BuildMode2Tiles
+5657b0	4:2		1	1	0	0	1	attract_BuildMode0Tiles
+5657b4	2:13		12	1	0	0	1	attract_BuildMode0Tiles
+5657b8	4:10		6	4	0	0	5	tile_ClearRankArea,tile_ClearRankAreaPair,attract_ScreenInit
+5657c0	4:2		1	1	0	0	2	hit_InitTables,hit_TestSpheres
+5657c4	4:2		1	1	0	0	2	hit_InitTables,hit_TestSpheres
+5657c8	4:2		1	1	0	0	2	hit_InitTables,hit_TestSpheres
+5657cc	4:2		1	1	0	0	2	hit_InitTables,hit_TestSpheres
+5657d0	4:9,8:2	4:8	10	1	1	0	5	hit_CheckFighterAttacks,hit_CheckFighterAttacksAlt,fight_UpdateHitChecks
+5657d4	4:1		1	0	0	0	1	fighter_UpdateBodyParts
+5657e0	1:2,4:2	4:5	3	1	1	0	2	move_SetupAttack,move_StartMove
+5657e8	4:2	4:3	1	1	1	0	3	move_StartMove,ai_UpdateTargetAngle,ai_ComputeApproach
+5657f0	4:3	4:3	1	2	0	0	2	ai_UpdateTargetAngle,move_StartMove
+5657f8	4:3	4:3	1	2	0	0	2	ai_UpdateTargetAngle,move_StartMove
+565800	4:3	4:3	1	2	0	0	3	move_StartMove,ai_UpdateTargetAngle,ai_ComputeApproach
+565808	4:3	4:3	1	2	0	0	3	move_StartMove,ai_UpdateTargetAngle,ai_ComputeApproach
+565810	4:3	4:3	1	2	0	0	2	ai_ComputeApproach,move_StartMove
+565818	4:1	4:2	0	1	1	0	2	move_StartMove,ai_ComputeApproach
+565820	4:1	4:1	0	1	1	1	2	move_StartMove,ai_ComputeApproach
+565828	4:4	4:4	2	2	0	0	2	ai_ComputeApproach,move_StartMove
+565830	4:1	4:1	0	1	1	1	2	move_StartMove,ai_ComputeApproach
+565838	4:2	4:2	1	1	0	0	2	move_StartMove,ai_UpdateTargetAngle
+565840	4:1	4:1	0	1	0	0	1	move_StartMove
+565850			0	0	3	1	2	geo_DrawCharacterParts,move_StartMove
+565988			0	0	2	0	1	geo_DrawCharacterParts
+565d30	4:2,8:1		1	2	0	3	3	move_StartMove,ai_UpdateTargetAngle,ai_ComputeApproach
+565d40	4:3	4:3	0	3	0	0	2	fighter_ScriptOpcodeDispatch,fighter_ResetMoveFlags
+565d48	4:3	4:3	0	3	0	0	2	fighter_ScriptOpcodeDispatch,fighter_ResetMoveFlags
+565d58	4:1	4:1	0	1	0	0	1	fighter_ScriptOpcodeDispatch
+565d60		4:2	0	0	2	0	2	cam_SetTarget,cam_InitRecord
+565e40	4:6	4:5	3	3	1	0	7	fight_UpdateHitChecks,move_ScriptOpSetHitReactFlag,fighter_ScriptOpcodeDispatch
+565e44	4:1		1	0	0	0	1	fight_UpdateHitChecks
+565e50			0	0	4	4	3	hit_TestAttackVsBodyAlt,hit_LoadHitboxTable,hit_TestBoxOverlap
+565fc0	1:2	4:1	2	0	2	2	4	fighter_UpdateBodyParts,hit_TestBoxOverlap,hit_LoadBoxShape
+565fd0	1:1		1	0	0	1	1	fighter_UpdateBodyParts
+565fe0			0	0	3	3	3	fighter_UpdateBodyParts,hit_TestBoxOverlap,hit_LoadBoxShape
+566080			0	0	1	0	1	fighter_UpdateBodyParts
+5660a0	4:2		1	1	1	3	3	fighter_UpdateBodyParts,hit_TestBoxOverlap,hit_LoadBoxShape
+5660b8			0	0	1	0	1	fighter_UpdateBodyParts
+5660c0		4:1	0	0	3	2	3	fighter_UpdateBodyParts,hit_TestBoxOverlap,hit_ClearHurtArrays
+5660f4	4:1		1	0	0	1	1	fighter_UpdateBodyParts
+5660f8	4:1		1	0	0	1	1	fighter_UpdateBodyParts
+566108			0	0	1	0	1	fighter_UpdateBodyParts
+566120	4:3		2	1	0	3	3	fighter_UpdateBodyParts,hit_TestBoxOverlap,hit_ClearHurtArrays
+566130	4:1		1	0	0	1	1	fighter_UpdateBodyParts
+566140			0	0	6	6	6	move_SetupAttack,move_StartMove,geo_DrawFighterModelA
+5661d0			0	0	1	1	1	move_SetupAttack
+56a800		8:4	0	0	6	0	6	move_SelectHitReaction,move_IntegrateMotion,move_GetReactionEntry
+56a810	2:1	8:1	1	0	0	0	1	fighter_SetStateFromTable
+56a814	4:1	8:1	1	0	0	0	1	ai_ComputeApproach
+56a8f0			0	0	2	2	2	fighter_UpdateMotionState,fighter_UpdateGroundContact
+56a8f4	4:1		1	0	0	1	1	move_ComputeKnockback
+56a90c	4:1		1	0	0	1	1	ai_ComputeApproach
+56aa60	4:7	4:4	4	3	2	1	5	round_UpdateFighterPair,fight_InitRoundCameraFighters,move_IntegrateMotion
+56aa64	4:3		1	2	1	0	2	fight_InitRoundCameraFighters,fight_ClearPlayerVectors
+56aa68	4:7	4:4	4	3	2	1	5	round_UpdateFighterPair,fight_InitRoundCameraFighters,move_IntegrateMotion
+56aa6c	4:3		1	2	1	0	2	fight_InitRoundCameraFighters,fight_ClearPlayerVectors
+56aa70		4:3	0	0	9	6	7	move_AdvanceFrameMotion,fighter_UpdateMotionState,fighter_UpdateCameraTarget
+56aa88	4:1		1	0	0	1	1	ai_ComputeApproach
+56abe0	4:4	4:2	3	1	2	1	4	round_UpdateFighterPair,fight_InitRoundCameraFighters,ai_ComputeApproach
+56abe4	4:2		1	1	1	0	2	fight_InitRoundCameraFighters,fight_ClearPlayerVectors
+56abe8	4:4	4:1	1	3	0	1	4	ai_ComputeApproach,round_UpdateFighterPair,fight_InitRoundCameraFighters
+56abec	4:2		0	2	0	0	2	fight_InitRoundCameraFighters,fight_ClearPlayerVectors
+56abf0			0	0	1	1	1	fight_InitSceneState
+56abf8	4:2	4:1	1	1	0	1	2	ai_ComputeApproach,fighter_ApplyFloorHeight
+56ac10	1:1,2:9	2:8	5	5	1	0	9	cam_UpdateZoom,cam_SetTarget,fighter_ScriptOpcodeDispatch
+56ac12	2:2		0	2	0	0	2	fighter_InitPlayerSlotFlags,fight_InitRoundCameraFighters
+56ac14	2:8	2:5	3	5	3	0	6	round_UpdateFighterTimers,motion_LoadFrameSet,motion_RunMoveScript
+56ac18	1:8		2	6	1	4	6	fighter_ScriptOpcodeDispatch,motion_RunMoveScript,motion_LoadFrameSet
+56ac20	4:10	4:6	3	7	2	0	8	round_UpdateFighterTimers,fighter_ScriptOpcodeDispatch,motion_RunMoveScript
+56ac28	4:6	4:3	2	4	1	0	6	motion_RunMoveScript,round_UpdateFighterTimers,fighter_ScriptOpcodeDispatch
+56ac30	1:9		4	5	1	9	6	round_ApplyPendingFlags,fighter_InitScript,fighter_ScriptOpcodeDispatch
+56ac34	2:17	2:11	7	10	3	4	9	fighter_InitScript,fighter_UpdateVelocity_2,round_UpdateFighterTimers
+56ac38	1:4		3	1	0	0	2	round_UpdateFighterTimers,fight_InitSceneState
+56ac3c	2:17	2:10	8	9	1	0	11	fighter_RunScriptStep,move_AdvanceFrameMotion,fighter_UpdateVelocity_2
+56ac40	2:32	2:24	20	12	3	1	14	move_AdvanceFrameMotion,round_UpdateFighterTimers,move_StepScriptOrEnd
+56ac44	1:9		3	6	1	9	5	fighter_InitScript,round_UpdateFighterTimers,fighter_UpdateVelocity_2
+56ac46	1:4		2	2	1	4	5	round_UpdateFighterTimers,fighter_InitScript,move_StepScriptOrEnd
+56ac48	1:7		2	5	1	3	7	motion_RunMoveScript,round_UpdateFighterTimers,fighter_InitScript
+56ac4c	2:12	2:7	4	8	1	0	8	fighter_StartMoveScript,round_UpdateFighterTimers,motion_RunMoveScript
+56ac50	1:3		1	2	1	3	4	round_UpdateFighterTimers,fighter_ScriptOpcodeDispatch,fighter_ResetMoveFlags
+56ac52	1:3		1	2	1	3	4	round_UpdateFighterTimers,fighter_ScriptOpcodeDispatch,fighter_ResetMoveFlags
+56ac58	4:2	4:2	1	1	1	0	3	round_UpdateFighterTimers,fighter_UpdateFrame,fight_InitSceneState
+56ac60	1:8		3	5	1	8	8	fighter_ScriptOpcodeDispatch,round_ApplyPendingFlags,round_UpdateFighterTimers
+56ac62	1:5		2	3	1	5	4	round_ApplyPendingFlags,fighter_UpdateVelocity_2,fighter_ScriptOpcodeDispatch
+56ac64	1:6		2	4	1	6	4	round_ApplyPendingFlags,fighter_ScriptOpcodeDispatch,fighter_UpdateVelocity_2
+56ac66	1:8		4	4	1	8	5	round_ApplyPendingFlags,fighter_StartScriptMove,move_ScriptOpToggleFlag66
+56ac68	1:2		0	2	3	4	4	fighter_ScriptOpcodeDispatch,round_ApplyPendingFlags,fighter_UpdateVelocity_2
+56ac6c	1:1,2:3	2:4	1	3	1	0	4	fighter_InitScript,round_ApplyPendingFlags,fighter_UpdateVelocity_2
+56ac70	1:11		11	0	0	0	8	-,fighter_StartMoveScript,round_UpdateFighterTimers
+56ac72	1:4		1	3	0	4	4	round_UpdateFighterTimers,fighter_CalcKnockbackAngle,fighter_UpdateCameraTarget
+56ac78	4:6	4:6	3	3	1	0	5	fighter_CalcKnockbackAngle,fighter_UpdateCameraTarget,round_UpdateFighterTimers
+56ac80	4:17	4:16	10	7	5	5	13	round_UpdateFighterTimers,fighter_UpdateFrame,round_ResetFighterTimers
+56ac88	4:3	2:1,4:2	1	2	0	0	3	round_ResetFighterTimers,fighter_CalcKnockbackAngle,fight_InitSceneState
+56ac90	2:1	2:1	0	1	1	0	2	fighter_StartScriptMove,fight_InitSceneState
+56ac94	2:9	2:9	4	5	7	3	9	fighter_InitScript,fighter_StartMoveScript,fighter_RunScriptStep
+56ac96			0	0	1	0	1	fight_InitSceneState
+56ac98	4:157	4:161	89	68	5	1	17	fighter_ScriptOpcodeDispatch,fighter_RunScriptStep,fighter_ScriptOpcodeSetSpeed
+56aca0	1:5		2	3	0	0	4	fighter_RunScriptStep,fighter_ScriptOpcodeDispatch,move_ScriptOpReadOptionalArg
+56aca4	2:3	2:3	1	2	1	0	3	fighter_CalcKnockbackAngle,fighter_StartScriptMove,fight_InitSceneState
+56aca8	4:5	4:5	2	3	1	0	3	move_AdvanceFrameMotion,fighter_StartScriptMove,fight_InitSceneState
+56acb0	4:1		1	0	3	3	3	fighter_UpdateCameraTarget,fighter_StartScriptMove,fight_ResetPlayerFx
+56acd0	4:6		2	4	3	6	3	move_AdvanceFrameMotion,fighter_StartScriptMove,fight_InitSceneState
+56acd4	4:1		0	1	0	1	1	fight_InitSceneState
+56acd8	4:3		1	2	0	3	2	move_AdvanceFrameMotion,fight_InitSceneState
+56acf0	4:16	4:8	8	8	2	1	6	move_AdvanceFrameMotion,motion_AdvanceKeyframe,motion_RunMoveScript
+56acf8	4:31	4:31	14	17	1	1	2	move_AdvanceFrameMotion,fighter_StartScriptMove
+56ad00		4:7	0	0	8	1	3	move_AdvanceFrameMotion,fighter_StartScriptMove,fighter_UpdateCameraTarget
+56ad80			0	0	6	4	5	fighter_StartScriptMove,move_AdvanceFrameMotion,fighter_UpdateFrame
+56ad84	4:6	4:4	4	2	0	2	6	fighter_StartScriptMove,move_ApplyScriptOffset,fighter_UpdateMotionState
+56ada0	2:8	2:8	6	2	1	0	4	fighter_StartScriptMove,fighter_InitScript,move_ApplyScriptOffset
+56ada8	4:16	4:10	9	7	2	0	7	move_AdvanceFrameMotion,motion_AdvanceKeyframe,fighter_StartScriptMove
+56adb0	4:3	4:3	1	2	0	0	2	fighter_InitScript,move_StoreScriptOffset
+56adb8	1:7		1	6	1	7	4	fighter_InitScript,fighter_ScriptOpcodeDispatch,fighter_UpdateCameraTarget
+56adc0	2:2,4:5	4:6	3	4	1	1	3	fighter_InitScript,fighter_UpdateVelocity_2,fight_InitSceneState
+56adc8	2:2,4:7	4:9	5	4	1	0	5	fighter_InitScript,fighter_UpdateVelocity_2,fighter_ScriptOpcodeDispatch
+56add0	4:10	4:7	6	4	1	0	7	fighter_InitScript,fighter_ScriptOpcodeSetSpeed,move_AdvanceFrameMotion
+56add8	4:3	4:3	1	2	1	0	3	fighter_InitScript,fighter_UpdateVelocity_2,fight_InitSceneState
+56ade0	4:3	4:3	1	2	1	0	3	fighter_InitScript,fighter_UpdateVelocity_2,fight_InitSceneState
+56ade8	1:29		21	8	2	29	5	fighter_ScriptOpcodeDispatch,move_ScriptOpQueueCommand,hit_QueueFightEffects
+56adea	2:14		13	1	1	0	9	fighter_ScriptOpcodeDispatch,fighter_UpdateFrame,hit_QueueFightEffects
+56adf0	4:8	8:1	0	8	4	10	7	fighter_ScriptOpcodeDispatch,hit_QueueFightEffects,move_ScriptOpQueueCommand
+5882b0	2:4	2:4	1	3	1	0	4	move_StepScriptOrEnd,stub_00043004,fighter_StartMoveScript
+5882b4	1:4		2	2	1	4	4	fighter_ScriptOpcodeDispatch,move_ScriptOpCopyByteToFighter4b,fighter_ResetMoveFlags
+5882b6	1:5		3	2	1	5	4	fighter_CalcKnockbackAngle,move_ScriptOpSetByte5882b6,fighter_ResetMoveFlags
+5882b8	1:7		2	5	1	7	6	fighter_ResetAnimSlot,fighter_LoadAnimSlot,move_ScriptOpSetCounterWindow
+5882bc	1:1,2:18	2:19	14	5	3	0	12	fighter_UpdateFrame,tgp_SendFighterModelRefs,move_ScriptOpSetCounterWindow
+5882c0	4:7	4:5	4	3	1	0	2	fighter_ScriptOpcodeDispatch,fight_InitSceneState
+5882c8	4:5	4:3	3	2	1	0	2	fighter_ScriptOpcodeDispatch,fight_InitSceneState
+5882d0	1:3		1	2	1	3	4	fighter_ScriptOpcodeDispatch,fighter_CalcKnockbackAngle,fighter_ResetMoveFlags
+5882d4	1:7	2:1	2	5	1	6	6	fighter_ScriptOpcodeDispatch,fighter_UpdateFrame,fighter_UpdateJuggleMotion
+5882d5	1:5	2:1	2	3	0	4	5	fighter_ScriptOpcodeDispatch,fighter_UpdateFrame,fighter_UpdateJuggleMotion
+5882d8	1:3		1	2	1	3	4	fighter_ScriptOpcodeDispatch,move_AdvanceFrameMotion,fighter_ResetMoveFlags
+5882e0	4:5	4:5	3	2	1	0	4	fight_CheckPlayerActionable,fighter_ScriptOpcodeDispatch,fighter_ResetMoveFlags
+5882e8	4:5	4:5	2	3	1	0	6	fighter_ScriptOpcodeDispatch,fighter_UpdateJuggleMotion,fighter_PushHitEffects
+5882f0	4:9	4:9	3	6	0	0	3	fighter_ScriptOpcodeDispatch,fighter_ResetAnimSlot,fighter_LoadAnimSlot
+5882f8	1:6		1	5	1	6	5	fighter_ResetAnimSlot,fighter_ScriptOpcodeDispatch,fighter_LoadAnimSlot
+5882fa	1:3		1	2	1	3	3	fighter_StartMoveScript,tgp_SendFighterModelRefs,fight_InitSceneState
+5882fc	1:7		2	5	1	4	8	fighter_StartMoveScript,fighter_ResetSlotAndCall,fighter_ReportBadValue
+5882fd	1:3		0	3	0	0	3	fighter_ReportBadValue,fighter_LookupModelPtr,fight_InitRoundCameraFighters
+5882fe	2:3		1	2	0	0	2	fighter_StartMoveScript,fight_InitSceneState
+588300	2:4		2	2	0	0	4	fighter_StartMoveScript,fighter_ReportBadValue,motion_RunMoveScript
+588302	2:4		3	1	0	0	3	fight_RunHookCallbacks,fighter_StartMoveScript,fight_InitSceneState
+588310			0	0	2	0	2	fighter_StartMoveScript,round_ResetState
+588700	2:2		1	1	0	0	2	fighter_StartMoveScript,round_ResetState
+588708	4:1	4:1	0	1	0	0	1	fighter_StartMoveScript
+588710	1:2		0	2	2	3	2	fighter_StartMoveScript,fight_InitSceneState
+588720			0	0	2	2	2	fighter_UpdateMotionState,fight_InitSceneState
+588724	4:1		1	0	0	1	1	fighter_CheckFacingSide
+588740	1:3		2	1	1	2	4	hit_LookupAttackTypeTable,fighter_CheckDownedState,fighter_ReportBadValue
+588741	1:1		0	1	0	0	1	fighter_ReportBadValue
+588742	1:2		1	1	1	1	3	hit_LookupAttackTypeTable,fighter_ReportBadValue,fight_InitSceneState
+588743	1:1		0	1	0	0	1	fighter_ReportBadValue
+588744	1:4		0	4	0	0	4	move_StepScriptOrEnd,move_ClearFrameCounter,move_AdvanceFrameMotion
+588748	4:3	4:3	2	1	1	0	2	move_AdvanceFrameMotion,fight_InitSceneState
+588750			0	0	2	2	1	move_AdvanceFrameMotion
+5888c0	4:2	4:2	1	1	1	0	3	fighter_UpdateFrame,fighter_UpdateMotionState,fight_InitSceneState
+5888d0			0	0	1	1	1	fight_ResetPlayerFx
+5888d4	4:2		1	1	0	2	2	fighter_UpdateFrame,fighter_UpdateCameraTarget
+5888f0	16:26		25	1	0	0	9	fighter_UpdateFrame,tgp_MulBoneMatrices,hit_ApplyDamageFlash
+588900	16:26		25	1	0	0	9	fighter_UpdateFrame,tgp_MulBoneMatrices,hit_ApplyDamageFlash
+588910	16:26		25	1	0	0	9	fighter_UpdateFrame,tgp_MulBoneMatrices,hit_ApplyDamageFlash
+588920	16:1		0	1	0	0	1	fighter_UpdateFrame
+588930	16:1		0	1	0	0	1	fighter_UpdateFrame
+588940	16:1		0	1	0	0	1	fighter_UpdateFrame
+588944	4:1		0	1	0	0	1	fighter_UpdateFrame
+588948	4:1		0	1	0	0	1	fighter_UpdateFrame
+58894c	4:1		0	1	0	0	1	fighter_UpdateFrame
+588950	1:1,2:16		4	13	10	16	4	fight_SetEffectByMotion,fighter_UpdateFrame,fighter_PushHitEffects
+588952	2:1		0	1	0	0	1	fight_InitSceneState
+588954	2:3		0	3	0	2	2	fighter_PushHitEffects,fight_InitSceneState
+588956	2:1		0	1	0	0	1	fight_InitSceneState
+58895a	2:1		0	1	0	0	1	fight_InitSceneState
+58895c	2:1		0	1	0	0	1	fight_InitSceneState
+588960	2:1		0	1	0	0	1	fight_InitSceneState
+588962	2:1		0	1	0	0	1	fight_InitSceneState
+588964	2:1		0	1	0	0	1	fight_InitSceneState
+588966	2:1		0	1	0	0	1	fight_InitSceneState
+58896a	2:1		0	1	0	0	1	fight_InitSceneState
+58896c	2:1		0	1	0	0	1	fight_InitSceneState
+588970			0	0	3	2	3	fighter_UpdateFrame,fighter_UpdateMotionState,tgp_MulBoneMatrices
+588f10	4:5	4:5	5	0	1	0	6	fighter_UpdateFrame,fighter_UpdateMotionState,fight_InitSceneState
+588f20		4:3	0	0	7	0	7	fighter_UpdateFrame,fight_ClearAccumulators,fight_InitSceneAndClear
+588f30			0	0	4	0	4	fight_ClearAccumulators,fight_InitSceneAndClear,round_SetupSceneState
+588f40		4:2	0	0	3	1	3	fighter_UpdateFrame,fighter_UpdateMotionState,fight_InitSceneState
+588f60	4:11,8:1	8:1	12	0	2	13	5	geo_DrawSpecialFighterPart,cam_UpdatePlayerViewAngles,fighter_UpdateFrame
+588f64	4:11		11	0	1	12	3	geo_DrawSpecialFighterPart,cam_UpdatePlayerViewAngles,fighter_UpdateFrame
+588f70	1:7		3	4	0	5	6	cam_UpdatePlayerViewAngles,fighter_UpdateFrame,fighter_PushHitEffects
+588f71	1:2		1	1	0	0	2	fight_SaveCameraState,fight_InitSceneState
+588f80		8:7	0	0	7	0	4	fighter_InitRoundFighter,fighter_ApplyStateTable,fighter_UpdateMotionState
+588fe8		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589050		8:1	0	0	1	0	1	fighter_UpdateMotionState
+5890b8		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589120		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589188		8:1	0	0	1	0	1	fighter_UpdateMotionState
+5891f0		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589258		8:1	0	0	1	0	1	fighter_UpdateMotionState
+5892c0		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589328		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589390		8:1	0	0	1	0	1	fighter_UpdateMotionState
+5893f8		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589460		8:1	0	0	1	0	1	fighter_UpdateMotionState
+5894c8		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589530		8:1	0	0	1	0	1	fighter_UpdateMotionState
+589bb0	4:3	4:3	1	2	0	0	3	fighter_UpdateMotionState,round_InitFighterSetup,fighter_SetStateFromTable
+589bc0	4:1	8:1	1	0	2	2	3	fighter_UpdateMotionState,fighter_CalcPosVelocity,fight_ClearPlayerVectors
+589bc4	4:1		1	0	0	1	1	fighter_CalcPosVelocity
+589bc8	4:1		1	0	0	1	1	fighter_CalcPosVelocity
+589bf0	4:2		0	2	3	4	3	fighter_UpdateCameraTarget,fighter_UpdateVelocity_2,fight_ResetPlayerFx
+589c10	4:1		0	1	3	3	3	fighter_UpdateCameraTarget,fighter_UpdateVelocity_2,fight_ResetPlayerFx
+589d80			0	0	2	2	2	fighter_ApplyFloorHeight,fight_InitSceneState
+589da0	1:4		1	3	0	0	3	-,fighter_PushHitEffects,fight_InitSceneState
+589da2	2:3		1	2	0	0	3	fighter_PushHitEffects,-,fight_InitSceneState
+589db0	4:2,8:1,16:1		1	3	1	2	5	fighter_PushHitEffects,cam_UpdatePlayerViewAngles,fight_SaveCameraState
+589db4	4:4		2	2	0	3	3	cam_SendViewMatrixToTgp,cam_UpdatePlayerViewAngles,fight_InitSceneState
+589db8	4:1		0	1	0	0	1	fight_InitSceneState
+589dbc	4:1		0	1	0	0	1	fight_InitSceneState
+589dc0	4:3,8:1,16:1		2	3	0	3	5	fighter_PushHitEffects,cam_UpdatePlayerViewAngles,fight_SaveCameraState
+589dc4	4:3		1	2	0	2	3	cam_UpdatePlayerViewAngles,cam_SendViewMatrixToTgp,fight_InitSceneState
+589dc8	4:1		0	1	0	0	1	fight_InitSceneState
+589dcc	4:1		0	1	0	0	1	fight_InitSceneState
+589dd0	2:2		0	2	0	0	2	fighter_ResetMoveFlags,round_ResetState
+589dd2	2:2		0	2	0	0	2	fighter_ResetMoveFlags,round_ResetState
+589dd4	2:2		0	2	0	0	2	fighter_ResetMoveFlags,round_ResetState
+589dd8	1:2		0	2	0	0	2	fighter_ResetMoveFlags,fight_InitSceneState
+589dd9	1:7		5	2	0	0	6	hit_LoadAttackTable,move_DispatchHitboxLoad,hit_LoadHitboxTable
+589dda	1:2		1	1	0	0	2	hit_TestBoxOverlap,fight_InitSceneState
+589ddb	4:2		1	1	0	0	2	hit_TestBoxOverlap,fight_InitSceneState
+589ddc	4:1		0	1	0	0	1	-
+589de0	1:7		3	4	0	0	3	-,round_SetupSceneState,round_StartFight
+589de1	1:14		11	3	0	0	11	geo_DrawCharacterParts,fighter_ResetSlotAndCall,fighter_ReportBadValue
+589df0	4:12,8:6		16	2	0	0	7	geo_DrawGroundShadow,geo_DrawGroundShadow_2,geo_DrawGroundShadow_3
+589df4	4:12		12	0	0	0	3	geo_DrawGroundShadow,geo_DrawGroundShadow_2,geo_DrawGroundShadow_3
+589df8	4:18		14	4	0	0	7	geo_DrawGroundShadow,geo_DrawGroundShadow_2,geo_DrawGroundShadow_3
+589e00	1:5		1	4	1	1	4	fighter_InitPlayerSlotFlags,fight_InitRoundCameraFighters,fighter_UpdateMotionIndex
+589e01	1:4		0	4	0	0	2	fighter_InitPlayerSlotFlags,fight_InitRoundCameraFighters
+589e02	1:3		2	1	1	0	4	fighter_ReportBadValue,fight_InitSceneState,charsel_ReloadFighterModels
+589e03	1:3		2	1	0	0	3	fighter_ReportBadValue,charsel_ReloadFighterModels,fight_RunHookCallbacks
+589e04	1:3		2	1	1	0	4	fighter_ReportBadValue,fighter_LookupModelPtr,fight_InitRoundCameraFighters
+589e05	1:3		2	1	0	0	3	fighter_ReportBadValue,fighter_LookupModelPtr,fight_InitRoundCameraFighters
+589e08	4:1		0	1	1	0	2	fight_InitRoundCameraFighters,cam_UpdatePlayerViewAngles
+589e0c	4:1		0	1	0	0	1	fight_InitRoundCameraFighters
+589e10	4:4	4:4	0	4	1	0	2	motion_LoadFrameSet,motion_RunMoveScript
+589e14	4:2	4:1	1	1	0	0	2	motion_RunMoveScript,motion_DispatchScriptOp
+589e18	4:1		1	0	0	0	1	motion_RunMoveScript
+589eb0	4:3,16:1	4:2	3	1	2	0	2	motion_RunMoveScript,motion_DispatchScriptOp
+589f50	4:35		13	22	0	0	2	motion_LoadFrameSet,motion_RunMoveScript
+589f58	4:11		5	6	0	0	4	motion_LoadFrameSet,motion_RunMoveScript,motion_DispatchScriptOp
+589f5c	4:1		0	1	0	0	1	fight_InitSceneState
+589f60	4:3		1	2	0	0	2	motion_AdvanceKeyframe,motion_ClampFrameIndex
+589f64	1:4		1	3	0	0	4	motion_SetCurrentMove,motion_ReportError_2,motion_ReportError_3
+589f68	4:4,8:1	4:2	3	2	1	0	4	motion_SetCurrentMove,motion_ReportError_2,-
+589f6c	4:2		2	0	0	0	2	-,motion_ReportError_2
+589f70	4:3	4:2	0	3	1	0	3	motion_SetCurrentMove,motion_ReportError_2,fight_InitSceneState
+589f74	4:1		0	1	0	0	1	motion_ReportError_2
+589f80		4:6	0	0	6	0	3	geo_DrawGroundShadow,geo_DrawGroundShadow_2,geo_DrawGroundShadow_3
+58a1e0	4:1		0	1	0	0	1	fight_ClearPlayerVectors
+58a1e4	4:1		0	1	0	0	1	fight_ClearPlayerVectors
+58a1e8	4:1		0	1	0	0	1	fight_ClearPlayerVectors
+58a1ec	4:1		0	1	0	0	1	fight_ClearPlayerVectors
+58a1f0	4:1		0	1	0	0	1	fight_ClearPlayerVectors
+58a1f4	4:1		0	1	0	0	1	fight_ClearPlayerVectors
+58a1f8	4:2		1	1	0	0	1	fighter_DrawAllModels
+58a1fc	4:5		4	1	0	0	5	fighter_DrawAllModels,geo_DrawFighterModelA,geo_DrawFighterModelB
+58a200	4:6,16:1		6	1	0	0	4	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a204	4:6		6	0	0	0	3	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a208	4:6		6	0	0	0	3	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a20c	4:6		6	0	0	0	3	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a210	4:6,16:1		6	1	0	0	4	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a214	4:6		6	0	0	0	3	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a218	4:6		6	0	0	0	3	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a21c	4:6		6	0	0	0	3	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a220	4:6,16:1		6	1	0	0	4	geo_DrawFighterModelA,geo_DrawFighterModelB,geo_DrawFighterModelC
+58a7d0			0	0	2	2	2	fighter_CalcPosVelocity,fight_ClearPlayerVectors
+58a800			0	0	2	2	2	fighter_CalcPosVelocity,fight_ClearPlayerVectors
+58a830			0	0	3	2	3	fighter_UpdateMotionIndex,fighter_CalcPosVelocity,fight_ClearPlayerVectors
+58a860	2:12	2:11	9	3	0	0	3	geo_DrawSpecialFighterPart,fighter_UpdateMotionIndex,fight_InitSceneState
+58a862	2:1		0	1	0	0	1	fight_InitSceneState
+58a870		4:1	0	0	2	0	2	cam_TrackPlayerPosDelta,fight_InitSceneState
+58b780			0	0	1	0	1	fight_InitSceneState
+58b782			0	0	1	0	1	fight_InitSceneState
+58b790		8:3	0	0	3	0	3	geo_DrawGroundShadow,geo_DrawGroundShadow_2,geo_DrawGroundShadow_3
+58ba60	4:6		3	3	0	0	3	geo_DrawGroundShadow,geo_DrawGroundShadow_2,geo_DrawGroundShadow_3
+58ba64	4:16		13	3	0	0	7	geo_DrawGroundShadow,geo_DrawGroundShadow_2,geo_DrawGroundShadow_3
+58ba68	4:11		8	3	0	0	5	geo_DrawGroundShadow,geo_DrawGroundShadow_2,geo_DrawGroundShadow_3
+58ba6c	4:1		1	0	0	0	1	cam_CalcAngleToTarget
+58ba70	4:1		1	0	0	0	1	cam_SendTargetVectors
+58ba74			0	0	1	0	1	fight_InitSceneState
+58ba78			0	0	1	0	1	fight_InitSceneState
+58ba80	2:1		0	1	0	0	1	round_ResetState
+58ba82	2:1		0	1	0	0	1	round_ResetState
+58ba84	2:1		0	1	0	0	1	round_ResetState
+58ba86	2:1		0	1	0	0	1	round_ResetState
+58ba88	2:1		0	1	0	0	1	round_ResetState
+58ba90			0	0	1	0	1	fight_InitSceneState
+58ba94	2:1		0	1	0	0	1	round_ResetState
+58ba96	2:1		0	1	0	0	1	round_ResetState
+58ba98	2:1		0	1	0	0	1	fight_InitSceneState
+58ba9a	2:1		0	1	0	0	1	round_ResetState
+58ba9c	2:1		0	1	0	0	1	round_ResetState
+58ba9e	2:1		0	1	0	0	1	round_ResetState
+58baa0	2:1		0	1	0	0	1	round_ResetState
+58baa4			0	0	1	0	1	fight_InitSceneState
+58baa8	2:1		0	1	0	0	1	round_ResetState
+58baaa	1:1		0	1	0	0	1	round_ResetState
+58baac	2:1		0	1	0	0	1	fight_InitSceneState
+58baae	2:1		0	1	0	0	1	fight_InitSceneState
+58bab0	4:5		4	1	0	0	5	fight_InitSceneState,cam_StepPointToHeight,geo_DrawGroundShadow
+58bab4	1:1		0	1	0	0	1	round_ResetState
+58bab5	1:1		0	1	0	0	1	fight_InitSceneState
+58bac0	2:1		0	1	0	0	1	round_ResetState
+58bac2	2:1		0	1	0	0	1	round_ResetState
+58bac4	2:1		0	1	0	0	1	round_ResetState
+58bac6	2:1		0	1	0	0	1	round_ResetState
+58bac8	2:1		0	1	0	0	1	round_ResetState
+58baca	2:1		0	1	0	0	1	round_ResetState
+58bacc	2:1		0	1	0	0	1	round_ResetState
+58bace	2:1		0	1	0	0	1	round_ResetState
+58bad0	2:1		0	1	0	0	1	round_ResetState
+58bad2	2:1		0	1	0	0	1	round_ResetState
+58bae0	2:1		0	1	0	0	1	round_ResetState
+58bae2	2:1		0	1	0	0	1	round_ResetState
+58bae4	2:1		0	1	0	0	1	round_ResetState
+58bae6	2:1		0	1	0	0	1	round_ResetState
+58bae8	2:1		0	1	0	0	1	round_ResetState
+58baea	2:1		0	1	0	0	1	round_ResetState
+58baec	2:1		0	1	0	0	1	round_ResetState
+58baee	2:1		0	1	0	0	1	round_ResetState
+58baf0	2:1		0	1	0	0	1	round_ResetState
+58baf2	2:1		0	1	0	0	1	round_ResetState
+58bb00	2:1		0	1	0	0	1	round_ResetState
+58bb10			0	0	1	0	1	round_ResetState
+58bb50	1:1		0	1	0	0	1	round_ResetState
+58bb60			0	0	1	0	1	round_ResetState
+58bb80	1:1		0	1	0	0	1	round_ResetState
+58bb81	1:1		0	1	0	0	1	fight_InitSceneState
+58bb90	4:5		3	2	1	5	3	cam_UpdatePlayerViewAngles,cam_ResetViewAngles,fight_InitSceneState
+58bb94	4:8		6	2	0	7	2	cam_UpdatePlayerViewAngles,fight_InitSceneState
+58bb98	4:1		0	1	0	0	1	fight_InitSceneState
+58bb9c	4:1		0	1	0	0	1	fight_InitSceneState
+58bba0	4:1		0	1	1	1	2	cam_ResetViewAngles,fight_InitSceneState
+58bba4	4:3		1	2	0	2	2	cam_UpdatePlayerViewAngles,fight_InitSceneState
+58bba8	4:1		0	1	0	0	1	fight_InitSceneState
+58bbac	4:1		0	1	0	0	1	fight_InitSceneState
+58bbb0	4:1		0	1	1	0	2	cam_UpdatePlayerViewAngles,fight_InitSceneState
+58bbb4	4:1		0	1	0	0	1	fight_InitSceneState
+58bbf0	4:1		0	1	0	0	1	fight_InitSceneState
+58bbf8	4:1		0	1	0	0	1	fight_InitSceneState
+58bbfc	4:1		0	1	0	0	1	fight_InitSceneState
+58bc00	4:1		0	1	0	0	1	fight_InitSceneState
+58bc04	4:1		0	1	0	0	1	fight_InitSceneState
+58bc08	2:1		0	1	0	0	1	fight_InitSceneState
+58bc0a	2:1		0	1	0	0	1	fight_InitSceneState
+58bc0c	1:1		0	1	0	0	1	fight_InitSceneState
+58bc0d	1:6		4	2	0	0	2	fight_RunHookCallbacks,fight_InitSceneState
+58bc10	4:6	4:6	2	4	0	0	4	fx_InitSlots,fx_SpawnHitSpark,fx_UpdateAll
+58bc30	4:1		1	0	1	0	2	fx_UpdateAll,fx_SpawnHitSpark
+58bc34	4:1		1	0	0	0	1	fx_SpawnHitSpark
+58bc38	4:1		1	0	0	0	1	fx_SpawnHitSpark
+58bc40	4:2		1	1	0	0	2	fx_UpdateAll,fx_DrawSparks
+58bc50	2:2	2:2	1	1	0	0	2	fx_UpdateAll,fx_InitSlots
+58bc60			0	0	5	5	5	fx_InitSlots,fx_SpawnHitSpark,fx_UpdateVelocity
+590c60	2:1	2:1	0	1	0	0	1	fx_InitSlots
+590c70	2:1		0	1	0	0	1	fx_InitSlots
+590cf0	4:1	8:2	1	0	3	1	3	fx_CopyPlayerPos,fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+590cf4			0	0	1	1	1	fx_GetPlayerAnchor
+590d18		8:2	0	0	2	0	2	fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+590d1c		8:1	0	0	1	0	1	fx_GetPlayerAnchor
+590d40		8:2	0	0	2	0	2	fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
+590d44		8:1	0	0	1	0	1	fx_GetPlayerAnchor
+590ee0	2:4		2	2	2	2	3	fx_InitEffectC,fx_UpdateEffectC,fx_UpdateStateC
+590ee4	2:1		0	1	0	0	1	fx_InitEffectC
+590f00			0	0	11	11	11	fx_InitEffectA,fx_InitEffectB,fx_StepEffect
+591980	4:6	4:1	3	3	5	5	5	fx_DrawEffectC,fx_InitEffectC,fx_InitEffectD
+5919b0			0	0	12	12	11	fx_InitDustParticles_2,fx_InitEffectE,fx_InitDustParticles
+592430	4:9		0	9	5	11	5	fx_TickDustTimersB,fx_InitDustParticles_2,fx_InitDustParticles
+5925b0			0	0	3	0	3	fx_InitSparkSlots,fx_TickSparkSlots,fx_DrawSparkSlots
+592900			0	0	4	0	4	fx_InitSparkSlots,fx_TickSparkSlots,fx_DrawSparkList
+593400	4:10		8	2	0	0	6	fx_DrawSparks,fx_UpdateDebrisPool,fx_SendDebrisToTGP
+593404	4:2		0	2	0	0	2	fx_UpdateAll,fx_SlotDispatch
+593408	4:18		17	1	0	0	10	fx_DrawDebrisA,fx_CheckSlotsActive,fx_DrawDebrisD
+59340c	4:6		5	1	0	0	6	fx_SlotDispatch,fx_InitHitSlots,fx_UpdateDebrisPool
+593410	2:3		2	1	0	0	2	fx_UpdateDebrisPool,fx_SlotDispatch
+593414	4:5		2	3	0	0	3	fx_InitSlotsB,fx_StepBounce_2,fx_SlotDispatch
+593420	4:1		1	0	2	1	3	fx_InitHitSlots,fx_CheckSlotsActive,fx_UpdateHitSlots
+5938a0		4:3	0	0	3	0	3	fx_CheckSlotsActive,fx_InitSlotsB,fx_UpdateSlotsB
+593f00			0	0	1	0	1	fx_CheckSlotsActive
+59be80	4:1	4:4,8:1	1	0	5	1	4	fx_DrawDebrisB,fx_DrawDebrisD,fx_UpdateDebrisPool
+59fe40	4:1		0	1	2	1	2	fx_DrawDebrisA,fx_DrawDebrisD
+59fe44	4:1		1	0	0	1	1	fx_DrawDebrisA
+59fe70	4:1		0	1	0	0	1	fx_DrawDebrisA
+59fff0	4:1,16:1		0	2	1	0	1	stage_DrawModelsA
+5a0000	4:1,16:1		0	2	1	0	1	stage_DrawModelsA
+5a0010	4:1,16:1		0	2	1	0	1	stage_DrawModelsA
+5a0020	4:1,16:1		0	2	1	0	1	stage_DrawModelsA
+5a0030	4:1,16:1		0	2	1	0	1	stage_DrawModelsA
+5a0040	4:3		1	2	0	0	2	stage_DrawModelsA,fx_ResetEffectState
+5a0044	4:3		1	2	0	0	2	stage_DrawModelsA,fx_ResetEffectState
+5a0048	4:7		5	2	0	0	2	stage_DrawModelsA,fx_ResetEffectState
+5a004c	4:3		1	2	0	0	2	stage_DrawModelsA,fx_ResetEffectState
+5a0050	4:3		1	2	0	0	2	stage_DrawModelsA,fx_ResetEffectState
+5a0054	4:4		1	3	0	0	2	stage_DrawModelsA,fx_ResetEffectState
+5a0060	4:3,16:1		1	3	0	0	2	stage_DrawModelsC,stage_InitLightTable
+5a0064	4:3		1	2	0	0	1	stage_DrawModelsC
+5a0068	4:3		1	2	0	0	1	stage_DrawModelsC
+5a006c	4:3		1	2	0	0	1	stage_DrawModelsC
+5a0070	4:3,16:1		1	3	0	0	2	stage_DrawModelsC,stage_InitLightTable
+5a0074	4:3		1	2	0	0	1	stage_DrawModelsC
+5a0078	4:3		1	2	0	0	1	stage_DrawModelsC
+5a007c	4:3		1	2	0	0	1	stage_DrawModelsC
+5a0080	4:4		1	3	0	0	2	stage_DrawModelsC,stage_InitLightTable
+5a0084	4:5		2	3	0	0	2	stage_DrawModelsC,stage_InitLightTable
+5a0088	4:10		0	10	0	0	2	stage_DrawModelsC,stage_InitLightTable
+5a008c	4:4		1	3	0	0	3	stage_DrawModelsC,stage_InitLightTable,stage_ClearFlag
+5a0090	4:4		2	2	0	0	2	stage_DrawModelsC,stage_InitLightTable
+5a0094	4:12		9	3	0	0	3	stage_DrawModelsA,stage_DrawModelsI,fx_ResetEffectState
+5a00a0	4:6		1	5	0	0	3	stage_DrawModelsE,stage_InitScrollState,stage_ScrollLayers
+5a00a4	4:6		1	5	0	0	3	stage_DrawModelsE,stage_InitScrollState,stage_ScrollLayers
+5a00b0	4:8		5	3	0	0	2	stage_DrawModelsH,-
+5a00b4	4:3		1	2	0	0	2	stage_DrawModelsH,-
+5a00c0	4:1,16:1		0	2	1	0	1	stage_DrawModelsI
+5a00d0	4:1,16:1		0	2	1	0	1	stage_DrawModelsI
+5a00e0	4:1,16:1		0	2	1	0	1	stage_DrawModelsI
+5a00f0	4:1,16:1		0	2	1	0	1	stage_DrawModelsI
+5a0100	4:1,16:1		0	2	1	0	1	stage_DrawModelsI
+5a0110	16:1		0	1	0	0	1	stage_DrawModelsI
+5a0120	4:3		1	2	0	0	2	stage_DrawModelsI,-
+5a0124	4:3		1	2	0	0	2	stage_DrawModelsI,-
+5a0128	4:7		5	2	0	0	2	stage_DrawModelsI,-
+5a012c	4:3		1	2	0	0	2	stage_DrawModelsI,-
+5a0130	4:3		1	2	0	0	2	stage_DrawModelsI,-
+5a0134	4:6		3	3	0	0	2	stage_DrawModelsI,-
+5a0138	4:3		1	2	0	0	1	stage_DrawModelsI
+5a013c	4:3		1	2	0	0	1	stage_DrawModelsI
+5a0140	4:4		2	2	0	0	1	stage_DrawModelsI
+5a0144	4:2		1	1	0	0	1	stage_DrawModelsJ
+5a0148	4:7		5	2	0	0	1	stage_DrawModelsJ
+5a014c	4:2		1	1	0	0	1	stage_DrawModelsJ
+5a0150	4:4		2	2	0	0	1	stage_DrawModelsJ
+5a0160	4:6		5	1	0	0	1	tile_ScrollBackground
+5a0170	2:2		1	1	0	0	1	tile_UpdateSky
+5a0174	1:2		1	1	0	0	1	tile_UpdateSky
+5a0175	1:2		1	1	0	0	1	tile_UpdateSky
+5a01b0	4:3	4:3	1	2	0	0	3	script_RunMotionObject,obj_InitState,obj_StepMotionPhase
+5a01b8	4:4	4:4	1	3	0	0	3	script_RunMotionObject,obj_UpdateMotionObjects,obj_StepMotionPhase
+5a01c0		4:6	0	0	7	0	7	obj_ClearMotionSlot,obj_UpdateMotionObjects,obj_StepMotionPhase
+5a0234			0	0	1	0	1	geo_DrawMotionObjectA
+5a02a8	4:1		0	1	2	0	3	geo_DrawMotionObjectA,geo_DrawMotionObjectC,obj_InitSlotsC
+5a02ac	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02b0	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02b4	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02b8	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02bc	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02c0	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02c4	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02c8	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02cc	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02d0	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02d4	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02d8	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02dc	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02e0	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02e4	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02e8	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02ec	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02f0	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02f4	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02f8	4:1		0	1	0	0	1	obj_InitSlotsC
+5a02fc	4:1		0	1	0	0	1	obj_InitSlotsC
+5a0300	4:1		0	1	0	0	1	obj_InitSlotsC
+5a0304	4:1		0	1	0	0	1	obj_InitSlotsC
+5a0308	4:1		0	1	0	0	1	obj_InitSlotsC
+5a030c	4:1		0	1	0	0	1	obj_InitSlotsC
+5a0310	4:1		0	1	0	0	1	obj_InitSlotsC
+5a0314	4:1		0	1	0	0	1	obj_InitSlotsC
+5a0318	4:1		0	1	0	0	1	obj_InitSlotsC
+5a0320	4:3		1	2	0	0	2	sway_DrawChainModels,sway_ResetState
+5a0330	4:1		1	0	2	3	2	sway_DrawChainModels,sway_ResetState
+5a14b0	4:2		0	2	0	0	2	sway_DrawChainModels,sway_ResetState
+5a14c0	4:1	4:1	0	1	0	0	1	sway_ResetState
+5a14d0		4:11	0	0	14	0	10	sway_UpdateChain,sway_UpdateAll,sway_DrawChain
+5a1684	4:4		4	0	0	0	2	sway_UpdateAll,sway_DrawChain
+5a1860	4:4		4	0	0	0	2	sway_UpdateAll,sway_DrawChain
+5a1890			0	0	13	3	7	sway_UpdateChain,sway_BlendSegmentAmps,sway_UpdateAll
+5a1924			0	0	2	2	2	sway_StepHistory,sway_UpdateChain
+5a1a3c			0	0	2	0	2	sway_BlendSegmentAmps,sway_UpdateChain
+5a3500	4:3		1	2	0	0	2	sway_UpdateAll,sway_ResetChain
+5a3504	4:7		4	3	0	0	3	sway_UpdateAll,sway_DrawChain,sway_ResetChain
+5a3510	4:5	4:5	3	2	0	0	3	sway_DrawChain,sway_UpdateAll,sway_ResetChain
+5a3bc0			0	0	2	1	2	sway_DrawGroupB,sway_ClearState
+5a3bc4	4:4		0	4	0	4	1	sway_StepPulseSchedule
+5a6e00	4:4		2	2	0	0	3	sway_DrawGroupB,sway_StepRotation,sway_ClearState
+5a6e04	4:7		4	3	0	0	2	sway_StepPulseSchedule,sway_ClearState
+5a6e08	4:7		3	4	0	0	2	sway_StepPulseSchedule,sway_ClearState
+5a6e0c	4:5		1	4	0	0	2	sway_StepPulseSchedule,sway_StepRotation
+5a6e10	4:4		1	3	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e14	4:5		2	3	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e20	4:2		1	1	0	0	1	geo_DrawEffectModel
+5a6e24	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e28	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e2c	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e30	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e34	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e38	4:1		0	1	0	0	1	fx_ResetEffectState_2
+5a6e40	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e44	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e48	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e4c	4:3		1	2	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e50	4:4		1	3	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e54	4:5		1	4	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e58	4:6		2	4	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e5c	4:5		1	4	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e60	4:6		3	3	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e64	4:5		2	3	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e68	4:6		2	4	0	0	2	geo_DrawEffectModel,fx_ResetEffectState_2
+5a6e70	4:2		2	0	3	4	4	obj_UpdateMotionObjects,obj_ClearState,obj_InitState
+5a6e8c	4:1		1	0	0	1	1	obj_UpdateMotionObjects
+5a6eb0	4:5		3	2	0	0	3	fx_DrawSwingingObject,fx_StepSwingTimeline,fx_InitSwingState
+5a6eb4	4:4		2	2	0	0	3	fx_StepSwingAngle,fx_DrawSwingingObject,fx_InitSwingState
+5a6eb8	4:11		8	3	0	0	2	fx_StepSwingTimeline,fx_InitSwingState
+5a6ebc	4:7		1	6	0	0	3	fx_StepSwingTimeline,fx_StepSwingAngle,fx_InitSwingState
+5a6ec0	4:8		2	6	0	0	2	fx_StepSwingTimeline,fx_InitSwingState
+5a6ec4	4:3		1	2	0	0	2	fx_StepSwingAngle,fx_InitSwingState
+5a6ec8	4:21		6	15	0	0	16	fx_FlashStep02,fx_FlashStep05,fx_FlashStep0A
+5a6ed0	16:1		0	1	1	0	2	fx_ApplyFlashLights,fx_FlashReset
+5a6ee0	4:25		8	17	0	0	18	fx_FlashStep01,fx_FlashStep02,fx_FlashStep04
+5a6ee4	4:23		1	22	0	0	22	fx_StepFlashState,fx_FlashStep01,fx_FlashStep02
+5a6ee8	4:53		17	36	0	0	18	fx_FlashStep09,fx_FlashStep01,fx_FlashStep02
+5a6eec	4:13		4	9	0	0	5	fx_FlashStep06,fx_FlashStep07,fx_FlashStep0B
+5a6f00	4:95,8:1	4:94	94	2	2	0	15	fighter_UpdateFrame,tgp_SendFighterModel,geo_DrawCharacterParts
+5a6f04	4:1		0	1	0	0	1	round_UpdateTimerState
+5a6f08	1:16		8	8	0	0	3	hud_WriteTilemapPortraits,fight_StepMatchLoad,stage_Init
+5a6f0a	1:3		1	2	0	0	3	hud_WriteTilemapPortraits,stage_ResetState,fight_StepMatchLoad
+5a6f0b	1:3		1	2	0	0	3	hud_WriteTilemapPortraits,stage_ResetState,fight_StepMatchLoad
+5a6f0c	1:3		1	2	0	0	3	hud_WriteTilemapPortraits,stage_ResetState,fight_StepMatchLoad
+5a6f0d	1:7		5	2	0	0	6	fight_StepMatchLoad,fx_UpdateAll,fx_SlotDispatch
+5a6f10	4:100		97	3	0	0	48	stage_DrawModelsB,stage_DrawModelsC,stage_DrawModelsE
+5a6f14	4:9		6	3	0	0	7	fight_StepMatchLoad,fx_DrawEffect,fx_DrawEffectC
+5a6f18	4:8		6	2	0	0	7	round_UpdateTimerState,fx_DrawEffect,fx_DrawEffectC
+5a6f1c	1:8		5	3	0	1	2	fight_StepMatchLoad,stage_PickVariant
+5a6f1d	1:7		4	3	0	0	1	fight_StepMatchLoad
+5a6f1e	1:11		8	3	0	0	5	fight_StepMatchLoad,tgp_SelectModelVariant,stage_DrawModelsA
+5a6f20	1:7		4	3	0	5	3	fight_StepMatchLoad,tgp_SelectModelVariant,stage_ResetState
+5a6f21	1:2		1	1	0	0	2	stage_ResetState,fight_StepMatchLoad
+5a6f22	2:6		2	4	0	0	5	fight_RunFrame,vec_ScrollDirection,stage_SetLodLevel_2
+5a6f24	4:6		3	3	0	0	4	vec_ScrollDirection,stage_SetLodLevel_2,-
+5a6f28	4:6		3	3	0	0	4	vec_ScrollDirection,stage_SetLodLevel_2,-
+5a6f30	4:1		1	0	1	1	2	vec_ScrollDirection,stage_Init
+5a6f34	4:1		1	0	0	1	1	vec_ScrollDirection
+5a7550	1:1		1	0	1	1	2	vec_ScrollDirection,stage_Init
+5a7620	4:9		7	2	0	0	4	stage_DrawModelsI,stage_DrawModelsA,fight_StepMatchLoad
+5a7624	4:16		14	2	0	0	11	stage_DrawModelsB,stage_DrawModelsC,stage_DrawModelsD
+5a7630	4:7,16:1		7	1	1	0	3	stage_DrawModelsE,stage_InitScrollState,stage_ScrollLayers
+5a7634	4:9		9	0	0	0	1	stage_DrawModelsE
+5a7638	4:7		7	0	0	0	1	stage_DrawModelsE
+5a763c	4:8		8	0	0	0	1	stage_DrawModelsE
+5a7640	4:10,16:1		10	1	0	0	2	stage_DrawModelsE,stage_InitScrollState
+5a7644	4:8		8	0	0	0	1	stage_DrawModelsE
+5a7648	4:9		9	0	0	0	1	stage_DrawModelsE
+5a764c	4:10		10	0	0	0	1	stage_DrawModelsE
+5a7650	4:9,16:1		9	1	0	0	2	stage_DrawModelsE,stage_InitScrollState
+5a7654	4:6		6	0	0	0	1	stage_DrawModelsE
+5a7658	4:9		9	0	0	0	1	stage_DrawModelsE
+5a765c	4:6		6	0	0	0	1	stage_DrawModelsE
+5a7670	8:1		0	1	0	0	1	stage_InitScrollState
+5a7674	4:5		3	2	0	0	2	stage_ScrollLayers,stage_DrawModelsE
+5a7678	4:6		3	3	0	0	3	stage_ScrollLayers,stage_DrawModelsE,stage_InitScrollState
+5a7680	4:1		0	1	0	0	1	stage_InitScrollState
+5a7684	4:5		2	3	0	0	3	stage_ScrollLayers,stage_DrawModelsI,stage_InitScrollState
+5a7688	4:5		2	3	0	0	3	stage_DrawModelsE,stage_InitScrollState,stage_ScrollLayers
+5a768c	4:13		9	4	0	0	3	stage_DrawModelsE,stage_InitScrollState,stage_ScrollLayers
+5a7690	4:16		6	10	0	0	2	stage_DrawModelsE,stage_InitScrollState
+5a7694	4:9		5	4	0	0	2	stage_DrawModelsE,stage_InitScrollState
+5a7698	4:6		4	2	0	0	2	tile_ScrollBackground,stage_Init
+5a769c	1:2		0	2	0	0	2	tile_ScrollBackground,stage_Init
+5a769d	1:2		0	2	0	0	2	tile_ScrollBackground,stage_Init
+5a769e	1:5		1	4	0	0	2	stage_LoadBackground,stage_ResetState
+5a76a0			0	0	7	0	4	tile_UpdateRollB,stage_BuildTilemapOffsets,stage_LoadBackground
+5af6a0	1:4		1	3	0	0	2	fight_StepMatchLoad,stage_LoadBackground
+5af6a4	4:4		1	3	0	0	2	stage_UploadTexture,stage_LoadBackground
+5af6b0	4:4	4:1	4	0	3	0	4	stage_FreeBackground,stage_BuildTilemapOffsets,stage_ResetState
+5af6bc	4:1		1	0	1	0	2	stage_LoadBackground,stage_FreeBackground
+5af6c8	4:1		1	0	1	0	2	stage_LoadBackground,stage_FreeBackground
+5af6d4	4:1		1	0	1	0	2	stage_LoadBackground,stage_FreeBackground
+5af700	4:3	4:1	2	1	0	0	2	stage_BuildTilemapOffsets,stage_LoadBackground
+5af704	4:1		0	1	0	0	1	stage_LoadBackground
+5af708	4:1		0	1	0	0	1	stage_LoadBackground
+5af70c	4:1		0	1	0	0	1	stage_LoadBackground
+5af710	1:4		1	3	0	0	3	stage_UpdateBackground,stage_LoadBackground,stage_Init
+5af711	1:2		1	1	0	0	2	stage_UpdateBackground,stage_Init
+5af720			0	0	3	0	1	stage_BuildTilemapOffsets
+5b9720	2:5		2	3	0	0	3	tile_UpdateRollA,tile_UpdateRollB,stage_UpdateScrollA
+5b9722	2:1		0	1	0	0	1	stage_UpdateScrollA
+5b9724	2:3		0	3	0	0	3	stage_UpdateScrollA,tile_UpdateRollA,tile_UpdateRollB
+5b9726	2:1		0	1	0	0	1	stage_UpdateScrollA
+5b9728	2:4		1	3	0	0	3	tile_UpdateRollA,stage_UpdateScrollA,tile_UpdateRollB
+5b972c	4:5		2	3	0	0	3	tile_UpdateRollA,tile_UpdateRollB,stage_UpdateScrollA
+5b9730	4:5		2	3	0	0	3	tile_UpdateRollA,tile_UpdateRollB,stage_UpdateScrollA
+5b9734	4:5		2	3	0	0	3	tile_UpdateRollA,tile_UpdateRollB,stage_UpdateScrollA
+5b9738	4:5		2	3	0	0	3	tile_UpdateRollA,tile_UpdateRollB,stage_UpdateScrollA
+5b973c	4:2		0	2	0	0	2	stage_ResetState,stage_Init
+5b9740	4:1		0	1	0	0	1	stage_ResetState
+5b9744	1:7		2	5	0	0	2	fight_StepMatchLoad,stage_ResetState
+5b9745	1:7		2	5	0	0	2	fight_StepMatchLoad,stage_ResetState
+5b9746	1:5		2	3	0	0	2	fight_StepMatchLoad,stage_ResetState
+5b9748	1:6		2	4	0	3	2	fight_StepMatchLoad,stage_ResetState
+5b9749	1:5		3	2	0	0	2	fight_StepMatchLoad,stage_ResetState
+5b974a	1:7		3	4	0	3	2	fight_StepMatchLoad,stage_ResetState
+5b974b	1:5		3	2	0	0	2	fight_StepMatchLoad,stage_ResetState
+5b974c	1:1		0	1	0	0	1	stage_ResetState
+5b974d	1:2		1	1	0	0	1	stage_ResetState
+5b974e	1:3		1	2	0	0	2	fight_StepMatchLoad,stage_ResetState
+5b974f	1:3		1	2	0	0	2	fight_StepMatchLoad,stage_Init
+5b9750	4:3		1	2	0	0	2	fight_StepMatchLoad,stage_Init
+5b9754	4:3		1	2	0	0	2	fight_StepMatchLoad,stage_Init
+5b9758	1:4		1	3	0	0	3	stage_Init,fight_StepMatchLoad,round_UpdateTimerState
+5b9759	1:2		0	2	0	0	1	stage_Init
+5b975a	1:22		8	14	0	0	13	fight_StepMatchLoad,stage_Init,mem_StepVramLoad
+5b975b	1:18		7	11	0	0	2	fight_StepMatchLoad,stage_Init
+5b975c	2:1		0	1	0	0	1	stage_Init
+5b975e	1:6		1	5	0	0	2	fight_StepMatchLoad,stage_Init
+5b975f	1:1		0	1	0	0	1	stage_Init
+5b9760	1:1		0	1	0	0	1	stage_Init
+5b9761	1:1		0	1	0	0	1	stage_Init
+5b9762	1:1		0	1	0	0	1	stage_Init
+5b9763	1:1		0	1	0	0	1	stage_Init
+5b9764	2:1		0	1	0	0	1	stage_Init
+5b9766	2:3		1	2	0	0	2	cam_SetModeState,stage_Init
+5b9768	1:1		0	1	0	0	1	stage_Init
+5b976c	1:1		0	1	1	0	2	stage_Init,fight_RunFrame
+5b976d	1:1		0	1	0	0	1	stage_Init
+5b976e	1:1		0	1	1	0	2	stage_Init,fight_UpdateEdgeFxSecondPair
+5b976f	1:1		0	1	0	0	1	stage_Init
+5b9770	4:10		5	5	0	0	7	stage_InitFourSlots,fight_LoadEntryTableLo,fight_LoadEntryTableHi
+5b9774	1:5		1	4	0	0	4	fight_StepMatchLoad,stage_Init,round_UpdateTimerState
+5b9778	4:4		1	3	0	0	4	stage_Init,stage_SetLodLevel_2,cam_UpdateRotation
+5b977c	4:4		1	3	0	0	4	stage_Init,stage_SetLodLevel_2,cam_UpdateRotation
+5b9780	4:4		1	3	0	0	4	stage_Init,stage_SetLodLevel_2,cam_UpdateRotation
+5b9784	2:7		3	4	0	0	4	fight_RunFrame,-,cam_RandomizeCameraPose
+5b9786	1:3		0	3	0	0	3	stage_SetLodLevel_2,-,cam_RandomizeCameraPose
+5b9790	2:2		0	2	5	2	4	cam_RandomizeCameraPose,stage_SetLodLevel_2,fight_StepMatchLoad
+5b97a8	2:2		0	2	0	0	2	stage_SetLodLevel_2,fight_StepMatchLoad
+5b97c0	2:2		0	2	0	0	2	stage_SetLodLevel_2,fight_StepMatchLoad
+5b97d8	2:2		0	2	0	0	2	stage_SetLodLevel_2,fight_StepMatchLoad
+5b97f0	2:2		0	2	0	0	2	stage_SetLodLevel_2,fight_StepMatchLoad
+5b9808	2:2		0	2	0	0	2	stage_SetLodLevel_2,fight_StepMatchLoad
+5b9820	2:2		0	2	0	0	2	stage_SetLodLevel_2,fight_StepMatchLoad
+5b9838	2:2		0	2	0	0	2	stage_SetLodLevel_2,fight_StepMatchLoad
+5b9850	2:10		0	10	4	10	4	fight_RunFrame,fight_UpdateEdgeFxSecondPair,stage_StepInitPhase
+5b9852	2:1		0	1	0	0	1	stage_InitFourSlots
+5b9856	2:1		0	1	0	0	1	stage_StepInitPhase
+5b9860	2:2		0	2	0	0	2	stage_InitFourSlots,fight_RunFrame
+5b9862	2:1		0	1	0	0	1	stage_InitFourSlots
+5b9866	2:1		0	1	0	0	1	stage_InitFourSlots
+5b9870	2:2		0	2	0	0	2	stage_InitFourSlots,fight_RunFrame
+5b9872	2:1		0	1	0	0	1	stage_InitFourSlots
+5b9876	2:1		0	1	0	0	1	stage_InitFourSlots
+5b9880	2:2		0	2	0	0	2	stage_InitFourSlots,fight_RunFrame
+5b9882	2:1		0	1	0	0	1	stage_InitFourSlots
+5b9886	2:1		0	1	0	0	1	stage_InitFourSlots
+5b9890	1:4		3	1	0	0	1	fight_StepMatchLoad
+5b9891	1:4		3	1	0	0	1	fight_StepMatchLoad
+5b9892	1:3		2	1	0	0	1	fight_StepMatchLoad
+5b9894	4:3		1	2	0	0	3	fight_RunFrame,-,cam_RandomizeCameraPose
+5b9898	4:3		1	2	0	0	3	fight_RunFrame,-,cam_RandomizeCameraPose
+5b989c	4:3		1	2	0	0	3	fight_RunFrame,-,cam_RandomizeCameraPose
+5b98a0	4:16		14	2	0	0	15	fight_RunFrame,math_DistanceToCamera,math_DistanceToCamera_2
+5b98a4	4:16		14	2	0	0	15	fight_RunFrame,math_DistanceToCamera,math_DistanceToCamera_2
+5b98a8	4:16		14	2	0	0	15	fight_RunFrame,math_DistanceToCamera,math_DistanceToCamera_2
+5b9978	4:10		9	1	0	0	10	mem_VramLoadSelectE,mem_VramLoadCopyStage1,mem_VramLoadCopyStage1b
+5bdb40			0	0	1	0	1	-
+5bdb50	2:1	4:13	0	1	27	0	14	script_OpSpawnObject,script_OpFollowObject,script_OpSetObjectPos
+5bf840	1:4		1	3	0	0	3	script_OpSetLightFade,script_InitEntry,script_StepObjects
+5bf844	4:5		1	4	0	0	3	script_OpSetCameraSpin,script_InitEntry,script_StepObjects
+5bf848	4:4		1	3	0	0	3	script_OpSetCameraPan,script_InitEntry,script_StepObjects
+5bf84c	1:5		4	1	0	0	2	script_StepObjects,script_OpSetLightFade
+5bf850	4:7		5	2	0	0	2	script_StepObjects,script_OpSetCameraSpin
+5bf854	4:7		5	2	0	0	2	script_StepObjects,script_OpSetCameraSpin
+5bf858	4:2		1	1	0	0	2	script_OpSetCameraSpin,script_StepObjects
+5bf85c	4:2		1	1	0	0	2	script_OpSetCameraSpin,script_StepObjects
+5bf860	4:4		2	2	0	0	2	script_StepObjects,script_OpSetCameraPan
+5bf864	4:4		2	2	0	0	2	script_StepObjects,script_OpSetCameraPan
+5bf868	4:2		1	1	0	0	2	script_OpSetCameraPan,script_StepObjects
+5bf86c	4:2		1	1	0	0	2	script_OpSetCameraPan,script_StepObjects
+5bf870	4:13		9	4	0	0	12	mem_VramLoadSelectA,mem_VramLoadSelectB,mem_VramLoadSelectE
+5bf874	4:1		0	1	0	0	1	mem_VramLoadSelectE
+5bf878	4:3		1	2	0	0	1	mem_CopyRomToVramWiden
+5bf87c	4:2		0	2	0	0	2	mem_CopyRomToVramWiden,mem_SaveCopyCursor
+5bf880	4:3		1	2	0	0	2	mem_CopyRomToVramWiden,mem_SaveCopyCursor
+5bf890		8:1	0	0	1	0	1	io_UpdateButtonHold
+5bf8a0	1:8		2	6	0	0	6	move_DispatchMoveClass,cam_RunScript,fighter_SetScriptPtr
+5bf8a1	1:57		5	52	0	0	53	move_DispatchMoveClass,cam_RunScript,cam_StepAngleTrack
+5bf8a4	4:9		3	6	0	0	2	cmd_MatchDirectionWindow,cmd_OrHistoryBytes
+5bf8b0	4:14		8	6	33	0	32	cam_RunEventState,cam_UpdateByMode,cam_UpdateRoundEvent
+5bf8b4	4:27		12	15	33	0	32	cam_UpdateByMode,cam_UpdateRoundEvent,cam_RunEventState
+5bf8b8	4:13		7	6	33	0	32	cam_RunEventState,cam_UpdateByMode,cam_UpdateRoundEvent
+5bf8bc	4:7		3	4	1	0	8	-,cam_RunScript,cam_ScriptLookAtTarget
+5bf8c0	4:7		3	4	1	0	8	-,cam_RunScript,cam_ScriptLookAtTarget
+5bf8c4	4:7		3	4	1	0	7	cam_ScriptLookAtTarget,-,cam_ScriptStepAll_2
+5bf8c8	4:61		28	33	11	0	39	cam_PosOpOrbit,cam_EventRingOutView,cam_UpdateByMode
+5bf8cc	4:78		37	41	9	0	41	cam_EventRingOutView,cam_UpdateByMode,cam_UpdateRoundEvent
+5bf8d0	4:24		9	15	5	0	20	-,cam_RunEventState,cam_UpdateByMode
+5bf8d4	4:36		16	20	34	0	38	cam_RunEventState,cam_EventRingOutView,cam_UpdateByMode
+5bf8d8	1:17		5	12	0	0	5	cam_UpdateByMode,cam_StepFovTable,cam_UpdateFollowFighterParam
+5bf8dc	4:10		3	7	0	0	8	-,cam_UpdateByMode,cam_StepFovTable
+5bf8e0	4:4	4:4	4	0	2	0	5	cam_UpdateRoundEvent,-,cam_EventRingOutView
+5bf8e4	4:1		0	1	1	0	2	-,cam_EventRingOutView
+5bf8e8	4:1	4:1	1	0	1	0	2	-,cam_YawForFighter
+5bf8ec	4:1		0	1	0	0	1	-
+5bf8f0	1:2		1	1	0	0	1	-
+5bf8f8	4:19	4:10	18	1	2	1	14	cam_UpdateByMode,-,cam_EventSmoothBothFighters
+5bf8fc	4:9		8	1	1	0	9	cam_EventSmoothBothFighters,-,cam_SetPosXZFromFighter2
+5bf900	4:22	4:10	21	1	2	1	15	cam_UpdateByMode,-,cam_EventOrbitRandomC
+5bf904	4:12		11	1	1	0	9	cam_EventSmoothBothFighters,cam_GetMidpointTarget,cam_ComputeFitDistance
+5bf908	4:18	4:9	17	1	2	1	14	cam_UpdateByMode,-,cam_EventSmoothBothFighters
+5bf90c	4:9		8	1	1	0	9	cam_EventSmoothBothFighters,-,cam_SetPosXZFromFighter2
+5bf910	4:5	4:4	4	1	1	0	5	cam_UpdateRoundEvent,-,cam_EventRingOutView
+5bf914	4:1		0	1	1	0	2	-,cam_EventRingOutView
+5bf918	1:2		1	1	0	0	1	-
+5bf919	1:15		14	1	0	0	7	cam_UpdateByMode,cam_UpdateRoundEvent,-
+5bf91a	1:3		2	1	0	0	3	-,cam_RunEventState,cam_UpdateDefaultEvent
+5bf91c	1:2		1	1	0	1	2	-,cam_SelectEventByMove
+5bf91d	1:1		0	1	0	0	1	-
+5bf91e	1:6		2	4	0	0	3	cam_RunEventState,cam_UpdateByMode,cam_SelectEventByMove
+5bf91f	1:1		1	0	0	0	1	cam_UpdateMain
+5bf920	4:31		23	8	28	0	15	cam_RunEventState,cam_UpdateByMode,cam_UpdateDefaultEvent
+5bf924	1:26		21	5	0	0	5	cam_UpdateByMode,cam_UpdateRoundEvent,cam_RunEventState
+5bf928	4:116		60	56	0	0	36	cam_OpStartPosAngleDistIdx,cam_OpStartPosAngleDistInline,cam_OpStartTargetAngleIdx
+5bf92c	4:16		8	8	0	0	5	cam_UpdateByMode,cam_UpdateRoundEvent,cam_ChooseYawSide
+5bf930	1:6		1	5	0	0	3	cam_UpdateDefaultEvent,cam_RunEventState,cam_ChooseYawSide
+5bf931	1:16		13	3	0	0	13	cam_RunEventState,cam_SelectEventByMove,cam_EventOrbitRandomA
+5bf932	1:4		1	3	0	0	2	cam_UpdateDefaultEvent,cam_RunEventState
+5bf933	1:2		1	1	0	0	2	cam_RunEventState,cam_SelectEventByMove
+5bf934	4:24		13	11	0	0	12	cam_EventLowAngle,cam_EventOrbitRandomA,cam_EventHighAngle
+5bf938	4:39		20	19	0	0	13	cam_EventRingOutView,cam_EventRotateYaw,cam_EventShakeYaw
+5bf93c	4:2		1	1	0	0	1	cam_EventShakeYaw
+5bf940	1:1		0	1	0	0	1	cam_EventRingOutView
+5bf941	1:6		4	2	0	0	2	cam_EventFocusFighter,cam_UpdateByMode
+5bf944	4:11		5	6	2	0	2	cam_UpdateByMode,cam_UpdateRoundEvent
+5bf948	4:9		4	5	0	0	2	cam_UpdateByMode,cam_EventSmoothBothFighters
+5bf94c	4:7		3	4	1	0	2	cam_UpdateByMode,cam_EventSmoothBothFighters
+5bf950	4:8		4	4	1	0	2	cam_UpdateByMode,cam_EventSmoothBothFighters
+5bf954	4:8		4	4	1	0	2	cam_UpdateByMode,cam_EventSmoothBothFighters
+5bf958	1:10		5	5	0	0	4	cam_UpdateByMode,cam_StepFovTable,cam_UpdateFollowFighterParam
+5bf959	1:25		15	10	0	0	4	cam_UpdateByMode,cam_StepFovTable,cam_UpdateFollowFighterParam
+5bf95c	4:4		2	2	0	0	1	cam_UpdateByMode
+5bf960	4:4		2	2	0	0	1	cam_UpdateByMode
+5bf964	4:4		2	2	0	0	1	cam_UpdateByMode
+5bf968	1:2		1	1	0	0	1	cam_UpdateFollowFighterParam
+5bf96c	4:3		2	1	0	0	1	cam_UpdateFollowFighterParam
+5bf970	4:3		2	1	0	0	1	cam_UpdateFollowFighterParam
+5bf974	4:2		1	1	0	0	1	cam_UpdateFollowFighterParam
+5bf978	1:4		1	3	0	0	4	cam_ScriptInit,cam_RunScript,cam_OpSwitchScript
+5bf979	1:4		1	3	1	0	5	cam_ScriptInit,cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf97a	1:4		1	3	1	0	5	cam_ScriptInit,cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf97b	1:6		2	4	0	0	6	cam_ScriptInit,cam_StartAngleTrackIdx,cam_StartAngleTrackInline
+5bf97c	1:6		2	4	0	0	6	cam_ScriptInit,cam_StartDistTrackIdx,cam_StartDistTrackInline
+5bf97d	1:4		1	3	0	0	4	cam_ScriptInit,cam_StartPosTrackIdx,cam_SetPosOffsetTrack
+5bf97e	1:4		1	3	0	0	4	cam_ScriptInit,cam_StartTargetTrackIdx,cam_SetTargetOffsetTrack
+5bf97f	1:4		1	3	0	0	4	cam_ScriptInit,cam_StartAngleTrackIdx,cam_SetAngleOffsetTrack
+5bf980	1:9		1	8	0	0	9	cam_ScriptInit,cam_RunScript,cam_OpStartTargetAngleIdx
+5bf984	4:4		1	3	0	0	2	cam_OpWaitFrames,cam_ScriptInit
+5bf988	4:2		0	2	1	0	3	cam_StartPosTrackIdx,cam_StartPosTrackInline,cam_StepPosTrack
+5bf98c	4:2		0	2	1	0	3	cam_StartPosTrackIdx,cam_StartPosTrackInline,cam_StepPosTrack
+5bf990	4:2		0	2	1	0	3	cam_StartPosTrackIdx,cam_StartPosTrackInline,cam_StepPosTrack
+5bf994	4:2		0	2	1	0	3	cam_StartPosTrackIdx,cam_StartPosTrackInline,cam_StepPosTrack
+5bf998	4:2		0	2	1	0	3	cam_StartPosTrackIdx,cam_StartPosTrackInline,cam_StepPosTrack
+5bf99c	1:2		0	2	1	0	3	cam_StartPosTrackIdx,cam_StartPosTrackInline,cam_StepPosTrack
+5bf9a0	4:2		0	2	1	0	3	cam_StartPosTrackIdx,cam_StartPosTrackInline,cam_StepPosTrack
+5bf9a4	4:2		0	2	1	0	3	cam_StartPosTrackIdx,cam_StartPosTrackInline,cam_StepPosTrack
+5bf9a8	1:2		0	2	0	0	2	cam_StartPosTrackIdx,cam_StartPosTrackInline
+5bf9ac	4:2		0	2	0	0	2	cam_StartPosTrackIdx,cam_SetPosOffsetTrack
+5bf9b0	1:2		0	2	0	0	2	cam_StartPosTrackIdx,cam_SetPosOffsetTrack
+5bf9b4	4:2		0	2	1	0	3	cam_StartTargetTrackIdx,cam_StartTargetTrackInline,cam_StepTargetOffsetTrack
+5bf9b8	4:2		0	2	1	0	3	cam_StartTargetTrackIdx,cam_StartTargetTrackInline,cam_StepTargetOffsetTrack
+5bf9bc	4:2		0	2	1	0	3	cam_StartTargetTrackIdx,cam_StartTargetTrackInline,cam_StepTargetOffsetTrack
+5bf9c0	4:2		0	2	1	0	3	cam_StartTargetTrackIdx,cam_StartTargetTrackInline,cam_StepTargetOffsetTrack
+5bf9c4	4:2		0	2	1	0	3	cam_StartTargetTrackIdx,cam_StartTargetTrackInline,cam_StepTargetOffsetTrack
+5bf9c8	1:2		0	2	1	0	3	cam_StartTargetTrackIdx,cam_StartTargetTrackInline,cam_StepTargetOffsetTrack
+5bf9cc	4:2		0	2	1	0	3	cam_StartTargetTrackIdx,cam_StartTargetTrackInline,cam_StepTargetOffsetTrack
+5bf9d0	4:2		0	2	1	0	3	cam_StartTargetTrackIdx,cam_StartTargetTrackInline,cam_StepTargetOffsetTrack
+5bf9d4	1:2		0	2	0	0	2	cam_StartTargetTrackIdx,cam_StartTargetTrackInline
+5bf9d8	4:2		0	2	0	0	2	cam_StartTargetTrackIdx,cam_SetTargetOffsetTrack
+5bf9dc	1:2		0	2	0	0	2	cam_StartTargetTrackIdx,cam_SetTargetOffsetTrack
+5bf9e0	4:27		12	15	0	0	12	cam_AngOpSet,cam_AngOpEaseOut,cam_AngOpEaseIn
+5bf9e4	4:28		12	16	0	0	9	cam_AngOpEaseOut,cam_AngOpEaseIn,cam_AngOpLerp
+5bf9e8	4:14		4	10	0	0	6	cam_AngOpAccel,cam_AngOpLerp,cam_AngOpEaseOut
+5bf9ec	4:14		4	10	0	0	6	cam_AngOpAccel,cam_AngOpLerp,cam_AngOpEaseOut
+5bf9f0	4:14		4	10	0	0	6	cam_AngOpAccel,cam_AngOpLerp,cam_AngOpEaseOut
+5bf9f4	1:4		1	3	0	0	3	cam_StepAngleTrack,cam_StartAngleTrackIdx,cam_StartAngleTrackInline
+5bf9f8	4:2		0	2	0	0	2	cam_StartAngleTrackIdx,cam_SetAngleOffsetTrack
+5bf9fc	1:2		0	2	0	0	2	cam_StartAngleTrackIdx,cam_SetAngleOffsetTrack
+5bfa00	4:25		13	12	0	0	12	cam_DistOpSet,cam_DistOpEaseOut,cam_DistOpEaseIn
+5bfa04	4:31		13	18	0	0	10	cam_DistOpEaseOut,cam_DistOpEaseIn,cam_DistOpLerp
+5bfa08	4:15		4	11	0	0	7	cam_DistOpAccel,cam_DistOpLerp,cam_DistOpEaseOut
+5bfa0c	1:4		1	3	0	0	3	cam_StepDistTrack,cam_StartDistTrackIdx,cam_StartDistTrackInline
+5bfa10			0	0	1	0	1	cam_StepPosTrack
+5bfa14			0	0	1	0	1	cam_StepPosTrack
+5bfa18			0	0	1	0	1	cam_StepPosTrack
+5bfa1c			0	0	1	0	1	cam_StepTargetOffsetTrack
+5bfa20			0	0	1	0	1	cam_StepTargetOffsetTrack
+5bfa24			0	0	1	0	1	cam_StepTargetOffsetTrack
+5bfa28	1:4		2	2	0	0	3	cam_StepChannel,cam_StepPosOpcode,cam_PosOpEnd
+5bfa2c	4:7		4	3	1	0	5	cam_StepPosOpcode,cam_PosOpAnchorHomeTo,cam_StepChannel
+5bfa30	4:7		4	3	1	0	5	cam_StepPosOpcode,cam_PosOpAnchorHomeTo,cam_StepChannel
+5bfa34	4:7		4	3	1	0	5	cam_StepPosOpcode,cam_PosOpAnchorHomeTo,cam_StepChannel
+5bfa38	4:30		13	17	1	0	19	cam_StepPosOpcode,cam_PosOpLinearAdd,cam_PosOpAccel
+5bfa3c	4:30		13	17	1	0	19	cam_StepPosOpcode,cam_PosOpLinearAdd,cam_PosOpAccel
+5bfa40	4:30		13	17	1	0	19	cam_StepPosOpcode,cam_PosOpLinearAdd,cam_PosOpAccel
+5bfa44	4:21		8	13	0	0	8	cam_PosOpOrbitAccel,cam_PosOpAccel,cam_PosOpLerp
+5bfa48	4:17		6	11	0	0	7	cam_PosOpAccel,cam_PosOpLerp,cam_PosOpEaseOut
+5bfa4c	4:17		6	11	0	0	7	cam_PosOpAccel,cam_PosOpLerp,cam_PosOpEaseOut
+5bfa50	4:46		19	27	0	0	15	cam_PosOpEaseOut,cam_PosOpEaseIn,cam_PosOpLerp
+5bfa54	4:50		27	23	0	0	19	cam_PosOpSet,cam_PosOpSetAnchorOffset,cam_PosOpEaseOut
+5bfa58	1:5		2	3	0	0	4	cam_StepPosOpcode,cam_StepChannel,cam_PosOpSetAnchorOffset
+5bfa5c	4:6		4	2	0	0	3	cam_StepPosOpcode,cam_StepChannel,cam_PosOpSetAnchorOffset
+5bfa60	4:6		4	2	0	0	3	cam_StepPosOpcode,cam_StepChannel,cam_PosOpSetAnchorOffset
+5bfa64	1:4		0	4	0	0	3	cam_ComputeFitDistance,cam_ComputeFitDistanceMin,cam_StoreFlag
+5bfaf0	1:14		9	5	0	0	2	test_Main,test_DrawMainMenu
+5bfaf4	1:18		2	16	0	0	15	test_Main,test_RequestExit,test_RequestExit_2
+5bfaf5	1:25		11	14	0	0	12	test_Main,test_ScreenRamTest,test_ScreenInputTest
+5bfb00	1:1		0	1	0	0	1	test_ScreenRamTest
+5bfb01	1:3		2	1	0	0	1	test_WaitTimer
+5bfb10	4:3		1	2	0	0	1	test_ScreenInputTest
+5bfb20	4:4		2	2	0	0	1	test_ScreenSoundCheck
+5bfb30			0	0	6	0	2	test_DrawColourBars,test_DrawPaletteGrid
+5bfb40	4:3		1	2	0	0	1	test_ScreenColour
+5bfb50	4:28		19	9	0	0	2	test_ScreenSoundTest,test_DrawSoundTest
+5bfb54	4:6		3	3	0	0	1	test_ScreenSoundTest
+5bfb60	1:14		9	5	0	0	3	test_ScreenSettings,test_DrawSettingsCursor,test_DrawGameSettingsMenu
+5bfb62	1:11		6	5	0	0	5	test_CycleSetting0,test_ResetSettings,test_LoadSettingsClamped
+5bfb63	1:11		6	5	0	0	5	test_CycleSetting1,test_ResetSettings,test_LoadSettingsClamped
+5bfb64	1:11		6	5	0	0	5	test_CycleSetting2,test_ResetSettings,test_LoadSettingsClamped
+5bfb65	1:11		6	5	0	0	5	test_CycleSetting3,test_ResetSettings,test_LoadSettingsClamped
+5bfb66	1:11		6	5	0	0	5	test_CycleSetting4,test_ResetSettings,test_LoadSettingsClamped
+5bfb67	1:10		5	5	0	0	5	test_ToggleSetting5,test_ResetSettings,test_LoadSettingsClamped
+5bfb68	1:14		9	5	0	0	5	test_CycleSetting6,test_ResetSettings,test_LoadSettingsClamped
+5bfb69	1:10		5	5	0	0	5	test_ToggleSetting7,test_ResetSettings,test_LoadSettingsClamped
+5bfb6a	1:14		9	5	0	0	5	test_CycleSetting8,test_ResetSettings,test_LoadSettingsClamped
+5bfb6b	1:10		5	5	0	0	5	test_ToggleSetting9,test_ResetSettings,test_LoadSettingsClamped
+5bfb70	1:23		19	4	0	0	10	test_CoinMenuInput,test_CursorPrev,test_CursorToExit
+5bfb72	1:23		14	9	0	0	7	test_NextCoinTableEntry,test_ToggleCoinMode,test_SelectCoinTableEntry
+5bfb80	1:5		2	3	0	0	1	test_ConfirmMenuInput
+5bfb90	4:9		4	5	0	0	1	test_BookkeepingInput
+5bfb94	4:24		15	9	0	0	3	test_BookkeepingInput,test_DrawCharacterWinStats,test_DrawWinRateRowsTail
+5bfba0	1:5		2	3	0	0	1	test_ConfirmMenuInput_2
+5bfbb0	1:5		2	3	0	0	1	test_ConfirmMenuInput_3
+5bfbc0	4:3		1	2	0	0	2	math_RandNext,math_SeedRand
+5fffff			0	0	1	0	1	mem_ClearWorkRam
