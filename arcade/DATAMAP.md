@@ -81,3 +81,18 @@ Total RAM operand addresses: 1877. Named/proven: ~120 (fighter, volumes, round, 
 | 0x54fd08 / 0x54fd0c | 10.0f, meaning OPEN; 0x54fd77=0x3c 0x54fd78=0x1e round timer params OPEN |
 
 OPEN: true stage id byte (work[0x7251] is only a selector), select bytes, ai_ScriptInterpreter 0x28910 opcodes, move table 0x95750, camera layout, health/guard/anim frame, 4 reachable fallthrough rets (0x8b4c 0x8bbc 0x7a934 0x71e0c) outside Ghidra bodies, ~1757 unnamed globals.
+
+## Live-proven fields (11-02, headless doa.exe copy, work RAM dumps via M2DOA_RAMDUMP, inputs scripted)
+| addr | type | meaning | proof |
+|---|---|---|---|
+| fighter+0x20 | u8 | HEALTH, 160 (0xA0) at round start, 0 = KO | D dumps: P2 160>145>113>65>33>0 after P1 hits; P1 160>120>68>28; resets to 160 at next round; round-over winner byte set when P1 hp=0 |
+| fighter+0x24 | u8 | last damage taken | equals the hp drop of the last hit (15, 32, 48, 52, 40) |
+| 0x5555a0 | u8 | round timer, 30 at start counting down | D dumps 30>10, resets to 30 |
+| 0x54fc01 / 0x54fc02 | u8 | P1 chrnum / chrcol, updated on cursor move before confirm | A/B/C runs: up=8/0, down=5/1, up,up = 8/1; right = 12 or 1 |
+| 0x54fcb3 / 0x54fcb4 | u8 | game mode 1, play mode 0 in a 2P fight | all fight dumps |
+| 0x54fd13 | u8 | =1 when P1 hp=0 (P2 won): index, not 1=P1 | D5460; corrects earlier line |
+| 0x5555ac | u8 | camera mode: 2 normal, 6 KO | D |
+| 0x5555b8/bc/c0/c4/c8/cc | f32 | camera: target X (smoothed fighter midpoint), height 2.0 (KO 3.45), Z -3.0 (KO 0), copies, target Z | D, six frames |
+| 0x507251 | u8 | NOT stage id: scratch (values 0,8,64,88,149... change every 40 frames) | D |
+
+STILL OPEN (not proven): guard flag (hold button run E showed mv 192/196 cls 11 anim 437/431 while holding, but P1 also took 40 dmg: it is DOA hold/counter not a guard bit), anim frame counter, true stage id byte, stage-select byte, ai_ScriptInterpreter opcodes 0x28910, move table 0x95750 decode, 4 stray rets, 11 orphans meaning.

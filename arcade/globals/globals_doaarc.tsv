@@ -256,8 +256,8 @@
 54fcb0	g_unk_54fcb0	u8	OPEN	used by hud_DrawStartPrompts,hud_DrawCreditPromptsAlt
 54fcb1	g_unk_54fcb1	u8	OPEN	used by charsel_UpdateSelection,round_CheckRankingEntry
 54fcb2	g_unk_54fcb2	u8	OPEN	used by fighter_ResetAnimState,charsel_UpdateSelection
-54fcb3	g_game_mode	u8	PROVEN	DATAMAP game mode
-54fcb4	g_play_mode	u8	PROVEN	DATAMAP play mode
+54fcb3	g_game_mode	u8	PROVEN	LIVE: 1 during 2P fight with credit (live), 0..4 seen in decomp
+54fcb4	g_play_mode	u8	PROVEN	LIVE: 0 during fight (live)
 54fcc0	g_io_mux_sel0	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
 54fcc1	g_io_mux_sel1	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
 54fcc2	g_io_mux_sel2	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
@@ -311,7 +311,7 @@
 54fd10	g_win_streak	u8	PROVEN	+1 if same winner else reset to 1; 7-seg shown
 54fd11	g_last_winner	u8	PROVEN	set from round winner when it changes
 54fd12	g_unk_54fd12	u8	OPEN	used by backup_ApplyGameSettings,charsel_UpdateSelection,charsel_Che
-54fd13	g_round_winner	u8	PROVEN	DATAMAP round winner
+54fd13	g_round_loser_idx	u8	PROVEN	LIVE: 0-based fighter index that lost? = 1 when P1 hp hit 0 (live D5460): 1 means P2 won
 54fd14	g_unk_54fd14	u8	OPEN	used by charsel_StartVsMode,round_StartRound
 54fd15	g_clock_mins	u8	PROVEN	play clock minutes, cap 99
 54fd16	g_clock_secs	u8	PROVEN	play clock seconds, wraps at 0x3c
@@ -459,21 +459,21 @@
 5553f0	g_unk_5553f0	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
 5553f4	g_unk_5553f4	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
 5553f8	g_unk_5553f8	u32	OPEN	used by fx_GetPlayerAnchor,fx_GetPlayerAnchor_2
-5555a0	g_round_time_secs	u8	PROVEN	round_TickTimer decrements on subframe wrap; 0 => time out
+5555a0	g_round_timer	u8	PROVEN	LIVE: round clock seconds: 30 at round start, counts down to 10 over a fight, resets next round (live dumps D*)
 5555a1	g_round_time_pct	u8	PROVEN	round_TickTimer: 100*(limit-1-subframe)/limit
 5555a2	g_unk_5555a2	u8	OPEN	used by cam_RunEventState,ai_UpdateFacingFor,cam_AngOpRandomSide
 5555a4	g_dist_p1_p2	f32	PROVEN	TGP result after dx,dz of fighters; cam_SetModeState compares 11/14/17/20
 5555a8	g_angle_p1_to_p2	u32	PROVEN	TGP atan result of P2-P1 delta; written to drct, +0x8000 flip
-5555ac	g_cam_mode	u8	PROVEN	DATAMAP camera mode; cam_SetModeState ==2 test, init 0xfe
+5555ac	g_cam_mode	u8	PROVEN	LIVE: 2 = normal fight cam, 6 during KO (live dumps D4020)
 5555ad	g_unk_5555ad	u8	OPEN	used by cam_UpdateByMode,cam_StepFovTable,cam_UpdateFollowFighterParam
 5555b0	g_unk_5555b0	u32	OPEN	used by charsel_ReadSelection,charsel_UpdateCursor,stage_UpdateScrollA
 5555b4	g_unk_5555b4	u32	OPEN	used by cmd_CheckFacingAngle,stage_DrawModelsA,stage_DrawModelsI
-5555b8	g_cam_pos_x	f32	PROVEN	cam_SetPosition subtracts it; math_DistanceToCamera
-5555bc	g_unk_5555bc	u32	OPEN	used by cam_BuildMatrixGroundClip,stage_DrawModelsE,cam_BuildMatrix
-5555c0	g_cam_pos_z	f32	PROVEN	cam_SetPosition subtracts it from param z
-5555c4	g_unk_5555c4	u32	OPEN	used by stage_DrawModelsA,stage_DrawModelsI,fight_RunFrame
+5555b8	g_cam_target_x	f32	PROVEN	LIVE: tracks fighter midpoint X, smoothed (live: P1 -0.06 P2 1.45 -> 0.71)
+5555bc	g_cam_height	f32	PROVEN	LIVE: 2.0 normal, 3.45 KO cam (live)
+5555c0	g_cam_z	f32	PROVEN	LIVE: -2.9..-3.7 normal, -0.01 KO cam (live)
+5555c4	g_cam_target_x_copy	f32	PROVEN	LIVE: equals 5555b8 in normal cam (live)
 5555c8	g_unk_5555c8	u32	OPEN	used by stage_DrawModelsE,stage_DrawModelsD,fight_RunFrame
-5555cc	g_unk_5555cc	u32	OPEN	used by stage_DrawModelsA,stage_DrawModelsI,fight_RunFrame
+5555cc	g_cam_target_z	f32	PROVEN	LIVE: tracks fighter midpoint Z, smoothed (live)
 5555d0	g_cam_vec_x	f32	PROVEN	cam_UpdateRotation: (5555d0 - 5b9778) direction vec3
 5555d4	g_cam_vec_y	f32	PROVEN	cam_UpdateRotation vec3 y
 5555d8	g_cam_vec_z	f32	PROVEN	cam_UpdateRotation vec3 z
@@ -770,12 +770,12 @@
 5645ca	g_unk_5645ca	u8	OPEN	w1; ai_RunScriptStep ai_RunStateMachine
 5645cc	g_unk_5645cc	u16	OPEN	w2; ai_RunScriptStep cmd_CheckFrameRange
 5645ce	g_unk_5645ce	unk	OPEN	w-; 
-5645d0	g_ai_state_class	u8[2]	PROVEN	= fighter+0x2d; switch in ai_RunScriptFull, move_GetStateClassFor
-5645d2	g_ai_state_class_prev	u8[2]	PROVEN	copy of g_ai_state_class each frame
-5645d4	g_ai_state_class_prev2	u8[2]	PROVEN	copy of prev
+5645d0	g_unk_5645d0	u8[2]	OPEN	DEMOTED(weak): = fighter+0x2d; switch in ai_RunScriptFull, move_GetStateClassFor
+5645d2	g_unk_5645d2	u8[2]	OPEN	DEMOTED(weak): copy of g_ai_state_class each frame
+5645d4	g_unk_5645d4	u8[2]	OPEN	DEMOTED(weak): copy of prev
 5645d6	g_unk_5645d6	u8	OPEN	w1; 
-5645da	g_ai_last_move_da	s8[2]	PROVEN	ai_ClearLastMove sets 0xff (paired with dc)
-5645dc	g_ai_last_move_dc	s8[2]	PROVEN	ai_ClearLastMove sets 0xff (paired with da)
+5645da	g_unk_5645da	s8[2]	OPEN	DEMOTED(weak): ai_ClearLastMove sets 0xff (paired with dc)
+5645dc	g_unk_5645dc	s8[2]	OPEN	DEMOTED(weak): ai_ClearLastMove sets 0xff (paired with da)
 5645de	g_unk_5645de	u8	OPEN	w1; ai_RunScriptStep
 5645e0	g_unk_5645e0	u8	OPEN	w1; ai_TickJumpBoost ai_TickJumpBoostInput ai_StateDangerZoneBounce
 5645e2	g_unk_5645e2	u8	OPEN	w1; ai_RunScriptStep ai_RunScriptFull cmd_CheckMoveCondition
@@ -795,10 +795,10 @@
 564618	g_ai_move_queue_cnt	s8[2]	PROVEN	decremented on pop in ai_UpdateWaitTimer
 56461c	g_ai_hist_clear_on	i32	PROVEN	=1 starts ring clear loop; ai_StepHistoryClear
 564620	g_ai_hist_clear_pos	i32	PROVEN	ring index cleared 8 per step; >0x7f ends
-564624	g_ai_weight_table_ptr	ptr	PROVEN	passed to ai_PickWeightedMove; advanced via +2 link
+564624	g_unk_564624	ptr	OPEN	DEMOTED(weak): passed to ai_PickWeightedMove; advanced via +2 link
 564628	g_unk_564628	u8	OPEN	w1; ai_ApplyPendingReaction
 56462a	g_unk_56462a	u8	OPEN	w1; ai_ApplyPendingReaction
-56462c	g_ai_profile_ptr	ptr	PROVEN	ai_TimerElapsed(+8/+0xe); +0x13 level scaling in SetPickDelay
+56462c	g_unk_56462c	ptr	OPEN	DEMOTED(weak): ai_TimerElapsed(+8/+0xe); +0x13 level scaling in SetPickDelay
 564630	g_unk_564630	u8	OPEN	w1; ai_RunStateMachine ai_PickIdleMove ai_IndexTable
 564632	g_unk_564632	u8	OPEN	w1; ai_RunStateMachine ai_StateEndFlag ai_SituationTableDefault
 564636	g_unk_564636	u8	OPEN	w1; ai_SelectSituationTable ai_SituationTableByOpponent ai_PickIdleMove
