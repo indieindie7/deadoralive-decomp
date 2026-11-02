@@ -98,3 +98,9 @@ Full table: arcade/ghidra/DATAMAP.md. Status: PARTIAL, not DONE.
 - 342 "uncovered rets": 311 have no Ghidra instruction: 180 DATA (ldref proof), 97 JUNK + 31 PAD (heuristic, OPEN-low), 3 REVIEW (OPEN). 319 holes (data-as-code, 0x9d000-0xa1000, 0x71d30) OPEN.
 - Fighter record 0x58 stride (P1 0x54fc00, P2 0x54fc58): ~31 fields PROVEN from debug strings (test_PrintPlayerDebug). OPEN: health, guard, anim frame; Ghidra struct not created (no RAM block in project).
 - OPEN: camera struct layout, hit/hurt volume tables, stage id + select bytes, ai_ScriptInterpreter opcodes, move table 0x95750, globals naming (1877 RAM addrs, ~45 named).
+
+### Arcade data map update (11-02, pass 2)
+- Ghidra: WORKRAM block 0x500000-0x5fffff + struct Fighter(0x58) at 0x54fc00/0x54fc58 (SetupRam.java). Fighter +8 = pos_y (height, 1.0 on floor), not health; fall-out KO = Y<=0 in round_CheckKO. Health is not in the record: OPEN.
+- Hit/hurt volumes mapped (DATAMAP.md): body spheres 0x5503c0, capsules 0x552610, attack spheres 0x552960, ROM ptr tables 0xc1090 / 0xc05f0 / 0xbf580, move hit entries 0x9cbe0[chr] (0x14 B each).
+- 11 DOA_orph_* functions named by provenance (<parent>_case_/_tail_<addr>, semantics OPEN). Ret audit by instr.tsv: 41 rets without instruction (was 311 by the extent measure): 13 were reachable code, fixed; 4 reachable fallthrough rets (0x8b4c 0x8bbc 0x7a934 0x71e0c) still outside Ghidra bodies = OPEN; rest follow bx/b/ret or sit in zero padding (unreachable, no xref).
+- Still OPEN: camera struct, stage id byte, select bytes, ai_ScriptInterpreter opcodes, move table 0x95750, health/guard/anim frame, ~1757 unnamed globals.

@@ -1966,3 +1966,14 @@
 0x000fe5b0 func data_000fe5b0 hand data mistaken for code, bad instruction bytes halt_baddata
 0x000fe5c8 func data_000fe5c8 hand data mistaken for code, bad instruction bytes halt_baddata
 0x000fe644 func data_000fe644 hand data mistaken for code, bad instruction bytes halt_baddata
+0x00002f04 func snd_UploadProgram_tail_2f04 hand body reached by tail branch from parent (provenance name), semantics OPEN
+0x0001b470 func move_CallHandlerB770_tail_1b470 hand body reached by tail branch from parent (provenance name), semantics OPEN
+0x0001f820 func round_CheckKO_case_1f820 hand jump-table case body of round_CheckKO (switch at 0x1f83c), named by provenance; semantics OPEN
+0x0002d1d4 func ai_PickRecoveryFlag3d_tail_2d1d4 hand body reached by tail branch from parent (provenance name), semantics OPEN
+0x0002e31c func ai_LookupMoveEntrySelf_tail_2e31c hand body reached by tail branch from parent (provenance name), semantics OPEN
+0x0002e41c func ai_AccumulateWeights_tail_2e41c hand body reached by tail branch from parent (provenance name), semantics OPEN
+0x0002e4f0 func ai_AccumulateWeights_2_tail_2e4f0 hand body reached by tail branch from parent (provenance name), semantics OPEN
+0x0002e5fc func ai_StartReactionDelay_tail_2e5fc hand body reached by tail branch from parent (provenance name), semantics OPEN
+0x0002f5a8 func io_DecodeStickDirection_case_2f5a8 hand jump-table case body of io_DecodeStickDirection (switch at 0x2f5c4), named by provenance; semantics OPEN
+0x00033f74 func hud_StepStartPromptTail_tail_33f74 hand body reached by tail branch from parent (provenance name), semantics OPEN
+0x000428e4 func move_ApplyScriptOffset_tail_428e4 hand body reached by tail branch from parent (provenance name), semantics OPEN
