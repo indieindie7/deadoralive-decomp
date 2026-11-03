@@ -1,0 +1,21 @@
+addr	name	verdict	evidence
+5bfb00	g_unk_5bfb00	CONFIRMED_DEAD	only stob at 87314 (test_ScreenRamTest); no covering load
+588940	g_unk_588940	CONFIRMED_DEAD	only stq at 45a38; no literal/lda reader
+557bf5	g_unk_557bf5	CONFIRMED_DEAD	5 stob in hud_DrawFightLayout; neighbors 557bf4/557bf0 do not cover
+564640	g_unk_564640	CONFIRMED_DEAD	stos [slot*2] only; neighbor array reads bounded slot<2
+54f938	g_unused_54f938	CONFIRMED_DEAD	only st at 07ab0
+58a1e8	g_dead_58a1e8	CONFIRMED_DEAD	only st at 55600
+564864	g_unk_564864	CONFIRMED_DEAD	only st at 35bd4; 564850[g0*4] g0 in 0/1
+589f74	g_dead_589f74	CONFIRMED_DEAD	only st at 4f314; 589f70[i*4] store-only; ldl 4f358 covers 589f68..6f
+564600	g_unk_564600	CONFIRMED_DEAD	stob at 280b4,281dc only; 5645f4(slot) reads offsets 0/1
+557eee	g_unk_557eee	CONFIRMED_DEAD	stos at 1ed14,1f2d8; no covering load
+54faec	g_unused_54faec	CONFIRMED_DEAD	only st at 00688
+54f950	g_unused_54f950	CONFIRMED_DEAD	stos at 084d4,08b30,08b5c; ldos 54f954 at 08b58 covers 954..955 only
+58baae	g_dead_58baae	CONFIRMED_DEAD	stos at 547d4; spilled array pointers write-only
+588948	g_unk_588948	CONFIRMED_DEAD	only st at 45a4c
+58ba84	g_dead_58ba84	CONFIRMED_DEAD	stos at 55ad8; spilled pointers write-only
+5656e4	g_dead_5656e4	CONFIRMED_DEAD	only st at 35874; loop 3dce0 reads 5656a0..d4 only
+54fccf	g_unk_54fccf	HAS_READER	lda 0x54fccc,g6 at 08148; ld (g6) at 08150,081a8 covers byte; literal ld 0x54fccc at 155cc,1ca94,1cad4,1d0fc,1d114,1fba0
+54f956	g_unused_54f956	CONFIRMED_DEAD	stos at 084bc,08b3c; 954-based read is ldos 2 bytes only
+58a1f0	g_dead_58a1f0	CONFIRMED_DEAD	only st at 5565c
+58ba82	g_dead_58ba82	CONFIRMED_DEAD	stos at 55ae0; spilled pointers write-only

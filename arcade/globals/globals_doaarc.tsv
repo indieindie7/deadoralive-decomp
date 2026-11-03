@@ -267,15 +267,15 @@
 54fcc6	g_io_mux_sel6	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
 54fcc7	g_io_mux_sel7	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
 54fcc8	g_unused_54fcc8	u8	DEAD	only xref is lda 0x54fcc8,g5 (prog.dis 080ec-08108) used as store pointer for port writes 0x1c0001e/0x1c0000c; value never loaded
-54fccc	g_in_word_inv	u32	PROVEN	0x081ac not g5,g4 / st g4,(g6): inverted active-low port word
-54fccd	g_P1_in_bits	u8	PROVEN	only writer io_ReadAllInputs 0x08174 stob; live punch=0x02 (f2701-05) kick=0x04 (f2741-45); bit3 never set; no mask-0x08 tester found = unused bit
-54fcce	g_P2_in_bits	u8	PROVEN	written 0x08184 same builder; stride 1 not 0x58 (outside fighter rec)
-54fccf	g_unk_54fccf	u8	DEAD	zero read xref (refs.py over prog.dis: 1 refs, writes only: io_ReadAllInputs)
+54fccc	g_in_sys_bits	u8	PROVEN	port 0x1c00002 low byte (08160 stob), dword inverted at 081b0 -> active high; system byte (START1/2 = bits 4/5 per input screen); only writer io_ReadAllInputs 0x8050
+54fccd	g_in_p1_bits	u8	PROVEN	port 0x1c00004 low byte, stob 08174, inverted 081b0; live: hold 01 punch 02 kick 04 down 10 up 20 right 40 left 80 (run IN f2701-2815), all seven = f7; CPU path never writes it (input_bits.md)
+54fcce	g_in_p2_bits	u8	PROVEN	port 0x1c00006 low byte, stob 08184, same layout; outside fighter record; live p2_* presses give identical bits f2821-2912; stays 0 while the CPU P2 acts (f2700-5500)
+54fccf	g_in_p4_bits	u8	PROVEN	part of dword 54fccc: stob 081a0 (port 0x1c00008), dword ld at 08150/081a8 covers it and inverts; no byte-wide test of it (spot-check found reader)
 54fcd0	g_in_prev	u32	PROVEN	previous input word
-54fcd1	g_in_prev_b1	u8	PROVEN	byte 1 of g_in_prev (54fcd0): previous-frame buttons of slot; move_GetEntryFlagByState ands with current input 54fccd+slot at 25f60
+54fcd1	g_in_prev_p1	u8	PROVEN	previous-frame copy of 54fccd (st 08154 of dword 54fccc to 54fcd0); live: trails by 1 frame
 54fcd4	g_in_pressed	u32	PROVEN	pressed edge word
-54fcd5	g_in_pressed_b1	u8	PROVEN	byte 1 of g_in_pressed
-54fcd6	g_in_pressed_b2	u8	PROVEN	byte 2 of g_in_pressed
+54fcd5	g_in_pressed_p1	u8	PROVEN	press edge (new & ~prev, 081b4/081b8); live: set exactly 1 frame per press (f2701, f2713, ...)
+54fcd6	g_in_pressed_p2	u8	PROVEN	same for P2; live f2821 ...
 54fcd8	g_in_released	u32	PROVEN	released edge word
 54fcdc	g_sw_cur	u8	PROVEN	low nibble of port 2, inverted
 54fcdd	g_sw_prev	u8	PROVEN	previous switch nibble
@@ -1876,3 +1876,5 @@
 5bfbc0	g_rand_state	u32	PROVEN	math_RandNext: *0x5d588b65 LCG, returns state; math_SeedRand
 5fffff	g_workram_clear_end	u8	PROVEN	lda in mem_ClearWorkRam: end of clear range (loop bound)
 56adac	g_fscript_keyframe_idx_P2	u32	PROVEN	same code, [g0*4] index = player
+54fcd9	g_in_released_p1	u8	PROVEN	release edge (prev & ~new, 081c4/081c8); live: 1 frame after release (f2707 ...)
+54fcda	g_in_released_p2	u8	PROVEN	same for P2; live f2827 ...

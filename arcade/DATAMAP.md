@@ -111,3 +111,6 @@ Globals: 1434 PROVEN / 232 DEAD / 212 OPEN.
 
 ## Final 11-02 night: OPEN = 0
 Globals: 1639 PROVEN / 239 DEAD (zero read xref) / 0 OPEN (1878 rows). Not covered by this table (outside RAM globals): AI button/direction semantics beyond input byte 0x54fccd, per-character highest valid move id (no code bound), CPU input-byte fill path - see ai_opcodes.md Resolved section.
+
+## Input byte 0x54fccd (11-02)
+bit0 HOLD 01, bit1 PUNCH 02, bit2 KICK 04, bit3 unused 08, bit4 DOWN 10, bit5 UP 20, bit6 RIGHT 40, bit7 LEFT 80; P2 at 54fcce same layout. Live-proven; CPU AI never writes it (only io_ReadAllInputs). Detail: input_bits.md. DEAD spot-check 20: 19 confirmed, 1 reclassified (54fccf). 

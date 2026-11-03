@@ -1,0 +1,17 @@
+54fccc	g_in_sys_bits	u8	PROVEN	port 0x1c00002 low byte (08160 stob), dword inverted at 081b0 -> active high; system byte (START1/2 = bits 4/5 per input screen); only writer io_ReadAllInputs 0x8050
+54fccd	g_in_p1_bits	u8	PROVEN	port 0x1c00004 low byte, stob 08174, inverted 081b0; live: hold 01 punch 02 kick 04 down 10 up 20 right 40 left 80 (run IN f2701-2815), all seven = f7; CPU path never writes it (input_bits.md)
+54fcce	g_in_p2_bits	u8	PROVEN	port 0x1c00006 low byte, stob 08184, same layout; outside fighter record; live p2_* presses give identical bits f2821-2912; stays 0 while the CPU P2 acts (f2700-5500)
+54fccd.b0	g_in_bit0_hold	bit	PROVEN	mask 01 HOLD: live p1_hold/p2_hold; IN(1); test_ScreenInputTest y19 &1
+54fccd.b1	g_in_bit1_punch	bit	PROVEN	mask 02 PUNCH: live p1_punch/p2_punch; IN(2); input screen y21
+54fccd.b2	g_in_bit2_kick	bit	PROVEN	mask 04 KICK: live p1_kick/p2_kick; IN(4); input screen y23
+54fccd.b3	g_in_bit3_unused	bit	PROVEN	mask 08 not tested by any single-bit test (readers: and 7, bbc 0/2, bits 0-2, ring copy); harness cannot press it; stayed 0 in f2809 all-buttons (f7); only full-byte IN operands (bit8: IN(180/380/140/110/120)) include it as must-be-0
+54fccd.b4	g_in_bit4_down	bit	PROVEN	mask 10 DOWN: live 0x10 both players; high nibble operand 0x10
+54fccd.b5	g_in_bit5_up	bit	PROVEN	mask 20 UP: live 0x20 both players
+54fccd.b6	g_in_bit6_right	bit	PROVEN	mask 40 RIGHT: live 0x40 both players; swapped with b7 when mirror flag 0x5645e6[p]==1
+54fccd.b7	g_in_bit7_left	bit	PROVEN	mask 80 LEFT: live 0x80 both players; guard code tests (byte&f0)==80/90
+54fccf	g_in_p4_unread	u8	PROVEN	port 0x1c00008 low byte, stob 081a0; zero loads anywhere (DEAD)
+54fcd1	g_in_prev_p1	u8	PROVEN	previous-frame copy of 54fccd (st 08154 of dword 54fccc to 54fcd0); live: trails by 1 frame
+54fcd5	g_in_pressed_p1	u8	PROVEN	press edge (new & ~prev, 081b4/081b8); live: set exactly 1 frame per press (f2701, f2713, ...)
+54fcd6	g_in_pressed_p2	u8	PROVEN	same for P2; live f2821 ...
+54fcd9	g_in_released_p1	u8	PROVEN	release edge (prev & ~new, 081c4/081c8); live: 1 frame after release (f2707 ...)
+54fcda	g_in_released_p2	u8	PROVEN	same for P2; live f2827 ...
