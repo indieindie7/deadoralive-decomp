@@ -36,11 +36,14 @@ You need your own copy of the game to use any of this.
 | `ghidra/naming/prompt_DOA.txt` | the round-1 naming prompt |
 | `ghidra/review/prompt_r1_doa.txt` | the provisional-review prompt |
 | `ghidra/scripts/` | `FindSh2FunctionsMem.java` (SH-2 prologue scan in a raw image), `CreateAt.java`, `CsDumpAll.java` (decompile dump with headers) |
+| `saturn/DATAMAP.md` | data map of 00DOA.BIN: fighter struct (stride 0x58, every byte proven by code read + live value correlation or marked DEAD), globals, proof method; OPEN = 0 |
 | `tools/` | `ckprovctx.py` (review contexts with callers), `srprovapply.py` (apply verdicts), `pubfuncinfo.py` (strip strings from the export) |
 
 ## Arcade (Sega Model 2A)
 
 `arcade/` holds round 1 for the original arcade board: `hand_doaarc.txt` (names, same line format), `funcinfo_doaarc.tsv`, the naming prompt (`naming/prompt_ARC.txt`, i960 + Model 2A hardware map from the public MAME driver), Ghidra scripts and `tools/seeds.py` / `gaps.py` (function seeds from call targets, uncovered `ret` report). The i960 SLEIGH spec is in the motoraid-decomp repo. Program ROM = the two program EPROMs interleaved as 16-bit words (not included). Review (3 Sonnet reviewers, body + 2 callers via `tools/provctx_arc.py`): 79 confirmed, 79 renamed, 21 unsure; round 2 on those 21: 15 confirmed, 5 renamed, 1 still `provisional`.
+
+Data map (11-02): `arcade/DATAMAP.md` = all 1878 globals classified, 1639 PROVEN / 239 DEAD / 0 OPEN, plus `ai_opcodes.md` (33 AI script opcodes), `ai_struct.md`, `hit_struct.md`; names applied and `decomp_doaarc.c` re-exported.
 
 ## Licence
 
