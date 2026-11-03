@@ -111,3 +111,5 @@ Full table: arcade/ghidra/DATAMAP.md. Status: PARTIAL, not DONE.
 
 ## Arcade data side, 11-02 night
 Names applied in Ghidra project DOAarc (arcade/ghidra): 1247 globals PROVEN, 182 DEAD (zero read xref), 448 OPEN. 11 orphans named, 4 stray rets placed, AI opcodes (ai_opcodes.md) and move table (move_table.tsv, pair table 0x956f0) decoded. Live-proven: health, guard, round timer, camera, select bytes, stage id, move frame counter. Details: arcade/ghidra/DATAMAP.md. Repo: github.com/indieindie7/deadoralive-decomp arcade/. Still OPEN: see DATAMAP.md last section.
+
+Arcade update 11-02 late: globals 1639 PROVEN / 239 DEAD / 0 OPEN; decomp_doaarc.c re-exported with names; see arcade/ghidra/DATAMAP.md.
