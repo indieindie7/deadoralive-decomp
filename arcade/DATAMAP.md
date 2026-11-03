@@ -104,3 +104,7 @@ STILL OPEN (not proven): guard flag (hold button run E showed mv 192/196 cls 11 
 - Input byte 0x54fccd: bit0 HOLD, 1 PUNCH, 2 KICK, 4 DOWN, 5 UP, 6 RIGHT, 7 LEFT; bit3 never tested (OPEN).
 - ROM 0x956f0 = 48 {flag,next_moveid} pairs (move_GetNextMove); 0x95750 = u32[16] per-character move table ptrs; chr 12 has 212 entries.
 - Globals: 1247 PROVEN / 182 DEAD / 448 OPEN. Remaining OPEN need per-field work (AI 5645xx-5648xx, hit block 557f2x+, non-fighter object fields).
+
+## Round 5 (11-02 night)
+AI struct: ai_struct.md (0x5645xx). Hit record: hit_struct.md (0x557f2x, live-checked 2 hits). Input byte 0x54fccd bit3 unused (written only by io_ReadAllInputs 0x8174). Motion keyframe index u32 0x56ada8 (P2 0x56adac), +1/frame (move_AdvanceFrameMotion), live-confirmed.
+Globals: 1434 PROVEN / 232 DEAD / 212 OPEN.
