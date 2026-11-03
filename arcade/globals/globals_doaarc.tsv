@@ -140,7 +140,7 @@
 54fc04	g_fighter1_pos_x	f32	PROVEN	DATAMAP fighter struct +0x4
 54fc08	g_fighter1_pos_y	f32	PROVEN	DATAMAP fighter struct +0x8
 54fc0c	g_fighter1_pos_z	f32	PROVEN	DATAMAP fighter struct +0xc
-54fc10	g_unk_54fc10	u32	OPEN	P1 fighter f0x10: ambiguous: 63 candidate loads mostly floats of other structs, no fighter-fn read proven
+54fc10	g_fighter1_anim_rate	f32	PROVEN	f32 anim rate: init 1.0, 2.0/39/(n-1)/29/(n-1) in air paths, 0 on ring-out; multiplied into frame accumulator in fighter_UpdateFrame (P1; same field +0x10)
 54fc14	g_fighter1_drct	u32	PROVEN	DATAMAP fighter struct +0x14
 54fc18	g_fighter1_atkdrct	u32	PROVEN	DATAMAP fighter struct +0x18
 54fc1c	g_fighter1_bodydrct	u32	PROVEN	DATAMAP fighter struct +0x1c
@@ -153,22 +153,22 @@
 54fc2b	g_fighter1_actcodeflg	u8	PROVEN	DATAMAP fighter struct +0x2b
 54fc2c	g_p1_next_move	u8	PROVEN	fighter_StartMove stores 0xff to +0x2c after move id to +0x2a; states compare to 0xff [P1 f0x2c]
 54fc2d	g_p1_move_class	u8	PROVEN	fighter_StartMove stob 0x2d(g6) from move table ldob 0x3(g5)[g4*8]; states compare 0,10,12,13,14,0xfe [P1 f0x2d]
-54fc2e	g_unk_54fc2e	u8	OPEN	P1 fighter f0x2e: byte flag zero-tested in states, compared with other fighter in hit_ResolveContacts; role not proven
-54fc2f	g_unk_54fc2f	u8	OPEN	P1 fighter f0x2f: zero-tested in Idle/Attack/AirFall/round_SelectWinPose; role not proven
+54fc2e	g_fighter1_stance_flag	u8	PROVEN	toggled ^1 from queued flag 0x56ac66[p]; set in fighter_StartScriptMove; compared with move-req byte 0xa76c1+mv*8 in move_CanUseMove; selects case in fighter_CalcKnockbackAngle (P1; same field +0x2e)
+54fc2f	g_fighter1_side_flag	u8	PROVEN	set by fighter_CheckFacingSide from float compare of positions; with +0x31 indexes 2x2 AI move-id table [0x2f*2+0x31]; picks side pos diff in UpdateStateAttack/AirFall (P1; same field +0x2f)
 54fc30	g_fighter1_updownhead	u8	PROVEN	DATAMAP fighter struct +0x30
-54fc31	g_unk_54fc31	u8	OPEN	P1 fighter f0x31: zero-test in round_SelectWinPose (pose 27/29); role not proven
+54fc31	g_fighter1_facing_away	u8	PROVEN	set from fighter_IsFacingAway() in UpdateStateIdle; 2nd index of AI move-id table (P1; same field +0x31)
 54fc32	g_fighter1_attackpoint	u8	PROVEN	DATAMAP fighter struct +0x32
 54fc33	g_fighter1_attacksta	u8	PROVEN	DATAMAP fighter struct +0x33
 54fc34	g_fighter1_animeflip	u8	PROVEN	DATAMAP fighter struct +0x34
 54fc35	g_fighter1_animeflg	u8	PROVEN	DATAMAP fighter struct +0x35
-54fc36	g_unk_54fc36	u8	OPEN	P1 fighter f0x36: cmpibne 1 in fighter_CheckStumbleStart; set 1 by StartMove family + hold_StartCounterResponse; role not proven
+54fc36	g_fighter1_move_start_flag	u8	PROVEN	set 1 by StartMove family/SetMoveEnd/round_StartRound; fighter_UpdateAnimIndex reloads anime from move entry when set; read in InitScript/CheckStumbleStart (P1; same field +0x36)
 54fc37	g_fighter1_hitattack	u8	PROVEN	DATAMAP fighter struct +0x37
 54fc38	g_fighter1_hitbody	u8	PROVEN	DATAMAP fighter struct +0x38
 54fc39	g_fighter1_hitstage	u8	PROVEN	DATAMAP fighter struct +0x39
-54fc3a	g_unk_54fc3a	u8	OPEN	P1 fighter f0x3a: values 1,2 compared hit_ApplyAttackToDefender, read fighter_PushHitEffects; role not proven
+54fc3a	g_fighter1_guard_level	u8	PROVEN	live run L: back 0x80 ->1, back+down 0x90 ->2, released ->0; code ai_SetGuardFromInput 0x286c0 + hit_ApplyAttackToDefender guard branch
 54fc3b	g_p1_phase	u8	PROVEN	set by move_ScriptOpSetFighterByte3b/SetCounterWindow/UpdateLaunchFlight (3 then 2); compared 1,2,3 in stun/down/dispatch states, hold_IsHoldWindow [P1 f0x3b]
-54fc3c	g_unk_54fc3c	u8	OPEN	P1 fighter f0x3c: ambiguous: loads mostly ld 32-bit of other structs
-54fc3d	g_unk_54fc3d	u8	OPEN	P1 fighter f0x3d: written Idle(1/2/0)/Juggle; one reader fighter_PushHitEffects; role not proven
+54fc3c	g_fighter1_launch_class	u8	PROVEN	set 2 in Idle hit path, 1 by ai_SetFighterFlag3c / cmd_SetFighterByte3c; *0x18 index into table 0xb5e80 in fighter_StartLaunchMotion (P1; same field +0x3c)
+54fc3d	g_fighter1_launch_variant	u8	PROVEN	set 1/2 from move id 0x15/0x16; *8 index same table; picks recovery move 0x14/0x15/0x16 in ai_PickRecoveryFlag3d (P1; same field +0x3d)
 54fc3e	g_fighter1_beatsta	u8	PROVEN	DATAMAP fighter struct +0x3e
 54fc3f	g_fighter1_skysta	u8	PROVEN	DATAMAP fighter struct +0x3f
 54fc40	g_fighter1_downhit	u8	PROVEN	DATAMAP fighter struct +0x40
@@ -176,10 +176,10 @@
 54fc42	g_fighter1_graspsta	u8	PROVEN	DATAMAP fighter struct +0x42
 54fc43	g_fighter1_dwnasta	u8	PROVEN	DATAMAP fighter struct +0x43
 54fc44	g_fighter1_mountsta	u8	PROVEN	DATAMAP fighter struct +0x44
-54fc45	g_unk_54fc45	u8	OPEN	P1 fighter f0x45: state byte 1 (CheckRingEdge) / 2 (ApplyFallStep), compared 1,2 in UpdateAllPhysics/DispatchMotionState; role not proven
+54fc45	g_fighter1_ringout_state	u8	PROVEN	1 with pos_y=1.0 outside ring (fighter_CheckRingEdge), 2 in ApplyFallStep; DispatchMotionState runs SetRingEdgePush/ApplyFallStep on 1; UpdateAllPhysics zeroes +0x10 on 1 (P1; same field +0x45)
 54fc46	g_fighter1_atkheight	u8	PROVEN	DATAMAP fighter struct +0x46
 54fc47	g_fighter1_ringhit	u8	PROVEN	DATAMAP fighter struct +0x47
-54fc48	g_unk_54fc48	u32	OPEN	P1 fighter f0x48: ambiguous: mix ld/ldob, readers round_UpdateMain, fighter_UpdateFrame, cam_UpdatePlayerViewAngles
+54fc48	g_fighter1_draw_enable	u8	PROVEN	1 normal, 0 in charsel load/move_ClearFlag48; UpdateFrame/DrawAllModels do matrix only and return when 0; type u8 (P1; same field +0x48)
 54fc49	g_unk_54fc49	u8	OPEN	P1 fighter f0x49: set 1 in UpdateAirPhysics/round_StartRound, cleared in SetAnimTransition; compared 1 in states; role not proven
 54fc4a	g_fighter1_drctajstflg	u8	PROVEN	DATAMAP fighter struct +0x4a
 54fc4b	g_fighter1_damagenum	u8	PROVEN	DATAMAP fighter struct +0x4b
@@ -189,8 +189,8 @@
 54fc4f	g_unk_54fc4f	u8	OPEN	P1 fighter f0x4f: set 1 in hit_ApplyAttackToDefender/hold_StartCounterResponse; readers move_GetEntryFlagByState, ai_TrackMoveCounters; role not proven
 54fc50	g_unk_54fc50	u8	OPEN	P1 fighter f0x50: ambiguous: 20 loads mostly other structs
 54fc51	g_unk_54fc51	u8	OPEN	P1 fighter f0x51: set 1 in UpdateAirPhysics, cleared when move id (+0x2a) differs from table; role not proven
-54fc52	g_unk_54fc52	u8	OPEN	P1 fighter f0x52: compared 1 in hit_ApplyAttackToDefender/hit_ApplyPendingDamage; role not proven
-54fc53	g_unk_54fc53	u8	OPEN	P1 fighter f0x53: addo 1 counter in hit_ApplyAttackToDefender; what it counts not proven
+54fc52	g_fighter1_combo_active	u8	PROVEN	hit_ApplyAttackToDefender sets 1 on first hit; HUD combo box code reads it (P1; same field +0x52)
+54fc53	g_fighter1_combo_hits	u8	PROVEN	set 1 first hit then ++ per hit in hit_ApplyAttackToDefender; hud_ClearComboBoxPlayer compares with previous count (P1; same field +0x53)
 54fc54	g_unk_54fc54	u8	OPEN	P1 fighter f0x54: ambiguous: ld 32-bit of other structs / fp-frame
 54fc55	g_fighter1_ac_use	u8	PROVEN	DATAMAP fighter struct +0x55
 54fc58	g_fighter2_mancom	u8	PROVEN	DATAMAP fighter struct +0x0
@@ -200,7 +200,7 @@
 54fc5c	g_fighter2_pos_x	f32	PROVEN	DATAMAP fighter struct +0x4
 54fc60	g_fighter2_pos_y	f32	PROVEN	DATAMAP fighter struct +0x8
 54fc64	g_fighter2_pos_z	f32	PROVEN	DATAMAP fighter struct +0xc
-54fc68	g_unk_54fc68	u32	OPEN	P2 fighter f0x10: ambiguous: 63 candidate loads mostly floats of other structs, no fighter-fn read proven
+54fc68	g_fighter2_anim_rate	f32	PROVEN	f32 anim rate: init 1.0, 2.0/39/(n-1)/29/(n-1) in air paths, 0 on ring-out; multiplied into frame accumulator in fighter_UpdateFrame (P2; same field +0x10)
 54fc6c	g_fighter2_drct	u32	PROVEN	DATAMAP fighter struct +0x14
 54fc70	g_fighter2_atkdrct	u32	PROVEN	DATAMAP fighter struct +0x18
 54fc74	g_fighter2_bodydrct	u32	PROVEN	DATAMAP fighter struct +0x1c
@@ -213,22 +213,22 @@
 54fc83	g_fighter2_actcodeflg	u8	PROVEN	DATAMAP fighter struct +0x2b
 54fc84	g_p2_next_move	u32	PROVEN	fighter_StartMove stores 0xff to +0x2c after move id to +0x2a; states compare to 0xff [P2 f0x2c]
 54fc85	g_p2_move_class	u8	PROVEN	fighter_StartMove stob 0x2d(g6) from move table ldob 0x3(g5)[g4*8]; states compare 0,10,12,13,14,0xfe [P2 f0x2d]
-54fc86	g_unk_54fc86	u8	OPEN	P2 fighter f0x2e: byte flag zero-tested in states, compared with other fighter in hit_ResolveContacts; role not proven
-54fc87	g_unk_54fc87	u8	OPEN	P2 fighter f0x2f: zero-tested in Idle/Attack/AirFall/round_SelectWinPose; role not proven
+54fc86	g_fighter2_stance_flag	u8	PROVEN	toggled ^1 from queued flag 0x56ac66[p]; set in fighter_StartScriptMove; compared with move-req byte 0xa76c1+mv*8 in move_CanUseMove; selects case in fighter_CalcKnockbackAngle (P2; same field +0x2e)
+54fc87	g_fighter2_side_flag	u8	PROVEN	set by fighter_CheckFacingSide from float compare of positions; with +0x31 indexes 2x2 AI move-id table [0x2f*2+0x31]; picks side pos diff in UpdateStateAttack/AirFall (P2; same field +0x2f)
 54fc88	g_fighter2_updownhead	u8	PROVEN	DATAMAP fighter struct +0x30
-54fc89	g_unk_54fc89	u8	OPEN	P2 fighter f0x31: zero-test in round_SelectWinPose (pose 27/29); role not proven
+54fc89	g_fighter2_facing_away	u8	PROVEN	set from fighter_IsFacingAway() in UpdateStateIdle; 2nd index of AI move-id table (P2; same field +0x31)
 54fc8a	g_fighter2_attackpoint	u8	PROVEN	DATAMAP fighter struct +0x32
 54fc8b	g_fighter2_attacksta	u8	PROVEN	DATAMAP fighter struct +0x33
 54fc8c	g_fighter2_animeflip	u8	PROVEN	DATAMAP fighter struct +0x34
 54fc8d	g_fighter2_animeflg	u8	PROVEN	DATAMAP fighter struct +0x35
-54fc8e	g_unk_54fc8e	u8	OPEN	P2 fighter f0x36: cmpibne 1 in fighter_CheckStumbleStart; set 1 by StartMove family + hold_StartCounterResponse; role not proven
+54fc8e	g_fighter2_move_start_flag	u8	PROVEN	set 1 by StartMove family/SetMoveEnd/round_StartRound; fighter_UpdateAnimIndex reloads anime from move entry when set; read in InitScript/CheckStumbleStart (P2; same field +0x36)
 54fc8f	g_fighter2_hitattack	u8	PROVEN	DATAMAP fighter struct +0x37
 54fc90	g_fighter2_hitbody	u8	PROVEN	DATAMAP fighter struct +0x38
 54fc91	g_fighter2_hitstage	u8	PROVEN	DATAMAP fighter struct +0x39
-54fc92	g_unk_54fc92	u8	OPEN	P2 fighter f0x3a: values 1,2 compared hit_ApplyAttackToDefender, read fighter_PushHitEffects; role not proven
+54fc92	g_fighter2_guard_level	u8	PROVEN	same record layout +0x3a (P2 base 0x54fc58); code writes via fighter ptr 0x5645c0
 54fc93	g_p2_phase	u8	PROVEN	set by move_ScriptOpSetFighterByte3b/SetCounterWindow/UpdateLaunchFlight (3 then 2); compared 1,2,3 in stun/down/dispatch states, hold_IsHoldWindow [P2 f0x3b]
-54fc94	g_unk_54fc94	u8	OPEN	P2 fighter f0x3c: ambiguous: loads mostly ld 32-bit of other structs
-54fc95	g_unk_54fc95	u8	OPEN	P2 fighter f0x3d: written Idle(1/2/0)/Juggle; one reader fighter_PushHitEffects; role not proven
+54fc94	g_fighter2_launch_class	u8	PROVEN	set 2 in Idle hit path, 1 by ai_SetFighterFlag3c / cmd_SetFighterByte3c; *0x18 index into table 0xb5e80 in fighter_StartLaunchMotion (P2; same field +0x3c)
+54fc95	g_fighter2_launch_variant	u8	PROVEN	set 1/2 from move id 0x15/0x16; *8 index same table; picks recovery move 0x14/0x15/0x16 in ai_PickRecoveryFlag3d (P2; same field +0x3d)
 54fc96	g_fighter2_beatsta	u8	PROVEN	DATAMAP fighter struct +0x3e
 54fc97	g_fighter2_skysta	u8	PROVEN	DATAMAP fighter struct +0x3f
 54fc98	g_fighter2_downhit	u8	PROVEN	DATAMAP fighter struct +0x40
@@ -236,10 +236,10 @@
 54fc9a	g_fighter2_graspsta	u8	PROVEN	DATAMAP fighter struct +0x42
 54fc9b	g_fighter2_dwnasta	u8	PROVEN	DATAMAP fighter struct +0x43
 54fc9c	g_fighter2_mountsta	u8	PROVEN	DATAMAP fighter struct +0x44
-54fc9d	g_unk_54fc9d	u8	OPEN	P2 fighter f0x45: state byte 1 (CheckRingEdge) / 2 (ApplyFallStep), compared 1,2 in UpdateAllPhysics/DispatchMotionState; role not proven
+54fc9d	g_fighter2_ringout_state	u8	PROVEN	1 with pos_y=1.0 outside ring (fighter_CheckRingEdge), 2 in ApplyFallStep; DispatchMotionState runs SetRingEdgePush/ApplyFallStep on 1; UpdateAllPhysics zeroes +0x10 on 1 (P2; same field +0x45)
 54fc9e	g_fighter2_atkheight	u8	PROVEN	DATAMAP fighter struct +0x46
 54fc9f	g_fighter2_ringhit	u8	PROVEN	DATAMAP fighter struct +0x47
-54fca0	g_unk_54fca0	u8	OPEN	P2 fighter f0x48: ambiguous: mix ld/ldob, readers round_UpdateMain, fighter_UpdateFrame, cam_UpdatePlayerViewAngles
+54fca0	g_fighter2_draw_enable	u8	PROVEN	1 normal, 0 in charsel load/move_ClearFlag48; UpdateFrame/DrawAllModels do matrix only and return when 0; type u8 (P2; same field +0x48)
 54fca1	g_unk_54fca1	u8	OPEN	P2 fighter f0x49: set 1 in UpdateAirPhysics/round_StartRound, cleared in SetAnimTransition; compared 1 in states; role not proven
 54fca2	g_fighter2_drctajstflg	u8	PROVEN	DATAMAP fighter struct +0x4a
 54fca3	g_fighter2_damagenum	u8	PROVEN	DATAMAP fighter struct +0x4b
@@ -249,8 +249,8 @@
 54fca7	g_unk_54fca7	u8	OPEN	P2 fighter f0x4f: set 1 in hit_ApplyAttackToDefender/hold_StartCounterResponse; readers move_GetEntryFlagByState, ai_TrackMoveCounters; role not proven
 54fca8	g_unk_54fca8	u8	OPEN	P2 fighter f0x50: ambiguous: 20 loads mostly other structs
 54fca9	g_unk_54fca9	u8	OPEN	P2 fighter f0x51: set 1 in UpdateAirPhysics, cleared when move id (+0x2a) differs from table; role not proven
-54fcaa	g_unk_54fcaa	u8	OPEN	P2 fighter f0x52: compared 1 in hit_ApplyAttackToDefender/hit_ApplyPendingDamage; role not proven
-54fcab	g_unk_54fcab	u8	OPEN	P2 fighter f0x53: addo 1 counter in hit_ApplyAttackToDefender; what it counts not proven
+54fcaa	g_fighter2_combo_active	u8	PROVEN	hit_ApplyAttackToDefender sets 1 on first hit; HUD combo box code reads it (P2; same field +0x52)
+54fcab	g_fighter2_combo_hits	u8	PROVEN	set 1 first hit then ++ per hit in hit_ApplyAttackToDefender; hud_ClearComboBoxPlayer compares with previous count (P2; same field +0x53)
 54fcac	g_unk_54fcac	u8	OPEN	P2 fighter f0x54: ambiguous: ld 32-bit of other structs / fp-frame
 54fcad	g_fighter2_ac_use	u8	PROVEN	DATAMAP fighter struct +0x55
 54fcb0	g_nation	u8	PROVEN	settings/coin menu strings + clamp/apply funcs (test_DrawGameSettingsMenu,backup_ApplyGameSettings,game_LoadSettings) / fighter hp fields per DATAMAP+decomp
@@ -268,8 +268,8 @@
 54fcc7	g_io_mux_sel7	u8	PROVEN	zeroed in io_ReadAllInputs; indexes input tables
 54fcc8	g_unk_54fcc8	u8	OPEN	role not proven; indexed/lda use only: lda/blob base ptr
 54fccc	g_in_held	u32	PROVEN	inverted bytes of ports 0x1c00002/4/6/8
-54fccd	g_in_held_b1	u8	PROVEN	byte 1 of g_in_held
-54fcce	g_in_held_b2	u8	PROVEN	byte 2 of g_in_held
+54fccd	g_in_p1_bits	u8	PROVEN	live runs G/L: 01 hold,02 punch,04 kick,10 down,20 up,40 right,80 left (08 unseen)
+54fcce	g_in_p2_bits	u8	PROVEN	same layout as 54fccd (P2 port byte)
 54fccf	g_unk_54fccf	u8	OPEN	role not proven; abs readers: hud_UpdateFightHud,round_SelectWinPose,round_UpdateMain,round_WaitTime
 54fcd0	g_in_prev	u32	PROVEN	previous input word
 54fcd1	g_unk_54fcd1	u8	OPEN	role not proven; indexed/lda use only: move_GetEntryFlagByState
@@ -287,7 +287,7 @@
 54fce8	g_coin_mode_a	u8	PROVEN	0xf = free play; loaded from 0x90670 table
 54fce9	g_coin_opt4	u8	PROVEN	test menu cycles 1-5 (test_CycleCoinSetting4)
 54fcea	g_unk_54fcea	u8	OPEN	role not proven; abs readers: cam_SetFollowParams,cam_UpdateRoundEvent,fight_UpdateRoundState,fighte
-54fceb	g_unk_54fceb	u8	OPEN	role not proven; abs readers: backup_RecordPlayStats,fight_SpawnGuardEffect,fight_SpawnImpactEffect,
+54fceb	g_stage_progress	u8	PROVEN	live run S: 0>1>2 after each won match; indexes tbl 0x90c90 in 0x18420; ==8 final
 54fcec	g_coin_opt3	u8	PROVEN	test menu cycles 1-5 (test_CycleCoinSetting3)
 54fced	g_coin_opt1	u8	PROVEN	test menu cycles 1-5 (test_CycleCoinSetting1)
 54fcee	g_unk_54fcee	u8	OPEN	role not proven; abs readers: charsel_UpdateSelection,charsel_UpdateState,game_HandleStartInput,game
@@ -357,7 +357,7 @@
 54fd86	g_unk_54fd86	u8	OPEN	role not proven; abs readers: move_AdvanceFrameMotion
 54fd88	g_unk_54fd88	u32	OPEN	role not proven; abs readers: attract_UpdateDemo
 54fd8c	g_unk_54fd8c	u8	OPEN	role not proven; abs readers: fighter_InitRoundFighter,fighter_ReportBadValue,fighter_StartMoveScrip
-54fd8d	g_unk_54fd8d	u8	OPEN	role not proven; abs readers: fight_SpawnGuardEffect
+54fd8d	g_stage_seq_index	u8	PROVEN	code only: 0x18420 mode other than 0/4 indexes tbl 0x90ca0, ++ wrap 9 (not run live)
 54fd90	g_play_secs_p1	u32	PROVEN	per-player play counter; coin_ClearPlayCounter array
 54fd94	g_play_secs_p2	u32	PROVEN	incremented when play mode == 1
 54fd98	g_total_play_new	u32	PROVEN	= 0x1d00000 + fd90 total play
@@ -479,7 +479,7 @@
 5555d8	g_cam_vec_z	f32	PROVEN	cam_UpdateRotation vec3 z
 5555dc	g_unk_5555dc	u8	OPEN	role not proven; abs readers: cam_SetFollowParams,fight_UpdateRoundState,fighter_ApplyHitReaction,fi
 5555dd	g_unk_5555dd	u8	OPEN	role not proven; abs readers: fight_QueueRoundSoundTail,fighter_InitRoundState,hit_ClearHurtArrays,r
-5555de	g_stage_id	u8	PROVEN	ldob 0x5555de indexes stage tables ld 0x90cc0[g4*4] and 0xc6d90[(g4*3)*4] (cam_ComputeFocusOffset, fight_InitRoundCameraFighters, fight_SetBackupFlag)
+5555de	g_stage_id	u8	PROVEN	live run S: 11,3,8 = tbl 0x90c90[progress 0,1,2]; code selector 0x18420
 5555df	g_unk_5555df	u8	OPEN	role not proven; abs readers: fight_StepMatchLoad,hud_DrawCounterDispatch,hud_DrawStateA,hud_UpdateF
 5555e0	g_unk_5555e0	u8	OPEN	role not proven; abs readers: charsel_Init,fight_StepMatchLoad,fight_UpdateKO,hud_DrawCounterDispatc
 5555e2	g_unk_5555e2	u8	OPEN	role not proven; abs readers: ai_EvalWeightEntry,aiop_DelayIfLevelLow,aiop_DelayScaledByLevel,move_G
@@ -623,52 +623,52 @@
 557c62	g_unk_557c62	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(W),snd_PlaySfxC(R/W),snd_PlaySfxD(R/W),fighter_SetAnimTransition_2(R)
 557c63	g_unk_557c63	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(W),snd_PlaySfxE(R/W),snd_PlaySfxF(R/W),fighter_SetAnimTransition_2(R)
 557c64	g_unk_557c64	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(W),charsel_LoadLayerD(R/W),charsel_LoadLayerE(R/W),charsel_ClearLayerB(R)
-557c65	g_unk_557c65	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(R),fighter_SetAnimTransition(W),fighter_SetScriptPtr(W),move_DispatchMoveClass(R),script_OpJumpTable(W)...
-557c66	g_unk_557c66	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(R/W),move_StartHold(R)
-557c67	g_unk_557c67	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(R/W),move_StartRecovery(W)
-557c68	g_unk_557c68	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(R/W)
-557c69	g_unk_557c69	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(R/W)
-557c6a	g_unk_557c6a	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_InitRoundState(R/W)
-557c6b	g_unk_557c6b	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_SetAnimTransition(W),script_OpLoadTableEntry(W),fighter_ResetAnimState(W),fighter_ClearViaB3C0(R/W)
-557c6c	g_unk_557c6c	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_SetAnimTransition(W),fighter_SetAnimTransition_2(W),fighter_ResetAnimState(W),fighter_SetHitFlag(W),fighter_SetMoveEnd_2(R/W)
+557c65	g_script_active_flag	u8	PROVEN	set 1 by script ops OpJumpTable/OpCallTable/SetScriptPtr, copied to 54fcb2 by main loop 18ea0/19034, tested ==1 at 19360, cleared 191c0/1b2b0
+557c66	g_chrcol_cycle_idx	u8	PROVEN	attract loop incr wrap>5; script op 19d2c indexes ROM 0x90ea0[idx+op*3] -> fighter+0x2 chrcol
+557c67	g_cam_flag_req_oneshot	u8	PROVEN	script op 1a458 sets 1; main loop 18ebc copies to 555616 and clears 18ecc; 555616 read by cam_UpdatePlayerViewAngles 52260/5245c
+557c68	g_flow_state_next	u8	PROVEN	shadow of 54fcb1 (18edc,18f48,18f8c), stored into 557c60 at 19024
+557c69	g_flow_state4_flag	u8	PROVEN	set 1 when 54fcb1==4 else 0; if !=1 loop calls 19040 then clears
+557c6a	g_unk_557c6a	u8	DEAD	only 2 sites in prog.dis (18ff8,19004), both increment; zero reads
+557c6b	g_tltab_active	u8	PROVEN	LoadTableEntry 1a6a0 sets 1; ClearViaB3C0 1b330 tests ==1, clears at 0xffff terminator; 191d0/1b2dc clear
+557c6c	g_pending_anim_flag	u8	PROVEN	fighter_SetHitFlag 1b6dc sets 1; SetMoveEnd_2 1b708 tests ==1 and fighter+0x35==1 then fighter+0x28=557ca8[p], +0x36=1, clears
 557c6e	g_unk_557c6e	u8	DEAD	zero read xref: only W fighter_SetAnimTransition_2/snd_CallCommandB/C; 557c6c(reg) reads are idx 0/1; no lda
 557c70	g_script_ptr	ptr	PROVEN	read ptr: *p, p+1, p+=2 in move_/snd_/script opcodes
 557c74	g_script_frame	s16	PROVEN	incremented, compared with *(g_script_ptr+4)
-557c78	g_unk_557c78	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): script_OpLoadTableEntry(W),fighter_ClearViaB3C0(R/W)
-557c7c	g_unk_557c7c	u16	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): script_OpLoadTableEntry(W),fighter_ClearViaB3C0(R/W)
-557c7e	g_unk_557c7e	u16	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): script_OpLoadTableEntry(W),fighter_ClearViaB3C0(R/W)
+557c78	g_tltab_ptr	u32	PROVEN	script op sets from ROM 0x91c48[idx*4]; entries stride 8 (u16 frame, param +4); += 8 per fired entry
+557c7c	g_tltab_frame	u16	PROVEN	reset 0 on load, +1 per tick; compared with 557c7e
+557c7e	g_tltab_next_frame	u16	PROVEN	next trigger frame, 0xffff ends; when <=557c7c calls 1b3c0(param)
 557c80	g_unk_557c80	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_ShowPortraitA(R),charsel_LoadLayerD(W),charsel_DrawPortraits(W)
-557c90	g_unk_557c90	blob	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_ShowPortraitA(lda),charsel_LoadLayerD(lda),charsel_LoadLayerE(lda),charsel_ClearLayerB(lda),charsel_DrawPortraits(lda)
-557ca0	g_unk_557ca0	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): script_OpWaitIfFlag(R),attract_ClearFlag(W),attract_RunDemo(R),tile_ClearTitleLayer(W)
-557ca1	g_unk_557ca1	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): script_OpReloadDefaults(W),tile_WriteEntryPair(R),attract_CallC170(W)
-557ca4	g_unk_557ca4	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): script_OpCallTable(W),script_OpReturn_2(R)
-557ca8	g_unk_557ca8	u16	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): fighter_SetHitFlag(W),fighter_SetMoveEnd_2(R)
-557cc0	g_unk_557cc0	blob	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_DrawTitle(lda),attract_StepFade(lda),tile_ClearTitleLayer(lda),tile_FillRange(lda)
-557d20	g_unk_557d20	blob	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): pal_WriteColourBlock_2(lda)
-557d30	g_unk_557d30	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_DrawTitle(W),tile_FillRange(R/W)
+557c90	g_tilelayer_desc	blob	PROVEN	address passed in g0 to layer routines 8eb0/8d10/9330/1be80 from LoadLayerD/E, ClearLayerB, DrawPortraits, ShowPortraitA
+557ca0	g_title_seq_active	u8	PROVEN	1c050 sets 1; script_OpWaitIfFlag 1ae00 tests; attract_RunDemo 1c070 tests ==1; tile_ClearTitleLayer 1c3e0 clears
+557ca1	g_title_gfx_ready	u8	PROVEN	set 1 at step 2 in 1c0c4; OpReloadDefaults 1b1d4 clears; tile_WriteEntryPair 1b830 tests ==1
+557ca4	g_script_ret_ptr	u32	PROVEN	OpCallTable stores g_script_ptr at 1b234 before loading 0x91bf0[idx*4]; OpReturn 1b290 restores
+557ca8	g_pending_anim_id	u16	PROVEN	written by 1b6dc, read by 1b708 into fighter+0x28 (anime)
+557cc0	g_title_layer_descs	blob	PROVEN	9 entries stride 12 indexed 557cc0[r4*4], r4=idx*3; resource ids from 0x90d90[idx*2]
+557d20	g_title_layer_descs_e8	blob	PROVEN	entry 8 (+0x60) of 557cc0 table; also pal_WriteColourBlock_2 with id 0x90da0
+557d30	g_tilestream_dst	u32	PROVEN	tilemap row dest ptr from 0x1004000, +=0x80 per row, wraps >0x1005fff
 557d34	g_tilestream_f34	u32	PROVEN	field written by tile_InitStreamFromHandle, consumed by tile_FillRange
 557d38	g_tilestream_f38	u16	PROVEN	field written by tile_InitStreamFromHandle, consumed by tile_FillRange
 557d3c	g_tilestream_f3c	u32	PROVEN	field written by tile_InitStreamFromHandle, consumed by tile_FillRange
 557d40	g_tilestream_f40	u32	PROVEN	field written by tile_InitStreamFromHandle, consumed by tile_FillRange
-557d44	g_unk_557d44	u16	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_DrawTitle(W),tile_FillRange(R/W)
-557d48	g_unk_557d48	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_DrawTitle(W),attract_StepScroll(R)
-557d4c	g_unk_557d4c	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_DrawTitle(W),attract_StepScroll(R/W)
-557d50	g_unk_557d50	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_DrawTitle(W),attract_StepScroll(R/W)
-557d54	g_unk_557d54	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_DrawTitle(W),tile_FillRange(R/W)
-557d55	g_unk_557d55	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_DrawTitle(W),tile_ClearTitleLayer(R/W)
-557d56	g_unk_557d56	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_ClearFlag(W),attract_RunDemo(R),attract_StateA(R/W),attract_StateB(R/W)
-557d58	g_unk_557d58	u16	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): attract_ClearFlag(W),attract_StateB(R/W),pal_WriteColourBlock_2(R)
+557d44	g_tilestream_row_idx	u16	PROVEN	row counter, reset when >= 557d40
+557d48	g_title_scroll_x	u32	PROVEN	f32; 0 in DrawTitle, rounded +0.5 and fed to 1c560 -> 54f968
+557d4c	g_title_scroll_y	u32	PROVEN	f32 capped 0x45436000, fed to 54f970
+557d50	g_title_scroll_rowacc	u32	PROVEN	f32 accumulates speed; at >=8.0 subtract 8.0 and call tile_FillRange 1c3f0
+557d54	g_tilestream_layer_idx	u8	PROVEN	wraps >8; selects 557cc0[idx*12] and 0x90d90[idx*2]
+557d55	g_title_layer_loaded	u8	PROVEN	set 1 in DrawTitle; ClearTitleLayer tests ==1
+557d56	g_title_seq_step	u8	PROVEN	attract_RunDemo 1c070 switch 0..5
+557d58	g_title_seq_timer	u16	PROVEN	frames in step, compared with wait, cleared 1c064, read 1c364
 557d70	g_charsel_delay_done_flag	u32	PROVEN	round_TickDelayTimer: set 1 when timer and countdown 0 and 557eb8==0; charsel_Init clears
 557d74	g_start_cell_idx	u32	PROVEN	fighter_PlaceStartPositions: grid index from fighter pos, 0xff when outside
-557d78	g_unk_557d78	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): tile_SetScrollLayerA(W),charsel_Init(W),round_WaitTimer(R),fighter_UpdatePosition(R),charsel_ReadSelection(R)...
-557d7c	g_unk_557d7c	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_Update(R/W)
+557d78	g_charsel_cell_idx	u32	PROVEN	copy of g_start_cell_idx 557d74, 0xff none; remi 7 in 1d560; stored +0x4c of token 1d8f4
+557d7c	g_charsel_spin_accum	u32	PROVEN	+=0x180 per charsel_Update frame; passed as TGP cmd param (0x1b1b via 0x6a4) when cursor cell matches
 557d80	g_charsel_delay_timer	u32	PROVEN	round_TickDelayTimer: decremented to 0, charsel_Init sets 0x3c
 557d88	g_name_entry_chars	u16[3]	PROVEN	init 0x20 (space), 3 cells, idx 557d90
-557d8a	g_unk_557d8a	u16	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_Init(W),charsel_Update(R),io_ReadCoinsAndStart(R)
-557d8c	g_unk_557d8c	u16	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_Init(W),charsel_Update(R),io_ReadCoinsAndStart(R)
+557d8a	g_name_entry_chars_1	u16	PROVEN	557d88 u16[3]+2; charsel_Init sets 32; 1d964 stores 557d88[p*2]
+557d8c	g_name_entry_chars_2	u16	PROVEN	557d88 u16[3]+4; charsel_Init sets 32; 1d964 stores 557d88[p*2]
 557d90	g_name_entry_idx	u32	PROVEN	loop <3 over g_name_entry_chars
-557d94	g_unk_557d94	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): io_ReadServiceSwitch(R/W),io_ReadCoinsAndStart(R)
-557d98	g_unk_557d98	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_Update(R),io_ReadServiceSwitch(W),io_ReadCoinsAndStart(R)
+557d94	g_rank_value	u32	PROVEN	1e9b0: 60*g6+16*g5+byte(54fd17), compared with ROM 0x1d0025c[idx*12]
+557d98	g_rank_slot	u32	PROVEN	first table entry with value<=entry, 9 if none; shown as digits in charsel_Update
 557d9c	g_round_wait_flag0	u32	PROVEN	cleared round_UpdateMain, set+tested round_WaitTimer
 557da0	g_round_wait_flag1	u32	PROVEN	cleared round_UpdateMain, set+tested round_WaitTimer
 557da4	g_start_pos_x	u32	PROVEN	fighter_PlaceStartPositions: 2*(idx%7)-6
@@ -680,17 +680,17 @@
 557dbc	g_height_out_a	u32	PROVEN	W fighter_UpdateHeight, R fighter_UpdateVelocity
 557dc0	g_unk_557dc0	u32	DEAD	zero read xref: only W fighter_UpdateHeight; 557dbc ld is 4B; no lda
 557dc4	g_height_out_b	u32	PROVEN	W fighter_UpdateHeight, R fighter_UpdateVelocity
-557dd0	g_unk_557dd0	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): round_UpdateMain(lda),charsel_ReadSelection(lda),charsel_UpdateCursor(R/W/lda),charsel_Update(lda)
-557e18	g_unk_557e18	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_Init(W),charsel_UpdateCursor(W),charsel_Update(R)
-557e68	g_unk_557e68	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_Init(W),charsel_Update(R)
-557eb8	g_unk_557eb8	u32	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): charsel_Init(W),round_TickDelayTimer(R),round_UpdateMain(R),fighter_ResolvePush(R),fighter_UpdateVelocity(R)...
+557dd0	g_nametok0_pos_x	u32	PROVEN	name token struct at 0x557dd0+p*0x50: +0 pos_x f32,+4 y,+8 z,+0xc/+0x10 vel,+0x48 frames_left,+0x4c cell
+557e18	g_nametok0_frames_left	u32	PROVEN	nametok0+0x48; set 9 in ReadSelection; at 0 stores char 0x95690[+0x4c] into 557d88[p], calls 94f0
+557e68	g_nametok1_frames_left	u32	PROVEN	nametok1+0x48 (0x557dd0+0x50+0x48)
+557eb8	g_nametok2_frames_left	u32	PROVEN	nametok2+0x48; also read by round_TickDelayTimer 1ca28, 1cb08, 1dcec
 557ec0	g_clock_subframe	u8	PROVEN	round_TickTimer counts to 0x54fd77, feeds 54fd16/54fd15 clock
 557ec8	g_unk_557ec8	mixed	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): ranking_CallInit(lda),ranking_UpdateNameEntry(R/W),hit_ApplyPendingDamage(lda)
 557ecc	g_unk_557ecc	mixed	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): ranking_UpdateNameEntry(R/W)
 557ed0	g_unk_557ed0	mixed	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): ranking_CallInit(lda),ranking_UpdateNameEntry(R/W),hit_ApplyPendingDamage(lda)
 557ed4	g_unk_557ed4	mixed	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): ranking_UpdateNameEntry(R/W)
-557ed8	g_unk_557ed8	blob	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): ranking_CallInit(lda),ranking_UpdateNameEntry(lda)
-557ee0	g_unk_557ee0	blob	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): ranking_CallInit(lda),ranking_UpdateNameEntry(lda)
+557ed8	g_fighter_f53_prev	blob	PROVEN	u8[2] prev-frame copy of fighter+0x53 per player; cleared ranking_CallInit 1ec9c..1ecd8
+557ee0	g_fighter_f52_prev	blob	PROVEN	u8[2] prev-frame copy of fighter+0x52 per player; cleared ranking_CallInit 1ec9c..1ecd8
 557ee8	g_rank_entry_f00	u8	PROVEN	ranking entry field (init ranking_InitEntry, edited ranking_UpdateNameEntry), base 557ee8
 557ee9	g_rank_entry_f01	u8	PROVEN	ranking entry field (init ranking_InitEntry, edited ranking_UpdateNameEntry), base 557ee8
 557eea	g_rank_entry_f02	u8	PROVEN	ranking entry field (init ranking_InitEntry, edited ranking_UpdateNameEntry), base 557ee8
@@ -768,8 +768,8 @@
 5645c4	g_ai_opp_fighter	ptr	PROVEN	st 0x54fc00+(slot^1)*0x58 at 0x263c0
 5645c8	g_unk_5645c8	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): move_GetEntryFlagByState(W),ai_RunScriptStep(R/W),ai_PickHoldOrCounterMove(R)
 5645ca	g_unk_5645ca	u8	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): move_GetEntryFlagByState(W),ai_RunScriptStep(R),ai_RunStateMachine(R),ai_StateGroundPick(R)
-5645cc	g_unk_5645cc	u16	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): move_GetEntryFlagByState(W/lda),ai_RunScriptStep(R),cmd_CheckFrameRange(R),aiop_WaitSelfTimer(R)
-5645ce	g_unk_5645ce	unk	OPEN	role not determinable from access pattern alone (or fields of a struct not mapped): move_GetEntryFlagByState(lda)
+5645cc	g_move_frame_p1	u16	PROVEN	live run N: resets 1 frame after each P1 move id change then +1/frame; code prog.dis 0x26334 inc, 0x2608c clear
+5645ce	g_move_frame_p2	u16	PROVEN	live run N: resets 1 frame after each P2 move id change; code 0x26348 inc
 5645d0	g_ai_cmd_hist0	u8[2]	PROVEN	per-player u8; move_GetEntryFlagByState shifts d0->d2->d4 (R d2 W d4, R d0 W d2)
 5645d2	g_ai_cmd_hist1	u8[2]	PROVEN	per-player u8; shifted d0->d2->d4 in move_GetEntryFlagByState, compared ai_RunScriptStep
 5645d4	g_ai_cmd_hist2	u8[2]	PROVEN	per-player u8; oldest of shift chain d0->d2->d4, compared ai_RunScriptStep
@@ -1003,13 +1003,13 @@
 565714	g_mode4_flag_latched	u8	PROVEN	attract_EnterMode4: latched copy of byte 0x555619, ==1 edge test
 565718	g_screen_init_step	u32	PROVEN	attract_ScreenInit: switch step, incremented, jumps to 5/10
 56571c	g_screen_frame_counter	u32	PROVEN	attract_ScreenInit: incremented per frame, compared to 0x130/0x1b8/0x1e4/499/0x30b
-565720	g_unk_565720	u64	OPEN	u64 pair in hud_UpdateComboDisplay/round_UpdateModeScreens; reader role not distinguishable
+565720	g_hud_combo_prev_f53	u64	PROVEN	u64 latch stored in round_UpdateModeScreens (36230,36394), lda-read hud_UpdateComboDisplay 375ec as previous-frame value of combo float pair; sibling of 565748
 565728	g_combo_box_player	u32	PROVEN	u32[2]; passed as 0/1 player index to 0x37730 in hud_UpdateComboDisplay
 56572c	g_combo_box_player+0x4	u32	PROVEN	element 1 of 565728
 565730	g_combo_count_clamped	u64	PROVEN	u32[2] per player, clamped to 20 in hud_UpdateComboDisplay
 565738	g_combo_box_anim_step	u32	PROVEN	u32[2] counter +1, compare ==15 (hud_StepComboBoxAnim)
 565740	g_combo_box_anim_hold	u64	PROVEN	u32[2] decremented in hud_StepComboBoxAnim
-565748	g_unk_565748	u64	OPEN	u64 pair written in round_UpdateModeScreens/hud_UpdateComboDisplay; reader role not distinguishable
+565748	g_hud_prev_f52	u64	PROVEN	u64 latch stored round_UpdateModeScreens (36288,362e0,363a4), lda-read hud_UpdateComboDisplay 375e0 as previous-frame pair
 565750	g_round_num_latched	u8	PROVEN	round_UpdateModeScreens: latched copy of round byte 0x555611, compared in hud_DrawRoundNumberTiles
 565751	g_round_num_tiles_flag	u8	PROVEN	==1 test in hud_DrawRoundNumberTiles; set 1 in round_UpdateModeScreens
 565752	g_flag_555617_latched	u8	PROVEN	round_UpdateModeScreensTail: latched copy of byte 0x555617
@@ -1062,15 +1062,15 @@
 565fc0	g_hitbox_kind	u8	PROVEN	u8 [p*0x10+i*4] 1 or 3 from ROM 0xc1420 [chr*0x28+n*4] in hit_LoadBoxShape
 565fd0	g_hitbox_kind+0x10	u8	PROVEN	p=1 row of g_hitbox_kind
 565fe0	g_hitbox_seg_start	unk	PROVEN	f32x3 [p*0x60+i*0x18] in hit_LoadBoxShape (565fec = end vec)
-566080	g_unk_566080	unk	OPEN	fighter_UpdateBodyParts offset into body-part arrays; field role not proven
+566080	g_hitbox_seg_start+0xa0	unk	PROVEN	offset +0xa0 into hit_LoadBoxShape hitbox segment-start array; base lda at fighter_UpdateBodyParts 3f908, next ops subo 8,r13 stride walk
 5660a0	g_hitbox_radius	u32	PROVEN	f32 [p*0x10+i*4] pfVar8[6] hit_LoadBoxShape
-5660b8	g_unk_5660b8	unk	OPEN	fighter_UpdateBodyParts offset into body-part arrays; field role not proven
+5660b8	g_hitbox_radius+0x18	unk	PROVEN	offset +0x18 into hitbox radius array built by hit_LoadBoxShape; sole site fighter_UpdateBodyParts lda
 5660c0	g_hitbox_shape_vec	unk	PROVEN	vec3 [p*0x30+i*0xc] hit_LoadBoxShape; cleared by hit_ClearHurtArrays
-5660f4	g_unk_5660f4	u32	OPEN	fighter_UpdateBodyParts offset into body-part arrays; field role not proven
-5660f8	g_unk_5660f8	u32	OPEN	fighter_UpdateBodyParts offset into body-part arrays; field role not proven
-566108	g_unk_566108	unk	OPEN	fighter_UpdateBodyParts offset into body-part arrays; field role not proven
+5660f4	g_hitbox_shape_vec+0x34	unk	PROVEN	offset +0x34 into hitbox shape-vec array (hit_LoadBoxShape output); sole site fighter_UpdateBodyParts
+5660f8	g_hitbox_shape_vec+0x38	unk	PROVEN	offset +0x38 into hitbox shape-vec array; sole site fighter_UpdateBodyParts
+566108	g_hitbox_shape_vec+0x48	unk	PROVEN	offset +0x48 into hitbox shape-vec array; sole site fighter_UpdateBodyParts
 566120	g_hitbox_param3	u32	PROVEN	f32 [p*0x10+i*4] pfVar8[3] hit_LoadBoxShape; cleared by hit_ClearHurtArrays
-566130	g_unk_566130	u32	OPEN	fighter_UpdateBodyParts offset into body-part arrays; field role not proven
+566130	g_hitbox_param3+0x10	unk	PROVEN	offset +0x10 into hitbox param3 array; sole site fighter_UpdateBodyParts
 566140	g_fighter_move_ctx	unk	PROVEN	base stride 0x2360 per player; move_StartMove/move_SetupAttack param_2*0x2360+0x566140
 5661d0	g_fighter_move_ctx+0x90	unk	PROVEN	entries n*0x46c + p*0x2360 + 0x5661d0 in move_SetupAttack
 56a800	g_fmot_rec	unk	PROVEN	base stride 0x78 per player (+8*k): move_SelectHitReaction/move_IntegrateMotion
@@ -1085,8 +1085,8 @@
 56aa6c	g_p2_scrolldir_b	u32	PROVEN	round_UpdateFighterPair: vec_ScrollDirection out for fighter2, scaled by abec
 56aa70	g_fmotrec	unk	PROVEN	base stride 0xb4 (move_AdvanceFrameMotion param*0xb4+0x56aa70)
 56aa88	g_fmotrec_off18	u32	PROVEN	g_fmotrec+0x18: fighter_UpdateMotionState copies *0x6a4 into it; neg int read ai_ComputeApproach
-56abe0	g_unk_56abe0	u32	OPEN	per-player int: *0.006 for scrolldir scale and 10-x AI threshold; role unproven
-56abe4	g_unk_56abe4	u32	OPEN	float read fight_InitRoundCameraFighters, init in fight_InitSceneState; role unproven
+56abe0	g_scrolldir_out_c	vec	PROVEN	vec_ScrollDirection 0x63160 output component c; read ai_ComputeApproach, fight_ClearPlayerVectors, cleared in fight_InitRoundCameraFighters
+56abe4	g_scrolldir_out_c+0x4	vec	PROVEN	vec_ScrollDirection output component following 56abe0; cleared fight_ClearPlayerVectors, fight_InitRoundCameraFighters
 56abe8	g_p1_scrolldir_scale	u32	PROVEN	round_UpdateFighterPair: float from abe0*0.006, multiplies fighter1 scrolldir
 56abec	g_p2_scrolldir_scale	u32	PROVEN	round_UpdateFighterPair: float from fighter2 abe4, multiplies fighter2 scrolldir
 56abf0	g_unk_56abf0	unk	OPEN	only zeroed (lda base 1 site); reader not identified
@@ -1815,13 +1815,13 @@
 5bf9e8	g_cam_angle_vel_pitch	s32	PROVEN	AngOpAccel; added into g_cam_pitch
 5bf9ec	g_cam_angle_vel_yaw	s32	PROVEN	AngOpAccel; added into g_cam_yaw
 5bf9f0	g_cam_angle_vel_roll	s32	PROVEN	AngOpAccel; added into 5bf8d0 third angle
-5bf9f4	g_unk_5bf9f4	u8	OPEN	readers exist (users cam_StepAngleTrack,cam_StartAngleTrackIdx) but role not proven; pointer/lda access or ambiguous field
+5bf9f4	g_cam_angtrack_opcount	u8	PROVEN	zeroed in cam_StartAngleTrackIdx/Inline, ++ per executed opcode in cam_StepAngleTrack 84334/84340; no other reader (all.txt)
 5bf9f8	g_cam_angle_offset_track_ptr	ptr	PROVEN	from table 0xceae0 or inline; SetAngleOffsetTrack
-5bf9fc	g_unk_5bf9fc	u8	OPEN	readers exist (users cam_StartAngleTrackIdx,cam_SetAngleOffsetTrack) but role not proven; pointer/lda access or ambiguous field
+5bf9fc	g_cam_angoffset_track_flag	u8	DEAD	only 2 sites: stob 0 at cam_StartAngleTrackIdx 82480 and cam_SetAngleOffsetTrack 82964; zero ld/lda xref of 0x5bf9fc in prog.dis
 5bfa00	g_cam_dist_track_ptr	ptr	PROVEN	from table 0xcece0 or inline; DistOp* read *ptr
 5bfa04	g_cam_dist_track_counter	f32	PROVEN	DistOp += 1.0 vs track[+8]
 5bfa08	g_cam_dist_vel	f32	PROVEN	DistOpAccel; added into g_cam_distance
-5bfa0c	g_unk_5bfa0c	u8	OPEN	readers exist (users cam_StepDistTrack,cam_StartDistTrackIdx) but role not proven; pointer/lda access or ambiguous field
+5bfa0c	g_cam_disttrack_opcount	u8	PROVEN	zeroed in cam_StartDistTrackIdx/Inline, ++ per executed opcode in cam_StepDistTrack 84c84/84c90; no other reader (all.txt)
 5bfa10	g_unk_5bfa10	u8	OPEN	readers exist (no decomp refs; users cam_StepPosTrack) but role not proven; pointer/lda access or ambiguous field
 5bfa14	g_unk_5bfa14	u8	OPEN	readers exist (no decomp refs; users cam_StepPosTrack) but role not proven; pointer/lda access or ambiguous field
 5bfa18	g_unk_5bfa18	u8	OPEN	readers exist (no decomp refs; users cam_StepPosTrack) but role not proven; pointer/lda access or ambiguous field

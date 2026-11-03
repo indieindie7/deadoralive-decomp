@@ -1,0 +1,18 @@
+addr	name	type	PROVEN	evidence
+0x956f0	move_NextMovePairs	struct{u8 flag;u8 next_moveid}[48]	PROVEN	move_GetNextMove 24400 reads [2i],[2i+1]; 25b20; 22d94
+0x95750	move_TablePtrs	u32[16] by chrnum	PROVEN	ld 0x95750[chrnum*4] at 22d58,244b4,25c28
+0x95790	move_Table_Chr0_3_7_9_10_13_14	move8[200]	PROVEN	pointer array value; next table at 0x95dd0 (200*8)
+0x95dd0	move_Table_Chr1	move8[238]	PROVEN	pointer gap to 0x96540
+0x96540	move_Table_Chr2	move8[214]	PROVEN	pointer gap to 0x96bf0
+0x96bf0	move_Table_Chr4	move8[204]	PROVEN	pointer gap to 0x97250
+0x97250	move_Table_Chr5	move8[214]	PROVEN	pointer gap to 0x97900
+0x97900	move_Table_Chr6	move8[194]	PROVEN	pointer gap to 0x97f10
+0x97f10	move_Table_Chr8	move8[228]	PROVEN	pointer gap to 0x98630
+0x98630	move_Table_Chr11	move8[240]	PROVEN	pointer gap to 0x98db0
+0x98db0	move_Table_Chr12	move8[212]	PROVEN	0x98db0+212*8=0x99450 next object (u32 pointer array)
+0x99450	move16_TablePtrs	u32[16] by chrnum	PROVEN	move_GetEntry 25680 ld 0x99450[chrnum*4]
+0x9bdb0	move16_SharedTable	move16[136] ids 0x30..0xb7	PROVEN	move_GetEntry 25680 (id-0x30)*16
+0x54fccd	in_P1_stick_buttons	u8 bits 0 HOLD,1 PUNCH,2 KICK,4 DOWN,5 UP,6 RIGHT,7 LEFT	PROVEN	test_ScreenInputTest 87d70 + labels 0x88230..0x882f0
+0x54fcce	in_P2_stick_buttons	u8 same bits	PROVEN	test_ScreenInputTest 87d70
+0x54fcd4	in_press_edges	u32 (P1 byte 0x54fcd5, P2 0x54fcd6)	PROVEN	prog.dis 081b4..081b8 andnot prev
+0x54fcd8	in_release_edges	u32	PROVEN	prog.dis 081c0..081c4

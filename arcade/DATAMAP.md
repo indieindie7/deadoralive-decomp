@@ -97,9 +97,10 @@ OPEN: true stage id byte (work[0x7251] is only a selector), select bytes, ai_Scr
 
 STILL OPEN (not proven): guard flag (hold button run E showed mv 192/196 cls 11 anim 437/431 while holding, but P1 also took 40 dmg: it is DOA hold/counter not a guard bit), anim frame counter, true stage id byte, stage-select byte, ai_ScriptInterpreter opcodes 0x28910, move table 0x95750 decode, 4 stray rets, 11 orphans meaning.
 
-## Status 11-02 late
-Globals: 775 PROVEN / 1102 OPEN (round 2 added 204 by code evidence). 11 orphans named; 4 stray rets placed (tile_PrintString x2, fight_RunFrame, new fn script_StateDispatchLoop 0x7a8d0). AI opcodes: ai_opcodes.md (33 tokens PROVEN, button/direction bit names OPEN). Move table 0x95750: move_table.tsv (1944 entries decoded; pair table + chr12 count OPEN).
-Still OPEN: guard flag, anim frame counter, true stage id / stage-select byte, 1102 globals (mostly init-only or register-indexed).
-
-## Round 3 (11-02)
-Globals: 1169 PROVEN / 180 DEAD (zero read xref) / 528 OPEN.
+## Round 4 (11-02 night) live + decode
+- Guard level = fighter+0x3a (0 none, 1 stand, 2 crouch); set by holding BACK (0x80), +down 0x90; not the hold button (ai_SetGuardFromInput 0x286c0).
+- Per-move frame counter u16 0x5645cc (P1) / 0x5645ce: +1/frame, reset on move id change. Motion-script keyframe index OPEN.
+- Stage id 0x5555de, driven by progress byte 0x54fceb; no manual stage select UI.
+- Input byte 0x54fccd: bit0 HOLD, 1 PUNCH, 2 KICK, 4 DOWN, 5 UP, 6 RIGHT, 7 LEFT; bit3 never tested (OPEN).
+- ROM 0x956f0 = 48 {flag,next_moveid} pairs (move_GetNextMove); 0x95750 = u32[16] per-character move table ptrs; chr 12 has 212 entries.
+- Globals: 1247 PROVEN / 182 DEAD / 448 OPEN. Remaining OPEN need per-field work (AI 5645xx-5648xx, hit block 557f2x+, non-fighter object fields).

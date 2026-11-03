@@ -1,0 +1,9 @@
+54fc3a	g_fighter1_guard_level	u8	PROVEN	live run L: back 0x80 ->1, back+down 0x90 ->2, released ->0; code ai_SetGuardFromInput 0x286c0 + hit_ApplyAttackToDefender guard branch
+54fc92	g_fighter2_guard_level	u8	PROVEN	same record layout +0x3a (P2 base 0x54fc58); code writes via fighter ptr 0x5645c0
+5645cc	g_move_frame_p1	u16	PROVEN	live run N: resets 1 frame after each P1 move id change then +1/frame; code prog.dis 0x26334 inc, 0x2608c clear
+5645ce	g_move_frame_p2	u16	PROVEN	live run N: resets 1 frame after each P2 move id change; code 0x26348 inc
+5555de	g_stage_id	u8	PROVEN	live run S: 11,3,8 = tbl 0x90c90[progress 0,1,2]; code selector 0x18420
+54fceb	g_stage_progress	u8	PROVEN	live run S: 0>1>2 after each won match; indexes tbl 0x90c90 in 0x18420; ==8 final
+54fd8d	g_stage_seq_index	u8	PROVEN	code only: 0x18420 mode other than 0/4 indexes tbl 0x90ca0, ++ wrap 9 (not run live)
+54fccd	g_in_p1_bits	u8	PROVEN	live runs G/L: 01 hold,02 punch,04 kick,10 down,20 up,40 right,80 left (08 unseen)
+54fcce	g_in_p2_bits	u8	PROVEN	same layout as 54fccd (P2 port byte)
