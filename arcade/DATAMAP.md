@@ -100,3 +100,6 @@ STILL OPEN (not proven): guard flag (hold button run E showed mv 192/196 cls 11 
 ## Status 11-02 late
 Globals: 775 PROVEN / 1102 OPEN (round 2 added 204 by code evidence). 11 orphans named; 4 stray rets placed (tile_PrintString x2, fight_RunFrame, new fn script_StateDispatchLoop 0x7a8d0). AI opcodes: ai_opcodes.md (33 tokens PROVEN, button/direction bit names OPEN). Move table 0x95750: move_table.tsv (1944 entries decoded; pair table + chr12 count OPEN).
 Still OPEN: guard flag, anim frame counter, true stage id / stage-select byte, 1102 globals (mostly init-only or register-indexed).
+
+## Round 3 (11-02)
+Globals: 1169 PROVEN / 180 DEAD (zero read xref) / 528 OPEN.
